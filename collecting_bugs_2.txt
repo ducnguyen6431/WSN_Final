@@ -1,0 +1,5314 @@
+Thread[Thread-1,5,main][INFO] Setting up for head and node
+[INFO] Radio started!
+[INFO] TS received
+[DBG] Local scheduler start for head
+[INFO] New round local
+[INFO] Local new round
+[INFO] Start done in TDMA
+[DBG] Local slot started. Slot: 0
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[INFO] Sending Join Req
+[DBG] Sending Join req... Status: 0
+[DBG] Join Req Send status: 0
+[INFO] Slot assigned: 2
+[INFO] Adding new slot to slot map. Slot position: 2
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] In set up phase
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] In set up phase
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] In set up phase
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] In set up phase
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+ Local slot started. Slot: 0[INFO] TS received
+[DAT] Reading Photo!
+[DAT] R[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+ Local slot started. Slot: 0[DAT] Reading Photo!
+[DAT] R[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Ring Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[DAT] Reading Photo!
+[INFO] TS received
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[DAT] Reading Photo!
+[INFO] TS received
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+ Local slot started. Slot: 0[DAT] Reading Photo!
+[DAT] R[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
+[INFO] New round local
+[INFO] Local new round
+[DBG] Local slot started. Slot: 0
+[INFO] Radio started!
+[INFO] TS received
+[DAT] Reading Photo!
+[DAT] Reading Radiation!
+[DAT] Reading Vref!
+[DAT] Reading Temperature!
+[DAT] Reading Humidity!
+[INFO] Read data done
+[DBG] Local slot ended. Slot: 0
+[DBG] Local slot started. Slot: 1
+[DBG] Local slot ended. Slot: 1
+[DBG] Local slot started. Slot: 2
+[DBG] Sending data... Status: 0
+[INFO] Sending Data Pkg
+[INFO] Data pkg sent
+[DBG] Local slot ended. Slot: 2
+[INFO] Shutting radio down
+[INFO] Radio Stopped!
