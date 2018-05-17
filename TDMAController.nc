@@ -1,4 +1,4 @@
-#include "message.h"
+#include "wsn_message.h"
 typedef enum {
 	TDMA_ROUND_SYSTEM	= 1,
 	TDMA_ROUND_LOCAL	= 2

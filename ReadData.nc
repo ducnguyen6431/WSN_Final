@@ -1,4 +1,4 @@
-#include "message.h"
+#include "wsn_message.h"
 interface ReadData {
 	command error_t read();
 	event void readDone(error_t error, data_pkg_msg_t *msg);

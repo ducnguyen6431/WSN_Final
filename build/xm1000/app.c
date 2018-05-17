@@ -246,13 +246,13 @@ typedef int32_t ufs_daddr_t;
 typedef int32_t ufs_time_t;
 typedef u_int32_t uid_t;
 # 41 "/usr/bin/../lib/gcc/msp430/4.6.3/../../../../msp430/include/string.h" 3
-extern int memcmp(const void *arg_0x40332690, const void *arg_0x40332828, size_t arg_0x403329c0);
-extern void *memcpy(void *arg_0x40332e68, const void *arg_0x40330030, size_t arg_0x403301c8);
+extern int memcmp(const void *arg_0x40419690, const void *arg_0x40419828, size_t arg_0x404199c0);
+extern void *memcpy(void *arg_0x40419e68, const void *arg_0x40417030, size_t arg_0x404171c8);
 
-extern void *memset(void *arg_0x40330e90, int arg_0x40335010, size_t arg_0x403351a8);
+extern void *memset(void *arg_0x40417e90, int arg_0x4041c010, size_t arg_0x4041c1a8);
 #line 65
-extern void *memset(void *arg_0x40341d30, int arg_0x40341e88, size_t arg_0x40340030);
-extern void bzero(void *arg_0x40340430, size_t arg_0x403405c8);
+extern void *memset(void *arg_0x40428d30, int arg_0x40428e88, size_t arg_0x40427030);
+extern void bzero(void *arg_0x40427430, size_t arg_0x404275c8);
 # 62 "/usr/bin/../lib/gcc/msp430/4.6.3/../../../../msp430/include/stdlib.h" 3
 #line 59
 typedef struct __nesc_unnamed4242 {
@@ -272,6 +272,7 @@ typedef struct __nesc_unnamed4243 {
 } ldiv_t;
 #line 97
 void *malloc(size_t size);
+void free(void *p);
 # 122 "/usr/bin/../lib/gcc/msp430/4.6.3/../../../../msp430/include/sys/config.h" 3
 typedef long int __int32_t;
 typedef unsigned long int __uint32_t;
@@ -409,7 +410,7 @@ struct _reent {
 
   int __sdidinit;
 
-  void (*__cleanup)(struct _reent *arg_0x403613b8);
+  void (*__cleanup)(struct _reent *arg_0x404483b8);
 
 
   struct _Bigint *_result;
@@ -449,7 +450,7 @@ struct _reent {
   struct _atexit _atexit0;
 
 
-  void (**_sig_func)(int arg_0x40364a70);
+  void (**_sig_func)(int arg_0x4044ba70);
 
 
 
@@ -852,11 +853,13 @@ typedef struct __nesc_unnamed4256 {
   int tbclgrp : 2;
   int _unused2 : 1;
 } msp430_timer_b_control_t;
-# 17 "message.h"
+# 19 "wsn_message.h"
 #line 4
 typedef nx_struct __nesc_unnamed4257 {
-  nx_uint16_t on_off_switch;
+
+  nx_uint8_t group_id;
   nx_uint8_t remain_round;
+
 
 
 
@@ -873,10 +876,55 @@ typedef nx_struct __nesc_unnamed4257 {
 
 
 
-
-
-#line 19
+#line 21
 typedef nx_struct __nesc_unnamed4258 {
+  nx_uint8_t new_group_id;
+  nx_bool on_off;
+  nx_bool is_new_head;
+} __attribute__((packed)) head_to_node_assignment_msg_t;
+
+
+
+
+
+
+#line 27
+typedef struct __nesc_unnamed4259 {
+  uint8_t slot_no_of_new_head;
+  uint8_t slot_map_new_group_id[5 - 2];
+  uint8_t head_new_group_id;
+  uint32_t slot_map_on_off;
+} structured_sink_to_head_assignment_msg_t;
+
+
+
+
+
+
+
+
+
+
+#line 34
+typedef nx_struct __nesc_unnamed4260 {
+  nx_uint8_t data[28];
+} __attribute__((packed)) 
+
+
+
+
+
+
+sink_to_head_assignment_msg_t;
+
+
+
+
+
+
+
+#line 45
+typedef nx_struct __nesc_unnamed4261 {
   nx_uint16_t vref;
   nx_uint16_t temperature;
   nx_uint16_t humidity;
@@ -885,18 +933,18 @@ typedef nx_struct __nesc_unnamed4258 {
 } __attribute__((packed)) data_pkg_msg_t;
 
 
-#line 27
-typedef nx_struct __nesc_unnamed4259 {
+#line 53
+typedef nx_struct __nesc_unnamed4262 {
 } __attribute__((packed)) join_req_msg_t;
 
 
 
-#line 30
-typedef nx_struct __nesc_unnamed4260 {
+#line 56
+typedef nx_struct __nesc_unnamed4263 {
   nx_uint8_t slot;
 } __attribute__((packed)) join_ans_msg_t;
 # 43 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/types/Leds.h"
-enum __nesc_unnamed4261 {
+enum __nesc_unnamed4264 {
   LEDS_LED0 = 1 << 0, 
   LEDS_LED1 = 1 << 1, 
   LEDS_LED2 = 1 << 2, 
@@ -907,25 +955,25 @@ enum __nesc_unnamed4261 {
   LEDS_LED7 = 1 << 7
 };
 # 41 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Timer.h"
-typedef struct __nesc_unnamed4262 {
+typedef struct __nesc_unnamed4265 {
 #line 41
   int notUsed;
 } 
 #line 41
 TSecond;
-typedef struct __nesc_unnamed4263 {
+typedef struct __nesc_unnamed4266 {
 #line 42
   int notUsed;
 } 
 #line 42
 TMilli;
-typedef struct __nesc_unnamed4264 {
+typedef struct __nesc_unnamed4267 {
 #line 43
   int notUsed;
 } 
 #line 43
 T32khz;
-typedef struct __nesc_unnamed4265 {
+typedef struct __nesc_unnamed4268 {
 #line 44
   int notUsed;
 } 
@@ -933,7 +981,7 @@ typedef struct __nesc_unnamed4265 {
 TMicro;
 # 6 "Logger.nc"
 #line 1
-typedef enum __nesc_unnamed4266 {
+typedef enum __nesc_unnamed4269 {
   log_lvl_err = 0, 
   log_lvl_info = 1, 
   log_lvl_dbg = 2, 
@@ -941,17 +989,17 @@ typedef enum __nesc_unnamed4266 {
 } log_level_t;
 # 5 "TDMAController.nc"
 #line 2
-typedef enum __nesc_unnamed4267 {
+typedef enum __nesc_unnamed4270 {
   TDMA_ROUND_SYSTEM = 1, 
   TDMA_ROUND_LOCAL = 2
 } tdma_round_type_t;
 # 37 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11.h"
-enum __nesc_unnamed4268 {
+enum __nesc_unnamed4271 {
   SHT11_TEMPERATURE_BITS = 14, 
   SHT11_HUMIDITY_BITS = 12
 };
 
-enum __nesc_unnamed4269 {
+enum __nesc_unnamed4272 {
   SHT11_STATUS_LOW_RES_BIT = 1 << 0, 
   SHT11_STATUS_NO_RELOAD_BIT = 1 << 1, 
   SHT11_STATUS_HEATER_ON_BIT = 1 << 2, 
@@ -961,7 +1009,7 @@ enum __nesc_unnamed4269 {
 typedef uint8_t resource_client_id_t;
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12.h"
 #line 48
-typedef struct __nesc_unnamed4270 {
+typedef struct __nesc_unnamed4273 {
 
   unsigned int inch : 4;
   unsigned int sref : 3;
@@ -982,7 +1030,7 @@ typedef struct __nesc_unnamed4270 {
 
 
 #line 61
-typedef struct __nesc_unnamed4271 {
+typedef struct __nesc_unnamed4274 {
 
 
   volatile unsigned 
@@ -1080,7 +1128,7 @@ enum sampcon_id_enum {
 };
 #line 199
 #line 186
-typedef struct __nesc_unnamed4272 {
+typedef struct __nesc_unnamed4275 {
   volatile unsigned 
   adc12sc : 1, 
   enc : 1, 
@@ -1096,7 +1144,7 @@ typedef struct __nesc_unnamed4272 {
 } __attribute((packed))  adc12ctl0_t;
 #line 212
 #line 201
-typedef struct __nesc_unnamed4273 {
+typedef struct __nesc_unnamed4276 {
   volatile unsigned 
   adc12busy : 1, 
   conseq : 2, 
@@ -1190,7 +1238,7 @@ typedef nx_struct cc2420_packet_t {
   nx_uint8_t data[];
 } __attribute__((packed)) cc2420_packet_t;
 #line 179
-enum __nesc_unnamed4274 {
+enum __nesc_unnamed4277 {
 
   MAC_HEADER_SIZE = sizeof(cc2420_header_t ) - 1, 
 
@@ -1447,7 +1495,7 @@ enum cc2420_security_enums {
 };
 
 
-enum __nesc_unnamed4275 {
+enum __nesc_unnamed4278 {
 
   CC2420_INVALID_TIMESTAMP = 0x80000000L
 };
@@ -1460,7 +1508,7 @@ typedef uint8_t am_id_t;
 typedef uint8_t am_group_t;
 typedef uint16_t am_addr_t;
 
-enum __nesc_unnamed4276 {
+enum __nesc_unnamed4279 {
   AM_BROADCAST_ADDR = 0xffff
 };
 
@@ -1472,7 +1520,7 @@ enum __nesc_unnamed4276 {
 
 
 
-enum __nesc_unnamed4277 {
+enum __nesc_unnamed4280 {
   TOS_AM_GROUP = 0x22, 
   TOS_AM_ADDRESS = 1
 };
@@ -1481,14 +1529,14 @@ typedef uint8_t uart_id_t;
 
 
 
-enum __nesc_unnamed4278 {
+enum __nesc_unnamed4281 {
   HDLC_FLAG_BYTE = 0x7e, 
   HDLC_CTLESC_BYTE = 0x7d
 };
 
 
 
-enum __nesc_unnamed4279 {
+enum __nesc_unnamed4282 {
   TOS_SERIAL_ACTIVE_MESSAGE_ID = 0, 
   TOS_SERIAL_CC1000_ID = 1, 
   TOS_SERIAL_802_15_4_ID = 2, 
@@ -1496,7 +1544,7 @@ enum __nesc_unnamed4279 {
 };
 
 
-enum __nesc_unnamed4280 {
+enum __nesc_unnamed4283 {
   SERIAL_PROTO_ACK = 67, 
   SERIAL_PROTO_PACKET_ACK = 68, 
   SERIAL_PROTO_PACKET_NOACK = 69, 
@@ -1591,14 +1639,14 @@ typedef nx_struct printf_msg {
   nx_uint8_t buffer[28];
 } __attribute__((packed)) printf_msg_t;
 
-enum __nesc_unnamed4281 {
+enum __nesc_unnamed4284 {
   AM_PRINTF_MSG = 100
 };
 # 91 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/crc.h"
 static uint16_t crcByte(uint16_t crc, uint8_t b);
 # 90 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/msp430usci.h"
 #line 85
-typedef enum __nesc_unnamed4282 {
+typedef enum __nesc_unnamed4285 {
   USCI_NONE = 0, 
   USCI_UART = 1, 
   USCI_SPI = 2, 
@@ -1606,7 +1654,7 @@ typedef enum __nesc_unnamed4282 {
 } msp430_uscimode_t;
 #line 111
 #line 103
-typedef struct __nesc_unnamed4283 {
+typedef struct __nesc_unnamed4286 {
   unsigned int ucsync : 1;
   unsigned int ucmode : 2;
   unsigned int ucspb : 1;
@@ -1617,7 +1665,7 @@ typedef struct __nesc_unnamed4283 {
 } __attribute((packed))  msp430_uctl0_t;
 #line 126
 #line 118
-typedef struct __nesc_unnamed4284 {
+typedef struct __nesc_unnamed4287 {
   unsigned int ucswrst : 1;
   unsigned int uctxbrk : 1;
   unsigned int uctxaddr : 1;
@@ -1628,7 +1676,7 @@ typedef struct __nesc_unnamed4284 {
 } __attribute((packed))  msp430_uctl1_t;
 #line 185
 #line 145
-typedef enum __nesc_unnamed4285 {
+typedef enum __nesc_unnamed4288 {
   UBR_32KHZ_1200 = 0x001B, UMCTL_32KHZ_1200 = 0x04, 
   UBR_32KHZ_2400 = 0x000D, UMCTL_32KHZ_2400 = 0x0c, 
   UBR_32KHZ_4800 = 0x0006, UMCTL_32KHZ_4800 = 0x0e, 
@@ -1671,7 +1719,7 @@ typedef enum __nesc_unnamed4285 {
 } msp430_uart_rate_t;
 #line 211
 #line 188
-typedef struct __nesc_unnamed4286 {
+typedef struct __nesc_unnamed4289 {
   unsigned int ubr : 16;
   unsigned int umctl : 8;
 
@@ -1703,7 +1751,7 @@ typedef struct __nesc_unnamed4286 {
 
 
 #line 213
-typedef struct __nesc_unnamed4287 {
+typedef struct __nesc_unnamed4290 {
   uint16_t ubr;
   uint8_t umctl;
   uint8_t uctl0;
@@ -1715,7 +1763,7 @@ typedef struct __nesc_unnamed4287 {
 
 
 #line 221
-typedef union __nesc_unnamed4288 {
+typedef union __nesc_unnamed4291 {
   msp430_uart_config_t uartConfig;
   msp430_uart_registers_t uartRegisters;
 } msp430_uart_union_config_t;
@@ -1735,7 +1783,7 @@ const msp430_uart_union_config_t msp430_uart_default_config = { {
 .urxe = 1 } };
 #line 264
 #line 248
-typedef struct __nesc_unnamed4289 {
+typedef struct __nesc_unnamed4292 {
   unsigned int ubr : 16;
 
 
@@ -1759,7 +1807,7 @@ typedef struct __nesc_unnamed4289 {
 
 
 #line 267
-typedef struct __nesc_unnamed4290 {
+typedef struct __nesc_unnamed4293 {
   uint16_t ubr;
   uint8_t uctl0;
   uint8_t uctl1;
@@ -1769,13 +1817,13 @@ typedef struct __nesc_unnamed4290 {
 
 
 #line 273
-typedef union __nesc_unnamed4291 {
+typedef union __nesc_unnamed4294 {
   msp430_spi_config_t spiConfig;
   msp430_spi_registers_t spiRegisters;
 } msp430_spi_union_config_t;
 #line 305
 #line 297
-typedef struct __nesc_unnamed4292 {
+typedef struct __nesc_unnamed4295 {
   unsigned int  : 1;
   unsigned int ucmode : 2;
   unsigned int ucmst : 1;
@@ -1786,7 +1834,7 @@ typedef struct __nesc_unnamed4292 {
 } __attribute((packed))  msp430_i2cctl0_t;
 #line 320
 #line 312
-typedef struct __nesc_unnamed4293 {
+typedef struct __nesc_unnamed4296 {
   unsigned int ucswrst : 1;
   unsigned int uctxstt : 1;
   unsigned int uctxstp : 1;
@@ -1797,7 +1845,7 @@ typedef struct __nesc_unnamed4293 {
 } __attribute((packed))  msp430_i2cctl1_t;
 #line 348
 #line 323
-typedef struct __nesc_unnamed4294 {
+typedef struct __nesc_unnamed4297 {
   uint16_t ubr : 16;
 
 
@@ -1830,7 +1878,7 @@ typedef struct __nesc_unnamed4294 {
 
 
 #line 350
-typedef struct __nesc_unnamed4295 {
+typedef struct __nesc_unnamed4298 {
   uint16_t ubr;
   uint8_t uctl0;
   uint8_t uctl1;
@@ -1841,32 +1889,33 @@ typedef struct __nesc_unnamed4295 {
 
 
 #line 357
-typedef union __nesc_unnamed4296 {
+typedef union __nesc_unnamed4299 {
   msp430_i2c_config_t i2cConfig;
   msp430_i2c_registers_t i2cRegisters;
 } msp430_i2c_union_config_t;
 # 4 "radio_info.h"
-enum __nesc_unnamed4297 {
+enum __nesc_unnamed4300 {
   RADIO_TIMESYNC_MSG = 200, 
   RADIO_JOIN_REQ_MSG = 201, 
   RADIO_JOIN_ANS_MSG = 202, 
-  RADIO_DATA_PKG_MSG = 203
+  RADIO_DATA_PKG_MSG = 203, 
+  RADIO_ASSIGNMENT_MSG = 204
 };
 # 4 "slot_scheduler.h"
-enum __nesc_unnamed4298 {
+enum __nesc_unnamed4301 {
   SLOT_INACTIVE = 0xFE, 
   SLOT_REPEAT = 0xFF
 };
-# 7 "TDMAControllerP.nc"
-#line 3
-typedef enum __nesc_unnamed4299 {
+# 9 "TDMAControllerP.nc"
+#line 5
+typedef enum __nesc_unnamed4302 {
   ST_TIMESYNC = 0, 
   ST_JOIN = 1, 
   ST_DATA
 } slot_type_t;
 # 4 "SlotScheduler.nc"
 #line 1
-typedef enum __nesc_unnamed4300 {
+typedef enum __nesc_unnamed4303 {
   ut_add, 
   ut_delete
 } update_type_t;
@@ -1875,12 +1924,12 @@ typedef enum __nesc_unnamed4300 {
 
 
 #line 6
-typedef enum __nesc_unnamed4301 {
+typedef enum __nesc_unnamed4304 {
   MODE_REPEAT, 
   MODE_NORMAL
 } scheduler_mode_t;
 # 40 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/types/IeeeEui64.h"
-enum __nesc_unnamed4302 {
+enum __nesc_unnamed4305 {
 #line 40
   IEEE_EUI64_LENGTH = 8
 };
@@ -1902,9 +1951,9 @@ typedef ieee_eui64_t ieee154_laddr_t;
 
 
 #line 51
-typedef struct __nesc_unnamed4303 {
+typedef struct __nesc_unnamed4306 {
   uint8_t ieee_mode : 2;
-  union __nesc_unnamed4304 {
+  union __nesc_unnamed4307 {
     ieee154_saddr_t saddr;
     ieee154_laddr_t laddr;
   } ieee_addr;
@@ -1912,7 +1961,7 @@ typedef struct __nesc_unnamed4303 {
 
 
 
-enum __nesc_unnamed4305 {
+enum __nesc_unnamed4308 {
   IEEE154_BROADCAST_ADDR = 0xffff, 
   IEEE154_LINK_MTU = 127
 };
@@ -1923,7 +1972,7 @@ struct ieee154_frame_addr {
   ieee154_panid_t ieee_dstpan;
 };
 
-enum __nesc_unnamed4306 {
+enum __nesc_unnamed4309 {
   IEEE154_MIN_HDR_SZ = 6
 };
 #line 86
@@ -1952,7 +2001,7 @@ enum ieee154_fcf_addr_mode_enums {
   IEEE154_ADDR_MASK = 3
 };
 # 12 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/platforms/epic/chips/ds2411/DallasId48.h"
-enum __nesc_unnamed4307 {
+enum __nesc_unnamed4310 {
   DALLASID48_SERIAL_LENGTH = 6, 
   DALLASID48_DATA_LENGTH = 8
 };
@@ -1979,7 +2028,7 @@ typedef union dallasid48_serial_t {
 
 static inline bool dallasid48checkCrc(const dallasid48_serial_t *id);
 # 29 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/platforms/epic/chips/ds2411/PlatformIeeeEui64.h"
-enum __nesc_unnamed4308 {
+enum __nesc_unnamed4311 {
   IEEE_EUI64_COMPANY_ID_0 = 0x00, 
   IEEE_EUI64_COMPANY_ID_1 = 0x12, 
   IEEE_EUI64_COMPANY_ID_2 = 0x6d, 
@@ -2009,7 +2058,7 @@ typedef uint16_t /*ReadDataC.SensorHT.SensirionSht11ReaderP*/SensirionSht11Reade
 typedef uint16_t /*ReadDataC.SensorHT.SensirionSht11ReaderP*/SensirionSht11ReaderP__0__Temperature__val_t;
 typedef TMilli /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__Timer__precision_tag;
 typedef TMilli HplSensirionSht11P__Timer__precision_tag;
-enum /*HilTimerMilliC.AlarmMilli32C.AlarmFrom.Msp430Timer*/Msp430Timer32khzC__0____nesc_unnamed4309 {
+enum /*HilTimerMilliC.AlarmMilli32C.AlarmFrom.Msp430Timer*/Msp430Timer32khzC__0____nesc_unnamed4312 {
   Msp430Timer32khzC__0__ALARM_ID = 0U
 };
 typedef T32khz /*HilTimerMilliC.AlarmMilli32C.AlarmFrom.Msp430Alarm*/Msp430AlarmC__0__frequency_tag;
@@ -2048,10 +2097,10 @@ typedef TMilli /*HilTimerMilliC.CounterToLocalTimeC*/CounterToLocalTimeC__0__pre
 typedef /*HilTimerMilliC.CounterToLocalTimeC*/CounterToLocalTimeC__0__precision_tag /*HilTimerMilliC.CounterToLocalTimeC*/CounterToLocalTimeC__0__LocalTime__precision_tag;
 typedef /*HilTimerMilliC.CounterToLocalTimeC*/CounterToLocalTimeC__0__precision_tag /*HilTimerMilliC.CounterToLocalTimeC*/CounterToLocalTimeC__0__Counter__precision_tag;
 typedef uint32_t /*HilTimerMilliC.CounterToLocalTimeC*/CounterToLocalTimeC__0__Counter__size_type;
-enum /*ReadDataC.SensorHT*/SensirionSht11C__0____nesc_unnamed4310 {
+enum /*ReadDataC.SensorHT*/SensirionSht11C__0____nesc_unnamed4313 {
   SensirionSht11C__0__TEMP_KEY = 0U
 };
-enum /*ReadDataC.SensorHT*/SensirionSht11C__0____nesc_unnamed4311 {
+enum /*ReadDataC.SensorHT*/SensirionSht11C__0____nesc_unnamed4314 {
   SensirionSht11C__0__HUM_KEY = 1U
 };
 typedef uint16_t AdcP__Read__val_t;
@@ -2061,19 +2110,19 @@ typedef TMilli Msp430RefVoltGeneratorP__SwitchOffTimer__precision_tag;
 typedef TMilli Msp430RefVoltGeneratorP__SwitchOffSettleTimer__precision_tag;
 typedef TMilli Msp430RefVoltGeneratorP__SwitchOnTimer__precision_tag;
 typedef const msp430adc12_channel_config_t *Msp430RefVoltArbiterImplP__Config__adc_config_t;
-enum /*ReadDataC.SensorPhoto.AdcReadClientC.Msp430AdcClient*/Msp430Adc12ClientAutoRVGC__0____nesc_unnamed4312 {
+enum /*ReadDataC.SensorPhoto.AdcReadClientC.Msp430AdcClient*/Msp430Adc12ClientAutoRVGC__0____nesc_unnamed4315 {
   Msp430Adc12ClientAutoRVGC__0__ID = 0U
 };
 typedef const msp430adc12_channel_config_t */*ReadDataC.SensorPhoto.AdcReadClientC.Msp430AdcClient.Msp430Adc12ConfAlertC*/Msp430Adc12ConfAlertC__0__ConfSub__adc_config_t;
 typedef const msp430adc12_channel_config_t */*ReadDataC.SensorPhoto.AdcReadClientC.Msp430AdcClient.Msp430Adc12ConfAlertC*/Msp430Adc12ConfAlertC__0__ConfUp__adc_config_t;
-enum /*ReadDataC.SensorPhoto.AdcReadClientC*/AdcReadClientC__0____nesc_unnamed4313 {
+enum /*ReadDataC.SensorPhoto.AdcReadClientC*/AdcReadClientC__0____nesc_unnamed4316 {
   AdcReadClientC__0__CLIENT = 0U
 };
 typedef TMilli AdcStreamP__Alarm__precision_tag;
 typedef uint32_t AdcStreamP__Alarm__size_type;
 typedef const msp430adc12_channel_config_t *AdcStreamP__AdcConfigure__adc_config_t;
 typedef uint16_t AdcStreamP__ReadStream__val_t;
-enum /*WireAdcStreamP.Alarm.AlarmFrom.Msp430Timer*/Msp430Timer32khzC__1____nesc_unnamed4314 {
+enum /*WireAdcStreamP.Alarm.AlarmFrom.Msp430Timer*/Msp430Timer32khzC__1____nesc_unnamed4317 {
   Msp430Timer32khzC__1__ALARM_ID = 1U
 };
 typedef T32khz /*WireAdcStreamP.Alarm.AlarmFrom.Msp430Alarm*/Msp430AlarmC__1__frequency_tag;
@@ -2092,66 +2141,66 @@ typedef /*WireAdcStreamP.Alarm.Transform*/TransformAlarmC__1__to_size_type /*Wir
 typedef uint16_t /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__val_t;
 typedef /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__val_t /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__Service__val_t;
 typedef /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__val_t /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__ReadStream__val_t;
-enum /*ReadDataC.SensorPhoto.AdcReadStreamClientC.Msp430AdcClient*/Msp430Adc12ClientAutoRVGC__1____nesc_unnamed4315 {
+enum /*ReadDataC.SensorPhoto.AdcReadStreamClientC.Msp430AdcClient*/Msp430Adc12ClientAutoRVGC__1____nesc_unnamed4318 {
   Msp430Adc12ClientAutoRVGC__1__ID = 1U
 };
 typedef const msp430adc12_channel_config_t */*ReadDataC.SensorPhoto.AdcReadStreamClientC.Msp430AdcClient.Msp430Adc12ConfAlertC*/Msp430Adc12ConfAlertC__1__ConfSub__adc_config_t;
 typedef const msp430adc12_channel_config_t */*ReadDataC.SensorPhoto.AdcReadStreamClientC.Msp430AdcClient.Msp430Adc12ConfAlertC*/Msp430Adc12ConfAlertC__1__ConfUp__adc_config_t;
-enum /*ReadDataC.SensorPhoto.AdcReadStreamClientC*/AdcReadStreamClientC__0____nesc_unnamed4316 {
+enum /*ReadDataC.SensorPhoto.AdcReadStreamClientC*/AdcReadStreamClientC__0____nesc_unnamed4319 {
   AdcReadStreamClientC__0__RSCLIENT = 0U
 };
 typedef const msp430adc12_channel_config_t *HamamatsuS1087ParP__AdcConfigure__adc_config_t;
-enum /*ReadDataC.SensorTotal.AdcReadClientC.Msp430AdcClient*/Msp430Adc12ClientAutoRVGC__2____nesc_unnamed4317 {
+enum /*ReadDataC.SensorTotal.AdcReadClientC.Msp430AdcClient*/Msp430Adc12ClientAutoRVGC__2____nesc_unnamed4320 {
   Msp430Adc12ClientAutoRVGC__2__ID = 2U
 };
 typedef const msp430adc12_channel_config_t */*ReadDataC.SensorTotal.AdcReadClientC.Msp430AdcClient.Msp430Adc12ConfAlertC*/Msp430Adc12ConfAlertC__2__ConfSub__adc_config_t;
 typedef const msp430adc12_channel_config_t */*ReadDataC.SensorTotal.AdcReadClientC.Msp430AdcClient.Msp430Adc12ConfAlertC*/Msp430Adc12ConfAlertC__2__ConfUp__adc_config_t;
-enum /*ReadDataC.SensorTotal.AdcReadClientC*/AdcReadClientC__1____nesc_unnamed4318 {
+enum /*ReadDataC.SensorTotal.AdcReadClientC*/AdcReadClientC__1____nesc_unnamed4321 {
   AdcReadClientC__1__CLIENT = 1U
 };
-enum /*ReadDataC.SensorTotal.AdcReadStreamClientC.Msp430AdcClient*/Msp430Adc12ClientAutoRVGC__3____nesc_unnamed4319 {
+enum /*ReadDataC.SensorTotal.AdcReadStreamClientC.Msp430AdcClient*/Msp430Adc12ClientAutoRVGC__3____nesc_unnamed4322 {
   Msp430Adc12ClientAutoRVGC__3__ID = 3U
 };
 typedef const msp430adc12_channel_config_t */*ReadDataC.SensorTotal.AdcReadStreamClientC.Msp430AdcClient.Msp430Adc12ConfAlertC*/Msp430Adc12ConfAlertC__3__ConfSub__adc_config_t;
 typedef const msp430adc12_channel_config_t */*ReadDataC.SensorTotal.AdcReadStreamClientC.Msp430AdcClient.Msp430Adc12ConfAlertC*/Msp430Adc12ConfAlertC__3__ConfUp__adc_config_t;
-enum /*ReadDataC.SensorTotal.AdcReadStreamClientC*/AdcReadStreamClientC__1____nesc_unnamed4320 {
+enum /*ReadDataC.SensorTotal.AdcReadStreamClientC*/AdcReadStreamClientC__1____nesc_unnamed4323 {
   AdcReadStreamClientC__1__RSCLIENT = 1U
 };
 typedef const msp430adc12_channel_config_t *HamamatsuS10871TsrP__AdcConfigure__adc_config_t;
-enum /*ReadDataC.Vref.AdcReadClientC.Msp430AdcClient*/Msp430Adc12ClientAutoRVGC__4____nesc_unnamed4321 {
+enum /*ReadDataC.Vref.AdcReadClientC.Msp430AdcClient*/Msp430Adc12ClientAutoRVGC__4____nesc_unnamed4324 {
   Msp430Adc12ClientAutoRVGC__4__ID = 4U
 };
 typedef const msp430adc12_channel_config_t */*ReadDataC.Vref.AdcReadClientC.Msp430AdcClient.Msp430Adc12ConfAlertC*/Msp430Adc12ConfAlertC__4__ConfSub__adc_config_t;
 typedef const msp430adc12_channel_config_t */*ReadDataC.Vref.AdcReadClientC.Msp430AdcClient.Msp430Adc12ConfAlertC*/Msp430Adc12ConfAlertC__4__ConfUp__adc_config_t;
-enum /*ReadDataC.Vref.AdcReadClientC*/AdcReadClientC__2____nesc_unnamed4322 {
+enum /*ReadDataC.Vref.AdcReadClientC*/AdcReadClientC__2____nesc_unnamed4325 {
   AdcReadClientC__2__CLIENT = 2U
 };
-enum /*ReadDataC.Vref.AdcReadStreamClientC.Msp430AdcClient*/Msp430Adc12ClientAutoRVGC__5____nesc_unnamed4323 {
+enum /*ReadDataC.Vref.AdcReadStreamClientC.Msp430AdcClient*/Msp430Adc12ClientAutoRVGC__5____nesc_unnamed4326 {
   Msp430Adc12ClientAutoRVGC__5__ID = 5U
 };
 typedef const msp430adc12_channel_config_t */*ReadDataC.Vref.AdcReadStreamClientC.Msp430AdcClient.Msp430Adc12ConfAlertC*/Msp430Adc12ConfAlertC__5__ConfSub__adc_config_t;
 typedef const msp430adc12_channel_config_t */*ReadDataC.Vref.AdcReadStreamClientC.Msp430AdcClient.Msp430Adc12ConfAlertC*/Msp430Adc12ConfAlertC__5__ConfUp__adc_config_t;
-enum /*ReadDataC.Vref.AdcReadStreamClientC*/AdcReadStreamClientC__2____nesc_unnamed4324 {
+enum /*ReadDataC.Vref.AdcReadStreamClientC*/AdcReadStreamClientC__2____nesc_unnamed4327 {
   AdcReadStreamClientC__2__RSCLIENT = 2U
 };
 typedef const msp430adc12_channel_config_t *Msp430InternalVoltageP__AdcConfigure__adc_config_t;
-enum /*ReadDataC.Vref.AdcReadNowClientC.Msp430AdcClient*/Msp430Adc12ClientAutoRVGC__6____nesc_unnamed4325 {
+enum /*ReadDataC.Vref.AdcReadNowClientC.Msp430AdcClient*/Msp430Adc12ClientAutoRVGC__6____nesc_unnamed4328 {
   Msp430Adc12ClientAutoRVGC__6__ID = 6U
 };
 typedef const msp430adc12_channel_config_t */*ReadDataC.Vref.AdcReadNowClientC.Msp430AdcClient.Msp430Adc12ConfAlertC*/Msp430Adc12ConfAlertC__6__ConfSub__adc_config_t;
 typedef const msp430adc12_channel_config_t */*ReadDataC.Vref.AdcReadNowClientC.Msp430AdcClient.Msp430Adc12ConfAlertC*/Msp430Adc12ConfAlertC__6__ConfUp__adc_config_t;
-enum /*ReadDataC.Vref.AdcReadNowClientC*/AdcReadNowClientC__0____nesc_unnamed4326 {
+enum /*ReadDataC.Vref.AdcReadNowClientC*/AdcReadNowClientC__0____nesc_unnamed4329 {
   AdcReadNowClientC__0__CLIENT = 3U
 };
-enum /*PlatformSerialC.UartC*/Msp430Uart1C__0____nesc_unnamed4327 {
+enum /*PlatformSerialC.UartC*/Msp430Uart1C__0____nesc_unnamed4330 {
   Msp430Uart1C__0__CLIENT_ID = 0U
 };
 typedef T32khz /*Msp430Uart1P.UartP*/Msp430UartP__0__Counter__precision_tag;
 typedef uint16_t /*Msp430Uart1P.UartP*/Msp430UartP__0__Counter__size_type;
-enum /*PlatformSerialC.UartC.UsciC*/Msp430UsciA1C__0____nesc_unnamed4328 {
+enum /*PlatformSerialC.UartC.UsciC*/Msp430UsciA1C__0____nesc_unnamed4331 {
   Msp430UsciA1C__0__CLIENT_ID = 1U
 };
-enum SerialAMQueueP____nesc_unnamed4329 {
+enum SerialAMQueueP____nesc_unnamed4332 {
   SerialAMQueueP__NUM_CLIENTS = 1U
 };
 typedef uint8_t /*PrintfC.QueueC*/QueueC__0__queue_t;
@@ -2161,13 +2210,13 @@ typedef TMilli TDMAControllerP__TSSend__precision_tag;
 typedef uint32_t TDMAControllerP__TSSend__size_type;
 typedef TMilli TDMAControllerP__TSPacket__precision_tag;
 typedef uint32_t TDMAControllerP__TSPacket__size_type;
-enum CC2420ActiveMessageC____nesc_unnamed4330 {
+enum CC2420ActiveMessageC____nesc_unnamed4333 {
   CC2420ActiveMessageC__CC2420_AM_SEND_ID = 0U
 };
 typedef T32khz CC2420ControlP__StartupTimer__precision_tag;
 typedef uint32_t CC2420ControlP__StartupTimer__size_type;
 typedef uint16_t CC2420ControlP__ReadRssi__val_t;
-enum /*AlarmMultiplexC.Alarm.Alarm32khz32C.AlarmC.Msp430Timer*/Msp430Timer32khzC__2____nesc_unnamed4331 {
+enum /*AlarmMultiplexC.Alarm.Alarm32khz32C.AlarmC.Msp430Timer*/Msp430Timer32khzC__2____nesc_unnamed4334 {
   Msp430Timer32khzC__2__ALARM_ID = 2U
 };
 typedef T32khz /*AlarmMultiplexC.Alarm.Alarm32khz32C.AlarmC.Msp430Alarm*/Msp430AlarmC__2__frequency_tag;
@@ -2192,19 +2241,19 @@ typedef /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform*/TransformAlarmC__2__fro
 typedef /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform*/TransformAlarmC__2__from_size_type /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform*/TransformAlarmC__2__AlarmFrom__size_type;
 typedef /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform*/TransformAlarmC__2__to_precision_tag /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform*/TransformAlarmC__2__Counter__precision_tag;
 typedef /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform*/TransformAlarmC__2__to_size_type /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform*/TransformAlarmC__2__Counter__size_type;
-enum /*CC2420ControlC.Spi*/CC2420SpiC__0____nesc_unnamed4332 {
+enum /*CC2420ControlC.Spi*/CC2420SpiC__0____nesc_unnamed4335 {
   CC2420SpiC__0__CLIENT_ID = 0U
 };
-enum /*CC2420SpiWireC.HplCC2420SpiC.SpiC*/Msp430SpiB0C__0____nesc_unnamed4333 {
+enum /*CC2420SpiWireC.HplCC2420SpiC.SpiC*/Msp430SpiB0C__0____nesc_unnamed4336 {
   Msp430SpiB0C__0__CLIENT_ID = 0U
 };
-enum /*CC2420SpiWireC.HplCC2420SpiC.SpiC.UsciC*/Msp430UsciB0C__0____nesc_unnamed4334 {
+enum /*CC2420SpiWireC.HplCC2420SpiC.SpiC.UsciC*/Msp430UsciB0C__0____nesc_unnamed4337 {
   Msp430UsciB0C__0__CLIENT_ID = 1U
 };
-enum /*CC2420ControlC.SyncSpiC*/CC2420SpiC__1____nesc_unnamed4335 {
+enum /*CC2420ControlC.SyncSpiC*/CC2420SpiC__1____nesc_unnamed4338 {
   CC2420SpiC__1__CLIENT_ID = 1U
 };
-enum /*CC2420ControlC.RssiResource*/CC2420SpiC__2____nesc_unnamed4336 {
+enum /*CC2420ControlC.RssiResource*/CC2420SpiC__2____nesc_unnamed4339 {
   CC2420SpiC__2__CLIENT_ID = 2U
 };
 typedef TMicro OneWireMasterC__BusyWait__precision_tag;
@@ -2222,7 +2271,7 @@ typedef T32khz CC2420TransmitP__PacketTimeStamp__precision_tag;
 typedef uint32_t CC2420TransmitP__PacketTimeStamp__size_type;
 typedef T32khz CC2420TransmitP__BackoffTimer__precision_tag;
 typedef uint32_t CC2420TransmitP__BackoffTimer__size_type;
-enum /*CC2420TransmitC.Spi*/CC2420SpiC__3____nesc_unnamed4337 {
+enum /*CC2420TransmitC.Spi*/CC2420SpiC__3____nesc_unnamed4340 {
   CC2420SpiC__3__CLIENT_ID = 3U
 };
 typedef T32khz CC2420ReceiveP__PacketTimeStamp__precision_tag;
@@ -2237,11 +2286,11 @@ typedef T32khz /*CC2420PacketC.CounterToLocalTimeC*/CounterToLocalTimeC__1__prec
 typedef /*CC2420PacketC.CounterToLocalTimeC*/CounterToLocalTimeC__1__precision_tag /*CC2420PacketC.CounterToLocalTimeC*/CounterToLocalTimeC__1__LocalTime__precision_tag;
 typedef /*CC2420PacketC.CounterToLocalTimeC*/CounterToLocalTimeC__1__precision_tag /*CC2420PacketC.CounterToLocalTimeC*/CounterToLocalTimeC__1__Counter__precision_tag;
 typedef uint32_t /*CC2420PacketC.CounterToLocalTimeC*/CounterToLocalTimeC__1__Counter__size_type;
-enum /*CC2420ReceiveC.Spi*/CC2420SpiC__4____nesc_unnamed4338 {
+enum /*CC2420ReceiveC.Spi*/CC2420SpiC__4____nesc_unnamed4341 {
   CC2420SpiC__4__CLIENT_ID = 4U
 };
 typedef uint16_t RandomMlcgC__SeedInit__parameter;
-enum CC2420TinyosNetworkC____nesc_unnamed4339 {
+enum CC2420TinyosNetworkC____nesc_unnamed4342 {
   CC2420TinyosNetworkC__TINYOS_N_NETWORKS = 1U
 };
 typedef TMilli CC2420TimeSyncMessageP__TimeSyncPacketMilli__precision_tag;
@@ -2258,8 +2307,8 @@ typedef T32khz CC2420TimeSyncMessageP__TimeSyncPacket32khz__precision_tag;
 typedef uint32_t CC2420TimeSyncMessageP__TimeSyncPacket32khz__size_type;
 typedef TMilli CC2420TimeSyncMessageP__PacketTimeStampMilli__precision_tag;
 typedef uint32_t CC2420TimeSyncMessageP__PacketTimeStampMilli__size_type;
-enum AMQueueP____nesc_unnamed4340 {
-  AMQueueP__NUM_CLIENTS = 4U
+enum AMQueueP____nesc_unnamed4343 {
+  AMQueueP__NUM_CLIENTS = 5U
 };
 typedef T32khz /*CC2420TimeSyncMessageC.LocalTime32khzC*/CounterToLocalTimeC__2__precision_tag;
 typedef /*CC2420TimeSyncMessageC.LocalTime32khzC*/CounterToLocalTimeC__2__precision_tag /*CC2420TimeSyncMessageC.LocalTime32khzC*/CounterToLocalTimeC__2__LocalTime__precision_tag;
@@ -2307,7 +2356,7 @@ static void /*Msp430TimerC.Msp430TimerA*/Msp430TimerP__0__VectorTimerX1__fired(v
 #line 39
 static void /*Msp430TimerC.Msp430TimerA*/Msp430TimerP__0__Event__default__fired(
 # 51 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/timer/Msp430TimerP.nc"
-uint8_t arg_0x406db788);
+uint8_t arg_0x407c2788);
 # 52 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/timer/Msp430Timer.nc"
 static void /*Msp430TimerC.Msp430TimerA*/Msp430TimerP__0__Timer__clear(void );
 
@@ -2341,7 +2390,7 @@ static void /*Msp430TimerC.Msp430TimerB*/Msp430TimerP__1__VectorTimerX1__fired(v
 #line 39
 static void /*Msp430TimerC.Msp430TimerB*/Msp430TimerP__1__Event__default__fired(
 # 51 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/timer/Msp430TimerP.nc"
-uint8_t arg_0x406db788);
+uint8_t arg_0x407c2788);
 # 45 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/timer/Msp430Timer.nc"
 static uint16_t /*Msp430TimerC.Msp430TimerB*/Msp430TimerP__1__Timer__get(void );
 static bool /*Msp430TimerC.Msp430TimerB*/Msp430TimerP__1__Timer__isOverflowPending(void );
@@ -2530,11 +2579,11 @@ static void McuSleepC__McuSleep__sleep(void );
 # 67 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TaskBasic.nc"
 static error_t SchedulerBasicP__TaskBasic__postTask(
 # 56 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/SchedulerBasicP.nc"
-uint8_t arg_0x4064b4a0);
+uint8_t arg_0x407324a0);
 # 75 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TaskBasic.nc"
 static void SchedulerBasicP__TaskBasic__default__runTask(
 # 56 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/SchedulerBasicP.nc"
-uint8_t arg_0x4064b4a0);
+uint8_t arg_0x407324a0);
 # 57 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Scheduler.nc"
 static void SchedulerBasicP__Scheduler__init(void );
 #line 72
@@ -2543,6 +2592,8 @@ static void SchedulerBasicP__Scheduler__taskLoop(void );
 static bool SchedulerBasicP__Scheduler__runNextTask(void );
 # 14 "TDMAController.nc"
 static void MainExecP__TDMAController__newRound(tdma_round_type_t type);
+#line 13
+static void MainExecP__TDMAController__stopDone(error_t err);
 # 60 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Boot.nc"
 static void MainExecP__Boot__booted(void );
 # 4 "ReadData.nc"
@@ -2600,39 +2651,39 @@ static void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__
 # 84 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11.nc"
 static void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__default__measureHumidityDone(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11LogicP.nc"
-uint8_t arg_0x407dc970, 
+uint8_t arg_0x408c0ec0, 
 # 84 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11.nc"
 error_t result, uint16_t val);
 #line 76
 static error_t /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__measureHumidity(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11LogicP.nc"
-uint8_t arg_0x407dc970);
+uint8_t arg_0x408c0ec0);
 # 61 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11.nc"
 static error_t /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__measureTemperature(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11LogicP.nc"
-uint8_t arg_0x407dc970);
+uint8_t arg_0x408c0ec0);
 # 116 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11.nc"
 static void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__default__writeStatusRegDone(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11LogicP.nc"
-uint8_t arg_0x407dc970, 
+uint8_t arg_0x408c0ec0, 
 # 116 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11.nc"
 error_t result);
 #line 100
 static void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__default__readStatusRegDone(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11LogicP.nc"
-uint8_t arg_0x407dc970, 
+uint8_t arg_0x408c0ec0, 
 # 100 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11.nc"
 error_t result, uint8_t val);
 #line 54
 static void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__default__resetDone(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11LogicP.nc"
-uint8_t arg_0x407dc970, 
+uint8_t arg_0x408c0ec0, 
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11.nc"
 error_t result);
 #line 69
 static void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__default__measureTemperatureDone(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11LogicP.nc"
-uint8_t arg_0x407dc970, 
+uint8_t arg_0x408c0ec0, 
 # 69 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11.nc"
 error_t result, uint16_t val);
 # 83 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Timer.nc"
@@ -2953,25 +3004,25 @@ static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__f
 #line 136
 static uint32_t /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__getNow(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x40a419f0);
+uint8_t arg_0x40b259f0);
 # 83 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Timer.nc"
 static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x40a419f0);
+uint8_t arg_0x40b259f0);
 # 92 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Timer.nc"
 static bool /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__isRunning(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x40a419f0);
+uint8_t arg_0x40b259f0);
 # 129 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Timer.nc"
 static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startOneShotAt(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x40a419f0, 
+uint8_t arg_0x40b259f0, 
 # 129 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Timer.nc"
 uint32_t t0, uint32_t dt);
 #line 73
 static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startOneShot(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x40a419f0, 
+uint8_t arg_0x40b259f0, 
 # 73 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Timer.nc"
 uint32_t dt);
 
@@ -2980,7 +3031,7 @@ uint32_t dt);
 
 static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__stop(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x40a419f0);
+uint8_t arg_0x40b259f0);
 # 61 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/LocalTime.nc"
 static uint32_t /*HilTimerMilliC.CounterToLocalTimeC*/CounterToLocalTimeC__0__LocalTime__get(void );
 # 82 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Counter.nc"
@@ -3117,15 +3168,15 @@ static resource_client_id_t /*HplSensirionSht11C.Arbiter.Queue*/FcfsResourceQueu
 # 53 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceRequested.nc"
 static void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__ResourceRequested__default__requested(
 # 55 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b21be0);
+uint8_t arg_0x40c29be0);
 # 65 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceConfigure.nc"
 static void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__ResourceConfigure__default__unconfigure(
 # 60 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b43030);
+uint8_t arg_0x40c27030);
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceConfigure.nc"
 static void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__ResourceConfigure__default__configure(
 # 60 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b43030);
+uint8_t arg_0x40c27030);
 # 56 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceDefaultOwner.nc"
 static error_t /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__ResourceDefaultOwner__release(void );
 
@@ -3140,15 +3191,15 @@ static bool /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__ResourceDefaultOw
 # 120 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__Resource__release(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b211b8);
+uint8_t arg_0x40c291b8);
 # 88 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__Resource__request(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b211b8);
+uint8_t arg_0x40c291b8);
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__Resource__default__granted(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b211b8);
+uint8_t arg_0x40c291b8);
 # 75 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TaskBasic.nc"
 static void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__grantedTask__runTask(void );
 # 113 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/SplitControl.nc"
@@ -3202,71 +3253,71 @@ static void /*PlatformLedsC.Led2Impl*/Msp430GpioC__5__GeneralIO__set(void );
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static void AdcP__SubResourceReadNow__granted(
 # 46 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcP.nc"
-uint8_t arg_0x40bd8588);
+uint8_t arg_0x40cba588);
 # 55 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Read.nc"
 static error_t AdcP__Read__read(
 # 38 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcP.nc"
-uint8_t arg_0x40bde678);
+uint8_t arg_0x40cc0678);
 # 63 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Read.nc"
 static void AdcP__Read__default__readDone(
 # 38 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcP.nc"
-uint8_t arg_0x40bde678, 
+uint8_t arg_0x40cc0678, 
 # 63 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Read.nc"
 error_t result, AdcP__Read__val_t val);
 # 66 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ReadNow.nc"
 static void AdcP__ReadNow__default__readDone(
 # 39 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcP.nc"
-uint8_t arg_0x40bd9f08, 
+uint8_t arg_0x40cbcf08, 
 # 66 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ReadNow.nc"
 error_t result, AdcP__ReadNow__val_t val);
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static void AdcP__ResourceReadNow__default__granted(
 # 40 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcP.nc"
-uint8_t arg_0x40bdbed0);
+uint8_t arg_0x40cbeed0);
 # 58 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AdcConfigure.nc"
 static AdcP__Config__adc_config_t AdcP__Config__default__getConfiguration(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcP.nc"
-uint8_t arg_0x40bd6228);
+uint8_t arg_0x40cb9228);
 # 189 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
 static error_t AdcP__SingleChannel__default__getData(
 # 49 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcP.nc"
-uint8_t arg_0x40bf2e40);
+uint8_t arg_0x40cd5e40);
 # 84 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
 static error_t AdcP__SingleChannel__default__configureSingle(
 # 49 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcP.nc"
-uint8_t arg_0x40bf2e40, 
+uint8_t arg_0x40cd5e40, 
 # 84 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
 const msp430adc12_channel_config_t * config);
 #line 227
 static uint16_t * AdcP__SingleChannel__multipleDataReady(
 # 49 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcP.nc"
-uint8_t arg_0x40bf2e40, 
+uint8_t arg_0x40cd5e40, 
 # 227 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
 uint16_t * buffer, uint16_t numSamples);
 #line 206
 static error_t AdcP__SingleChannel__singleDataReady(
 # 49 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcP.nc"
-uint8_t arg_0x40bf2e40, 
+uint8_t arg_0x40cd5e40, 
 # 206 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
 uint16_t data);
 # 120 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t AdcP__ResourceRead__default__release(
 # 44 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcP.nc"
-uint8_t arg_0x40bdaa08);
+uint8_t arg_0x40cbba08);
 # 88 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t AdcP__ResourceRead__default__request(
 # 44 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcP.nc"
-uint8_t arg_0x40bdaa08);
+uint8_t arg_0x40cbba08);
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static void AdcP__ResourceRead__granted(
 # 44 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcP.nc"
-uint8_t arg_0x40bdaa08);
+uint8_t arg_0x40cbba08);
 # 75 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TaskBasic.nc"
 static void AdcP__readDone__runTask(void );
 # 107 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12MultiChannel.nc"
 static void Msp430Adc12ImplP__MultiChannel__default__dataReady(
 # 42 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12ImplP.nc"
-uint8_t arg_0x40c07108, 
+uint8_t arg_0x40d12108, 
 # 107 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12MultiChannel.nc"
 uint16_t *buffer, uint16_t numSamples);
 # 112 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/HplAdc12.nc"
@@ -3276,11 +3327,11 @@ static void Msp430Adc12ImplP__CompareA1__fired(void );
 # 49 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12Overflow.nc"
 static void Msp430Adc12ImplP__Overflow__default__memOverflow(
 # 43 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12ImplP.nc"
-uint8_t arg_0x40c079f8);
+uint8_t arg_0x40d129f8);
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12Overflow.nc"
 static void Msp430Adc12ImplP__Overflow__default__conversionTimeOverflow(
 # 43 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12ImplP.nc"
-uint8_t arg_0x40c079f8);
+uint8_t arg_0x40d129f8);
 # 62 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Init.nc"
 static error_t Msp430Adc12ImplP__Init__init(void );
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/timer/Msp430Timer.nc"
@@ -3288,29 +3339,29 @@ static void Msp430Adc12ImplP__TimerA__overflow(void );
 # 189 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
 static error_t Msp430Adc12ImplP__SingleChannel__getData(
 # 41 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12ImplP.nc"
-uint8_t arg_0x40c083f0);
+uint8_t arg_0x40d133f0);
 # 84 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
 static error_t Msp430Adc12ImplP__SingleChannel__configureSingle(
 # 41 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12ImplP.nc"
-uint8_t arg_0x40c083f0, 
+uint8_t arg_0x40d133f0, 
 # 84 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
 const msp430adc12_channel_config_t * config);
 #line 227
 static uint16_t * Msp430Adc12ImplP__SingleChannel__default__multipleDataReady(
 # 41 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12ImplP.nc"
-uint8_t arg_0x40c083f0, 
+uint8_t arg_0x40d133f0, 
 # 227 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
 uint16_t * buffer, uint16_t numSamples);
 #line 138
 static error_t Msp430Adc12ImplP__SingleChannel__configureMultiple(
 # 41 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12ImplP.nc"
-uint8_t arg_0x40c083f0, 
+uint8_t arg_0x40d133f0, 
 # 138 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
 const msp430adc12_channel_config_t * config, uint16_t * buffer, uint16_t numSamples, uint16_t jiffies);
 #line 206
 static error_t Msp430Adc12ImplP__SingleChannel__default__singleDataReady(
 # 41 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12ImplP.nc"
-uint8_t arg_0x40c083f0, 
+uint8_t arg_0x40d133f0, 
 # 206 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
 uint16_t data);
 # 45 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/timer/Msp430Compare.nc"
@@ -3373,27 +3424,27 @@ static resource_client_id_t /*Msp430Adc12P.Arbiter.Queue*/RoundRobinResourceQueu
 # 53 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceRequested.nc"
 static void /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__ResourceRequested__default__requested(
 # 52 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x40ccad38);
+uint8_t arg_0x40dacd38);
 # 65 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceConfigure.nc"
 static void /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__ResourceConfigure__default__unconfigure(
 # 56 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x40cc99b8);
+uint8_t arg_0x40dab9b8);
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceConfigure.nc"
 static void /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__ResourceConfigure__default__configure(
 # 56 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x40cc99b8);
+uint8_t arg_0x40dab9b8);
 # 120 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__Resource__release(
 # 51 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x40cca310);
+uint8_t arg_0x40dac310);
 # 88 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__Resource__request(
 # 51 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x40cca310);
+uint8_t arg_0x40dac310);
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static void /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__Resource__default__granted(
 # 51 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x40cca310);
+uint8_t arg_0x40dac310);
 # 98 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ArbiterInfo.nc"
 static uint8_t /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__ArbiterInfo__userId(void );
 # 75 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TaskBasic.nc"
@@ -3417,7 +3468,7 @@ static void Msp430RefVoltGeneratorP__SwitchOnTimer__fired(void );
 # 58 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AdcConfigure.nc"
 static Msp430RefVoltArbiterImplP__Config__adc_config_t Msp430RefVoltArbiterImplP__Config__default__getConfiguration(
 # 43 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430RefVoltArbiterImplP.nc"
-uint8_t arg_0x40d40ed0);
+uint8_t arg_0x40e23ed0);
 # 113 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/SplitControl.nc"
 static void Msp430RefVoltArbiterImplP__RefVolt_2_5V__startDone(error_t error);
 #line 138
@@ -3425,27 +3476,27 @@ static void Msp430RefVoltArbiterImplP__RefVolt_2_5V__stopDone(error_t error);
 # 120 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t Msp430RefVoltArbiterImplP__AdcResource__default__release(
 # 40 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430RefVoltArbiterImplP.nc"
-uint8_t arg_0x40d41480);
+uint8_t arg_0x40e24480);
 # 88 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t Msp430RefVoltArbiterImplP__AdcResource__default__request(
 # 40 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430RefVoltArbiterImplP.nc"
-uint8_t arg_0x40d41480);
+uint8_t arg_0x40e24480);
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static void Msp430RefVoltArbiterImplP__AdcResource__granted(
 # 40 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430RefVoltArbiterImplP.nc"
-uint8_t arg_0x40d41480);
+uint8_t arg_0x40e24480);
 # 120 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t Msp430RefVoltArbiterImplP__ClientResource__release(
 # 38 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430RefVoltArbiterImplP.nc"
-uint8_t arg_0x40cf1980);
+uint8_t arg_0x40e02980);
 # 88 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t Msp430RefVoltArbiterImplP__ClientResource__request(
 # 38 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430RefVoltArbiterImplP.nc"
-uint8_t arg_0x40cf1980);
+uint8_t arg_0x40e02980);
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static void Msp430RefVoltArbiterImplP__ClientResource__default__granted(
 # 38 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430RefVoltArbiterImplP.nc"
-uint8_t arg_0x40cf1980);
+uint8_t arg_0x40e02980);
 # 75 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TaskBasic.nc"
 static void Msp430RefVoltArbiterImplP__switchOff__runTask(void );
 # 113 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/SplitControl.nc"
@@ -3467,39 +3518,39 @@ static error_t AdcStreamP__Init__init(void );
 # 58 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AdcConfigure.nc"
 static AdcStreamP__AdcConfigure__adc_config_t AdcStreamP__AdcConfigure__default__getConfiguration(
 # 53 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcStreamP.nc"
-uint8_t arg_0x40d7f958);
+uint8_t arg_0x40e62958);
 # 189 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
 static error_t AdcStreamP__SingleChannel__default__getData(
 # 52 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcStreamP.nc"
-uint8_t arg_0x40d80ae0);
+uint8_t arg_0x40e63ae0);
 # 84 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
 static error_t AdcStreamP__SingleChannel__default__configureSingle(
 # 52 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcStreamP.nc"
-uint8_t arg_0x40d80ae0, 
+uint8_t arg_0x40e63ae0, 
 # 84 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
 const msp430adc12_channel_config_t * config);
 #line 227
 static uint16_t * AdcStreamP__SingleChannel__multipleDataReady(
 # 52 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcStreamP.nc"
-uint8_t arg_0x40d80ae0, 
+uint8_t arg_0x40e63ae0, 
 # 227 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
 uint16_t * buffer, uint16_t numSamples);
 #line 138
 static error_t AdcStreamP__SingleChannel__default__configureMultiple(
 # 52 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcStreamP.nc"
-uint8_t arg_0x40d80ae0, 
+uint8_t arg_0x40e63ae0, 
 # 138 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
 const msp430adc12_channel_config_t * config, uint16_t * buffer, uint16_t numSamples, uint16_t jiffies);
 #line 206
 static error_t AdcStreamP__SingleChannel__singleDataReady(
 # 52 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcStreamP.nc"
-uint8_t arg_0x40d80ae0, 
+uint8_t arg_0x40e63ae0, 
 # 206 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
 uint16_t data);
 # 78 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ReadStream.nc"
 static error_t AdcStreamP__ReadStream__read(
 # 49 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcStreamP.nc"
-uint8_t arg_0x40d81010, 
+uint8_t arg_0x40e65010, 
 # 78 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ReadStream.nc"
 uint32_t usPeriod);
 # 45 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/timer/Msp430Compare.nc"
@@ -3523,7 +3574,7 @@ static void /*WireAdcStreamP.Alarm.Transform*/TransformAlarmC__1__Counter__overf
 # 89 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ReadStream.nc"
 static void /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__Service__bufferDone(
 # 26 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbitratedReadStreamC.nc"
-uint8_t arg_0x40dc76c8, 
+uint8_t arg_0x40eab6c8, 
 # 89 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ReadStream.nc"
 error_t result, 
 #line 86
@@ -3535,13 +3586,13 @@ uint16_t count);
 #line 102
 static void /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__Service__readDone(
 # 26 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbitratedReadStreamC.nc"
-uint8_t arg_0x40dc76c8, 
+uint8_t arg_0x40eab6c8, 
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ReadStream.nc"
 error_t result, uint32_t usActualPeriod);
 #line 89
 static void /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__ReadStream__default__bufferDone(
 # 24 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbitratedReadStreamC.nc"
-uint8_t arg_0x40dcabb0, 
+uint8_t arg_0x40eadbb0, 
 # 89 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ReadStream.nc"
 error_t result, 
 #line 86
@@ -3553,17 +3604,17 @@ uint16_t count);
 #line 102
 static void /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__ReadStream__default__readDone(
 # 24 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbitratedReadStreamC.nc"
-uint8_t arg_0x40dcabb0, 
+uint8_t arg_0x40eadbb0, 
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ReadStream.nc"
 error_t result, uint32_t usActualPeriod);
 # 120 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__Resource__default__release(
 # 27 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbitratedReadStreamC.nc"
-uint8_t arg_0x40dc5030);
+uint8_t arg_0x40ea8030);
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static void /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__Resource__granted(
 # 27 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbitratedReadStreamC.nc"
-uint8_t arg_0x40dc5030);
+uint8_t arg_0x40ea8030);
 # 58 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AdcConfigure.nc"
 static /*ReadDataC.SensorPhoto.AdcReadStreamClientC.Msp430AdcClient.Msp430Adc12ConfAlertC*/Msp430Adc12ConfAlertC__1__ConfSub__adc_config_t /*ReadDataC.SensorPhoto.AdcReadStreamClientC.Msp430AdcClient.Msp430Adc12ConfAlertC*/Msp430Adc12ConfAlertC__1__ConfSub__getConfiguration(void );
 #line 58
@@ -3620,7 +3671,7 @@ uint8_t len);
 # 80 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
 static error_t /*SerialActiveMessageC.AM*/SerialActiveMessageP__0__AMSend__send(
 # 47 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/serial/SerialActiveMessageP.nc"
-am_id_t arg_0x40e87760, 
+am_id_t arg_0x40f6e760, 
 # 80 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
 am_addr_t addr, 
 #line 71
@@ -3671,7 +3722,7 @@ message_t *
 
 /*SerialActiveMessageC.AM*/SerialActiveMessageP__0__Receive__default__receive(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/serial/SerialActiveMessageP.nc"
-am_id_t arg_0x40eb3148, 
+am_id_t arg_0x40f9a148, 
 # 71 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -3740,7 +3791,7 @@ static void /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__receive
 # 75 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
 static error_t /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__Send__send(
 # 51 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/serial/SerialDispatcherP.nc"
-uart_id_t arg_0x40f6bc70, 
+uart_id_t arg_0x41052c70, 
 # 67 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
 message_t * msg, 
 
@@ -3754,7 +3805,7 @@ uint8_t len);
 #line 100
 static void /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__Send__default__sendDone(
 # 51 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/serial/SerialDispatcherP.nc"
-uart_id_t arg_0x40f6bc70, 
+uart_id_t arg_0x41052c70, 
 # 96 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
 message_t * msg, 
 
@@ -3772,7 +3823,7 @@ message_t *
 
 /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__Receive__default__receive(
 # 50 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/serial/SerialDispatcherP.nc"
-uart_id_t arg_0x40f6b630, 
+uart_id_t arg_0x41052630, 
 # 71 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -3785,17 +3836,17 @@ uint8_t len);
 # 31 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/serial/SerialPacketInfo.nc"
 static uint8_t /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__PacketInfo__default__upperLength(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/serial/SerialDispatcherP.nc"
-uart_id_t arg_0x40f68848, 
+uart_id_t arg_0x4104e848, 
 # 31 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/serial/SerialPacketInfo.nc"
 message_t *msg, uint8_t dataLinkLen);
 #line 15
 static uint8_t /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__PacketInfo__default__offset(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/serial/SerialDispatcherP.nc"
-uart_id_t arg_0x40f68848);
+uart_id_t arg_0x4104e848);
 # 23 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/serial/SerialPacketInfo.nc"
 static uint8_t /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__PacketInfo__default__dataLinkLength(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/serial/SerialDispatcherP.nc"
-uart_id_t arg_0x40f68848, 
+uart_id_t arg_0x4104e848, 
 # 23 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/serial/SerialPacketInfo.nc"
 message_t *msg, uint8_t upperLen);
 # 81 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/serial/SendBytePacket.nc"
@@ -3857,29 +3908,29 @@ static error_t HdlcTranslateC__SerialFrameComm__putData(uint8_t data);
 # 65 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceConfigure.nc"
 static void /*Msp430Uart1P.UartP*/Msp430UartP__0__ResourceConfigure__unconfigure(
 # 47 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UartP.nc"
-uint8_t arg_0x40fe9770);
+uint8_t arg_0x410cf770);
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceConfigure.nc"
 static void /*Msp430Uart1P.UartP*/Msp430UartP__0__ResourceConfigure__configure(
 # 47 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UartP.nc"
-uint8_t arg_0x40fe9770);
+uint8_t arg_0x410cf770);
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/HplMsp430UsciInterrupts.nc"
 static void /*Msp430Uart1P.UartP*/Msp430UartP__0__UsciInterrupts__rxDone(
 # 55 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UartP.nc"
-uint8_t arg_0x4100e5b8, 
+uint8_t arg_0x410f55b8, 
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/HplMsp430UsciInterrupts.nc"
 uint8_t data);
 #line 54
 static void /*Msp430Uart1P.UartP*/Msp430UartP__0__UsciInterrupts__txDone(
 # 55 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UartP.nc"
-uint8_t arg_0x4100e5b8);
+uint8_t arg_0x410f55b8);
 # 44 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UartConfigure.nc"
 static msp430_uart_union_config_t */*Msp430Uart1P.UartP*/Msp430UartP__0__Msp430UartConfigure__default__getConfig(
 # 53 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UartP.nc"
-uint8_t arg_0x40fe6d28);
+uint8_t arg_0x410cdd28);
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/UartStream.nc"
 static error_t /*Msp430Uart1P.UartP*/Msp430UartP__0__UartStream__send(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UartP.nc"
-uint8_t arg_0x40fe9eb0, 
+uint8_t arg_0x410cfeb0, 
 # 44 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/UartStream.nc"
 uint8_t * buf, 
 
@@ -3889,13 +3940,13 @@ uint16_t len);
 #line 79
 static void /*Msp430Uart1P.UartP*/Msp430UartP__0__UartStream__default__receivedByte(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UartP.nc"
-uint8_t arg_0x40fe9eb0, 
+uint8_t arg_0x410cfeb0, 
 # 79 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/UartStream.nc"
 uint8_t byte);
 #line 99
 static void /*Msp430Uart1P.UartP*/Msp430UartP__0__UartStream__default__receiveDone(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UartP.nc"
-uint8_t arg_0x40fe9eb0, 
+uint8_t arg_0x410cfeb0, 
 # 95 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/UartStream.nc"
 uint8_t * buf, 
 
@@ -3905,7 +3956,7 @@ uint16_t len, error_t error);
 #line 57
 static void /*Msp430Uart1P.UartP*/Msp430UartP__0__UartStream__default__sendDone(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UartP.nc"
-uint8_t arg_0x40fe9eb0, 
+uint8_t arg_0x410cfeb0, 
 # 53 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/UartStream.nc"
 uint8_t * buf, 
 
@@ -3917,31 +3968,31 @@ static void /*Msp430Uart1P.UartP*/Msp430UartP__0__Counter__overflow(void );
 # 120 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t /*Msp430Uart1P.UartP*/Msp430UartP__0__Resource__release(
 # 46 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UartP.nc"
-uint8_t arg_0x40fecc90);
+uint8_t arg_0x410d4c90);
 # 97 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t /*Msp430Uart1P.UartP*/Msp430UartP__0__Resource__immediateRequest(
 # 46 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UartP.nc"
-uint8_t arg_0x40fecc90);
+uint8_t arg_0x410d4c90);
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static void /*Msp430Uart1P.UartP*/Msp430UartP__0__Resource__default__granted(
 # 46 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UartP.nc"
-uint8_t arg_0x40fecc90);
+uint8_t arg_0x410d4c90);
 # 120 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t /*Msp430Uart1P.UartP*/Msp430UartP__0__UsciResource__default__release(
 # 52 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UartP.nc"
-uint8_t arg_0x40fe62f0);
+uint8_t arg_0x410cd2f0);
 # 97 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t /*Msp430Uart1P.UartP*/Msp430UartP__0__UsciResource__default__immediateRequest(
 # 52 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UartP.nc"
-uint8_t arg_0x40fe62f0);
+uint8_t arg_0x410cd2f0);
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static void /*Msp430Uart1P.UartP*/Msp430UartP__0__UsciResource__granted(
 # 52 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UartP.nc"
-uint8_t arg_0x40fe62f0);
+uint8_t arg_0x410cd2f0);
 # 128 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static bool /*Msp430Uart1P.UartP*/Msp430UartP__0__UsciResource__default__isOwner(
 # 52 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UartP.nc"
-uint8_t arg_0x40fe62f0);
+uint8_t arg_0x410cd2f0);
 # 58 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/HplMsp430UsciRawInterrupts.nc"
 static void HplMsp430UsciA1P__UsciRawInterrupts__rxDone(uint8_t data);
 #line 53
@@ -3983,13 +4034,13 @@ static void HplMsp430UsciAB1RawInterruptsP__UsciB__default__txDone(void );
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/HplMsp430UsciInterrupts.nc"
 static void /*Msp430UsciShareA1P.UsciShareP*/Msp430UsciShareP__0__Interrupts__default__rxDone(
 # 41 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UsciShareP.nc"
-uint8_t arg_0x4108d778, 
+uint8_t arg_0x41175778, 
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/HplMsp430UsciInterrupts.nc"
 uint8_t data);
 #line 54
 static void /*Msp430UsciShareA1P.UsciShareP*/Msp430UsciShareP__0__Interrupts__default__txDone(
 # 41 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UsciShareP.nc"
-uint8_t arg_0x4108d778);
+uint8_t arg_0x41175778);
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/HplMsp430UsciInterrupts.nc"
 static void /*Msp430UsciShareA1P.UsciShareP*/Msp430UsciShareP__0__RawInterrupts__rxDone(uint8_t data);
 #line 54
@@ -4003,15 +4054,15 @@ static resource_client_id_t /*Msp430UsciShareA1P.ArbiterC.Queue*/FcfsResourceQue
 # 61 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceRequested.nc"
 static void /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__ResourceRequested__default__immediateRequested(
 # 55 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b21be0);
+uint8_t arg_0x40c29be0);
 # 65 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceConfigure.nc"
 static void /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__ResourceConfigure__default__unconfigure(
 # 60 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b43030);
+uint8_t arg_0x40c27030);
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceConfigure.nc"
 static void /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__ResourceConfigure__default__configure(
 # 60 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b43030);
+uint8_t arg_0x40c27030);
 # 56 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceDefaultOwner.nc"
 static error_t /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__ResourceDefaultOwner__release(void );
 #line 46
@@ -4021,19 +4072,19 @@ static void /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__ResourceDefaultO
 # 120 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__Resource__release(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b211b8);
+uint8_t arg_0x40c291b8);
 # 97 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__Resource__immediateRequest(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b211b8);
+uint8_t arg_0x40c291b8);
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static void /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__Resource__default__granted(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b211b8);
+uint8_t arg_0x40c291b8);
 # 128 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static bool /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__Resource__isOwner(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b211b8);
+uint8_t arg_0x40c291b8);
 # 90 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ArbiterInfo.nc"
 static bool /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__ArbiterInfo__inUse(void );
 
@@ -4098,7 +4149,7 @@ error_t error);
 # 110 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
 static void /*SerialAMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__sendDone(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/AMQueueImplP.nc"
-am_id_t arg_0x410c2490, 
+am_id_t arg_0x411aa490, 
 # 103 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
 message_t * msg, 
 
@@ -4111,7 +4162,7 @@ error_t error);
 # 75 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
 static error_t /*SerialAMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__send(
 # 46 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/AMQueueImplP.nc"
-uint8_t arg_0x410c39d8, 
+uint8_t arg_0x411ab9d8, 
 # 67 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
 message_t * msg, 
 
@@ -4125,7 +4176,7 @@ uint8_t len);
 #line 100
 static void /*SerialAMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__default__sendDone(
 # 46 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/AMQueueImplP.nc"
-uint8_t arg_0x410c39d8, 
+uint8_t arg_0x411ab9d8, 
 # 96 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
 message_t * msg, 
 
@@ -4190,7 +4241,9 @@ static void TDMAControllerP__SystemScheduler__startDone(uint8_t slot_no);
 #line 38
 static void TDMAControllerP__SystemScheduler__newRound(void );
 static void TDMAControllerP__SystemScheduler__endRound(void );
-
+#line 27
+static void TDMAControllerP__SystemScheduler__stopDone(error_t err);
+#line 41
 static void TDMAControllerP__SystemScheduler__slotEnded(uint8_t slot_no, uint8_t actual_slot_no);
 # 110 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
 static void TDMAControllerP__DataPkgSend__sendDone(
@@ -4215,6 +4268,8 @@ static void TDMAControllerP__TDMAController__setDataPkg(data_pkg_msg_t *data_pkg
 #line 9
 static bool TDMAControllerP__TDMAController__isHead(void );
 static error_t TDMAControllerP__TDMAController__start(void );
+
+static error_t TDMAControllerP__TDMAController__stop(void );
 # 110 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
 static void TDMAControllerP__JoinAnsSend__sendDone(
 #line 103
@@ -4256,12 +4311,23 @@ message_t * msg,
 
 
 error_t error);
-# 4 "ReadData.nc"
-static void TDMAControllerP__ReadData__readDone(error_t error, data_pkg_msg_t *msg);
+#line 110
+static void TDMAControllerP__AssignmentSend__sendDone(
+#line 103
+message_t * msg, 
+
+
+
+
+
+
+error_t error);
 # 113 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/SplitControl.nc"
 static void TDMAControllerP__RadioControl__startDone(error_t error);
 #line 138
 static void TDMAControllerP__RadioControl__stopDone(error_t error);
+# 4 "ReadData.nc"
+static void TDMAControllerP__ReadData__readDone(error_t error, data_pkg_msg_t *msg);
 # 78 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Receive.nc"
 static 
 #line 74
@@ -4270,6 +4336,23 @@ message_t *
 
 
 TDMAControllerP__JoinAnsReceive__receive(
+#line 71
+message_t * msg, 
+void * payload, 
+
+
+
+
+
+uint8_t len);
+#line 78
+static 
+#line 74
+message_t * 
+
+
+
+TDMAControllerP__AssignmentReceive__receive(
 #line 71
 message_t * msg, 
 void * payload, 
@@ -4303,7 +4386,9 @@ static void TDMAControllerP__LocalScheduler__startDone(uint8_t slot_no);
 #line 38
 static void TDMAControllerP__LocalScheduler__newRound(void );
 static void TDMAControllerP__LocalScheduler__endRound(void );
-
+#line 27
+static void TDMAControllerP__LocalScheduler__stopDone(error_t err);
+#line 41
 static void TDMAControllerP__LocalScheduler__slotEnded(uint8_t slot_no, uint8_t actual_slot_no);
 # 78 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Receive.nc"
 static 
@@ -4510,31 +4595,31 @@ error_t error);
 # 62 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/CC2420Fifo.nc"
 static error_t CC2420SpiP__Fifo__continueRead(
 # 46 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/spi/CC2420SpiP.nc"
-uint8_t arg_0x4135eb38, 
+uint8_t arg_0x4145ab38, 
 # 62 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/CC2420Fifo.nc"
 uint8_t * data, uint8_t length);
 #line 91
 static void CC2420SpiP__Fifo__default__writeDone(
 # 46 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/spi/CC2420SpiP.nc"
-uint8_t arg_0x4135eb38, 
+uint8_t arg_0x4145ab38, 
 # 91 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/CC2420Fifo.nc"
 uint8_t * data, uint8_t length, error_t error);
 #line 82
 static cc2420_status_t CC2420SpiP__Fifo__write(
 # 46 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/spi/CC2420SpiP.nc"
-uint8_t arg_0x4135eb38, 
+uint8_t arg_0x4145ab38, 
 # 82 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/CC2420Fifo.nc"
 uint8_t * data, uint8_t length);
 #line 51
 static cc2420_status_t CC2420SpiP__Fifo__beginRead(
 # 46 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/spi/CC2420SpiP.nc"
-uint8_t arg_0x4135eb38, 
+uint8_t arg_0x4145ab38, 
 # 51 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/CC2420Fifo.nc"
 uint8_t * data, uint8_t length);
 #line 71
 static void CC2420SpiP__Fifo__default__readDone(
 # 46 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/spi/CC2420SpiP.nc"
-uint8_t arg_0x4135eb38, 
+uint8_t arg_0x4145ab38, 
 # 71 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/CC2420Fifo.nc"
 uint8_t * data, uint8_t length, error_t error);
 # 31 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/ChipSpiResource.nc"
@@ -4552,13 +4637,13 @@ static void CC2420SpiP__SpiResource__granted(void );
 # 63 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/CC2420Ram.nc"
 static cc2420_status_t CC2420SpiP__Ram__write(
 # 47 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/spi/CC2420SpiP.nc"
-uint16_t arg_0x4135d5b0, 
+uint16_t arg_0x414595b0, 
 # 63 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/CC2420Ram.nc"
 uint8_t offset, uint8_t * data, uint8_t length);
 # 55 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/CC2420Register.nc"
 static cc2420_status_t CC2420SpiP__Reg__read(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/spi/CC2420SpiP.nc"
-uint8_t arg_0x4135dd58, 
+uint8_t arg_0x41459d58, 
 # 55 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/CC2420Register.nc"
 uint16_t *data);
 
@@ -4570,55 +4655,55 @@ uint16_t *data);
 
 static cc2420_status_t CC2420SpiP__Reg__write(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/spi/CC2420SpiP.nc"
-uint8_t arg_0x4135dd58, 
+uint8_t arg_0x41459d58, 
 # 63 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/CC2420Register.nc"
 uint16_t data);
 # 120 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t CC2420SpiP__Resource__release(
 # 45 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/spi/CC2420SpiP.nc"
-uint8_t arg_0x4135e108);
+uint8_t arg_0x4145a108);
 # 97 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t CC2420SpiP__Resource__immediateRequest(
 # 45 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/spi/CC2420SpiP.nc"
-uint8_t arg_0x4135e108);
+uint8_t arg_0x4145a108);
 # 88 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t CC2420SpiP__Resource__request(
 # 45 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/spi/CC2420SpiP.nc"
-uint8_t arg_0x4135e108);
+uint8_t arg_0x4145a108);
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static void CC2420SpiP__Resource__default__granted(
 # 45 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/spi/CC2420SpiP.nc"
-uint8_t arg_0x4135e108);
+uint8_t arg_0x4145a108);
 # 128 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static bool CC2420SpiP__Resource__isOwner(
 # 45 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/spi/CC2420SpiP.nc"
-uint8_t arg_0x4135e108);
+uint8_t arg_0x4145a108);
 # 75 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TaskBasic.nc"
 static void CC2420SpiP__grant__runTask(void );
 # 53 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/CC2420Strobe.nc"
 static cc2420_status_t CC2420SpiP__Strobe__strobe(
 # 49 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/spi/CC2420SpiP.nc"
-uint8_t arg_0x4135c540);
+uint8_t arg_0x41458540);
 # 62 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Init.nc"
 static error_t StateImplP__Init__init(void );
 # 56 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/State.nc"
 static void StateImplP__State__toIdle(
 # 67 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/StateImplP.nc"
-uint8_t arg_0x413a6940);
+uint8_t arg_0x414a3940);
 # 66 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/State.nc"
 static bool StateImplP__State__isState(
 # 67 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/StateImplP.nc"
-uint8_t arg_0x413a6940, 
+uint8_t arg_0x414a3940, 
 # 66 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/State.nc"
 uint8_t myState);
 #line 61
 static bool StateImplP__State__isIdle(
 # 67 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/StateImplP.nc"
-uint8_t arg_0x413a6940);
+uint8_t arg_0x414a3940);
 # 45 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/State.nc"
 static error_t StateImplP__State__requestState(
 # 67 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/StateImplP.nc"
-uint8_t arg_0x413a6940, 
+uint8_t arg_0x414a3940, 
 # 45 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/State.nc"
 uint8_t reqState);
 
@@ -4628,23 +4713,23 @@ uint8_t reqState);
 
 static void StateImplP__State__forceState(
 # 67 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/StateImplP.nc"
-uint8_t arg_0x413a6940, 
+uint8_t arg_0x414a3940, 
 # 51 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/State.nc"
 uint8_t reqState);
 # 65 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceConfigure.nc"
 static void /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__ResourceConfigure__unconfigure(
 # 44 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430SpiNoDmaBP.nc"
-uint8_t arg_0x413cd010);
+uint8_t arg_0x414cb010);
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceConfigure.nc"
 static void /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__ResourceConfigure__configure(
 # 44 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430SpiNoDmaBP.nc"
-uint8_t arg_0x413cd010);
+uint8_t arg_0x414cb010);
 # 75 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TaskBasic.nc"
 static void /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__signalDone_task__runTask(void );
 # 70 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/SpiPacket.nc"
 static error_t /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__SpiPacket__send(
 # 46 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430SpiNoDmaBP.nc"
-uint8_t arg_0x413cdae8, 
+uint8_t arg_0x414cbae8, 
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/SpiPacket.nc"
 uint8_t * txBuf, 
 
@@ -4661,7 +4746,7 @@ uint16_t len);
 #line 82
 static void /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__SpiPacket__default__sendDone(
 # 46 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430SpiNoDmaBP.nc"
-uint8_t arg_0x413cdae8, 
+uint8_t arg_0x414cbae8, 
 # 75 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/SpiPacket.nc"
 uint8_t * txBuf, 
 uint8_t * rxBuf, 
@@ -4681,47 +4766,47 @@ static void /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciInterrupts__txDon
 # 120 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__Resource__release(
 # 43 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430SpiNoDmaBP.nc"
-uint8_t arg_0x41387560);
+uint8_t arg_0x414cc560);
 # 97 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__Resource__immediateRequest(
 # 43 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430SpiNoDmaBP.nc"
-uint8_t arg_0x41387560);
+uint8_t arg_0x414cc560);
 # 88 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__Resource__request(
 # 43 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430SpiNoDmaBP.nc"
-uint8_t arg_0x41387560);
+uint8_t arg_0x414cc560);
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static void /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__Resource__default__granted(
 # 43 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430SpiNoDmaBP.nc"
-uint8_t arg_0x41387560);
+uint8_t arg_0x414cc560);
 # 128 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static bool /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__Resource__isOwner(
 # 43 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430SpiNoDmaBP.nc"
-uint8_t arg_0x41387560);
+uint8_t arg_0x414cc560);
 # 120 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResource__default__release(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430SpiNoDmaBP.nc"
-uint8_t arg_0x413cc2f0);
+uint8_t arg_0x414ca2f0);
 # 97 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResource__default__immediateRequest(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430SpiNoDmaBP.nc"
-uint8_t arg_0x413cc2f0);
+uint8_t arg_0x414ca2f0);
 # 88 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResource__default__request(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430SpiNoDmaBP.nc"
-uint8_t arg_0x413cc2f0);
+uint8_t arg_0x414ca2f0);
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static void /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResource__granted(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430SpiNoDmaBP.nc"
-uint8_t arg_0x413cc2f0);
+uint8_t arg_0x414ca2f0);
 # 128 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static bool /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResource__default__isOwner(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430SpiNoDmaBP.nc"
-uint8_t arg_0x413cc2f0);
+uint8_t arg_0x414ca2f0);
 # 45 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430SpiConfigure.nc"
 static msp430_spi_union_config_t */*Msp430SpiNoDmaB0P.XM1000UsciP*/XM1000UsciP__0__Msp430SpiConfigure__getConfig(
 # 42 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/platforms/xm1000/chips/msp430/usci/XM1000UsciP.nc"
-uint8_t arg_0x41415308);
+uint8_t arg_0x41513308);
 # 58 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/HplMsp430UsciRawInterrupts.nc"
 static void HplMsp430UsciB0P__UsciRawInterrupts__rxDone(uint8_t data);
 #line 53
@@ -4768,13 +4853,13 @@ static void HplMsp430UsciAB0RawInterruptsP__UsciA__default__txDone(void );
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/HplMsp430UsciInterrupts.nc"
 static void /*Msp430UsciShareB0P.UsciShareP*/Msp430UsciShareP__1__Interrupts__default__rxDone(
 # 41 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UsciShareP.nc"
-uint8_t arg_0x4108d778, 
+uint8_t arg_0x41175778, 
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/HplMsp430UsciInterrupts.nc"
 uint8_t data);
 #line 54
 static void /*Msp430UsciShareB0P.UsciShareP*/Msp430UsciShareP__1__Interrupts__default__txDone(
 # 41 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UsciShareP.nc"
-uint8_t arg_0x4108d778);
+uint8_t arg_0x41175778);
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/HplMsp430UsciInterrupts.nc"
 static void /*Msp430UsciShareB0P.UsciShareP*/Msp430UsciShareP__1__RawInterrupts__rxDone(uint8_t data);
 #line 54
@@ -4805,19 +4890,19 @@ static resource_client_id_t /*Msp430UsciShareB0P.ArbiterC.Queue*/FcfsResourceQue
 # 53 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceRequested.nc"
 static void /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceRequested__default__requested(
 # 55 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b21be0);
+uint8_t arg_0x40c29be0);
 # 61 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceRequested.nc"
 static void /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceRequested__default__immediateRequested(
 # 55 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b21be0);
+uint8_t arg_0x40c29be0);
 # 65 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceConfigure.nc"
 static void /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceConfigure__default__unconfigure(
 # 60 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b43030);
+uint8_t arg_0x40c27030);
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceConfigure.nc"
 static void /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceConfigure__default__configure(
 # 60 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b43030);
+uint8_t arg_0x40c27030);
 # 56 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceDefaultOwner.nc"
 static error_t /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceDefaultOwner__release(void );
 #line 73
@@ -4829,23 +4914,23 @@ static void /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceDefaultO
 # 120 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__Resource__release(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b211b8);
+uint8_t arg_0x40c291b8);
 # 97 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__Resource__immediateRequest(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b211b8);
+uint8_t arg_0x40c291b8);
 # 88 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__Resource__request(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b211b8);
+uint8_t arg_0x40c291b8);
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static void /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__Resource__default__granted(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b211b8);
+uint8_t arg_0x40c291b8);
 # 128 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static bool /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__Resource__isOwner(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b211b8);
+uint8_t arg_0x40c291b8);
 # 90 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ArbiterInfo.nc"
 static bool /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ArbiterInfo__inUse(void );
 
@@ -5154,19 +5239,19 @@ uint8_t len);
 # 120 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t CC2420TinyosNetworkP__Resource__release(
 # 46 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/lowpan/CC2420TinyosNetworkP.nc"
-uint8_t arg_0x41680780);
+uint8_t arg_0x417db780);
 # 97 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t CC2420TinyosNetworkP__Resource__immediateRequest(
 # 46 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/lowpan/CC2420TinyosNetworkP.nc"
-uint8_t arg_0x41680780);
+uint8_t arg_0x417db780);
 # 88 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t CC2420TinyosNetworkP__Resource__request(
 # 46 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/lowpan/CC2420TinyosNetworkP.nc"
-uint8_t arg_0x41680780);
+uint8_t arg_0x417db780);
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static void CC2420TinyosNetworkP__Resource__default__granted(
 # 46 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/lowpan/CC2420TinyosNetworkP.nc"
-uint8_t arg_0x41680780);
+uint8_t arg_0x417db780);
 # 125 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
 static 
 #line 123
@@ -5239,13 +5324,13 @@ static void CC2420ActiveMessageP__CC2420Config__syncDone(error_t error);
 # 95 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/RadioBackoff.nc"
 static void CC2420ActiveMessageP__RadioBackoff__default__requestCca(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420ActiveMessageP.nc"
-am_id_t arg_0x416d1148, 
+am_id_t arg_0x4182f148, 
 # 95 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/RadioBackoff.nc"
 message_t * msg);
 #line 81
 static void CC2420ActiveMessageP__RadioBackoff__default__requestInitialBackoff(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420ActiveMessageP.nc"
-am_id_t arg_0x416d1148, 
+am_id_t arg_0x4182f148, 
 # 81 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/RadioBackoff.nc"
 message_t * msg);
 
@@ -5256,13 +5341,13 @@ message_t * msg);
 
 static void CC2420ActiveMessageP__RadioBackoff__default__requestCongestionBackoff(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420ActiveMessageP.nc"
-am_id_t arg_0x416d1148, 
+am_id_t arg_0x4182f148, 
 # 88 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/RadioBackoff.nc"
 message_t * msg);
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/SendNotifier.nc"
 static void CC2420ActiveMessageP__SendNotifier__default__aboutToSend(
 # 53 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420ActiveMessageP.nc"
-am_id_t arg_0x416d2a98, 
+am_id_t arg_0x41830a98, 
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/SendNotifier.nc"
 am_addr_t dest, 
 #line 57
@@ -5309,7 +5394,7 @@ uint8_t len);
 # 80 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
 static error_t CC2420ActiveMessageP__AMSend__send(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420ActiveMessageP.nc"
-am_id_t arg_0x416d4030, 
+am_id_t arg_0x41832030, 
 # 80 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
 am_addr_t addr, 
 #line 71
@@ -5330,7 +5415,7 @@ void *
 
 CC2420ActiveMessageP__AMSend__getPayload(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420ActiveMessageP.nc"
-am_id_t arg_0x416d4030, 
+am_id_t arg_0x41832030, 
 # 132 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
 message_t * msg, 
 
@@ -5345,7 +5430,7 @@ message_t *
 
 CC2420ActiveMessageP__Snoop__default__receive(
 # 50 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420ActiveMessageP.nc"
-am_id_t arg_0x416d30a0, 
+am_id_t arg_0x418310a0, 
 # 71 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -5364,7 +5449,7 @@ message_t *
 
 CC2420ActiveMessageP__Receive__default__receive(
 # 49 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420ActiveMessageP.nc"
-am_id_t arg_0x416d49f0, 
+am_id_t arg_0x418329f0, 
 # 71 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -5461,19 +5546,19 @@ static CC2420TimeSyncMessageP__TimeSyncPacketMilli__size_type CC2420TimeSyncMess
 # 64 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TimeSyncAMSend.nc"
 static error_t CC2420TimeSyncMessageP__TimeSyncAMSendMilli__send(
 # 42 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420TimeSyncMessageP.nc"
-uint8_t arg_0x4176aaf0, 
+uint8_t arg_0x41876af0, 
 # 64 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TimeSyncAMSend.nc"
 am_addr_t addr, message_t *msg, uint8_t len, CC2420TimeSyncMessageP__TimeSyncAMSendMilli__size_type event_time);
 #line 114
 static void *CC2420TimeSyncMessageP__TimeSyncAMSendMilli__getPayload(
 # 42 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420TimeSyncMessageP.nc"
-uint8_t arg_0x4176aaf0, 
+uint8_t arg_0x41876af0, 
 # 114 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TimeSyncAMSend.nc"
 message_t *msg, uint8_t len);
 #line 93
 static void CC2420TimeSyncMessageP__TimeSyncAMSendMilli__default__sendDone(
 # 42 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420TimeSyncMessageP.nc"
-uint8_t arg_0x4176aaf0, 
+uint8_t arg_0x41876af0, 
 # 93 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TimeSyncAMSend.nc"
 message_t *msg, error_t error);
 # 78 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Packet.nc"
@@ -5489,7 +5574,7 @@ message_t *
 
 CC2420TimeSyncMessageP__Snoop__default__receive(
 # 50 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420TimeSyncMessageP.nc"
-am_id_t arg_0x41764e30, 
+am_id_t arg_0x41870e30, 
 # 71 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -5508,7 +5593,7 @@ message_t *
 
 CC2420TimeSyncMessageP__Receive__default__receive(
 # 49 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420TimeSyncMessageP.nc"
-am_id_t arg_0x41764798, 
+am_id_t arg_0x41870798, 
 # 71 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -5521,19 +5606,19 @@ uint8_t len);
 # 64 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TimeSyncAMSend.nc"
 static error_t CC2420TimeSyncMessageP__TimeSyncAMSend32khz__send(
 # 41 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420TimeSyncMessageP.nc"
-uint8_t arg_0x4176fd98, 
+uint8_t arg_0x4187bd98, 
 # 64 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TimeSyncAMSend.nc"
 am_addr_t addr, message_t *msg, uint8_t len, CC2420TimeSyncMessageP__TimeSyncAMSend32khz__size_type event_time);
 #line 114
 static void *CC2420TimeSyncMessageP__TimeSyncAMSend32khz__getPayload(
 # 41 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420TimeSyncMessageP.nc"
-uint8_t arg_0x4176fd98, 
+uint8_t arg_0x4187bd98, 
 # 114 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TimeSyncAMSend.nc"
 message_t *msg, uint8_t len);
 #line 93
 static void CC2420TimeSyncMessageP__TimeSyncAMSend32khz__default__sendDone(
 # 41 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420TimeSyncMessageP.nc"
-uint8_t arg_0x4176fd98, 
+uint8_t arg_0x4187bd98, 
 # 93 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TimeSyncAMSend.nc"
 message_t *msg, error_t error);
 # 147 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMPacket.nc"
@@ -5592,7 +5677,7 @@ error_t error);
 # 110 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
 static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__AMSend__sendDone(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/AMQueueImplP.nc"
-am_id_t arg_0x410c2490, 
+am_id_t arg_0x411aa490, 
 # 103 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
 message_t * msg, 
 
@@ -5605,7 +5690,7 @@ error_t error);
 # 75 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
 static error_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__Send__send(
 # 46 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/AMQueueImplP.nc"
-uint8_t arg_0x410c39d8, 
+uint8_t arg_0x411ab9d8, 
 # 67 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
 message_t * msg, 
 
@@ -5623,7 +5708,7 @@ void *
 
 /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__Send__getPayload(
 # 46 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/AMQueueImplP.nc"
-uint8_t arg_0x410c39d8, 
+uint8_t arg_0x411ab9d8, 
 # 122 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
 message_t * msg, 
 
@@ -5632,7 +5717,7 @@ uint8_t len);
 #line 100
 static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__Send__default__sendDone(
 # 46 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/AMQueueImplP.nc"
-uint8_t arg_0x410c39d8, 
+uint8_t arg_0x411ab9d8, 
 # 96 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
 message_t * msg, 
 
@@ -5743,6 +5828,38 @@ message_t * msg,
 
 
 error_t error);
+# 80 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
+static error_t /*TDMAControllerC.AssignmentSender.SenderC.AMQueueEntryP*/AMQueueEntryP__5__AMSend__send(am_addr_t addr, 
+#line 71
+message_t * msg, 
+
+
+
+
+
+
+
+
+uint8_t len);
+#line 135
+static 
+#line 133
+void * 
+
+/*TDMAControllerC.AssignmentSender.SenderC.AMQueueEntryP*/AMQueueEntryP__5__AMSend__getPayload(
+#line 132
+message_t * msg, 
+
+
+uint8_t len);
+# 100 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
+static void /*TDMAControllerC.AssignmentSender.SenderC.AMQueueEntryP*/AMQueueEntryP__5__Send__sendDone(
+#line 96
+message_t * msg, 
+
+
+
+error_t error);
 # 83 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Timer.nc"
 static void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SystemTimer__fired(void );
 #line 83
@@ -5764,6 +5881,7 @@ update_type_t type);
 static scheduler_mode_t /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__mode(void );
 #line 28
 static void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__reset(uint8_t initial_slot);
+static bool /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__isRunning(void );
 #line 15
 static error_t /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__start(uint8_t slot_no, 
 uint32_t start_time, 
@@ -5781,6 +5899,8 @@ uint8_t *active_slot_per_round);
 
 
 static void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__syncSystemTime(uint32_t system_time);
+#line 24
+static error_t /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__stop(void );
 # 83 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Timer.nc"
 static void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SystemTimer__fired(void );
 #line 83
@@ -5802,6 +5922,7 @@ update_type_t type);
 static scheduler_mode_t /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__mode(void );
 #line 28
 static void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__reset(uint8_t initial_slot);
+static bool /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__isRunning(void );
 #line 15
 static error_t /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__start(uint8_t slot_no, 
 uint32_t start_time, 
@@ -5819,6 +5940,8 @@ uint8_t *active_slot_per_round);
 
 
 static void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__syncSystemTime(uint32_t system_time);
+#line 24
+static error_t /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__stop(void );
 # 26 "Settings.nc"
 static uint8_t *SettingsP__Settings__slotPerRound(void );
 #line 22
@@ -5879,7 +6002,7 @@ static volatile uint16_t Msp430ClockP__TBIV __asm ("0x011E");
 
 
 
-enum Msp430ClockP____nesc_unnamed4341 {
+enum Msp430ClockP____nesc_unnamed4344 {
 
   Msp430ClockP__DCOX = 0x80 + 0x40 + 0x20, 
   Msp430ClockP__MODX = 0x10 + 0x08 + 0x04 + 0x02 + 0x01, 
@@ -5953,7 +6076,7 @@ static inline error_t Msp430ClockP__Init__init(void );
 # 39 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/timer/Msp430TimerEvent.nc"
 static void /*Msp430TimerC.Msp430TimerA*/Msp430TimerP__0__Event__fired(
 # 51 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/timer/Msp430TimerP.nc"
-uint8_t arg_0x406db788);
+uint8_t arg_0x407c2788);
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/timer/Msp430Timer.nc"
 static void /*Msp430TimerC.Msp430TimerA*/Msp430TimerP__0__Timer__overflow(void );
 # 62 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/timer/Msp430TimerP.nc"
@@ -6018,7 +6141,7 @@ static inline void /*Msp430TimerC.Msp430TimerA*/Msp430TimerP__0__Event__default_
 # 39 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/timer/Msp430TimerEvent.nc"
 static void /*Msp430TimerC.Msp430TimerB*/Msp430TimerP__1__Event__fired(
 # 51 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/timer/Msp430TimerP.nc"
-uint8_t arg_0x406db788);
+uint8_t arg_0x407c2788);
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/timer/Msp430Timer.nc"
 static void /*Msp430TimerC.Msp430TimerB*/Msp430TimerP__1__Timer__overflow(void );
 # 62 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/timer/Msp430TimerP.nc"
@@ -6569,11 +6692,11 @@ int main(void )   ;
 # 75 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TaskBasic.nc"
 static void SchedulerBasicP__TaskBasic__runTask(
 # 56 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/SchedulerBasicP.nc"
-uint8_t arg_0x4064b4a0);
+uint8_t arg_0x407324a0);
 # 76 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/McuSleep.nc"
 static void SchedulerBasicP__McuSleep__sleep(void );
 # 61 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/SchedulerBasicP.nc"
-enum SchedulerBasicP____nesc_unnamed4342 {
+enum SchedulerBasicP____nesc_unnamed4345 {
 
   SchedulerBasicP__NUM_TASKS = 36U, 
   SchedulerBasicP__NO_TASK = 255
@@ -6637,7 +6760,7 @@ static void MainExecP__Logger__log(unsigned char *msg, log_level_t lvl);
 static error_t MainExecP__DataReader__read(void );
 # 73 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Timer.nc"
 static void MainExecP__Timer__startOneShot(uint32_t dt);
-# 18 "MainExecP.nc"
+# 19 "MainExecP.nc"
 static inline void MainExecP__Boot__booted(void );
 
 
@@ -6657,6 +6780,17 @@ static inline void MainExecP__DataReader__readDone(error_t error, data_pkg_msg_t
 
 
 static void MainExecP__TDMAController__newRound(tdma_round_type_t type);
+
+
+
+
+
+
+
+
+
+
+static void MainExecP__TDMAController__stopDone(error_t err);
 # 55 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Read.nc"
 static error_t ReadDataP__Photo__read(void );
 # 4 "ReadData.nc"
@@ -6812,31 +6946,31 @@ static void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__
 # 84 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11.nc"
 static void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__measureHumidityDone(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11LogicP.nc"
-uint8_t arg_0x407dc970, 
+uint8_t arg_0x408c0ec0, 
 # 84 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11.nc"
 error_t result, uint16_t val);
 #line 116
 static void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__writeStatusRegDone(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11LogicP.nc"
-uint8_t arg_0x407dc970, 
+uint8_t arg_0x408c0ec0, 
 # 116 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11.nc"
 error_t result);
 #line 100
 static void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__readStatusRegDone(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11LogicP.nc"
-uint8_t arg_0x407dc970, 
+uint8_t arg_0x408c0ec0, 
 # 100 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11.nc"
 error_t result, uint8_t val);
 #line 54
 static void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__resetDone(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11LogicP.nc"
-uint8_t arg_0x407dc970, 
+uint8_t arg_0x408c0ec0, 
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11.nc"
 error_t result);
 #line 69
 static void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__measureTemperatureDone(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11LogicP.nc"
-uint8_t arg_0x407dc970, 
+uint8_t arg_0x408c0ec0, 
 # 69 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11.nc"
 error_t result, uint16_t val);
 # 44 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/GeneralIO.nc"
@@ -6857,13 +6991,13 @@ static void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__
 
 static void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__Timer__stop(void );
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11LogicP.nc"
-enum /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0____nesc_unnamed4343 {
+enum /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0____nesc_unnamed4346 {
 #line 102
   SensirionSht11LogicP__0__readSensor = 0U
 };
 #line 102
 typedef int /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0____nesc_sillytask_readSensor[/*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__readSensor];
-enum /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0____nesc_unnamed4344 {
+enum /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0____nesc_unnamed4347 {
 #line 103
   SensirionSht11LogicP__0__signalStatusDone = 1U
 };
@@ -6871,7 +7005,7 @@ enum /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0____nesc_
 typedef int /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0____nesc_sillytask_signalStatusDone[/*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__signalStatusDone];
 #line 72
 #line 66
-typedef enum /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0____nesc_unnamed4345 {
+typedef enum /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0____nesc_unnamed4348 {
   SensirionSht11LogicP__0__CMD_MEASURE_TEMPERATURE = 0x3, 
   SensirionSht11LogicP__0__CMD_MEASURE_HUMIDITY = 0x5, 
   SensirionSht11LogicP__0__CMD_READ_STATUS = 0x7, 
@@ -6879,7 +7013,7 @@ typedef enum /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0_
   SensirionSht11LogicP__0__CMD_SOFT_RESET = 0x1E
 } /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__sht_cmd_t;
 
-enum /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0____nesc_unnamed4346 {
+enum /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0____nesc_unnamed4349 {
   SensirionSht11LogicP__0__TIMEOUT_RESET = 11, 
   SensirionSht11LogicP__0__TIMEOUT_14BIT = 330, 
   SensirionSht11LogicP__0__TIMEOUT_12BIT = 250, 
@@ -7274,7 +7408,7 @@ static void HplSensirionSht11P__DATA__clr(void );
 # 73 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Timer.nc"
 static void HplSensirionSht11P__Timer__startOneShot(uint32_t dt);
 # 50 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/platforms/xm1000/chips/sht11/HplSensirionSht11P.nc"
-enum HplSensirionSht11P____nesc_unnamed4347 {
+enum HplSensirionSht11P____nesc_unnamed4350 {
 #line 50
   HplSensirionSht11P__stopTask = 2U
 };
@@ -7395,7 +7529,7 @@ static void /*CounterMilli32C.Transform*/TransformCounterC__0__Counter__overflow
 # 67 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/TransformCounterC.nc"
 /*CounterMilli32C.Transform*/TransformCounterC__0__upper_count_type /*CounterMilli32C.Transform*/TransformCounterC__0__m_upper;
 
-enum /*CounterMilli32C.Transform*/TransformCounterC__0____nesc_unnamed4348 {
+enum /*CounterMilli32C.Transform*/TransformCounterC__0____nesc_unnamed4351 {
 
   TransformCounterC__0__LOW_SHIFT_RIGHT = 5, 
   TransformCounterC__0__HIGH_SHIFT_LEFT = 8 * sizeof(/*CounterMilli32C.Transform*/TransformCounterC__0__from_size_type ) - /*CounterMilli32C.Transform*/TransformCounterC__0__LOW_SHIFT_RIGHT, 
@@ -7421,7 +7555,7 @@ static /*HilTimerMilliC.AlarmMilli32C.Transform*/TransformAlarmC__0__Counter__si
 /*HilTimerMilliC.AlarmMilli32C.Transform*/TransformAlarmC__0__to_size_type /*HilTimerMilliC.AlarmMilli32C.Transform*/TransformAlarmC__0__m_t0;
 /*HilTimerMilliC.AlarmMilli32C.Transform*/TransformAlarmC__0__to_size_type /*HilTimerMilliC.AlarmMilli32C.Transform*/TransformAlarmC__0__m_dt;
 
-enum /*HilTimerMilliC.AlarmMilli32C.Transform*/TransformAlarmC__0____nesc_unnamed4349 {
+enum /*HilTimerMilliC.AlarmMilli32C.Transform*/TransformAlarmC__0____nesc_unnamed4352 {
 
   TransformAlarmC__0__MAX_DELAY_LOG2 = 8 * sizeof(/*HilTimerMilliC.AlarmMilli32C.Transform*/TransformAlarmC__0__from_size_type ) - 1 - 5, 
   TransformAlarmC__0__MAX_DELAY = (/*HilTimerMilliC.AlarmMilli32C.Transform*/TransformAlarmC__0__to_size_type )1 << /*HilTimerMilliC.AlarmMilli32C.Transform*/TransformAlarmC__0__MAX_DELAY_LOG2
@@ -7468,7 +7602,7 @@ static void /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC__0__Alarm__stop(void )
 # 83 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Timer.nc"
 static void /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC__0__Timer__fired(void );
 # 74 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/AlarmToTimerC.nc"
-enum /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC__0____nesc_unnamed4350 {
+enum /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC__0____nesc_unnamed4353 {
 #line 74
   AlarmToTimerC__0__fired = 3U
 };
@@ -7510,16 +7644,16 @@ static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__s
 
 static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/VirtualizeTimerC.nc"
-uint8_t arg_0x40a419f0);
+uint8_t arg_0x40b259f0);
 #line 71
-enum /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4351 {
+enum /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4354 {
 #line 71
   VirtualizeTimerC__0__updateFromTimer = 4U
 };
 #line 71
 typedef int /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_sillytask_updateFromTimer[/*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__updateFromTimer];
 #line 53
-enum /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4352 {
+enum /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4355 {
 
   VirtualizeTimerC__0__NUM_TIMERS = 11U, 
   VirtualizeTimerC__0__END_OF_LIST = 255
@@ -7533,7 +7667,7 @@ enum /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4352 
 
 
 #line 59
-typedef struct /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4353 {
+typedef struct /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0____nesc_unnamed4356 {
 
   uint32_t t0;
   uint32_t dt;
@@ -7717,7 +7851,7 @@ static error_t /*HplSensirionSht11C.InterruptDATAC*/Msp430InterruptC__0__Interru
 
 static inline void /*HplSensirionSht11C.InterruptDATAC*/Msp430InterruptC__0__HplInterrupt__fired(void );
 # 49 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/FcfsResourceQueueC.nc"
-enum /*HplSensirionSht11C.Arbiter.Queue*/FcfsResourceQueueC__1____nesc_unnamed4354 {
+enum /*HplSensirionSht11C.Arbiter.Queue*/FcfsResourceQueueC__1____nesc_unnamed4357 {
 #line 49
   FcfsResourceQueueC__1__NO_ENTRY = 0xFF
 };
@@ -7744,15 +7878,15 @@ static inline error_t /*HplSensirionSht11C.Arbiter.Queue*/FcfsResourceQueueC__1_
 # 53 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceRequested.nc"
 static void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__ResourceRequested__requested(
 # 55 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b21be0);
+uint8_t arg_0x40c29be0);
 # 65 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceConfigure.nc"
 static void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__ResourceConfigure__unconfigure(
 # 60 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b43030);
+uint8_t arg_0x40c27030);
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceConfigure.nc"
 static void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__ResourceConfigure__configure(
 # 60 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b43030);
+uint8_t arg_0x40c27030);
 # 79 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceQueue.nc"
 static error_t /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__Queue__enqueue(resource_client_id_t id);
 #line 53
@@ -7766,28 +7900,28 @@ static void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__ResourceDefaultOw
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__Resource__granted(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b211b8);
+uint8_t arg_0x40c291b8);
 # 67 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TaskBasic.nc"
 static error_t /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__grantedTask__postTask(void );
 # 75 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-enum /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0____nesc_unnamed4355 {
+enum /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0____nesc_unnamed4358 {
 #line 75
   ArbiterP__0__grantedTask = 5U
 };
 #line 75
 typedef int /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0____nesc_sillytask_grantedTask[/*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__grantedTask];
 #line 67
-enum /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0____nesc_unnamed4356 {
+enum /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0____nesc_unnamed4359 {
 #line 67
   ArbiterP__0__RES_CONTROLLED, ArbiterP__0__RES_GRANTING, ArbiterP__0__RES_IMM_GRANTING, ArbiterP__0__RES_BUSY
 };
 #line 68
-enum /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0____nesc_unnamed4357 {
+enum /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0____nesc_unnamed4360 {
 #line 68
   ArbiterP__0__default_owner_id = 2U
 };
 #line 69
-enum /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0____nesc_unnamed4358 {
+enum /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0____nesc_unnamed4361 {
 #line 69
   ArbiterP__0__NO_RES = 0xFF
 };
@@ -7852,7 +7986,7 @@ static error_t /*HplSensirionSht11C.SplitControlPowerManagerC.PowerManager*/Powe
 
 static error_t /*HplSensirionSht11C.SplitControlPowerManagerC.PowerManager*/PowerManagerP__0__StdControl__stop(void );
 # 73 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/power/PowerManagerP.nc"
-enum /*HplSensirionSht11C.SplitControlPowerManagerC.PowerManager*/PowerManagerP__0____nesc_unnamed4359 {
+enum /*HplSensirionSht11C.SplitControlPowerManagerC.PowerManager*/PowerManagerP__0____nesc_unnamed4362 {
 #line 73
   PowerManagerP__0__startTask = 6U
 };
@@ -7862,7 +7996,7 @@ typedef int /*HplSensirionSht11C.SplitControlPowerManagerC.PowerManager*/PowerMa
 
 
 
-enum /*HplSensirionSht11C.SplitControlPowerManagerC.PowerManager*/PowerManagerP__0____nesc_unnamed4360 {
+enum /*HplSensirionSht11C.SplitControlPowerManagerC.PowerManager*/PowerManagerP__0____nesc_unnamed4363 {
 #line 78
   PowerManagerP__0__stopTask = 7U
 };
@@ -7992,52 +8126,52 @@ static inline void /*PlatformLedsC.Led2Impl*/Msp430GpioC__5__GeneralIO__makeOutp
 # 63 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Read.nc"
 static void AdcP__Read__readDone(
 # 38 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcP.nc"
-uint8_t arg_0x40bde678, 
+uint8_t arg_0x40cc0678, 
 # 63 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Read.nc"
 error_t result, AdcP__Read__val_t val);
 # 66 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ReadNow.nc"
 static void AdcP__ReadNow__readDone(
 # 39 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcP.nc"
-uint8_t arg_0x40bd9f08, 
+uint8_t arg_0x40cbcf08, 
 # 66 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ReadNow.nc"
 error_t result, AdcP__ReadNow__val_t val);
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static void AdcP__ResourceReadNow__granted(
 # 40 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcP.nc"
-uint8_t arg_0x40bdbed0);
+uint8_t arg_0x40cbeed0);
 # 58 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AdcConfigure.nc"
 static AdcP__Config__adc_config_t AdcP__Config__getConfiguration(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcP.nc"
-uint8_t arg_0x40bd6228);
+uint8_t arg_0x40cb9228);
 # 189 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
 static error_t AdcP__SingleChannel__getData(
 # 49 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcP.nc"
-uint8_t arg_0x40bf2e40);
+uint8_t arg_0x40cd5e40);
 # 84 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
 static error_t AdcP__SingleChannel__configureSingle(
 # 49 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcP.nc"
-uint8_t arg_0x40bf2e40, 
+uint8_t arg_0x40cd5e40, 
 # 84 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
 const msp430adc12_channel_config_t * config);
 # 120 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t AdcP__ResourceRead__release(
 # 44 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcP.nc"
-uint8_t arg_0x40bdaa08);
+uint8_t arg_0x40cbba08);
 # 88 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t AdcP__ResourceRead__request(
 # 44 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcP.nc"
-uint8_t arg_0x40bdaa08);
+uint8_t arg_0x40cbba08);
 # 67 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TaskBasic.nc"
 static error_t AdcP__readDone__postTask(void );
 # 136 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcP.nc"
-enum AdcP____nesc_unnamed4361 {
+enum AdcP____nesc_unnamed4364 {
 #line 136
   AdcP__readDone = 8U
 };
 #line 136
 typedef int AdcP____nesc_sillytask_readDone[AdcP__readDone];
 #line 54
-enum AdcP____nesc_unnamed4362 {
+enum AdcP____nesc_unnamed4365 {
   AdcP__STATE_READ, 
   AdcP__STATE_READNOW, 
   AdcP__STATE_READNOW_INVALID_CONFIG
@@ -8110,7 +8244,7 @@ const msp430adc12_channel_config_t *config);
 # 107 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12MultiChannel.nc"
 static void Msp430Adc12ImplP__MultiChannel__dataReady(
 # 42 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12ImplP.nc"
-uint8_t arg_0x40c07108, 
+uint8_t arg_0x40d12108, 
 # 107 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12MultiChannel.nc"
 uint16_t *buffer, uint16_t numSamples);
 # 63 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/HplAdc12.nc"
@@ -8162,11 +8296,11 @@ static void Msp430Adc12ImplP__Port62__selectModuleFunc(void );
 # 49 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12Overflow.nc"
 static void Msp430Adc12ImplP__Overflow__memOverflow(
 # 43 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12ImplP.nc"
-uint8_t arg_0x40c079f8);
+uint8_t arg_0x40d129f8);
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12Overflow.nc"
 static void Msp430Adc12ImplP__Overflow__conversionTimeOverflow(
 # 43 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12ImplP.nc"
-uint8_t arg_0x40c079f8);
+uint8_t arg_0x40d129f8);
 # 78 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/pins/HplMsp430GeneralIO.nc"
 static void Msp430Adc12ImplP__Port67__makeInput(void );
 #line 99
@@ -8207,13 +8341,13 @@ static void Msp430Adc12ImplP__ControlA1__setControl(msp430_compare_control_t con
 # 227 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
 static uint16_t * Msp430Adc12ImplP__SingleChannel__multipleDataReady(
 # 41 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12ImplP.nc"
-uint8_t arg_0x40c083f0, 
+uint8_t arg_0x40d133f0, 
 # 227 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
 uint16_t * buffer, uint16_t numSamples);
 #line 206
 static error_t Msp430Adc12ImplP__SingleChannel__singleDataReady(
 # 41 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12ImplP.nc"
-uint8_t arg_0x40c083f0, 
+uint8_t arg_0x40d133f0, 
 # 206 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
 uint16_t data);
 # 78 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/pins/HplMsp430GeneralIO.nc"
@@ -8237,7 +8371,7 @@ static void Msp430Adc12ImplP__Port66__selectIOFunc(void );
 #line 92
 static void Msp430Adc12ImplP__Port66__selectModuleFunc(void );
 # 71 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12ImplP.nc"
-enum Msp430Adc12ImplP____nesc_unnamed4363 {
+enum Msp430Adc12ImplP____nesc_unnamed4366 {
   Msp430Adc12ImplP__SINGLE_DATA = 1, 
   Msp430Adc12ImplP__SINGLE_DATA_REPEAT = 2, 
   Msp430Adc12ImplP__MULTIPLE_DATA = 4, 
@@ -8363,7 +8497,7 @@ static inline bool HplAdc12P__HplAdc12__isBusy(void );
 
 void sig_ADC12_VECTOR(void ) __attribute((wakeup)) __attribute((interrupt(0x002A)))  ;
 # 49 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/RoundRobinResourceQueueC.nc"
-enum /*Msp430Adc12P.Arbiter.Queue*/RoundRobinResourceQueueC__0____nesc_unnamed4364 {
+enum /*Msp430Adc12P.Arbiter.Queue*/RoundRobinResourceQueueC__0____nesc_unnamed4367 {
   RoundRobinResourceQueueC__0__NO_ENTRY = 0xFF, 
   RoundRobinResourceQueueC__0__SIZE = 7U ? (7U - 1) / 8 + 1 : 0
 };
@@ -8399,15 +8533,15 @@ static inline error_t /*Msp430Adc12P.Arbiter.Queue*/RoundRobinResourceQueueC__0_
 # 53 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceRequested.nc"
 static void /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__ResourceRequested__requested(
 # 52 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x40ccad38);
+uint8_t arg_0x40dacd38);
 # 65 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceConfigure.nc"
 static void /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__ResourceConfigure__unconfigure(
 # 56 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x40cc99b8);
+uint8_t arg_0x40dab9b8);
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceConfigure.nc"
 static void /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__ResourceConfigure__configure(
 # 56 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x40cc99b8);
+uint8_t arg_0x40dab9b8);
 # 79 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceQueue.nc"
 static error_t /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__Queue__enqueue(resource_client_id_t id);
 #line 53
@@ -8417,23 +8551,23 @@ static resource_client_id_t /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__Q
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static void /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__Resource__granted(
 # 51 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/SimpleArbiterP.nc"
-uint8_t arg_0x40cca310);
+uint8_t arg_0x40dac310);
 # 67 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TaskBasic.nc"
 static error_t /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__grantedTask__postTask(void );
 # 69 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/SimpleArbiterP.nc"
-enum /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0____nesc_unnamed4365 {
+enum /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0____nesc_unnamed4368 {
 #line 69
   SimpleArbiterP__0__grantedTask = 9U
 };
 #line 69
 typedef int /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0____nesc_sillytask_grantedTask[/*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__grantedTask];
 #line 62
-enum /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0____nesc_unnamed4366 {
+enum /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0____nesc_unnamed4369 {
 #line 62
   SimpleArbiterP__0__RES_IDLE = 0, SimpleArbiterP__0__RES_GRANTING = 1, SimpleArbiterP__0__RES_BUSY = 2
 };
 #line 63
-enum /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0____nesc_unnamed4367 {
+enum /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0____nesc_unnamed4370 {
 #line 63
   SimpleArbiterP__0__NO_RES = 0xFF
 };
@@ -8507,7 +8641,7 @@ static void Msp430RefVoltGeneratorP__SwitchOnTimer__startOneShot(uint32_t dt);
 static void Msp430RefVoltGeneratorP__SwitchOnTimer__stop(void );
 # 66 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430RefVoltGeneratorP.nc"
 #line 53
-typedef enum Msp430RefVoltGeneratorP____nesc_unnamed4368 {
+typedef enum Msp430RefVoltGeneratorP____nesc_unnamed4371 {
 
   Msp430RefVoltGeneratorP__GENERATOR_OFF = 0, 
 
@@ -8585,7 +8719,7 @@ static error_t Msp430RefVoltGeneratorP__switchOff(void );
 # 58 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AdcConfigure.nc"
 static Msp430RefVoltArbiterImplP__Config__adc_config_t Msp430RefVoltArbiterImplP__Config__getConfiguration(
 # 43 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430RefVoltArbiterImplP.nc"
-uint8_t arg_0x40d40ed0);
+uint8_t arg_0x40e23ed0);
 # 104 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/SplitControl.nc"
 static error_t Msp430RefVoltArbiterImplP__RefVolt_2_5V__start(void );
 #line 130
@@ -8593,15 +8727,15 @@ static error_t Msp430RefVoltArbiterImplP__RefVolt_2_5V__stop(void );
 # 120 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t Msp430RefVoltArbiterImplP__AdcResource__release(
 # 40 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430RefVoltArbiterImplP.nc"
-uint8_t arg_0x40d41480);
+uint8_t arg_0x40e24480);
 # 88 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t Msp430RefVoltArbiterImplP__AdcResource__request(
 # 40 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430RefVoltArbiterImplP.nc"
-uint8_t arg_0x40d41480);
+uint8_t arg_0x40e24480);
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static void Msp430RefVoltArbiterImplP__ClientResource__granted(
 # 38 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430RefVoltArbiterImplP.nc"
-uint8_t arg_0x40cf1980);
+uint8_t arg_0x40e02980);
 # 67 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TaskBasic.nc"
 static error_t Msp430RefVoltArbiterImplP__switchOff__postTask(void );
 # 104 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/SplitControl.nc"
@@ -8609,14 +8743,14 @@ static error_t Msp430RefVoltArbiterImplP__RefVolt_1_5V__start(void );
 #line 130
 static error_t Msp430RefVoltArbiterImplP__RefVolt_1_5V__stop(void );
 # 52 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430RefVoltArbiterImplP.nc"
-enum Msp430RefVoltArbiterImplP____nesc_unnamed4369 {
+enum Msp430RefVoltArbiterImplP____nesc_unnamed4372 {
 #line 52
   Msp430RefVoltArbiterImplP__switchOff = 10U
 };
 #line 52
 typedef int Msp430RefVoltArbiterImplP____nesc_sillytask_switchOff[Msp430RefVoltArbiterImplP__switchOff];
 #line 46
-enum Msp430RefVoltArbiterImplP____nesc_unnamed4370 {
+enum Msp430RefVoltArbiterImplP____nesc_unnamed4373 {
   Msp430RefVoltArbiterImplP__NO_OWNER = 0xFF
 };
 uint8_t Msp430RefVoltArbiterImplP__syncOwner = Msp430RefVoltArbiterImplP__NO_OWNER;
@@ -8694,27 +8828,27 @@ static void AdcStreamP__Alarm__startAt(AdcStreamP__Alarm__size_type t0, AdcStrea
 # 58 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AdcConfigure.nc"
 static AdcStreamP__AdcConfigure__adc_config_t AdcStreamP__AdcConfigure__getConfiguration(
 # 53 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcStreamP.nc"
-uint8_t arg_0x40d7f958);
+uint8_t arg_0x40e62958);
 # 189 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
 static error_t AdcStreamP__SingleChannel__getData(
 # 52 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcStreamP.nc"
-uint8_t arg_0x40d80ae0);
+uint8_t arg_0x40e63ae0);
 # 84 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
 static error_t AdcStreamP__SingleChannel__configureSingle(
 # 52 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcStreamP.nc"
-uint8_t arg_0x40d80ae0, 
+uint8_t arg_0x40e63ae0, 
 # 84 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
 const msp430adc12_channel_config_t * config);
 #line 138
 static error_t AdcStreamP__SingleChannel__configureMultiple(
 # 52 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcStreamP.nc"
-uint8_t arg_0x40d80ae0, 
+uint8_t arg_0x40e63ae0, 
 # 138 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
 const msp430adc12_channel_config_t * config, uint16_t * buffer, uint16_t numSamples, uint16_t jiffies);
 # 89 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ReadStream.nc"
 static void AdcStreamP__ReadStream__bufferDone(
 # 49 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcStreamP.nc"
-uint8_t arg_0x40d81010, 
+uint8_t arg_0x40e65010, 
 # 89 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ReadStream.nc"
 error_t result, 
 #line 86
@@ -8726,32 +8860,32 @@ uint16_t count);
 #line 102
 static void AdcStreamP__ReadStream__readDone(
 # 49 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcStreamP.nc"
-uint8_t arg_0x40d81010, 
+uint8_t arg_0x40e65010, 
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ReadStream.nc"
 error_t result, uint32_t usActualPeriod);
 # 119 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/AdcStreamP.nc"
-enum AdcStreamP____nesc_unnamed4371 {
+enum AdcStreamP____nesc_unnamed4374 {
 #line 119
   AdcStreamP__readStreamDone = 11U
 };
 #line 119
 typedef int AdcStreamP____nesc_sillytask_readStreamDone[AdcStreamP__readStreamDone];
 #line 135
-enum AdcStreamP____nesc_unnamed4372 {
+enum AdcStreamP____nesc_unnamed4375 {
 #line 135
   AdcStreamP__readStreamFail = 12U
 };
 #line 135
 typedef int AdcStreamP____nesc_sillytask_readStreamFail[AdcStreamP__readStreamFail];
 #line 156
-enum AdcStreamP____nesc_unnamed4373 {
+enum AdcStreamP____nesc_unnamed4376 {
 #line 156
   AdcStreamP__bufferDone = 13U
 };
 #line 156
 typedef int AdcStreamP____nesc_sillytask_bufferDone[AdcStreamP__bufferDone];
 #line 58
-enum AdcStreamP____nesc_unnamed4374 {
+enum AdcStreamP____nesc_unnamed4377 {
   AdcStreamP__NSTREAM = 3U
 };
 
@@ -8885,7 +9019,7 @@ static /*WireAdcStreamP.Alarm.Transform*/TransformAlarmC__1__Counter__size_type 
 /*WireAdcStreamP.Alarm.Transform*/TransformAlarmC__1__to_size_type /*WireAdcStreamP.Alarm.Transform*/TransformAlarmC__1__m_t0;
 /*WireAdcStreamP.Alarm.Transform*/TransformAlarmC__1__to_size_type /*WireAdcStreamP.Alarm.Transform*/TransformAlarmC__1__m_dt;
 
-enum /*WireAdcStreamP.Alarm.Transform*/TransformAlarmC__1____nesc_unnamed4375 {
+enum /*WireAdcStreamP.Alarm.Transform*/TransformAlarmC__1____nesc_unnamed4378 {
 
   TransformAlarmC__1__MAX_DELAY_LOG2 = 8 * sizeof(/*WireAdcStreamP.Alarm.Transform*/TransformAlarmC__1__from_size_type ) - 1 - 5, 
   TransformAlarmC__1__MAX_DELAY = (/*WireAdcStreamP.Alarm.Transform*/TransformAlarmC__1__to_size_type )1 << /*WireAdcStreamP.Alarm.Transform*/TransformAlarmC__1__MAX_DELAY_LOG2
@@ -8903,7 +9037,7 @@ static inline void /*WireAdcStreamP.Alarm.Transform*/TransformAlarmC__1__Counter
 # 78 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ReadStream.nc"
 static error_t /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__Service__read(
 # 26 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbitratedReadStreamC.nc"
-uint8_t arg_0x40dc76c8, 
+uint8_t arg_0x40eab6c8, 
 # 78 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ReadStream.nc"
 uint32_t usPeriod);
 
@@ -8918,7 +9052,7 @@ uint32_t usPeriod);
 
 static void /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__ReadStream__bufferDone(
 # 24 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbitratedReadStreamC.nc"
-uint8_t arg_0x40dcabb0, 
+uint8_t arg_0x40eadbb0, 
 # 89 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ReadStream.nc"
 error_t result, 
 #line 86
@@ -8930,13 +9064,13 @@ uint16_t count);
 #line 102
 static void /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__ReadStream__readDone(
 # 24 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbitratedReadStreamC.nc"
-uint8_t arg_0x40dcabb0, 
+uint8_t arg_0x40eadbb0, 
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ReadStream.nc"
 error_t result, uint32_t usActualPeriod);
 # 120 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__Resource__release(
 # 27 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbitratedReadStreamC.nc"
-uint8_t arg_0x40dc5030);
+uint8_t arg_0x40ea8030);
 
 
 
@@ -9063,7 +9197,7 @@ uint8_t len);
 # 110 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
 static void /*SerialActiveMessageC.AM*/SerialActiveMessageP__0__AMSend__sendDone(
 # 47 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/serial/SerialActiveMessageP.nc"
-am_id_t arg_0x40e87760, 
+am_id_t arg_0x40f6e760, 
 # 103 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
 message_t * msg, 
 
@@ -9082,7 +9216,7 @@ message_t *
 
 /*SerialActiveMessageC.AM*/SerialActiveMessageP__0__Receive__receive(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/serial/SerialActiveMessageP.nc"
-am_id_t arg_0x40eb3148, 
+am_id_t arg_0x40f9a148, 
 # 71 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -9224,14 +9358,14 @@ static void SerialP__ReceiveBytePacket__byteReceived(uint8_t data);
 
 static void SerialP__ReceiveBytePacket__endPacket(error_t result);
 # 191 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/serial/SerialP.nc"
-enum SerialP____nesc_unnamed4376 {
+enum SerialP____nesc_unnamed4379 {
 #line 191
   SerialP__RunTx = 14U
 };
 #line 191
 typedef int SerialP____nesc_sillytask_RunTx[SerialP__RunTx];
 #line 322
-enum SerialP____nesc_unnamed4377 {
+enum SerialP____nesc_unnamed4380 {
 #line 322
   SerialP__startDoneTask = 15U
 };
@@ -9246,7 +9380,7 @@ typedef int SerialP____nesc_sillytask_startDoneTask[SerialP__startDoneTask];
 
 
 
-enum SerialP____nesc_unnamed4378 {
+enum SerialP____nesc_unnamed4381 {
 #line 332
   SerialP__stopDoneTask = 16U
 };
@@ -9260,14 +9394,14 @@ typedef int SerialP____nesc_sillytask_stopDoneTask[SerialP__stopDoneTask];
 
 
 
-enum SerialP____nesc_unnamed4379 {
+enum SerialP____nesc_unnamed4382 {
 #line 341
   SerialP__defaultSerialFlushTask = 17U
 };
 #line 341
 typedef int SerialP____nesc_sillytask_defaultSerialFlushTask[SerialP__defaultSerialFlushTask];
 #line 81
-enum SerialP____nesc_unnamed4380 {
+enum SerialP____nesc_unnamed4383 {
   SerialP__RX_DATA_BUFFER_SIZE = 2, 
   SerialP__TX_DATA_BUFFER_SIZE = 4, 
   SerialP__SERIAL_MTU = 255, 
@@ -9275,7 +9409,7 @@ enum SerialP____nesc_unnamed4380 {
   SerialP__ACK_QUEUE_SIZE = 5
 };
 
-enum SerialP____nesc_unnamed4381 {
+enum SerialP____nesc_unnamed4384 {
   SerialP__RXSTATE_NOSYNC, 
   SerialP__RXSTATE_PROTO, 
   SerialP__RXSTATE_TOKEN, 
@@ -9283,7 +9417,7 @@ enum SerialP____nesc_unnamed4381 {
   SerialP__RXSTATE_INACTIVE
 };
 
-enum SerialP____nesc_unnamed4382 {
+enum SerialP____nesc_unnamed4385 {
   SerialP__TXSTATE_IDLE, 
   SerialP__TXSTATE_PROTO, 
   SerialP__TXSTATE_SEQNO, 
@@ -9302,13 +9436,13 @@ enum SerialP____nesc_unnamed4382 {
 
 
 #line 111
-typedef enum SerialP____nesc_unnamed4383 {
+typedef enum SerialP____nesc_unnamed4386 {
   SerialP__BUFFER_AVAILABLE, 
   SerialP__BUFFER_FILLING, 
   SerialP__BUFFER_COMPLETE
 } SerialP__tx_data_buffer_states_t;
 
-enum SerialP____nesc_unnamed4384 {
+enum SerialP____nesc_unnamed4387 {
   SerialP__TX_ACK_INDEX = 0, 
   SerialP__TX_DATA_INDEX = 1, 
   SerialP__TX_BUFFER_COUNT = 2
@@ -9320,7 +9454,7 @@ enum SerialP____nesc_unnamed4384 {
 
 
 #line 124
-typedef struct SerialP____nesc_unnamed4385 {
+typedef struct SerialP____nesc_unnamed4388 {
   uint8_t writePtr;
   uint8_t readPtr;
   uint8_t buf[SerialP__RX_DATA_BUFFER_SIZE + 1];
@@ -9330,7 +9464,7 @@ typedef struct SerialP____nesc_unnamed4385 {
 
 
 #line 130
-typedef struct SerialP____nesc_unnamed4386 {
+typedef struct SerialP____nesc_unnamed4389 {
   uint8_t state;
   uint8_t buf;
 } SerialP__tx_buf_t;
@@ -9340,7 +9474,7 @@ typedef struct SerialP____nesc_unnamed4386 {
 
 
 #line 135
-typedef struct SerialP____nesc_unnamed4387 {
+typedef struct SerialP____nesc_unnamed4390 {
   uint8_t writePtr;
   uint8_t readPtr;
   uint8_t buf[SerialP__ACK_QUEUE_SIZE + 1];
@@ -9567,7 +9701,7 @@ static error_t /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__rece
 # 100 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
 static void /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__Send__sendDone(
 # 51 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/serial/SerialDispatcherP.nc"
-uart_id_t arg_0x40f6bc70, 
+uart_id_t arg_0x41052c70, 
 # 96 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
 message_t * msg, 
 
@@ -9585,7 +9719,7 @@ message_t *
 
 /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__Receive__receive(
 # 50 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/serial/SerialDispatcherP.nc"
-uart_id_t arg_0x40f6b630, 
+uart_id_t arg_0x41052630, 
 # 71 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -9598,17 +9732,17 @@ uint8_t len);
 # 31 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/serial/SerialPacketInfo.nc"
 static uint8_t /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__PacketInfo__upperLength(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/serial/SerialDispatcherP.nc"
-uart_id_t arg_0x40f68848, 
+uart_id_t arg_0x4104e848, 
 # 31 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/serial/SerialPacketInfo.nc"
 message_t *msg, uint8_t dataLinkLen);
 #line 15
 static uint8_t /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__PacketInfo__offset(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/serial/SerialDispatcherP.nc"
-uart_id_t arg_0x40f68848);
+uart_id_t arg_0x4104e848);
 # 23 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/serial/SerialPacketInfo.nc"
 static uint8_t /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__PacketInfo__dataLinkLength(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/serial/SerialDispatcherP.nc"
-uart_id_t arg_0x40f68848, 
+uart_id_t arg_0x4104e848, 
 # 23 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/serial/SerialPacketInfo.nc"
 message_t *msg, uint8_t upperLen);
 # 71 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/serial/SendBytePacket.nc"
@@ -9616,14 +9750,14 @@ static error_t /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__Send
 #line 62
 static error_t /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__SendBytePacket__startSend(uint8_t first_byte);
 # 158 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/serial/SerialDispatcherP.nc"
-enum /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0____nesc_unnamed4388 {
+enum /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0____nesc_unnamed4391 {
 #line 158
   SerialDispatcherP__0__signalSendDone = 18U
 };
 #line 158
 typedef int /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0____nesc_sillytask_signalSendDone[/*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__signalSendDone];
 #line 275
-enum /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0____nesc_unnamed4389 {
+enum /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0____nesc_unnamed4392 {
 #line 275
   SerialDispatcherP__0__receiveTask = 19U
 };
@@ -9631,13 +9765,13 @@ enum /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0____nesc_unnamed
 typedef int /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0____nesc_sillytask_receiveTask[/*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__receiveTask];
 #line 66
 #line 62
-typedef enum /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0____nesc_unnamed4390 {
+typedef enum /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0____nesc_unnamed4393 {
   SerialDispatcherP__0__SEND_STATE_IDLE = 0, 
   SerialDispatcherP__0__SEND_STATE_BEGIN = 1, 
   SerialDispatcherP__0__SEND_STATE_DATA = 2
 } /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__send_state_t;
 
-enum /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0____nesc_unnamed4391 {
+enum /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0____nesc_unnamed4394 {
   SerialDispatcherP__0__RECV_STATE_IDLE = 0, 
   SerialDispatcherP__0__RECV_STATE_BEGIN = 1, 
   SerialDispatcherP__0__RECV_STATE_DATA = 2
@@ -9649,7 +9783,7 @@ enum /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0____nesc_unnamed
 
 
 #line 74
-typedef struct /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0____nesc_unnamed4392 {
+typedef struct /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0____nesc_unnamed4395 {
   uint8_t which : 1;
   uint8_t bufZeroLocked : 1;
   uint8_t bufOneLocked : 1;
@@ -9771,7 +9905,7 @@ static void HdlcTranslateC__SerialFrameComm__putDone(void );
 static void HdlcTranslateC__SerialFrameComm__delimiterReceived(void );
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/serial/HdlcTranslateC.nc"
 #line 56
-typedef struct HdlcTranslateC____nesc_unnamed4393 {
+typedef struct HdlcTranslateC____nesc_unnamed4396 {
   uint8_t sendEscape : 1;
   uint8_t receiveEscape : 1;
 } HdlcTranslateC__HdlcState;
@@ -9807,17 +9941,17 @@ static inline void HdlcTranslateC__UartStream__receiveDone(uint8_t *buf, uint16_
 # 44 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UartConfigure.nc"
 static msp430_uart_union_config_t */*Msp430Uart1P.UartP*/Msp430UartP__0__Msp430UartConfigure__getConfig(
 # 53 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UartP.nc"
-uint8_t arg_0x40fe6d28);
+uint8_t arg_0x410cdd28);
 # 79 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/UartStream.nc"
 static void /*Msp430Uart1P.UartP*/Msp430UartP__0__UartStream__receivedByte(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UartP.nc"
-uint8_t arg_0x40fe9eb0, 
+uint8_t arg_0x410cfeb0, 
 # 79 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/UartStream.nc"
 uint8_t byte);
 #line 99
 static void /*Msp430Uart1P.UartP*/Msp430UartP__0__UartStream__receiveDone(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UartP.nc"
-uint8_t arg_0x40fe9eb0, 
+uint8_t arg_0x410cfeb0, 
 # 95 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/UartStream.nc"
 uint8_t * buf, 
 
@@ -9827,7 +9961,7 @@ uint16_t len, error_t error);
 #line 57
 static void /*Msp430Uart1P.UartP*/Msp430UartP__0__UartStream__sendDone(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UartP.nc"
-uint8_t arg_0x40fe9eb0, 
+uint8_t arg_0x410cfeb0, 
 # 53 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/UartStream.nc"
 uint8_t * buf, 
 
@@ -9837,19 +9971,19 @@ uint16_t len, error_t error);
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static void /*Msp430Uart1P.UartP*/Msp430UartP__0__Resource__granted(
 # 46 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UartP.nc"
-uint8_t arg_0x40fecc90);
+uint8_t arg_0x410d4c90);
 # 120 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t /*Msp430Uart1P.UartP*/Msp430UartP__0__UsciResource__release(
 # 52 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UartP.nc"
-uint8_t arg_0x40fe62f0);
+uint8_t arg_0x410cd2f0);
 # 97 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t /*Msp430Uart1P.UartP*/Msp430UartP__0__UsciResource__immediateRequest(
 # 52 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UartP.nc"
-uint8_t arg_0x40fe62f0);
+uint8_t arg_0x410cd2f0);
 # 128 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static bool /*Msp430Uart1P.UartP*/Msp430UartP__0__UsciResource__isOwner(
 # 52 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UartP.nc"
-uint8_t arg_0x40fe62f0);
+uint8_t arg_0x410cd2f0);
 # 89 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/HplMsp430UsciA.nc"
 static void /*Msp430Uart1P.UartP*/Msp430UartP__0__Usci__resetUsci(bool reset);
 #line 118
@@ -10035,13 +10169,13 @@ static inline void HplMsp430UsciAB1RawInterruptsP__UsciB__default__rxDone(uint8_
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/HplMsp430UsciInterrupts.nc"
 static void /*Msp430UsciShareA1P.UsciShareP*/Msp430UsciShareP__0__Interrupts__rxDone(
 # 41 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UsciShareP.nc"
-uint8_t arg_0x4108d778, 
+uint8_t arg_0x41175778, 
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/HplMsp430UsciInterrupts.nc"
 uint8_t data);
 #line 54
 static void /*Msp430UsciShareA1P.UsciShareP*/Msp430UsciShareP__0__Interrupts__txDone(
 # 41 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UsciShareP.nc"
-uint8_t arg_0x4108d778);
+uint8_t arg_0x41175778);
 # 90 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ArbiterInfo.nc"
 static bool /*Msp430UsciShareA1P.UsciShareP*/Msp430UsciShareP__0__ArbiterInfo__inUse(void );
 
@@ -10066,7 +10200,7 @@ static inline void /*Msp430UsciShareA1P.UsciShareP*/Msp430UsciShareP__0__RawInte
 static inline void /*Msp430UsciShareA1P.UsciShareP*/Msp430UsciShareP__0__Interrupts__default__txDone(uint8_t id);
 static inline void /*Msp430UsciShareA1P.UsciShareP*/Msp430UsciShareP__0__Interrupts__default__rxDone(uint8_t id, uint8_t data);
 # 49 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/FcfsResourceQueueC.nc"
-enum /*Msp430UsciShareA1P.ArbiterC.Queue*/FcfsResourceQueueC__2____nesc_unnamed4394 {
+enum /*Msp430UsciShareA1P.ArbiterC.Queue*/FcfsResourceQueueC__2____nesc_unnamed4397 {
 #line 49
   FcfsResourceQueueC__2__NO_ENTRY = 0xFF
 };
@@ -10091,15 +10225,15 @@ static inline resource_client_id_t /*Msp430UsciShareA1P.ArbiterC.Queue*/FcfsReso
 # 61 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceRequested.nc"
 static void /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__ResourceRequested__immediateRequested(
 # 55 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b21be0);
+uint8_t arg_0x40c29be0);
 # 65 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceConfigure.nc"
 static void /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__ResourceConfigure__unconfigure(
 # 60 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b43030);
+uint8_t arg_0x40c27030);
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceConfigure.nc"
 static void /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__ResourceConfigure__configure(
 # 60 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b43030);
+uint8_t arg_0x40c27030);
 # 53 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceQueue.nc"
 static bool /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__Queue__isEmpty(void );
 #line 70
@@ -10111,28 +10245,28 @@ static void /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__ResourceDefaultO
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static void /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__Resource__granted(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b211b8);
+uint8_t arg_0x40c291b8);
 # 67 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TaskBasic.nc"
 static error_t /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__grantedTask__postTask(void );
 # 75 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-enum /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1____nesc_unnamed4395 {
+enum /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1____nesc_unnamed4398 {
 #line 75
   ArbiterP__1__grantedTask = 20U
 };
 #line 75
 typedef int /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1____nesc_sillytask_grantedTask[/*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__grantedTask];
 #line 67
-enum /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1____nesc_unnamed4396 {
+enum /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1____nesc_unnamed4399 {
 #line 67
   ArbiterP__1__RES_CONTROLLED, ArbiterP__1__RES_GRANTING, ArbiterP__1__RES_IMM_GRANTING, ArbiterP__1__RES_BUSY
 };
 #line 68
-enum /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1____nesc_unnamed4397 {
+enum /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1____nesc_unnamed4400 {
 #line 68
   ArbiterP__1__default_owner_id = 2U
 };
 #line 69
-enum /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1____nesc_unnamed4398 {
+enum /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1____nesc_unnamed4401 {
 #line 69
   ArbiterP__1__NO_RES = 0xFF
 };
@@ -10269,7 +10403,7 @@ static inline void /*PrintfC.SerialAMSenderC.AMQueueEntryP*/AMQueueEntryP__0__Se
 # 80 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
 static error_t /*SerialAMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__send(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/AMQueueImplP.nc"
-am_id_t arg_0x410c2490, 
+am_id_t arg_0x411aa490, 
 # 80 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
 am_addr_t addr, 
 #line 71
@@ -10286,7 +10420,7 @@ uint8_t len);
 # 100 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
 static void /*SerialAMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__sendDone(
 # 46 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/AMQueueImplP.nc"
-uint8_t arg_0x410c39d8, 
+uint8_t arg_0x411ab9d8, 
 # 96 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
 message_t * msg, 
 
@@ -10316,14 +10450,14 @@ static am_id_t /*SerialAMQueueP.AMQueueImplP*/AMQueueImplP__0__AMPacket__type(
 #line 143
 message_t * amsg);
 # 126 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/AMQueueImplP.nc"
-enum /*SerialAMQueueP.AMQueueImplP*/AMQueueImplP__0____nesc_unnamed4399 {
+enum /*SerialAMQueueP.AMQueueImplP*/AMQueueImplP__0____nesc_unnamed4402 {
 #line 126
   AMQueueImplP__0__CancelTask = 21U
 };
 #line 126
 typedef int /*SerialAMQueueP.AMQueueImplP*/AMQueueImplP__0____nesc_sillytask_CancelTask[/*SerialAMQueueP.AMQueueImplP*/AMQueueImplP__0__CancelTask];
 #line 169
-enum /*SerialAMQueueP.AMQueueImplP*/AMQueueImplP__0____nesc_unnamed4400 {
+enum /*SerialAMQueueP.AMQueueImplP*/AMQueueImplP__0____nesc_unnamed4403 {
 #line 169
   AMQueueImplP__0__errorTask = 22U
 };
@@ -10331,7 +10465,7 @@ enum /*SerialAMQueueP.AMQueueImplP*/AMQueueImplP__0____nesc_unnamed4400 {
 typedef int /*SerialAMQueueP.AMQueueImplP*/AMQueueImplP__0____nesc_sillytask_errorTask[/*SerialAMQueueP.AMQueueImplP*/AMQueueImplP__0__errorTask];
 #line 57
 #line 55
-typedef struct /*SerialAMQueueP.AMQueueImplP*/AMQueueImplP__0____nesc_unnamed4401 {
+typedef struct /*SerialAMQueueP.AMQueueImplP*/AMQueueImplP__0____nesc_unnamed4404 {
   message_t * msg;
 } /*SerialAMQueueP.AMQueueImplP*/AMQueueImplP__0__queue_entry_t;
 
@@ -10441,14 +10575,14 @@ uint8_t len);
 # 67 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TaskBasic.nc"
 static error_t PrintfP__retrySend__postTask(void );
 # 114 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/printf/PrintfP.nc"
-enum PrintfP____nesc_unnamed4402 {
+enum PrintfP____nesc_unnamed4405 {
 #line 114
   PrintfP__retrySend = 23U
 };
 #line 114
 typedef int PrintfP____nesc_sillytask_retrySend[PrintfP__retrySend];
 #line 101
-enum PrintfP____nesc_unnamed4403 {
+enum PrintfP____nesc_unnamed4406 {
   PrintfP__S_STARTED, 
   PrintfP__S_FLUSHING
 };
@@ -10513,9 +10647,14 @@ static uint8_t TDMAControllerP__SystemScheduler__nextSlot(void );
 static uint8_t TDMAControllerP__SystemScheduler__currentSlot(void );
 
 
+
+static error_t TDMAControllerP__SystemScheduler__updateSlotMap(uint8_t new_slot_pos, 
+update_type_t type);
+#line 35
 static scheduler_mode_t TDMAControllerP__SystemScheduler__mode(void );
 #line 28
 static void TDMAControllerP__SystemScheduler__reset(uint8_t initial_slot);
+static bool TDMAControllerP__SystemScheduler__isRunning(void );
 #line 15
 static error_t TDMAControllerP__SystemScheduler__start(uint8_t slot_no, 
 uint32_t start_time, 
@@ -10533,6 +10672,8 @@ uint8_t *active_slot_per_round);
 
 
 static void TDMAControllerP__SystemScheduler__syncSystemTime(uint32_t system_time);
+#line 24
+static error_t TDMAControllerP__SystemScheduler__stop(void );
 # 80 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
 static error_t TDMAControllerP__DataPkgSend__send(am_addr_t addr, 
 #line 71
@@ -10559,6 +10700,8 @@ message_t * msg,
 uint8_t len);
 # 14 "TDMAController.nc"
 static void TDMAControllerP__TDMAController__newRound(tdma_round_type_t type);
+#line 13
+static void TDMAControllerP__TDMAController__stopDone(error_t err);
 # 80 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
 static error_t TDMAControllerP__JoinAnsSend__send(am_addr_t addr, 
 #line 71
@@ -10611,12 +10754,36 @@ message_t * msg,
 
 
 uint8_t len);
-# 5 "ReadData.nc"
-static void TDMAControllerP__ReadData__readMsg(data_pkg_msg_t *msg);
+#line 80
+static error_t TDMAControllerP__AssignmentSend__send(am_addr_t addr, 
+#line 71
+message_t * msg, 
+
+
+
+
+
+
+
+
+uint8_t len);
+#line 135
+static 
+#line 133
+void * 
+
+TDMAControllerP__AssignmentSend__getPayload(
+#line 132
+message_t * msg, 
+
+
+uint8_t len);
 # 104 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/SplitControl.nc"
 static error_t TDMAControllerP__RadioControl__start(void );
 #line 130
 static error_t TDMAControllerP__RadioControl__stop(void );
+# 5 "ReadData.nc"
+static void TDMAControllerP__ReadData__readMsg(data_pkg_msg_t *msg);
 # 10 "Logger.nc"
 static void TDMAControllerP__Logger__logValue(unsigned char *msg, uint32_t value, bool to_hex, log_level_t lvl);
 #line 9
@@ -10631,9 +10798,14 @@ static uint8_t TDMAControllerP__LocalScheduler__nextSlot(void );
 static uint8_t TDMAControllerP__LocalScheduler__currentSlot(void );
 
 
+
+static error_t TDMAControllerP__LocalScheduler__updateSlotMap(uint8_t new_slot_pos, 
+update_type_t type);
+#line 35
 static scheduler_mode_t TDMAControllerP__LocalScheduler__mode(void );
 #line 28
 static void TDMAControllerP__LocalScheduler__reset(uint8_t initial_slot);
+static bool TDMAControllerP__LocalScheduler__isRunning(void );
 #line 15
 static error_t TDMAControllerP__LocalScheduler__start(uint8_t slot_no, 
 uint32_t start_time, 
@@ -10651,6 +10823,8 @@ uint8_t *active_slot_per_round);
 
 
 static void TDMAControllerP__LocalScheduler__syncSystemTime(uint32_t system_time);
+#line 24
+static error_t TDMAControllerP__LocalScheduler__stop(void );
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TimeSyncPacket.nc"
 static bool TDMAControllerP__TSPacket__isValid(message_t *msg);
 
@@ -10673,12 +10847,17 @@ static uint8_t *TDMAControllerP__Settings__sleepSlotPerRound(void );
 static am_addr_t TDMAControllerP__AMPacket__source(
 #line 84
 message_t * amsg);
-# 38 "TDMAControllerP.nc"
+# 36 "TDMAControllerP.nc"
+am_group_t TDMAControllerP__group_id = 0x00;
+bool TDMAControllerP__off_time = FALSE;
+bool TDMAControllerP__rested = FALSE;
 bool TDMAControllerP__is_sink = FALSE;
+bool TDMAControllerP__first_time = TRUE;
+bool TDMAControllerP__is_new_head = FALSE;
 bool TDMAControllerP__is_head = FALSE;
 bool TDMAControllerP__sync_mode = FALSE;
 bool TDMAControllerP__joined = FALSE;
-
+bool TDMAControllerP__sync_received = FALSE;
 
 uint8_t TDMAControllerP__missed_sync_count = 0;
 am_addr_t TDMAControllerP__head_addr = 0x0000;
@@ -10690,29 +10869,27 @@ message_t TDMAControllerP__join_ans_packet;
 join_ans_msg_t *TDMAControllerP__join_ans_msg;
 message_t TDMAControllerP__data_pkg_packet;
 data_pkg_msg_t *TDMAControllerP__data_pkg_msg;
-
+uint8_t TDMAControllerP__assigned_slot = 0;
 uint8_t TDMAControllerP__system_sleep_slots = 0;
-
-uint8_t TDMAControllerP__setup_countdown = 4;
 am_addr_t *TDMAControllerP__slot_map = (void *)0;
 uint8_t *TDMAControllerP__missed_pkg_count = (void *)0;
-uint8_t TDMAControllerP__current_round_idx = 10;
+uint8_t TDMAControllerP__current_round_idx = 5;
 bool TDMAControllerP__join_lock = FALSE;
+head_to_node_assignment_msg_t *TDMAControllerP__head_to_node_assignment_msg;
+sink_to_head_assignment_msg_t *TDMAControllerP__sink_to_head_assignment_msg;
+message_t TDMAControllerP__assignment_pkt;
+structured_sink_to_head_assignment_msg_t TDMAControllerP__structured_sink_to_head_assignment_msg_sink[32];
+structured_sink_to_head_assignment_msg_t TDMAControllerP__structured_sink_to_head_assignment_msg;
+uint8_t TDMAControllerP__count_off_time = 0;
 
-static void TDMAControllerP__startSlotTask(tdma_round_type_t round_type, slot_type_t slot_type);
+static void TDMAControllerP__startSlotTask(tdma_round_type_t round_type, uint8_t slot_no);
 
-static inline error_t TDMAControllerP__TDMAController__start(void );
-#line 98
+static error_t TDMAControllerP__TDMAController__start(void );
+#line 125
 static void TDMAControllerP__sendSyncBeacon(tdma_round_type_t type);
-#line 119
+#line 148
 static void TDMAControllerP__sendJoinReq(tdma_round_type_t type);
-
-
-
-
-
-
-
+#line 161
 static void TDMAControllerP__TDMAController__setDataPkg(data_pkg_msg_t *data_pkg);
 
 
@@ -10727,12 +10904,17 @@ static void TDMAControllerP__sendData(void );
 
 
 
-static void TDMAControllerP__startSlotTask(tdma_round_type_t round_type, slot_type_t slot_type);
-#line 216
+static void TDMAControllerP__sendAssignment(uint8_t slot_no);
+
+static void TDMAControllerP__startSlotTask(tdma_round_type_t round_type, uint8_t slot_no);
+#line 258
+static inline void TDMAControllerP__removeBlankSlotFromSlotMap(void );
+#line 274
 static error_t TDMAControllerP__putRadioToSleep(tdma_round_type_t round_type, uint8_t sleep_threshold);
-#line 254
+#line 292
 static inline void TDMAControllerP__RadioControl__startDone(error_t error);
-#line 270
+#line 307
+bool TDMAControllerP__head_last_local_round_checked = FALSE;
 static inline void TDMAControllerP__RadioControl__stopDone(error_t error);
 
 
@@ -10743,29 +10925,26 @@ static inline void TDMAControllerP__RadioControl__stopDone(error_t error);
 
 
 
-
+static error_t TDMAControllerP__TDMAController__stop(void );
+#line 339
 static inline message_t *TDMAControllerP__TSReceive__receive(message_t *msg, void *payload, uint8_t len);
-#line 331
+#line 395
 static inline void TDMAControllerP__TSSend__sendDone(message_t *msg, error_t error);
 
 
 
 
 static inline message_t *TDMAControllerP__DataPkgReceive__receive(message_t *msg, void *payload, uint8_t len);
-
-
-
-
-
-
-
+#line 414
 static inline void TDMAControllerP__ReadData__readDone(error_t error, data_pkg_msg_t *msg);
 
 
 
 
 static inline message_t *TDMAControllerP__JoinAnsReceive__receive(message_t *msg, void *payload, uint8_t len);
-#line 370
+#line 444
+static bool TDMAControllerP__checkMissingPkt(uint8_t slot_no);
+#line 465
 static inline bool TDMAControllerP__TDMAController__isSink(void );
 
 
@@ -10775,7 +10954,17 @@ static inline bool TDMAControllerP__TDMAController__isHead(void );
 
 
 static inline void TDMAControllerP__JoinReqSend__sendDone(message_t *msg, error_t error);
-#line 390
+
+
+
+
+static inline void TDMAControllerP__SystemScheduler__stopDone(error_t err);
+
+
+
+
+
+
 static void TDMAControllerP__SystemScheduler__newRound(void );
 
 
@@ -10783,14 +10972,18 @@ static void TDMAControllerP__SystemScheduler__newRound(void );
 
 
 
+
 static inline void TDMAControllerP__SystemScheduler__endRound(void );
-#line 410
+#line 508
 static inline void TDMAControllerP__SystemScheduler__startDone(uint8_t slot_no);
 
 
 
 
 static inline void TDMAControllerP__SystemScheduler__slotStarted(uint8_t slot_no, uint8_t actual_slot);
+
+
+
 
 
 
@@ -10805,14 +10998,17 @@ static void TDMAControllerP__SystemScheduler__slotEnded(uint8_t slot_no, uint8_t
 
 
 static inline void TDMAControllerP__LocalScheduler__startDone(uint8_t slot_no);
-#line 441
+
+
+static inline void TDMAControllerP__LocalScheduler__stopDone(error_t err);
+
+
+
+
+
+
 static void TDMAControllerP__LocalScheduler__newRound(void );
-
-
-
-
-
-
+#line 555
 static inline void TDMAControllerP__LocalScheduler__endRound(void );
 
 
@@ -10827,25 +11023,42 @@ static void TDMAControllerP__LocalScheduler__slotEnded(uint8_t slot_no, uint8_t 
 
 
 
-
 static inline void TDMAControllerP__LocalScheduler__slotStarted(uint8_t slot_no, uint8_t actual_slot);
-
-
-
-
-
+#line 583
 static inline void TDMAControllerP__JoinAnsSend__sendDone(message_t *msg, error_t error);
 
 
 
 
 static inline void TDMAControllerP__sendJoinAns(am_addr_t client_addr, uint8_t slot);
-#line 487
+
+
+
+
+
+
 static inline uint8_t TDMAControllerP__allocateNewSlot(am_addr_t client_addr);
-#line 499
+#line 614
 static inline message_t *TDMAControllerP__JoinReqReceive__receive(message_t *msg, void *payload, uint8_t len);
-#line 516
+#line 631
 static inline void TDMAControllerP__DataPkgSend__sendDone(message_t *msg, error_t error);
+
+
+
+
+static inline void TDMAControllerP__sendBigMsgProtocol(uint8_t sent_time);
+
+
+
+static void TDMAControllerP__sendAssignment(uint8_t slot_no);
+#line 671
+static inline void TDMAControllerP__AssignmentSend__sendDone(message_t *msg, error_t error);
+
+
+
+
+uint8_t TDMAControllerP__receive_time = 0;
+static inline message_t *TDMAControllerP__AssignmentReceive__receive(message_t *msg, void *payload, uint8_t len);
 # 113 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/SplitControl.nc"
 static void CC2420CsmaP__SplitControl__startDone(error_t error);
 #line 138
@@ -10931,26 +11144,26 @@ static error_t CC2420CsmaP__stopDone_task__postTask(void );
 #line 67
 static error_t CC2420CsmaP__startDone_task__postTask(void );
 # 74 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/csma/CC2420CsmaP.nc"
-enum CC2420CsmaP____nesc_unnamed4404 {
+enum CC2420CsmaP____nesc_unnamed4407 {
 #line 74
   CC2420CsmaP__startDone_task = 24U
 };
 #line 74
 typedef int CC2420CsmaP____nesc_sillytask_startDone_task[CC2420CsmaP__startDone_task];
-enum CC2420CsmaP____nesc_unnamed4405 {
+enum CC2420CsmaP____nesc_unnamed4408 {
 #line 75
   CC2420CsmaP__stopDone_task = 25U
 };
 #line 75
 typedef int CC2420CsmaP____nesc_sillytask_stopDone_task[CC2420CsmaP__stopDone_task];
-enum CC2420CsmaP____nesc_unnamed4406 {
+enum CC2420CsmaP____nesc_unnamed4409 {
 #line 76
   CC2420CsmaP__sendDone_task = 26U
 };
 #line 76
 typedef int CC2420CsmaP____nesc_sillytask_sendDone_task[CC2420CsmaP__sendDone_task];
 #line 58
-enum CC2420CsmaP____nesc_unnamed4407 {
+enum CC2420CsmaP____nesc_unnamed4410 {
   CC2420CsmaP__S_STOPPED, 
   CC2420CsmaP__S_STARTING, 
   CC2420CsmaP__S_STARTED, 
@@ -11113,13 +11326,13 @@ static error_t CC2420ControlP__RssiResource__release(void );
 # 53 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/CC2420Strobe.nc"
 static cc2420_status_t CC2420ControlP__SRFOFF__strobe(void );
 # 125 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/control/CC2420ControlP.nc"
-enum CC2420ControlP____nesc_unnamed4408 {
+enum CC2420ControlP____nesc_unnamed4411 {
 #line 125
   CC2420ControlP__sync = 27U
 };
 #line 125
 typedef int CC2420ControlP____nesc_sillytask_sync[CC2420ControlP__sync];
-enum CC2420ControlP____nesc_unnamed4409 {
+enum CC2420ControlP____nesc_unnamed4412 {
 #line 126
   CC2420ControlP__syncDone = 28U
 };
@@ -11127,7 +11340,7 @@ enum CC2420ControlP____nesc_unnamed4409 {
 typedef int CC2420ControlP____nesc_sillytask_syncDone[CC2420ControlP__syncDone];
 #line 90
 #line 84
-typedef enum CC2420ControlP____nesc_unnamed4410 {
+typedef enum CC2420ControlP____nesc_unnamed4413 {
   CC2420ControlP__S_VREG_STOPPED, 
   CC2420ControlP__S_VREG_STARTING, 
   CC2420ControlP__S_VREG_STARTED, 
@@ -11353,7 +11566,7 @@ static void /*Counter32khz32C.Transform*/TransformCounterC__1__Counter__overflow
 # 67 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/TransformCounterC.nc"
 /*Counter32khz32C.Transform*/TransformCounterC__1__upper_count_type /*Counter32khz32C.Transform*/TransformCounterC__1__m_upper;
 
-enum /*Counter32khz32C.Transform*/TransformCounterC__1____nesc_unnamed4411 {
+enum /*Counter32khz32C.Transform*/TransformCounterC__1____nesc_unnamed4414 {
 
   TransformCounterC__1__LOW_SHIFT_RIGHT = 0, 
   TransformCounterC__1__HIGH_SHIFT_LEFT = 8 * sizeof(/*Counter32khz32C.Transform*/TransformCounterC__1__from_size_type ) - /*Counter32khz32C.Transform*/TransformCounterC__1__LOW_SHIFT_RIGHT, 
@@ -11379,7 +11592,7 @@ static /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform*/TransformAlarmC__2__Coun
 /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform*/TransformAlarmC__2__to_size_type /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform*/TransformAlarmC__2__m_t0;
 /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform*/TransformAlarmC__2__to_size_type /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform*/TransformAlarmC__2__m_dt;
 
-enum /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform*/TransformAlarmC__2____nesc_unnamed4412 {
+enum /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform*/TransformAlarmC__2____nesc_unnamed4415 {
 
   TransformAlarmC__2__MAX_DELAY_LOG2 = 8 * sizeof(/*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform*/TransformAlarmC__2__from_size_type ) - 1 - 0, 
   TransformAlarmC__2__MAX_DELAY = (/*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform*/TransformAlarmC__2__to_size_type )1 << /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform*/TransformAlarmC__2__MAX_DELAY_LOG2
@@ -11600,13 +11813,13 @@ uint16_t len);
 # 91 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/CC2420Fifo.nc"
 static void CC2420SpiP__Fifo__writeDone(
 # 46 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/spi/CC2420SpiP.nc"
-uint8_t arg_0x4135eb38, 
+uint8_t arg_0x4145ab38, 
 # 91 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/CC2420Fifo.nc"
 uint8_t * data, uint8_t length, error_t error);
 #line 71
 static void CC2420SpiP__Fifo__readDone(
 # 46 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/spi/CC2420SpiP.nc"
-uint8_t arg_0x4135eb38, 
+uint8_t arg_0x4145ab38, 
 # 71 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/CC2420Fifo.nc"
 uint8_t * data, uint8_t length, error_t error);
 # 24 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/ChipSpiResource.nc"
@@ -11633,24 +11846,24 @@ static bool CC2420SpiP__SpiResource__isOwner(void );
 #line 102
 static void CC2420SpiP__Resource__granted(
 # 45 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/spi/CC2420SpiP.nc"
-uint8_t arg_0x4135e108);
+uint8_t arg_0x4145a108);
 # 67 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TaskBasic.nc"
 static error_t CC2420SpiP__grant__postTask(void );
 # 88 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/spi/CC2420SpiP.nc"
-enum CC2420SpiP____nesc_unnamed4413 {
+enum CC2420SpiP____nesc_unnamed4416 {
 #line 88
   CC2420SpiP__grant = 29U
 };
 #line 88
 typedef int CC2420SpiP____nesc_sillytask_grant[CC2420SpiP__grant];
 #line 63
-enum CC2420SpiP____nesc_unnamed4414 {
+enum CC2420SpiP____nesc_unnamed4417 {
   CC2420SpiP__RESOURCE_COUNT = 5U, 
   CC2420SpiP__NO_HOLDER = 0xFF
 };
 
 
-enum CC2420SpiP____nesc_unnamed4415 {
+enum CC2420SpiP____nesc_unnamed4418 {
   CC2420SpiP__S_IDLE, 
   CC2420SpiP__S_BUSY
 };
@@ -11766,7 +11979,7 @@ static inline void CC2420SpiP__Fifo__default__writeDone(uint8_t addr, uint8_t *t
 # 74 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/StateImplP.nc"
 uint8_t StateImplP__state[4U];
 
-enum StateImplP____nesc_unnamed4416 {
+enum StateImplP____nesc_unnamed4419 {
   StateImplP__S_IDLE = 0
 };
 
@@ -11803,7 +12016,7 @@ static error_t /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__signalDone_task__p
 # 82 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/SpiPacket.nc"
 static void /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__SpiPacket__sendDone(
 # 46 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430SpiNoDmaBP.nc"
-uint8_t arg_0x413cdae8, 
+uint8_t arg_0x414cbae8, 
 # 75 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/SpiPacket.nc"
 uint8_t * txBuf, 
 uint8_t * rxBuf, 
@@ -11817,27 +12030,27 @@ error_t error);
 # 45 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430SpiConfigure.nc"
 static msp430_spi_union_config_t */*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__Msp430SpiConfigure__getConfig(
 # 49 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430SpiNoDmaBP.nc"
-uint8_t arg_0x413ccd40);
+uint8_t arg_0x414cad40);
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static void /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__Resource__granted(
 # 43 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430SpiNoDmaBP.nc"
-uint8_t arg_0x41387560);
+uint8_t arg_0x414cc560);
 # 120 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResource__release(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430SpiNoDmaBP.nc"
-uint8_t arg_0x413cc2f0);
+uint8_t arg_0x414ca2f0);
 # 97 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResource__immediateRequest(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430SpiNoDmaBP.nc"
-uint8_t arg_0x413cc2f0);
+uint8_t arg_0x414ca2f0);
 # 88 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static error_t /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResource__request(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430SpiNoDmaBP.nc"
-uint8_t arg_0x413cc2f0);
+uint8_t arg_0x414ca2f0);
 # 128 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static bool /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResource__isOwner(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430SpiNoDmaBP.nc"
-uint8_t arg_0x413cc2f0);
+uint8_t arg_0x414ca2f0);
 # 93 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/HplMsp430UsciB.nc"
 static void /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__Usci__enableRxIntr(void );
 #line 81
@@ -11862,14 +12075,14 @@ static bool /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__Usci__isRxIntrPending
 #line 130
 static void /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__Usci__disableSpi(void );
 # 69 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430SpiNoDmaBP.nc"
-enum /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0____nesc_unnamed4417 {
+enum /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0____nesc_unnamed4420 {
 #line 69
   Msp430SpiNoDmaBP__0__signalDone_task = 30U
 };
 #line 69
 typedef int /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0____nesc_sillytask_signalDone_task[/*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__signalDone_task];
 #line 58
-enum /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0____nesc_unnamed4418 {
+enum /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0____nesc_unnamed4421 {
   Msp430SpiNoDmaBP__0__SPI_ATOMIC_SIZE = 2
 };
 
@@ -12092,13 +12305,13 @@ static inline void HplMsp430UsciAB0RawInterruptsP__UsciA__default__rxDone(uint8_
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/HplMsp430UsciInterrupts.nc"
 static void /*Msp430UsciShareB0P.UsciShareP*/Msp430UsciShareP__1__Interrupts__rxDone(
 # 41 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UsciShareP.nc"
-uint8_t arg_0x4108d778, 
+uint8_t arg_0x41175778, 
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/HplMsp430UsciInterrupts.nc"
 uint8_t data);
 #line 54
 static void /*Msp430UsciShareB0P.UsciShareP*/Msp430UsciShareP__1__Interrupts__txDone(
 # 41 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UsciShareP.nc"
-uint8_t arg_0x4108d778);
+uint8_t arg_0x41175778);
 # 90 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ArbiterInfo.nc"
 static bool /*Msp430UsciShareB0P.UsciShareP*/Msp430UsciShareP__1__ArbiterInfo__inUse(void );
 
@@ -12123,7 +12336,7 @@ static inline void /*Msp430UsciShareB0P.UsciShareP*/Msp430UsciShareP__1__RawInte
 static inline void /*Msp430UsciShareB0P.UsciShareP*/Msp430UsciShareP__1__Interrupts__default__txDone(uint8_t id);
 static inline void /*Msp430UsciShareB0P.UsciShareP*/Msp430UsciShareP__1__Interrupts__default__rxDone(uint8_t id, uint8_t data);
 # 49 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/FcfsResourceQueueC.nc"
-enum /*Msp430UsciShareB0P.ArbiterC.Queue*/FcfsResourceQueueC__3____nesc_unnamed4419 {
+enum /*Msp430UsciShareB0P.ArbiterC.Queue*/FcfsResourceQueueC__3____nesc_unnamed4422 {
 #line 49
   FcfsResourceQueueC__3__NO_ENTRY = 0xFF
 };
@@ -12150,19 +12363,19 @@ static inline error_t /*Msp430UsciShareB0P.ArbiterC.Queue*/FcfsResourceQueueC__3
 # 53 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceRequested.nc"
 static void /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceRequested__requested(
 # 55 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b21be0);
+uint8_t arg_0x40c29be0);
 # 61 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceRequested.nc"
 static void /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceRequested__immediateRequested(
 # 55 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b21be0);
+uint8_t arg_0x40c29be0);
 # 65 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceConfigure.nc"
 static void /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceConfigure__unconfigure(
 # 60 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b43030);
+uint8_t arg_0x40c27030);
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceConfigure.nc"
 static void /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceConfigure__configure(
 # 60 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b43030);
+uint8_t arg_0x40c27030);
 # 79 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceQueue.nc"
 static error_t /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__Queue__enqueue(resource_client_id_t id);
 #line 53
@@ -12178,28 +12391,28 @@ static void /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceDefaultO
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static void /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__Resource__granted(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-uint8_t arg_0x40b211b8);
+uint8_t arg_0x40c291b8);
 # 67 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TaskBasic.nc"
 static error_t /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__grantedTask__postTask(void );
 # 75 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/ArbiterP.nc"
-enum /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2____nesc_unnamed4420 {
+enum /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2____nesc_unnamed4423 {
 #line 75
   ArbiterP__2__grantedTask = 31U
 };
 #line 75
 typedef int /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2____nesc_sillytask_grantedTask[/*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__grantedTask];
 #line 67
-enum /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2____nesc_unnamed4421 {
+enum /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2____nesc_unnamed4424 {
 #line 67
   ArbiterP__2__RES_CONTROLLED, ArbiterP__2__RES_GRANTING, ArbiterP__2__RES_IMM_GRANTING, ArbiterP__2__RES_BUSY
 };
 #line 68
-enum /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2____nesc_unnamed4422 {
+enum /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2____nesc_unnamed4425 {
 #line 68
   ArbiterP__2__default_owner_id = 2U
 };
 #line 69
-enum /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2____nesc_unnamed4423 {
+enum /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2____nesc_unnamed4426 {
 #line 69
   ArbiterP__2__NO_RES = 0xFF
 };
@@ -12289,7 +12502,7 @@ static void OneWireMasterC__Pin__makeOutput(void );
 static void OneWireMasterC__Pin__clr(void );
 # 25 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/platforms/epic/chips/ds2411/OneWireMasterC.nc"
 #line 18
-typedef enum OneWireMasterC____nesc_unnamed4424 {
+typedef enum OneWireMasterC____nesc_unnamed4427 {
   OneWireMasterC__DELAY_5US = 5, 
   OneWireMasterC__RESET_LOW_TIME = 560, 
   OneWireMasterC__DELAY_60US = 60, 
@@ -12342,7 +12555,7 @@ static inline error_t OneWireMasterC__OneWire__read(uint8_t cmd, uint8_t *buf, u
 # 64 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Counter.nc"
 static /*BusyWaitMicroC.BusyWaitCounterC*/BusyWaitCounterC__0__Counter__size_type /*BusyWaitMicroC.BusyWaitCounterC*/BusyWaitCounterC__0__Counter__get(void );
 # 58 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/BusyWaitCounterC.nc"
-enum /*BusyWaitMicroC.BusyWaitCounterC*/BusyWaitCounterC__0____nesc_unnamed4425 {
+enum /*BusyWaitMicroC.BusyWaitCounterC*/BusyWaitCounterC__0____nesc_unnamed4428 {
 
   BusyWaitCounterC__0__HALF_MAX_SIZE_TYPE = (/*BusyWaitMicroC.BusyWaitCounterC*/BusyWaitCounterC__0__size_type )1 << (8 * sizeof(/*BusyWaitMicroC.BusyWaitCounterC*/BusyWaitCounterC__0__size_type ) - 1)
 };
@@ -12493,7 +12706,7 @@ static cc2420_status_t CC2420TransmitP__TXFIFO__write(uint8_t * data, uint8_t le
 static cc2420_status_t CC2420TransmitP__STXON__strobe(void );
 # 99 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/transmit/CC2420TransmitP.nc"
 #line 89
-typedef enum CC2420TransmitP____nesc_unnamed4426 {
+typedef enum CC2420TransmitP____nesc_unnamed4429 {
   CC2420TransmitP__S_STOPPED, 
   CC2420TransmitP__S_STARTED, 
   CC2420TransmitP__S_LOAD, 
@@ -12509,7 +12722,7 @@ typedef enum CC2420TransmitP____nesc_unnamed4426 {
 
 
 
-enum CC2420TransmitP____nesc_unnamed4427 {
+enum CC2420TransmitP____nesc_unnamed4430 {
   CC2420TransmitP__CC2420_ABORT_PERIOD = 320
 };
 #line 120
@@ -12731,7 +12944,7 @@ static error_t CC2420ReceiveP__InterruptFIFOP__enableFallingEdge(void );
 # 53 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/CC2420Strobe.nc"
 static cc2420_status_t CC2420ReceiveP__SFLUSHRX__strobe(void );
 # 148 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/receive/CC2420ReceiveP.nc"
-enum CC2420ReceiveP____nesc_unnamed4428 {
+enum CC2420ReceiveP____nesc_unnamed4431 {
 #line 148
   CC2420ReceiveP__receiveDone_task = 32U
 };
@@ -12739,7 +12952,7 @@ enum CC2420ReceiveP____nesc_unnamed4428 {
 typedef int CC2420ReceiveP____nesc_sillytask_receiveDone_task[CC2420ReceiveP__receiveDone_task];
 #line 89
 #line 81
-typedef enum CC2420ReceiveP____nesc_unnamed4429 {
+typedef enum CC2420ReceiveP____nesc_unnamed4432 {
   CC2420ReceiveP__S_STOPPED, 
   CC2420ReceiveP__S_STARTED, 
   CC2420ReceiveP__S_RX_LENGTH, 
@@ -12749,7 +12962,7 @@ typedef enum CC2420ReceiveP____nesc_unnamed4429 {
   CC2420ReceiveP__S_RX_PAYLOAD
 } CC2420ReceiveP__cc2420_receive_state_t;
 
-enum CC2420ReceiveP____nesc_unnamed4430 {
+enum CC2420ReceiveP____nesc_unnamed4433 {
   CC2420ReceiveP__RXFIFO_SIZE = 128, 
   CC2420ReceiveP__TIMESTAMP_QUEUE_SIZE = 8, 
   CC2420ReceiveP__SACK_HEADER_LENGTH = 7
@@ -13014,7 +13227,7 @@ static error_t UniqueSendP__State__requestState(uint8_t reqState);
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/unique/UniqueSendP.nc"
 uint8_t UniqueSendP__localSendId;
 
-enum UniqueSendP____nesc_unnamed4431 {
+enum UniqueSendP____nesc_unnamed4434 {
   UniqueSendP__S_IDLE, 
   UniqueSendP__S_SENDING
 };
@@ -13072,7 +13285,7 @@ void * payload,
 uint8_t len);
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/unique/UniqueReceiveP.nc"
 #line 56
-struct UniqueReceiveP____nesc_unnamed4432 {
+struct UniqueReceiveP____nesc_unnamed4435 {
   uint16_t source;
   uint8_t dsn;
 } UniqueReceiveP__receivedMessages[4];
@@ -13082,7 +13295,7 @@ uint8_t UniqueReceiveP__writeIndex = 0;
 
 uint8_t UniqueReceiveP__recycleSourceElement;
 
-enum UniqueReceiveP____nesc_unnamed4433 {
+enum UniqueReceiveP____nesc_unnamed4436 {
   UniqueReceiveP__INVALID_ELEMENT = 0xFF
 };
 
@@ -13179,7 +13392,7 @@ uint8_t len);
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
 static void CC2420TinyosNetworkP__Resource__granted(
 # 46 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/lowpan/CC2420TinyosNetworkP.nc"
-uint8_t arg_0x41680780);
+uint8_t arg_0x417db780);
 # 100 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
 static void CC2420TinyosNetworkP__BareSend__sendDone(
 #line 96
@@ -13206,14 +13419,14 @@ void * payload,
 
 uint8_t len);
 # 180 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/lowpan/CC2420TinyosNetworkP.nc"
-enum CC2420TinyosNetworkP____nesc_unnamed4434 {
+enum CC2420TinyosNetworkP____nesc_unnamed4437 {
 #line 180
   CC2420TinyosNetworkP__grantTask = 33U
 };
 #line 180
 typedef int CC2420TinyosNetworkP____nesc_sillytask_grantTask[CC2420TinyosNetworkP__grantTask];
 #line 68
-enum CC2420TinyosNetworkP____nesc_unnamed4435 {
+enum CC2420TinyosNetworkP____nesc_unnamed4438 {
   CC2420TinyosNetworkP__OWNER_NONE = 0xff, 
   CC2420TinyosNetworkP__TINYOS_N_NETWORKS = 1U
 };
@@ -13222,7 +13435,7 @@ enum CC2420TinyosNetworkP____nesc_unnamed4435 {
 
 
 #line 73
-enum CC2420TinyosNetworkP____nesc_unnamed4436 {
+enum CC2420TinyosNetworkP____nesc_unnamed4439 {
   CC2420TinyosNetworkP__CLIENT_AM, 
   CC2420TinyosNetworkP__CLIENT_BARE
 } CC2420TinyosNetworkP__m_busy_client;
@@ -13290,7 +13503,7 @@ static inline void CC2420TinyosNetworkP__BareSend__default__sendDone(message_t *
 
 static inline void CC2420TinyosNetworkP__Resource__default__granted(uint8_t client);
 # 49 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/FcfsResourceQueueC.nc"
-enum /*CC2420TinyosNetworkC.FcfsResourceQueueC*/FcfsResourceQueueC__0____nesc_unnamed4437 {
+enum /*CC2420TinyosNetworkC.FcfsResourceQueueC*/FcfsResourceQueueC__0____nesc_unnamed4440 {
 #line 49
   FcfsResourceQueueC__0__NO_ENTRY = 0xFF
 };
@@ -13344,13 +13557,13 @@ static uint16_t CC2420ActiveMessageP__CC2420Config__getPanAddr(void );
 # 95 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/RadioBackoff.nc"
 static void CC2420ActiveMessageP__RadioBackoff__requestCca(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420ActiveMessageP.nc"
-am_id_t arg_0x416d1148, 
+am_id_t arg_0x4182f148, 
 # 95 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/RadioBackoff.nc"
 message_t * msg);
 #line 81
 static void CC2420ActiveMessageP__RadioBackoff__requestInitialBackoff(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420ActiveMessageP.nc"
-am_id_t arg_0x416d1148, 
+am_id_t arg_0x4182f148, 
 # 81 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/RadioBackoff.nc"
 message_t * msg);
 
@@ -13361,13 +13574,13 @@ message_t * msg);
 
 static void CC2420ActiveMessageP__RadioBackoff__requestCongestionBackoff(
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420ActiveMessageP.nc"
-am_id_t arg_0x416d1148, 
+am_id_t arg_0x4182f148, 
 # 88 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/RadioBackoff.nc"
 message_t * msg);
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/SendNotifier.nc"
 static void CC2420ActiveMessageP__SendNotifier__aboutToSend(
 # 53 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420ActiveMessageP.nc"
-am_id_t arg_0x416d2a98, 
+am_id_t arg_0x41830a98, 
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/SendNotifier.nc"
 am_addr_t dest, 
 #line 57
@@ -13375,7 +13588,7 @@ message_t * msg);
 # 110 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
 static void CC2420ActiveMessageP__AMSend__sendDone(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420ActiveMessageP.nc"
-am_id_t arg_0x416d4030, 
+am_id_t arg_0x41832030, 
 # 103 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
 message_t * msg, 
 
@@ -13394,7 +13607,7 @@ message_t *
 
 CC2420ActiveMessageP__Snoop__receive(
 # 50 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420ActiveMessageP.nc"
-am_id_t arg_0x416d30a0, 
+am_id_t arg_0x418310a0, 
 # 71 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -13417,7 +13630,7 @@ message_t *
 
 CC2420ActiveMessageP__Receive__receive(
 # 49 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420ActiveMessageP.nc"
-am_id_t arg_0x416d49f0, 
+am_id_t arg_0x418329f0, 
 # 71 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -13579,7 +13792,7 @@ uint8_t len);
 # 93 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TimeSyncAMSend.nc"
 static void CC2420TimeSyncMessageP__TimeSyncAMSendMilli__sendDone(
 # 42 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420TimeSyncMessageP.nc"
-uint8_t arg_0x4176aaf0, 
+uint8_t arg_0x41876af0, 
 # 93 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TimeSyncAMSend.nc"
 message_t *msg, error_t error);
 # 78 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Receive.nc"
@@ -13591,7 +13804,7 @@ message_t *
 
 CC2420TimeSyncMessageP__Snoop__receive(
 # 50 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420TimeSyncMessageP.nc"
-am_id_t arg_0x41764e30, 
+am_id_t arg_0x41870e30, 
 # 71 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -13614,7 +13827,7 @@ message_t *
 
 CC2420TimeSyncMessageP__Receive__receive(
 # 49 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420TimeSyncMessageP.nc"
-am_id_t arg_0x41764798, 
+am_id_t arg_0x41870798, 
 # 71 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Receive.nc"
 message_t * msg, 
 void * payload, 
@@ -13635,7 +13848,7 @@ static uint32_t CC2420TimeSyncMessageP__LocalTimeMilli__get(void );
 # 93 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TimeSyncAMSend.nc"
 static void CC2420TimeSyncMessageP__TimeSyncAMSend32khz__sendDone(
 # 41 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420TimeSyncMessageP.nc"
-uint8_t arg_0x4176fd98, 
+uint8_t arg_0x4187bd98, 
 # 93 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TimeSyncAMSend.nc"
 message_t *msg, error_t error);
 # 63 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/PacketTimeStamp.nc"
@@ -13786,7 +13999,7 @@ static inline void */*CC2420TimeSyncMessageC.AMSenderC.SenderC.AMQueueEntryP*/AM
 # 80 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
 static error_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__AMSend__send(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/AMQueueImplP.nc"
-am_id_t arg_0x410c2490, 
+am_id_t arg_0x411aa490, 
 # 80 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
 am_addr_t addr, 
 #line 71
@@ -13807,7 +14020,7 @@ void *
 
 /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__AMSend__getPayload(
 # 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/AMQueueImplP.nc"
-am_id_t arg_0x410c2490, 
+am_id_t arg_0x411aa490, 
 # 132 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
 message_t * msg, 
 
@@ -13816,7 +14029,7 @@ uint8_t len);
 # 100 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
 static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__Send__sendDone(
 # 46 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/AMQueueImplP.nc"
-uint8_t arg_0x410c39d8, 
+uint8_t arg_0x411ab9d8, 
 # 96 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
 message_t * msg, 
 
@@ -13846,14 +14059,14 @@ static am_id_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__AMPacket__type(
 #line 143
 message_t * amsg);
 # 126 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/AMQueueImplP.nc"
-enum /*AMQueueP.AMQueueImplP*/AMQueueImplP__1____nesc_unnamed4438 {
+enum /*AMQueueP.AMQueueImplP*/AMQueueImplP__1____nesc_unnamed4441 {
 #line 126
   AMQueueImplP__1__CancelTask = 34U
 };
 #line 126
 typedef int /*AMQueueP.AMQueueImplP*/AMQueueImplP__1____nesc_sillytask_CancelTask[/*AMQueueP.AMQueueImplP*/AMQueueImplP__1__CancelTask];
 #line 169
-enum /*AMQueueP.AMQueueImplP*/AMQueueImplP__1____nesc_unnamed4439 {
+enum /*AMQueueP.AMQueueImplP*/AMQueueImplP__1____nesc_unnamed4442 {
 #line 169
   AMQueueImplP__1__errorTask = 35U
 };
@@ -13861,13 +14074,13 @@ enum /*AMQueueP.AMQueueImplP*/AMQueueImplP__1____nesc_unnamed4439 {
 typedef int /*AMQueueP.AMQueueImplP*/AMQueueImplP__1____nesc_sillytask_errorTask[/*AMQueueP.AMQueueImplP*/AMQueueImplP__1__errorTask];
 #line 57
 #line 55
-typedef struct /*AMQueueP.AMQueueImplP*/AMQueueImplP__1____nesc_unnamed4440 {
+typedef struct /*AMQueueP.AMQueueImplP*/AMQueueImplP__1____nesc_unnamed4443 {
   message_t * msg;
 } /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__queue_entry_t;
 
-uint8_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__current = 4;
-/*AMQueueP.AMQueueImplP*/AMQueueImplP__1__queue_entry_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__queue[4];
-uint8_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__cancelMask[4 / 8 + 1];
+uint8_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__current = 5;
+/*AMQueueP.AMQueueImplP*/AMQueueImplP__1__queue_entry_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__queue[5];
+uint8_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__cancelMask[5 / 8 + 1];
 
 static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__tryToSend(void );
 
@@ -14123,6 +14336,78 @@ static inline void /*TDMAControllerC.DataPkgSender.SenderC.AMQueueEntryP*/AMQueu
 
 
 static inline void */*TDMAControllerC.DataPkgSender.SenderC.AMQueueEntryP*/AMQueueEntryP__4__AMSend__getPayload(message_t *m, uint8_t len);
+# 110 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
+static void /*TDMAControllerC.AssignmentSender.SenderC.AMQueueEntryP*/AMQueueEntryP__5__AMSend__sendDone(
+#line 103
+message_t * msg, 
+
+
+
+
+
+
+error_t error);
+# 75 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
+static error_t /*TDMAControllerC.AssignmentSender.SenderC.AMQueueEntryP*/AMQueueEntryP__5__Send__send(
+#line 67
+message_t * msg, 
+
+
+
+
+
+
+
+uint8_t len);
+#line 125
+static 
+#line 123
+void * 
+
+/*TDMAControllerC.AssignmentSender.SenderC.AMQueueEntryP*/AMQueueEntryP__5__Send__getPayload(
+#line 122
+message_t * msg, 
+
+
+uint8_t len);
+# 103 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMPacket.nc"
+static void /*TDMAControllerC.AssignmentSender.SenderC.AMQueueEntryP*/AMQueueEntryP__5__AMPacket__setDestination(
+#line 99
+message_t * amsg, 
+
+
+
+am_addr_t addr);
+#line 162
+static void /*TDMAControllerC.AssignmentSender.SenderC.AMQueueEntryP*/AMQueueEntryP__5__AMPacket__setType(
+#line 158
+message_t * amsg, 
+
+
+
+am_id_t t);
+# 53 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/AMQueueEntryP.nc"
+static error_t /*TDMAControllerC.AssignmentSender.SenderC.AMQueueEntryP*/AMQueueEntryP__5__AMSend__send(am_addr_t dest, 
+message_t *msg, 
+uint8_t len);
+
+
+
+
+
+
+
+
+
+static inline void /*TDMAControllerC.AssignmentSender.SenderC.AMQueueEntryP*/AMQueueEntryP__5__Send__sendDone(message_t *m, error_t err);
+
+
+
+
+
+
+
+static inline void */*TDMAControllerC.AssignmentSender.SenderC.AMQueueEntryP*/AMQueueEntryP__5__AMSend__getPayload(message_t *m, uint8_t len);
 # 10 "Logger.nc"
 static void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__Logger__logValue(unsigned char *msg, uint32_t value, bool to_hex, log_level_t lvl);
 #line 9
@@ -14131,6 +14416,8 @@ static void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__
 static uint32_t /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SystemTimer__getNow(void );
 #line 129
 static void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SystemTimer__startOneShotAt(uint32_t t0, uint32_t dt);
+#line 78
+static void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SystemTimer__stop(void );
 #line 129
 static void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotTimer__startOneShotAt(uint32_t t0, uint32_t dt);
 #line 73
@@ -14147,7 +14434,9 @@ static void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__
 #line 38
 static void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__newRound(void );
 static void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__endRound(void );
-
+#line 27
+static void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__stopDone(error_t err);
+#line 41
 static void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__slotEnded(uint8_t slot_no, uint8_t actual_slot_no);
 # 11 "SlotSchedulerP.nc"
 bool /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__is_active = FALSE;
@@ -14163,7 +14452,7 @@ uint8_t /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__last
 uint8_t */*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__active_slot_per_round_ref;
 
 
-static uint8_t /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__getNextSlot(uint8_t arg_0x417d2b88);
+static uint8_t /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__getNextSlot(uint8_t arg_0x41932870);
 
 static error_t /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__start(uint8_t initial_slot, uint32_t start_time, uint32_t delay, uint8_t sleep_slots_per_round, uint16_t *duration, uint8_t *active_slot_per_round);
 #line 57
@@ -14176,11 +14465,13 @@ static inline void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedule
 static uint8_t /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__getNextSlot(uint8_t last_slot_local);
 #line 83
 static error_t /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__updateSlotMap(uint8_t new_slot_pos, update_type_t type);
+#line 108
+static inline error_t /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__stop(void );
 #line 125
 static inline void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SystemTimer__fired(void );
-#line 159
+#line 164
 static inline void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotTimer__fired(void );
-#line 180
+#line 190
 static inline uint8_t /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__nextSlot(void );
 
 
@@ -14201,7 +14492,19 @@ static inline uint8_t /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSched
 
 
 static inline uint32_t */*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__getSystemTime(void );
-#line 213
+
+
+
+
+
+static inline bool /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__isRunning(void );
+
+
+
+
+
+
+
 static inline void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__syncSystemTime(uint32_t system_time);
 # 10 "Logger.nc"
 static void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__Logger__logValue(unsigned char *msg, uint32_t value, bool to_hex, log_level_t lvl);
@@ -14211,6 +14514,8 @@ static void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1_
 static uint32_t /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SystemTimer__getNow(void );
 #line 129
 static void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SystemTimer__startOneShotAt(uint32_t t0, uint32_t dt);
+#line 78
+static void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SystemTimer__stop(void );
 #line 129
 static void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotTimer__startOneShotAt(uint32_t t0, uint32_t dt);
 #line 73
@@ -14227,7 +14532,9 @@ static void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1_
 #line 38
 static void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__newRound(void );
 static void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__endRound(void );
-
+#line 27
+static void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__stopDone(error_t err);
+#line 41
 static void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__slotEnded(uint8_t slot_no, uint8_t actual_slot_no);
 # 11 "SlotSchedulerP.nc"
 bool /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__is_active = FALSE;
@@ -14243,7 +14550,7 @@ uint8_t /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__las
 uint8_t */*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__active_slot_per_round_ref;
 
 
-static uint8_t /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__getNextSlot(uint8_t arg_0x417d2b88);
+static uint8_t /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__getNextSlot(uint8_t arg_0x41932870);
 
 static error_t /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__start(uint8_t initial_slot, uint32_t start_time, uint32_t delay, uint8_t sleep_slots_per_round, uint16_t *duration, uint8_t *active_slot_per_round);
 #line 57
@@ -14256,11 +14563,13 @@ static inline void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedul
 static uint8_t /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__getNextSlot(uint8_t last_slot_local);
 #line 83
 static error_t /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__updateSlotMap(uint8_t new_slot_pos, update_type_t type);
+#line 108
+static inline error_t /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__stop(void );
 #line 125
 static inline void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SystemTimer__fired(void );
-#line 159
+#line 164
 static inline void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotTimer__fired(void );
-#line 180
+#line 190
 static inline uint8_t /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__nextSlot(void );
 
 
@@ -14276,17 +14585,29 @@ static inline scheduler_mode_t /*TDMAControllerC.SystemScheduler.SlotSchedulerP*
 
 
 
-static uint8_t /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__currentSlot(void );
+static inline uint8_t /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__currentSlot(void );
 
 
 
 static uint32_t */*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__getSystemTime(void );
-#line 213
+
+
+
+
+
+static inline bool /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__isRunning(void );
+
+
+
+
+
+
+
 static inline void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__syncSystemTime(uint32_t system_time);
-# 15 "SettingsP.nc"
-uint8_t SettingsP__sleep_slot_per_round_ref = 5;
-uint16_t SettingsP__slot_duration_ref = 1024;
-uint8_t SettingsP__slot_per_round_ref = 7;
+# 6 "SettingsP.nc"
+uint8_t SettingsP__sleep_slot_per_round_ref = 2;
+uint16_t SettingsP__slot_duration_ref = 1000 * 1;
+uint8_t SettingsP__slot_per_round_ref = 5;
 static inline uint8_t *SettingsP__Settings__sleepSlotPerRound(void );
 
 
@@ -14381,9 +14702,9 @@ static inline void /*Msp430TimerC.Msp430TimerA*/Msp430TimerP__0__Event__default_
 }
 
 # 39 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/timer/Msp430TimerEvent.nc"
-inline static void /*Msp430TimerC.Msp430TimerA*/Msp430TimerP__0__Event__fired(uint8_t arg_0x406db788){
+inline static void /*Msp430TimerC.Msp430TimerA*/Msp430TimerP__0__Event__fired(uint8_t arg_0x407c2788){
 #line 39
-  switch (arg_0x406db788) {
+  switch (arg_0x407c2788) {
 #line 39
     case 0:
 #line 39
@@ -14411,7 +14732,7 @@ inline static void /*Msp430TimerC.Msp430TimerA*/Msp430TimerP__0__Event__fired(ui
 #line 39
     default:
 #line 39
-      /*Msp430TimerC.Msp430TimerA*/Msp430TimerP__0__Event__default__fired(arg_0x406db788);
+      /*Msp430TimerC.Msp430TimerA*/Msp430TimerP__0__Event__default__fired(arg_0x407c2788);
 #line 39
       break;
 #line 39
@@ -14437,7 +14758,7 @@ static inline  /*Msp430TimerC.Msp430TimerA0*/Msp430TimerCapComP__0__cc_t /*Msp43
 #line 58
 {
 #line 58
-  union /*Msp430TimerC.Msp430TimerA0*/Msp430TimerCapComP__0____nesc_unnamed4441 {
+  union /*Msp430TimerC.Msp430TimerA0*/Msp430TimerCapComP__0____nesc_unnamed4444 {
 #line 58
     uint16_t f;
 #line 58
@@ -14492,7 +14813,7 @@ static inline  /*Msp430TimerC.Msp430TimerA1*/Msp430TimerCapComP__1__cc_t /*Msp43
 #line 58
 {
 #line 58
-  union /*Msp430TimerC.Msp430TimerA1*/Msp430TimerCapComP__1____nesc_unnamed4442 {
+  union /*Msp430TimerC.Msp430TimerA1*/Msp430TimerCapComP__1____nesc_unnamed4445 {
 #line 58
     uint16_t f;
 #line 58
@@ -14547,7 +14868,7 @@ static inline  /*Msp430TimerC.Msp430TimerA2*/Msp430TimerCapComP__2__cc_t /*Msp43
 #line 58
 {
 #line 58
-  union /*Msp430TimerC.Msp430TimerA2*/Msp430TimerCapComP__2____nesc_unnamed4443 {
+  union /*Msp430TimerC.Msp430TimerA2*/Msp430TimerCapComP__2____nesc_unnamed4446 {
 #line 58
     uint16_t f;
 #line 58
@@ -14909,7 +15230,7 @@ static inline  /*Msp430TimerC.Msp430TimerB0*/Msp430TimerCapComP__3__cc_t /*Msp43
 #line 58
 {
 #line 58
-  union /*Msp430TimerC.Msp430TimerB0*/Msp430TimerCapComP__3____nesc_unnamed4444 {
+  union /*Msp430TimerC.Msp430TimerB0*/Msp430TimerCapComP__3____nesc_unnamed4447 {
 #line 58
     uint16_t f;
 #line 58
@@ -15821,7 +16142,7 @@ static inline  /*Msp430TimerC.Msp430TimerB1*/Msp430TimerCapComP__4__cc_t /*Msp43
 #line 58
 {
 #line 58
-  union /*Msp430TimerC.Msp430TimerB1*/Msp430TimerCapComP__4____nesc_unnamed4445 {
+  union /*Msp430TimerC.Msp430TimerB1*/Msp430TimerCapComP__4____nesc_unnamed4448 {
 #line 58
     uint16_t f;
 #line 58
@@ -15909,7 +16230,7 @@ static inline  uint16_t /*Msp430TimerC.Msp430TimerB1*/Msp430TimerCapComP__4__CC2
 #line 57
 {
 #line 57
-  union /*Msp430TimerC.Msp430TimerB1*/Msp430TimerCapComP__4____nesc_unnamed4446 {
+  union /*Msp430TimerC.Msp430TimerB1*/Msp430TimerCapComP__4____nesc_unnamed4449 {
 #line 57
     /*Msp430TimerC.Msp430TimerB1*/Msp430TimerCapComP__4__cc_t f;
 #line 57
@@ -16205,9 +16526,9 @@ static inline void /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceC
 }
 
 # 65 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceConfigure.nc"
-inline static void /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceConfigure__unconfigure(uint8_t arg_0x40b43030){
+inline static void /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceConfigure__unconfigure(uint8_t arg_0x40c27030){
 #line 65
-  switch (arg_0x40b43030) {
+  switch (arg_0x40c27030) {
 #line 65
     case /*CC2420SpiWireC.HplCC2420SpiC.SpiC.UsciC*/Msp430UsciB0C__0__CLIENT_ID:
 #line 65
@@ -16217,7 +16538,7 @@ inline static void /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceC
 #line 65
     default:
 #line 65
-      /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceConfigure__default__unconfigure(arg_0x40b43030);
+      /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceConfigure__default__unconfigure(arg_0x40c27030);
 #line 65
       break;
 #line 65
@@ -16368,13 +16689,13 @@ static inline error_t /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResourc
 }
 
 # 120 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
-inline static error_t /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResource__release(uint8_t arg_0x413cc2f0){
+inline static error_t /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResource__release(uint8_t arg_0x414ca2f0){
 #line 120
   unsigned char __nesc_result;
 #line 120
 
 #line 120
-  switch (arg_0x413cc2f0) {
+  switch (arg_0x414ca2f0) {
 #line 120
     case /*CC2420SpiWireC.HplCC2420SpiC.SpiC*/Msp430SpiB0C__0__CLIENT_ID:
 #line 120
@@ -16384,7 +16705,7 @@ inline static error_t /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResourc
 #line 120
     default:
 #line 120
-      __nesc_result = /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResource__default__release(arg_0x413cc2f0);
+      __nesc_result = /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResource__default__release(arg_0x414ca2f0);
 #line 120
       break;
 #line 120
@@ -16568,13 +16889,13 @@ static inline error_t AdcStreamP__SingleChannel__default__getData(uint8_t c)
 }
 
 # 189 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
-inline static error_t AdcStreamP__SingleChannel__getData(uint8_t arg_0x40d80ae0){
+inline static error_t AdcStreamP__SingleChannel__getData(uint8_t arg_0x40e63ae0){
 #line 189
   unsigned char __nesc_result;
 #line 189
 
 #line 189
-  switch (arg_0x40d80ae0) {
+  switch (arg_0x40e63ae0) {
 #line 189
     case /*ReadDataC.SensorPhoto.AdcReadStreamClientC*/AdcReadStreamClientC__0__RSCLIENT:
 #line 189
@@ -16596,7 +16917,7 @@ inline static error_t AdcStreamP__SingleChannel__getData(uint8_t arg_0x40d80ae0)
 #line 189
     default:
 #line 189
-      __nesc_result = AdcStreamP__SingleChannel__default__getData(arg_0x40d80ae0);
+      __nesc_result = AdcStreamP__SingleChannel__default__getData(arg_0x40e63ae0);
 #line 189
       break;
 #line 189
@@ -16702,7 +17023,7 @@ static inline  /*Msp430TimerC.Msp430TimerB2*/Msp430TimerCapComP__5__cc_t /*Msp43
 #line 58
 {
 #line 58
-  union /*Msp430TimerC.Msp430TimerB2*/Msp430TimerCapComP__5____nesc_unnamed4447 {
+  union /*Msp430TimerC.Msp430TimerB2*/Msp430TimerCapComP__5____nesc_unnamed4450 {
 #line 58
     uint16_t f;
 #line 58
@@ -17080,7 +17401,7 @@ static inline  uint16_t /*Msp430TimerC.Msp430TimerA1*/Msp430TimerCapComP__1__CC2
 #line 57
 {
 #line 57
-  union /*Msp430TimerC.Msp430TimerA1*/Msp430TimerCapComP__1____nesc_unnamed4448 {
+  union /*Msp430TimerC.Msp430TimerA1*/Msp430TimerCapComP__1____nesc_unnamed4451 {
 #line 57
     /*Msp430TimerC.Msp430TimerA1*/Msp430TimerCapComP__1__cc_t f;
 #line 57
@@ -17540,7 +17861,7 @@ static inline  /*Msp430TimerC.Msp430TimerB3*/Msp430TimerCapComP__6__cc_t /*Msp43
 #line 58
 {
 #line 58
-  union /*Msp430TimerC.Msp430TimerB3*/Msp430TimerCapComP__6____nesc_unnamed4449 {
+  union /*Msp430TimerC.Msp430TimerB3*/Msp430TimerCapComP__6____nesc_unnamed4452 {
 #line 58
     uint16_t f;
 #line 58
@@ -17579,9 +17900,9 @@ message_t *msg)
 }
 
 # 88 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/RadioBackoff.nc"
-inline static void CC2420ActiveMessageP__RadioBackoff__requestCongestionBackoff(am_id_t arg_0x416d1148, message_t * msg){
+inline static void CC2420ActiveMessageP__RadioBackoff__requestCongestionBackoff(am_id_t arg_0x4182f148, message_t * msg){
 #line 88
-    CC2420ActiveMessageP__RadioBackoff__default__requestCongestionBackoff(arg_0x416d1148, msg);
+    CC2420ActiveMessageP__RadioBackoff__default__requestCongestionBackoff(arg_0x4182f148, msg);
 #line 88
 }
 #line 88
@@ -17691,13 +18012,13 @@ static inline error_t /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResourc
 }
 
 # 128 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
-inline static bool /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResource__isOwner(uint8_t arg_0x413cc2f0){
+inline static bool /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResource__isOwner(uint8_t arg_0x414ca2f0){
 #line 128
   unsigned char __nesc_result;
 #line 128
 
 #line 128
-  switch (arg_0x413cc2f0) {
+  switch (arg_0x414ca2f0) {
 #line 128
     case /*CC2420SpiWireC.HplCC2420SpiC.SpiC*/Msp430SpiB0C__0__CLIENT_ID:
 #line 128
@@ -17707,7 +18028,7 @@ inline static bool /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResource__
 #line 128
     default:
 #line 128
-      __nesc_result = /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResource__default__isOwner(arg_0x413cc2f0);
+      __nesc_result = /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResource__default__isOwner(arg_0x414ca2f0);
 #line 128
       break;
 #line 128
@@ -17749,13 +18070,13 @@ static inline msp430_spi_union_config_t */*Msp430SpiNoDmaB0P.XM1000UsciP*/XM1000
 }
 
 # 45 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430SpiConfigure.nc"
-inline static msp430_spi_union_config_t */*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__Msp430SpiConfigure__getConfig(uint8_t arg_0x413ccd40){
+inline static msp430_spi_union_config_t */*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__Msp430SpiConfigure__getConfig(uint8_t arg_0x414cad40){
 #line 45
-  union __nesc_unnamed4291 *__nesc_result;
+  union __nesc_unnamed4294 *__nesc_result;
 #line 45
 
 #line 45
-  __nesc_result = /*Msp430SpiNoDmaB0P.XM1000UsciP*/XM1000UsciP__0__Msp430SpiConfigure__getConfig(arg_0x413ccd40);
+  __nesc_result = /*Msp430SpiNoDmaB0P.XM1000UsciP*/XM1000UsciP__0__Msp430SpiConfigure__getConfig(arg_0x414cad40);
 #line 45
 
 #line 45
@@ -17784,9 +18105,9 @@ static inline void /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceC
 }
 
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceConfigure.nc"
-inline static void /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceConfigure__configure(uint8_t arg_0x40b43030){
+inline static void /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceConfigure__configure(uint8_t arg_0x40c27030){
 #line 59
-  switch (arg_0x40b43030) {
+  switch (arg_0x40c27030) {
 #line 59
     case /*CC2420SpiWireC.HplCC2420SpiC.SpiC.UsciC*/Msp430UsciB0C__0__CLIENT_ID:
 #line 59
@@ -17796,7 +18117,7 @@ inline static void /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceC
 #line 59
     default:
 #line 59
-      /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceConfigure__default__configure(arg_0x40b43030);
+      /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceConfigure__default__configure(arg_0x40c27030);
 #line 59
       break;
 #line 59
@@ -17825,9 +18146,9 @@ static inline void /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceR
 }
 
 # 61 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceRequested.nc"
-inline static void /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceRequested__immediateRequested(uint8_t arg_0x40b21be0){
+inline static void /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceRequested__immediateRequested(uint8_t arg_0x40c29be0){
 #line 61
-    /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceRequested__default__immediateRequested(arg_0x40b21be0);
+    /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceRequested__default__immediateRequested(arg_0x40c29be0);
 #line 61
 }
 #line 61
@@ -17873,13 +18194,13 @@ static inline error_t /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResourc
 }
 
 # 97 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
-inline static error_t /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResource__immediateRequest(uint8_t arg_0x413cc2f0){
+inline static error_t /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResource__immediateRequest(uint8_t arg_0x414ca2f0){
 #line 97
   unsigned char __nesc_result;
 #line 97
 
 #line 97
-  switch (arg_0x413cc2f0) {
+  switch (arg_0x414ca2f0) {
 #line 97
     case /*CC2420SpiWireC.HplCC2420SpiC.SpiC*/Msp430SpiB0C__0__CLIENT_ID:
 #line 97
@@ -17889,7 +18210,7 @@ inline static error_t /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResourc
 #line 97
     default:
 #line 97
-      __nesc_result = /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResource__default__immediateRequest(arg_0x413cc2f0);
+      __nesc_result = /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResource__default__immediateRequest(arg_0x414ca2f0);
 #line 97
       break;
 #line 97
@@ -18124,9 +18445,9 @@ static inline void /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceR
 }
 
 # 53 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceRequested.nc"
-inline static void /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceRequested__requested(uint8_t arg_0x40b21be0){
+inline static void /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceRequested__requested(uint8_t arg_0x40c29be0){
 #line 53
-    /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceRequested__default__requested(arg_0x40b21be0);
+    /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__ResourceRequested__default__requested(arg_0x40c29be0);
 #line 53
 }
 #line 53
@@ -18180,13 +18501,13 @@ static inline error_t /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResourc
 }
 
 # 88 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
-inline static error_t /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResource__request(uint8_t arg_0x413cc2f0){
+inline static error_t /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResource__request(uint8_t arg_0x414ca2f0){
 #line 88
   unsigned char __nesc_result;
 #line 88
 
 #line 88
-  switch (arg_0x413cc2f0) {
+  switch (arg_0x414ca2f0) {
 #line 88
     case /*CC2420SpiWireC.HplCC2420SpiC.SpiC*/Msp430SpiB0C__0__CLIENT_ID:
 #line 88
@@ -18196,7 +18517,7 @@ inline static error_t /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResourc
 #line 88
     default:
 #line 88
-      __nesc_result = /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResource__default__request(arg_0x413cc2f0);
+      __nesc_result = /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__UsciResource__default__request(arg_0x414ca2f0);
 #line 88
       break;
 #line 88
@@ -18308,7 +18629,7 @@ static inline  /*Msp430TimerC.Msp430TimerB4*/Msp430TimerCapComP__7__cc_t /*Msp43
 #line 58
 {
 #line 58
-  union /*Msp430TimerC.Msp430TimerB4*/Msp430TimerCapComP__7____nesc_unnamed4450 {
+  union /*Msp430TimerC.Msp430TimerB4*/Msp430TimerCapComP__7____nesc_unnamed4453 {
 #line 58
     uint16_t f;
 #line 58
@@ -18376,7 +18697,7 @@ static inline  /*Msp430TimerC.Msp430TimerB5*/Msp430TimerCapComP__8__cc_t /*Msp43
 #line 58
 {
 #line 58
-  union /*Msp430TimerC.Msp430TimerB5*/Msp430TimerCapComP__8____nesc_unnamed4451 {
+  union /*Msp430TimerC.Msp430TimerB5*/Msp430TimerCapComP__8____nesc_unnamed4454 {
 #line 58
     uint16_t f;
 #line 58
@@ -18444,7 +18765,7 @@ static inline  /*Msp430TimerC.Msp430TimerB6*/Msp430TimerCapComP__9__cc_t /*Msp43
 #line 58
 {
 #line 58
-  union /*Msp430TimerC.Msp430TimerB6*/Msp430TimerCapComP__9____nesc_unnamed4452 {
+  union /*Msp430TimerC.Msp430TimerB6*/Msp430TimerCapComP__9____nesc_unnamed4455 {
 #line 58
     uint16_t f;
 #line 58
@@ -19213,7 +19534,7 @@ static inline void /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__CancelTask__runTask
   message_t *msg;
 
 #line 129
-  for (i = 0; i < 4 / 8 + 1; i++) {
+  for (i = 0; i < 5 / 8 + 1; i++) {
       if (/*AMQueueP.AMQueueImplP*/AMQueueImplP__1__cancelMask[i]) {
           for (mask = 1, j = 0; j < 8; j++) {
               if (/*AMQueueP.AMQueueImplP*/AMQueueImplP__1__cancelMask[i] & mask) {
@@ -19236,26 +19557,26 @@ inline static void TDMAControllerP__Logger__log(unsigned char *msg, log_level_t 
 #line 9
 }
 #line 9
-# 516 "TDMAControllerP.nc"
-static inline void TDMAControllerP__DataPkgSend__sendDone(message_t *msg, error_t error)
-#line 516
+# 671 "TDMAControllerP.nc"
+static inline void TDMAControllerP__AssignmentSend__sendDone(message_t *msg, error_t error)
+#line 671
 {
 
-  TDMAControllerP__Logger__log("Data pkg sent", log_lvl_info);
+  TDMAControllerP__Logger__log("Assignment sent!", log_lvl_info);
 }
 
 # 110 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
-inline static void /*TDMAControllerC.DataPkgSender.SenderC.AMQueueEntryP*/AMQueueEntryP__4__AMSend__sendDone(message_t * msg, error_t error){
+inline static void /*TDMAControllerC.AssignmentSender.SenderC.AMQueueEntryP*/AMQueueEntryP__5__AMSend__sendDone(message_t * msg, error_t error){
 #line 110
-  TDMAControllerP__DataPkgSend__sendDone(msg, error);
+  TDMAControllerP__AssignmentSend__sendDone(msg, error);
 #line 110
 }
 #line 110
 # 65 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/AMQueueEntryP.nc"
-static inline void /*TDMAControllerC.DataPkgSender.SenderC.AMQueueEntryP*/AMQueueEntryP__4__Send__sendDone(message_t *m, error_t err)
+static inline void /*TDMAControllerC.AssignmentSender.SenderC.AMQueueEntryP*/AMQueueEntryP__5__Send__sendDone(message_t *m, error_t err)
 #line 65
 {
-  /*TDMAControllerC.DataPkgSender.SenderC.AMQueueEntryP*/AMQueueEntryP__4__AMSend__sendDone(m, err);
+  /*TDMAControllerC.AssignmentSender.SenderC.AMQueueEntryP*/AMQueueEntryP__5__AMSend__sendDone(m, err);
 }
 
 # 53 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/QueueC.nc"
@@ -19416,13 +19737,13 @@ inline static void /*PrintfC.SerialAMSenderC.AMQueueEntryP*/AMQueueEntryP__0__AM
 }
 #line 162
 # 80 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
-inline static error_t /*SerialAMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__send(am_id_t arg_0x410c2490, am_addr_t addr, message_t * msg, uint8_t len){
+inline static error_t /*SerialAMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__send(am_id_t arg_0x411aa490, am_addr_t addr, message_t * msg, uint8_t len){
 #line 80
   unsigned char __nesc_result;
 #line 80
 
 #line 80
-  __nesc_result = /*SerialActiveMessageC.AM*/SerialActiveMessageP__0__AMSend__send(arg_0x410c2490, addr, msg, len);
+  __nesc_result = /*SerialActiveMessageC.AM*/SerialActiveMessageP__0__AMSend__send(arg_0x411aa490, addr, msg, len);
 #line 80
 
 #line 80
@@ -19604,13 +19925,13 @@ uint8_t upperLen)
 }
 
 # 23 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/serial/SerialPacketInfo.nc"
-inline static uint8_t /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__PacketInfo__dataLinkLength(uart_id_t arg_0x40f68848, message_t *msg, uint8_t upperLen){
+inline static uint8_t /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__PacketInfo__dataLinkLength(uart_id_t arg_0x4104e848, message_t *msg, uint8_t upperLen){
 #line 23
   unsigned char __nesc_result;
 #line 23
 
 #line 23
-  switch (arg_0x40f68848) {
+  switch (arg_0x4104e848) {
 #line 23
     case TOS_SERIAL_ACTIVE_MESSAGE_ID:
 #line 23
@@ -19620,7 +19941,7 @@ inline static uint8_t /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__
 #line 23
     default:
 #line 23
-      __nesc_result = /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__PacketInfo__default__dataLinkLength(arg_0x40f68848, msg, upperLen);
+      __nesc_result = /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__PacketInfo__default__dataLinkLength(arg_0x4104e848, msg, upperLen);
 #line 23
       break;
 #line 23
@@ -19647,13 +19968,13 @@ static inline uint8_t /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__
 }
 
 # 15 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/serial/SerialPacketInfo.nc"
-inline static uint8_t /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__PacketInfo__offset(uart_id_t arg_0x40f68848){
+inline static uint8_t /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__PacketInfo__offset(uart_id_t arg_0x4104e848){
 #line 15
   unsigned char __nesc_result;
 #line 15
 
 #line 15
-  switch (arg_0x40f68848) {
+  switch (arg_0x4104e848) {
 #line 15
     case TOS_SERIAL_ACTIVE_MESSAGE_ID:
 #line 15
@@ -19663,7 +19984,7 @@ inline static uint8_t /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__
 #line 15
     default:
 #line 15
-      __nesc_result = /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__PacketInfo__default__offset(arg_0x40f68848);
+      __nesc_result = /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__PacketInfo__default__offset(arg_0x4104e848);
 #line 15
       break;
 #line 15
@@ -19756,6 +20077,28 @@ inline static error_t SerialP__RunTx__postTask(void ){
 #line 67
 }
 #line 67
+# 631 "TDMAControllerP.nc"
+static inline void TDMAControllerP__DataPkgSend__sendDone(message_t *msg, error_t error)
+#line 631
+{
+
+  TDMAControllerP__Logger__log("Data pkg sent", log_lvl_info);
+}
+
+# 110 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
+inline static void /*TDMAControllerC.DataPkgSender.SenderC.AMQueueEntryP*/AMQueueEntryP__4__AMSend__sendDone(message_t * msg, error_t error){
+#line 110
+  TDMAControllerP__DataPkgSend__sendDone(msg, error);
+#line 110
+}
+#line 110
+# 65 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/AMQueueEntryP.nc"
+static inline void /*TDMAControllerC.DataPkgSender.SenderC.AMQueueEntryP*/AMQueueEntryP__4__Send__sendDone(message_t *m, error_t err)
+#line 65
+{
+  /*TDMAControllerC.DataPkgSender.SenderC.AMQueueEntryP*/AMQueueEntryP__4__AMSend__sendDone(m, err);
+}
+
 # 10 "Logger.nc"
 inline static void TDMAControllerP__Logger__logValue(unsigned char *msg, uint32_t value, bool to_hex, log_level_t lvl){
 #line 10
@@ -19763,9 +20106,9 @@ inline static void TDMAControllerP__Logger__logValue(unsigned char *msg, uint32_
 #line 10
 }
 #line 10
-# 469 "TDMAControllerP.nc"
+# 583 "TDMAControllerP.nc"
 static inline void TDMAControllerP__JoinAnsSend__sendDone(message_t *msg, error_t error)
-#line 469
+#line 583
 {
   TDMAControllerP__Logger__logValue("Join Ans Send status", error, FALSE, log_lvl_dbg);
 }
@@ -19784,9 +20127,9 @@ static inline void /*TDMAControllerC.JoinAnsSender.SenderC.AMQueueEntryP*/AMQueu
   /*TDMAControllerC.JoinAnsSender.SenderC.AMQueueEntryP*/AMQueueEntryP__3__AMSend__sendDone(m, err);
 }
 
-# 378 "TDMAControllerP.nc"
+# 473 "TDMAControllerP.nc"
 static inline void TDMAControllerP__JoinReqSend__sendDone(message_t *msg, error_t error)
-#line 378
+#line 473
 {
 
   TDMAControllerP__Logger__logValue("Join Req Send status", error, FALSE, log_lvl_dbg);
@@ -19806,9 +20149,9 @@ static inline void /*TDMAControllerC.JoinReqSender.SenderC.AMQueueEntryP*/AMQueu
   /*TDMAControllerC.JoinReqSender.SenderC.AMQueueEntryP*/AMQueueEntryP__2__AMSend__sendDone(m, err);
 }
 
-# 331 "TDMAControllerP.nc"
+# 395 "TDMAControllerP.nc"
 static inline void TDMAControllerP__TSSend__sendDone(message_t *msg, error_t error)
-#line 331
+#line 395
 {
 
   TDMAControllerP__Logger__log("Time Sync Sent!", log_lvl_info);
@@ -19821,9 +20164,9 @@ static inline void CC2420TimeSyncMessageP__TimeSyncAMSendMilli__default__sendDon
 }
 
 # 93 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TimeSyncAMSend.nc"
-inline static void CC2420TimeSyncMessageP__TimeSyncAMSendMilli__sendDone(uint8_t arg_0x4176aaf0, message_t *msg, error_t error){
+inline static void CC2420TimeSyncMessageP__TimeSyncAMSendMilli__sendDone(uint8_t arg_0x41876af0, message_t *msg, error_t error){
 #line 93
-  switch (arg_0x4176aaf0) {
+  switch (arg_0x41876af0) {
 #line 93
     case RADIO_TIMESYNC_MSG:
 #line 93
@@ -19833,7 +20176,7 @@ inline static void CC2420TimeSyncMessageP__TimeSyncAMSendMilli__sendDone(uint8_t
 #line 93
     default:
 #line 93
-      CC2420TimeSyncMessageP__TimeSyncAMSendMilli__default__sendDone(arg_0x4176aaf0, msg, error);
+      CC2420TimeSyncMessageP__TimeSyncAMSendMilli__default__sendDone(arg_0x41876af0, msg, error);
 #line 93
       break;
 #line 93
@@ -19848,9 +20191,9 @@ static inline void CC2420TimeSyncMessageP__TimeSyncAMSend32khz__default__sendDon
 }
 
 # 93 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TimeSyncAMSend.nc"
-inline static void CC2420TimeSyncMessageP__TimeSyncAMSend32khz__sendDone(uint8_t arg_0x4176fd98, message_t *msg, error_t error){
+inline static void CC2420TimeSyncMessageP__TimeSyncAMSend32khz__sendDone(uint8_t arg_0x4187bd98, message_t *msg, error_t error){
 #line 93
-    CC2420TimeSyncMessageP__TimeSyncAMSend32khz__default__sendDone(arg_0x4176fd98, msg, error);
+    CC2420TimeSyncMessageP__TimeSyncAMSend32khz__default__sendDone(arg_0x4187bd98, msg, error);
 #line 93
 }
 #line 93
@@ -19956,20 +20299,20 @@ static inline void /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__nextPacket(void )
   uint8_t i;
 
 #line 67
-  /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__current = (/*AMQueueP.AMQueueImplP*/AMQueueImplP__1__current + 1) % 4;
-  for (i = 0; i < 4; i++) {
+  /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__current = (/*AMQueueP.AMQueueImplP*/AMQueueImplP__1__current + 1) % 5;
+  for (i = 0; i < 5; i++) {
       if (/*AMQueueP.AMQueueImplP*/AMQueueImplP__1__queue[/*AMQueueP.AMQueueImplP*/AMQueueImplP__1__current].msg == (void *)0 || 
       /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__cancelMask[/*AMQueueP.AMQueueImplP*/AMQueueImplP__1__current / 8] & (1 << /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__current % 8)) 
         {
-          /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__current = (/*AMQueueP.AMQueueImplP*/AMQueueImplP__1__current + 1) % 4;
+          /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__current = (/*AMQueueP.AMQueueImplP*/AMQueueImplP__1__current + 1) % 5;
         }
       else {
           break;
         }
     }
-  if (i >= 4) {
+  if (i >= 5) {
 #line 78
-    /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__current = 4;
+    /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__current = 5;
     }
 }
 
@@ -20019,13 +20362,13 @@ inline static uint8_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__Packet__payloadL
 }
 #line 78
 # 80 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
-inline static error_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__AMSend__send(am_id_t arg_0x410c2490, am_addr_t addr, message_t * msg, uint8_t len){
+inline static error_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__AMSend__send(am_id_t arg_0x411aa490, am_addr_t addr, message_t * msg, uint8_t len){
 #line 80
   unsigned char __nesc_result;
 #line 80
 
 #line 80
-  __nesc_result = CC2420ActiveMessageP__AMSend__send(arg_0x410c2490, addr, msg, len);
+  __nesc_result = CC2420ActiveMessageP__AMSend__send(arg_0x411aa490, addr, msg, len);
 #line 80
 
 #line 80
@@ -20203,9 +20546,9 @@ static inline void CC2420ActiveMessageP__SendNotifier__default__aboutToSend(am_i
 }
 
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/SendNotifier.nc"
-inline static void CC2420ActiveMessageP__SendNotifier__aboutToSend(am_id_t arg_0x416d2a98, am_addr_t dest, message_t * msg){
+inline static void CC2420ActiveMessageP__SendNotifier__aboutToSend(am_id_t arg_0x41830a98, am_addr_t dest, message_t * msg){
 #line 59
-    CC2420ActiveMessageP__SendNotifier__default__aboutToSend(arg_0x416d2a98, dest, msg);
+    CC2420ActiveMessageP__SendNotifier__default__aboutToSend(arg_0x41830a98, dest, msg);
 #line 59
 }
 #line 59
@@ -20369,9 +20712,9 @@ message_t *msg)
 }
 
 # 95 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/RadioBackoff.nc"
-inline static void CC2420ActiveMessageP__RadioBackoff__requestCca(am_id_t arg_0x416d1148, message_t * msg){
+inline static void CC2420ActiveMessageP__RadioBackoff__requestCca(am_id_t arg_0x4182f148, message_t * msg){
 #line 95
-    CC2420ActiveMessageP__RadioBackoff__default__requestCca(arg_0x416d1148, msg);
+    CC2420ActiveMessageP__RadioBackoff__default__requestCca(arg_0x4182f148, msg);
 #line 95
 }
 #line 95
@@ -20917,9 +21260,9 @@ static inline void CC2420TinyosNetworkP__Resource__default__granted(uint8_t clie
 }
 
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
-inline static void CC2420TinyosNetworkP__Resource__granted(uint8_t arg_0x41680780){
+inline static void CC2420TinyosNetworkP__Resource__granted(uint8_t arg_0x417db780){
 #line 102
-  switch (arg_0x41680780) {
+  switch (arg_0x417db780) {
 #line 102
     case CC2420ActiveMessageC__CC2420_AM_SEND_ID:
 #line 102
@@ -20929,7 +21272,7 @@ inline static void CC2420TinyosNetworkP__Resource__granted(uint8_t arg_0x4168078
 #line 102
     default:
 #line 102
-      CC2420TinyosNetworkP__Resource__default__granted(arg_0x41680780);
+      CC2420TinyosNetworkP__Resource__default__granted(arg_0x417db780);
 #line 102
       break;
 #line 102
@@ -21082,13 +21425,13 @@ static inline message_t *CC2420TimeSyncMessageP__Snoop__default__receive(am_id_t
 }
 
 # 78 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Receive.nc"
-inline static message_t * CC2420TimeSyncMessageP__Snoop__receive(am_id_t arg_0x41764e30, message_t * msg, void * payload, uint8_t len){
+inline static message_t * CC2420TimeSyncMessageP__Snoop__receive(am_id_t arg_0x41870e30, message_t * msg, void * payload, uint8_t len){
 #line 78
   nx_struct message_t *__nesc_result;
 #line 78
 
 #line 78
-    __nesc_result = CC2420TimeSyncMessageP__Snoop__default__receive(arg_0x41764e30, msg, payload, len);
+    __nesc_result = CC2420TimeSyncMessageP__Snoop__default__receive(arg_0x41870e30, msg, payload, len);
 #line 78
 
 #line 78
@@ -21113,13 +21456,13 @@ static inline message_t *CC2420ActiveMessageP__Snoop__default__receive(am_id_t i
 }
 
 # 78 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Receive.nc"
-inline static message_t * CC2420ActiveMessageP__Snoop__receive(am_id_t arg_0x416d30a0, message_t * msg, void * payload, uint8_t len){
+inline static message_t * CC2420ActiveMessageP__Snoop__receive(am_id_t arg_0x418310a0, message_t * msg, void * payload, uint8_t len){
 #line 78
   nx_struct message_t *__nesc_result;
 #line 78
 
 #line 78
-  switch (arg_0x416d30a0) {
+  switch (arg_0x418310a0) {
 #line 78
     case 0x3D:
 #line 78
@@ -21129,7 +21472,7 @@ inline static message_t * CC2420ActiveMessageP__Snoop__receive(am_id_t arg_0x416
 #line 78
     default:
 #line 78
-      __nesc_result = CC2420ActiveMessageP__Snoop__default__receive(arg_0x416d30a0, msg, payload, len);
+      __nesc_result = CC2420ActiveMessageP__Snoop__default__receive(arg_0x418310a0, msg, payload, len);
 #line 78
       break;
 #line 78
@@ -21141,9 +21484,9 @@ inline static message_t * CC2420ActiveMessageP__Snoop__receive(am_id_t arg_0x416
 #line 78
 }
 #line 78
-# 36 "SettingsP.nc"
+# 27 "SettingsP.nc"
 static inline uint8_t *SettingsP__Settings__slotPerRound(void )
-#line 36
+#line 27
 {
   return &SettingsP__slot_per_round_ref;
 }
@@ -21163,9 +21506,9 @@ inline static uint8_t *TDMAControllerP__Settings__slotPerRound(void ){
 #line 26
 }
 #line 26
-# 27 "SettingsP.nc"
+# 18 "SettingsP.nc"
 static inline uint16_t *SettingsP__Settings__slotDuration(void )
-#line 27
+#line 18
 {
   return &SettingsP__slot_duration_ref;
 }
@@ -21230,9 +21573,9 @@ inline static error_t TDMAControllerP__SystemScheduler__start(uint8_t slot_no, u
 #line 15
 }
 #line 15
-# 213 "SlotSchedulerP.nc"
+# 223 "SlotSchedulerP.nc"
 static inline void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__syncSystemTime(uint32_t system_time)
-#line 213
+#line 223
 {
   /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__system_time_ref = system_time;
 }
@@ -21244,9 +21587,9 @@ inline static void TDMAControllerP__LocalScheduler__syncSystemTime(uint32_t syst
 #line 30
 }
 #line 30
-# 213 "SlotSchedulerP.nc"
+# 223 "SlotSchedulerP.nc"
 static inline void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__syncSystemTime(uint32_t system_time)
-#line 213
+#line 223
 {
   /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__system_time_ref = system_time;
 }
@@ -21258,6 +21601,21 @@ inline static void TDMAControllerP__SystemScheduler__syncSystemTime(uint32_t sys
 #line 30
 }
 #line 30
+# 130 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/SplitControl.nc"
+inline static error_t TDMAControllerP__RadioControl__stop(void ){
+#line 130
+  unsigned char __nesc_result;
+#line 130
+
+#line 130
+  __nesc_result = CC2420CsmaP__SplitControl__stop();
+#line 130
+
+#line 130
+  return __nesc_result;
+#line 130
+}
+#line 130
 # 64 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Counter.nc"
 inline static /*HilTimerMilliC.CounterToLocalTimeC*/CounterToLocalTimeC__0__Counter__size_type /*HilTimerMilliC.CounterToLocalTimeC*/CounterToLocalTimeC__0__Counter__get(void ){
 #line 64
@@ -21430,40 +21788,46 @@ inline static bool TDMAControllerP__TSPacket__isValid(message_t *msg){
 #line 48
 }
 #line 48
-# 281 "TDMAControllerP.nc"
+# 339 "TDMAControllerP.nc"
 static inline message_t *TDMAControllerP__TSReceive__receive(message_t *msg, void *payload, uint8_t len)
-#line 281
+#line 339
 {
   uint32_t ref_time;
 
-#line 283
+#line 341
   if (TDMAControllerP__is_sink) {
     return msg;
     }
-#line 285
+#line 343
   TDMAControllerP__Logger__log("TS received", log_lvl_info);
   if (len != sizeof(timesync_msg_t )) {
     return msg;
     }
-#line 288
+#line 346
   if (!TDMAControllerP__TSPacket__isValid(msg)) {
     return msg;
     }
-#line 290
+#line 348
   TDMAControllerP__missed_sync_count = 0;
   TDMAControllerP__timesync_msg = (timesync_msg_t *)payload;
   ref_time = TDMAControllerP__TSPacket__eventTime(msg);
-  TDMAControllerP__setup_countdown = __nesc_ntoh_uint8(TDMAControllerP__timesync_msg->remain_round.nxdata);
-
-
-
-
+  TDMAControllerP__current_round_idx = __nesc_ntoh_uint8(TDMAControllerP__timesync_msg->remain_round.nxdata);
+  if (__nesc_ntoh_uint8(TDMAControllerP__timesync_msg->group_id.nxdata) != 0x00) {
+      if (TDMAControllerP__off_time) {
+          TDMAControllerP__RadioControl__stop();
+          if (TDMAControllerP__count_off_time >= 5) {
+              TDMAControllerP__count_off_time = 0;
+              TDMAControllerP__off_time = FALSE;
+            }
+          TDMAControllerP__count_off_time++;
+        }
+    }
   if (!TDMAControllerP__sync_mode) {
-      if (__nesc_ntoh_uint8(TDMAControllerP__timesync_msg->other_flag.nxdata) & (1 << 3)) {
+      if (__nesc_ntoh_uint8(TDMAControllerP__timesync_msg->group_id.nxdata) == 0x00) {
           TDMAControllerP__SystemScheduler__syncSystemTime(ref_time);
         }
       else 
-#line 301
+#line 365
         {
           TDMAControllerP__LocalScheduler__syncSystemTime(ref_time);
         }
@@ -21472,30 +21836,30 @@ static inline message_t *TDMAControllerP__TSReceive__receive(message_t *msg, voi
 
   if (TDMAControllerP__is_head) {
 
-      if (__nesc_ntoh_uint8(TDMAControllerP__timesync_msg->other_flag.nxdata) & (1 << 3)) {
+      if (__nesc_ntoh_uint8(TDMAControllerP__timesync_msg->group_id.nxdata) == 0x00) {
           TDMAControllerP__head_addr = TDMAControllerP__AMPacket__source(msg);
-          TDMAControllerP__Logger__log("System scheduler start for head", log_lvl_dbg);
+          TDMAControllerP__Logger__log("System scheduler start for head", log_lvl_info);
           TDMAControllerP__SystemScheduler__start(SLOT_REPEAT, ref_time, 0, TDMAControllerP__system_sleep_slots, TDMAControllerP__Settings__slotDuration(), TDMAControllerP__Settings__slotPerRound());
           TDMAControllerP__sync_mode = FALSE;
         }
       else 
-#line 314
+#line 378
         {
           TDMAControllerP__Logger__log("System scheduler did not start", log_lvl_dbg);
         }
     }
   else 
-#line 317
+#line 381
     {
 
-      if ((__nesc_ntoh_uint8(TDMAControllerP__timesync_msg->other_flag.nxdata) & (1 << 3)) == 0) {
+      if (__nesc_ntoh_uint8(TDMAControllerP__timesync_msg->group_id.nxdata) != 0x00) {
           TDMAControllerP__head_addr = TDMAControllerP__AMPacket__source(msg);
-          TDMAControllerP__Logger__log("Local scheduler start for head", log_lvl_dbg);
+          TDMAControllerP__Logger__log("Local scheduler start for node", log_lvl_info);
           TDMAControllerP__LocalScheduler__start(SLOT_REPEAT, ref_time, 0, TDMAControllerP__system_sleep_slots, TDMAControllerP__Settings__slotDuration(), TDMAControllerP__Settings__slotPerRound());
           TDMAControllerP__sync_mode = FALSE;
         }
       else 
-#line 324
+#line 388
         {
           TDMAControllerP__Logger__log("Local scheduler did not start", log_lvl_dbg);
         }
@@ -21512,13 +21876,13 @@ static inline message_t *CC2420TimeSyncMessageP__Receive__default__receive(am_id
 }
 
 # 78 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Receive.nc"
-inline static message_t * CC2420TimeSyncMessageP__Receive__receive(am_id_t arg_0x41764798, message_t * msg, void * payload, uint8_t len){
+inline static message_t * CC2420TimeSyncMessageP__Receive__receive(am_id_t arg_0x41870798, message_t * msg, void * payload, uint8_t len){
 #line 78
   nx_struct message_t *__nesc_result;
 #line 78
 
 #line 78
-  switch (arg_0x41764798) {
+  switch (arg_0x41870798) {
 #line 78
     case RADIO_TIMESYNC_MSG:
 #line 78
@@ -21528,7 +21892,7 @@ inline static message_t * CC2420TimeSyncMessageP__Receive__receive(am_id_t arg_0
 #line 78
     default:
 #line 78
-      __nesc_result = CC2420TimeSyncMessageP__Receive__default__receive(arg_0x41764798, msg, payload, len);
+      __nesc_result = CC2420TimeSyncMessageP__Receive__default__receive(arg_0x41870798, msg, payload, len);
 #line 78
       break;
 #line 78
@@ -21604,72 +21968,6 @@ inline static error_t TDMAControllerP__JoinAnsSend__send(am_addr_t addr, message
 #line 80
 }
 #line 80
-# 125 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
-inline static void * CC2420ActiveMessageP__SubSend__getPayload(message_t * msg, uint8_t len){
-#line 125
-  void *__nesc_result;
-#line 125
-
-#line 125
-  __nesc_result = CC2420TinyosNetworkP__ActiveSend__getPayload(msg, len);
-#line 125
-
-#line 125
-  return __nesc_result;
-#line 125
-}
-#line 125
-# 206 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420ActiveMessageP.nc"
-static inline void *CC2420ActiveMessageP__Packet__getPayload(message_t *msg, uint8_t len)
-#line 206
-{
-  return CC2420ActiveMessageP__SubSend__getPayload(msg, len);
-}
-
-#line 130
-static inline void *CC2420ActiveMessageP__AMSend__getPayload(am_id_t id, message_t *m, uint8_t len)
-#line 130
-{
-  return CC2420ActiveMessageP__Packet__getPayload(m, len);
-}
-
-# 135 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
-inline static void * /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__AMSend__getPayload(am_id_t arg_0x410c2490, message_t * msg, uint8_t len){
-#line 135
-  void *__nesc_result;
-#line 135
-
-#line 135
-  __nesc_result = CC2420ActiveMessageP__AMSend__getPayload(arg_0x410c2490, msg, len);
-#line 135
-
-#line 135
-  return __nesc_result;
-#line 135
-}
-#line 135
-# 211 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/AMQueueImplP.nc"
-static inline void */*AMQueueP.AMQueueImplP*/AMQueueImplP__1__Send__getPayload(uint8_t id, message_t *m, uint8_t len)
-#line 211
-{
-  return /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__AMSend__getPayload(0, m, len);
-}
-
-# 125 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
-inline static void * /*TDMAControllerC.JoinAnsSender.SenderC.AMQueueEntryP*/AMQueueEntryP__3__Send__getPayload(message_t * msg, uint8_t len){
-#line 125
-  void *__nesc_result;
-#line 125
-
-#line 125
-  __nesc_result = /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__Send__getPayload(2U, msg, len);
-#line 125
-
-#line 125
-  return __nesc_result;
-#line 125
-}
-#line 125
 # 73 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/AMQueueEntryP.nc"
 static inline void */*TDMAControllerC.JoinAnsSender.SenderC.AMQueueEntryP*/AMQueueEntryP__3__AMSend__getPayload(message_t *m, uint8_t len)
 #line 73
@@ -21692,9 +21990,9 @@ inline static void * TDMAControllerP__JoinAnsSend__getPayload(message_t * msg, u
 #line 135
 }
 #line 135
-# 474 "TDMAControllerP.nc"
+# 588 "TDMAControllerP.nc"
 static inline void TDMAControllerP__sendJoinAns(am_addr_t client_addr, uint8_t slot)
-#line 474
+#line 588
 {
   TDMAControllerP__join_ans_msg = (join_ans_msg_t *)TDMAControllerP__JoinAnsSend__getPayload(&TDMAControllerP__join_ans_packet, sizeof(join_ans_msg_t ));
   __nesc_hton_uint8(TDMAControllerP__join_ans_msg->slot.nxdata, slot);
@@ -21702,18 +22000,21 @@ static inline void TDMAControllerP__sendJoinAns(am_addr_t client_addr, uint8_t s
   TDMAControllerP__JoinAnsSend__send(client_addr, &TDMAControllerP__join_ans_packet, sizeof(join_ans_msg_t ));
 }
 
-
-
-
-
-
-
 static inline uint8_t TDMAControllerP__allocateNewSlot(am_addr_t client_addr)
-#line 487
+#line 595
 {
   uint8_t slot = 2;
 
-  for (slot; slot < TDMAControllerP__Settings__slotPerRound(); slot++) {
+#line 597
+  for (slot; slot < *TDMAControllerP__Settings__slotPerRound(); slot++) {
+      if (TDMAControllerP__slot_map[slot] == client_addr) {
+          TDMAControllerP__Logger__logValue("Slot", slot, FALSE, log_lvl_dbg);
+          return slot;
+        }
+    }
+
+  slot = 2;
+  for (slot; slot < *TDMAControllerP__Settings__slotPerRound(); slot++) {
       if (TDMAControllerP__slot_map[slot] == 0x0000) {
           TDMAControllerP__slot_map[slot] = client_addr;
           return slot;
@@ -21723,22 +22024,22 @@ static inline uint8_t TDMAControllerP__allocateNewSlot(am_addr_t client_addr)
 }
 
 static inline message_t *TDMAControllerP__JoinReqReceive__receive(message_t *msg, void *payload, uint8_t len)
-#line 499
+#line 614
 {
 
   am_addr_t client_addr;
   uint8_t client_future_slot;
 
-#line 503
+#line 618
   if (TDMAControllerP__join_lock) {
     return msg;
     }
-#line 505
+#line 620
   TDMAControllerP__join_lock = TRUE;
   if (len != sizeof(join_req_msg_t )) {
     return msg;
     }
-#line 508
+#line 623
   client_addr = TDMAControllerP__AMPacket__source(msg);
   client_future_slot = TDMAControllerP__allocateNewSlot(client_addr);
   TDMAControllerP__Logger__logValue("Client", client_addr, TRUE, log_lvl_info);
@@ -21747,6 +22048,21 @@ static inline message_t *TDMAControllerP__JoinReqReceive__receive(message_t *msg
   return msg;
 }
 
+# 36 "SlotScheduler.nc"
+inline static error_t TDMAControllerP__LocalScheduler__updateSlotMap(uint8_t new_slot_pos, update_type_t type){
+#line 36
+  unsigned char __nesc_result;
+#line 36
+
+#line 36
+  __nesc_result = /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__updateSlotMap(new_slot_pos, type);
+#line 36
+
+#line 36
+  return __nesc_result;
+#line 36
+}
+#line 36
 # 57 "SlotSchedulerP.nc"
 static inline void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__reset(uint8_t initial_slot)
 #line 57
@@ -21763,9 +22079,9 @@ inline static void TDMAControllerP__LocalScheduler__reset(uint8_t initial_slot){
 #line 28
 }
 #line 28
-# 185 "SlotSchedulerP.nc"
+# 195 "SlotSchedulerP.nc"
 static inline bool /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__isSlotActive(void )
-#line 185
+#line 195
 {
   return /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__is_slot_start;
 }
@@ -21785,7 +22101,29 @@ inline static bool TDMAControllerP__LocalScheduler__isSlotActive(void ){
 #line 34
 }
 #line 34
-#line 31
+# 9 "SettingsP.nc"
+static inline uint8_t *SettingsP__Settings__sleepSlotPerRound(void )
+#line 9
+{
+  return &SettingsP__sleep_slot_per_round_ref;
+}
+
+# 18 "Settings.nc"
+inline static uint8_t *TDMAControllerP__Settings__sleepSlotPerRound(void ){
+#line 18
+  unsigned char *__nesc_result;
+#line 18
+
+#line 18
+  __nesc_result = SettingsP__Settings__sleepSlotPerRound();
+#line 18
+
+#line 18
+  return __nesc_result;
+#line 18
+}
+#line 18
+# 31 "SlotScheduler.nc"
 inline static uint32_t *TDMAControllerP__SystemScheduler__getSystemTime(void ){
 #line 31
   unsigned long *__nesc_result;
@@ -21800,6 +22138,25 @@ inline static uint32_t *TDMAControllerP__SystemScheduler__getSystemTime(void ){
 #line 31
 }
 #line 31
+
+
+
+
+
+inline static error_t TDMAControllerP__SystemScheduler__updateSlotMap(uint8_t new_slot_pos, update_type_t type){
+#line 36
+  unsigned char __nesc_result;
+#line 36
+
+#line 36
+  __nesc_result = /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__updateSlotMap(new_slot_pos, type);
+#line 36
+
+#line 36
+  return __nesc_result;
+#line 36
+}
+#line 36
 # 57 "SlotSchedulerP.nc"
 static inline void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__reset(uint8_t initial_slot)
 #line 57
@@ -21816,9 +22173,9 @@ inline static void TDMAControllerP__SystemScheduler__reset(uint8_t initial_slot)
 #line 28
 }
 #line 28
-# 185 "SlotSchedulerP.nc"
+# 195 "SlotSchedulerP.nc"
 static inline bool /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__isSlotActive(void )
-#line 185
+#line 195
 {
   return /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__is_slot_start;
 }
@@ -21838,28 +22195,32 @@ inline static bool TDMAControllerP__SystemScheduler__isSlotActive(void ){
 #line 34
 }
 #line 34
-# 349 "TDMAControllerP.nc"
+# 419 "TDMAControllerP.nc"
 static inline message_t *TDMAControllerP__JoinAnsReceive__receive(message_t *msg, void *payload, uint8_t len)
-#line 349
+#line 419
 {
   if (len != sizeof(join_ans_msg_t )) {
     return msg;
     }
-#line 352
+#line 422
   TDMAControllerP__join_ans_msg = (join_ans_msg_t *)payload;
   TDMAControllerP__Logger__logValue("Slot assigned", __nesc_ntoh_uint8(TDMAControllerP__join_ans_msg->slot.nxdata), FALSE, log_lvl_info);
+  TDMAControllerP__assigned_slot = __nesc_ntoh_uint8(TDMAControllerP__join_ans_msg->slot.nxdata);
   if (__nesc_ntoh_uint8(TDMAControllerP__join_ans_msg->slot.nxdata) == 0xFD) {
 
+      TDMAControllerP__TDMAController__stop();
       return msg;
     }
   if (TDMAControllerP__SystemScheduler__isSlotActive()) {
       TDMAControllerP__joined = TRUE;
       TDMAControllerP__SystemScheduler__reset(__nesc_ntoh_uint8(TDMAControllerP__join_ans_msg->slot.nxdata));
-      TDMAControllerP__LocalScheduler__start(SLOT_REPEAT, *TDMAControllerP__SystemScheduler__getSystemTime(), (TDMAControllerP__system_sleep_slots - *TDMAControllerP__Settings__slotPerRound()) * *TDMAControllerP__Settings__slotDuration(), TDMAControllerP__system_sleep_slots, TDMAControllerP__Settings__slotDuration(), TDMAControllerP__Settings__slotPerRound());
+      TDMAControllerP__SystemScheduler__updateSlotMap(ST_JOIN, ut_delete);
+      TDMAControllerP__LocalScheduler__start(SLOT_REPEAT, *TDMAControllerP__SystemScheduler__getSystemTime(), (TDMAControllerP__system_sleep_slots - *TDMAControllerP__Settings__sleepSlotPerRound()) * *TDMAControllerP__Settings__slotDuration(), TDMAControllerP__system_sleep_slots, TDMAControllerP__Settings__slotDuration(), TDMAControllerP__Settings__slotPerRound());
     }
   if (TDMAControllerP__LocalScheduler__isSlotActive()) {
       TDMAControllerP__joined = TRUE;
       TDMAControllerP__LocalScheduler__reset(__nesc_ntoh_uint8(TDMAControllerP__join_ans_msg->slot.nxdata));
+      TDMAControllerP__LocalScheduler__updateSlotMap(ST_JOIN, ut_delete);
     }
   return msg;
 }
@@ -21899,16 +22260,211 @@ inline static void TDMAControllerP__ReadData__readMsg(data_pkg_msg_t *msg){
 #line 5
 }
 #line 5
-# 336 "TDMAControllerP.nc"
+# 205 "SlotSchedulerP.nc"
+static inline uint8_t /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__currentSlot(void )
+#line 205
+{
+  return (/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SystemTimer__getNow() - /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__system_time_ref) / */*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__duration_local;
+}
+
+# 32 "SlotScheduler.nc"
+inline static uint8_t TDMAControllerP__LocalScheduler__currentSlot(void ){
+#line 32
+  unsigned char __nesc_result;
+#line 32
+
+#line 32
+  __nesc_result = /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__currentSlot();
+#line 32
+
+#line 32
+  return __nesc_result;
+#line 32
+}
+#line 32
+# 64 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Counter.nc"
+inline static /*HilTimerMilliC.AlarmMilli32C.Transform*/TransformAlarmC__0__Counter__size_type /*HilTimerMilliC.AlarmMilli32C.Transform*/TransformAlarmC__0__Counter__get(void ){
+#line 64
+  unsigned long __nesc_result;
+#line 64
+
+#line 64
+  __nesc_result = /*CounterMilli32C.Transform*/TransformCounterC__0__Counter__get();
+#line 64
+
+#line 64
+  return __nesc_result;
+#line 64
+}
+#line 64
+# 86 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/TransformAlarmC.nc"
+static inline /*HilTimerMilliC.AlarmMilli32C.Transform*/TransformAlarmC__0__to_size_type /*HilTimerMilliC.AlarmMilli32C.Transform*/TransformAlarmC__0__Alarm__getNow(void )
+{
+  return /*HilTimerMilliC.AlarmMilli32C.Transform*/TransformAlarmC__0__Counter__get();
+}
+
+# 109 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Alarm.nc"
+inline static /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC__0__Alarm__size_type /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC__0__Alarm__getNow(void ){
+#line 109
+  unsigned long __nesc_result;
+#line 109
+
+#line 109
+  __nesc_result = /*HilTimerMilliC.AlarmMilli32C.Transform*/TransformAlarmC__0__Alarm__getNow();
+#line 109
+
+#line 109
+  return __nesc_result;
+#line 109
+}
+#line 109
+# 96 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/AlarmToTimerC.nc"
+static inline uint32_t /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC__0__Timer__getNow(void )
+{
+#line 97
+  return /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC__0__Alarm__getNow();
+}
+
+# 136 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Timer.nc"
+inline static uint32_t /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__getNow(void ){
+#line 136
+  unsigned long __nesc_result;
+#line 136
+
+#line 136
+  __nesc_result = /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC__0__Timer__getNow();
+#line 136
+
+#line 136
+  return __nesc_result;
+#line 136
+}
+#line 136
+# 189 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/VirtualizeTimerC.nc"
+static inline uint32_t /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__getNow(uint8_t num)
+{
+  return /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__getNow();
+}
+
+# 136 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Timer.nc"
+inline static uint32_t /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SystemTimer__getNow(void ){
+#line 136
+  unsigned long __nesc_result;
+#line 136
+
+#line 136
+  __nesc_result = /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__getNow(10U);
+#line 136
+
+#line 136
+  return __nesc_result;
+#line 136
+}
+#line 136
+# 205 "SlotSchedulerP.nc"
+static inline uint8_t /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__currentSlot(void )
+#line 205
+{
+  return (/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SystemTimer__getNow() - /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__system_time_ref) / */*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__duration_local;
+}
+
+# 32 "SlotScheduler.nc"
+inline static uint8_t TDMAControllerP__SystemScheduler__currentSlot(void ){
+#line 32
+  unsigned char __nesc_result;
+#line 32
+
+#line 32
+  __nesc_result = /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__currentSlot();
+#line 32
+
+#line 32
+  return __nesc_result;
+#line 32
+}
+#line 32
+# 400 "TDMAControllerP.nc"
 static inline message_t *TDMAControllerP__DataPkgReceive__receive(message_t *msg, void *payload, uint8_t len)
-#line 336
+#line 400
 {
 
+  if (TDMAControllerP__SystemScheduler__isSlotActive()) {
+      TDMAControllerP__missed_pkg_count[TDMAControllerP__SystemScheduler__currentSlot()] = 0;
+    }
+  else {
+#line 405
+    if (TDMAControllerP__LocalScheduler__isSlotActive()) {
+        TDMAControllerP__missed_pkg_count[TDMAControllerP__LocalScheduler__currentSlot()] = 0;
+      }
+    }
+#line 408
   if (len != sizeof(data_pkg_msg_t )) {
     return msg;
     }
-#line 340
+#line 410
   TDMAControllerP__ReadData__readMsg((data_pkg_msg_t *)payload);
+  return msg;
+}
+
+#line 677
+static inline message_t *TDMAControllerP__AssignmentReceive__receive(message_t *msg, void *payload, uint8_t len)
+#line 677
+{
+  uint8_t tmp_idx;
+  uint8_t *tmp_ptr;
+
+#line 680
+  if (TDMAControllerP__is_sink) {
+    return msg;
+    }
+#line 682
+  if (TDMAControllerP__is_head) {
+      TDMAControllerP__sink_to_head_assignment_msg = (sink_to_head_assignment_msg_t *)payload;
+      TDMAControllerP__receive_time++;
+      switch (TDMAControllerP__receive_time) {
+          case 1: 
+            tmp_ptr = (uint8_t *)&TDMAControllerP__structured_sink_to_head_assignment_msg;
+          for (tmp_idx = 0; tmp_idx < len; tmp_idx++) {
+              tmp_ptr[tmp_idx] = __nesc_ntoh_uint8(TDMAControllerP__sink_to_head_assignment_msg->data[tmp_idx].nxdata);
+            }
+          TDMAControllerP__group_id = TDMAControllerP__structured_sink_to_head_assignment_msg.head_new_group_id;
+          break;
+          case 2: 
+            tmp_ptr = (uint8_t *)&TDMAControllerP__structured_sink_to_head_assignment_msg;
+          tmp_ptr += len;
+          for (tmp_idx = 0; tmp_idx < len; tmp_idx++) {
+              tmp_ptr[tmp_idx] = __nesc_ntoh_uint8(TDMAControllerP__sink_to_head_assignment_msg->data[tmp_idx].nxdata);
+            }
+          TDMAControllerP__group_id = TDMAControllerP__structured_sink_to_head_assignment_msg.head_new_group_id;
+          TDMAControllerP__receive_time = 0;
+          break;
+          default: 
+            TDMAControllerP__receive_time = 0;
+        }
+    }
+  else 
+#line 705
+    {
+      TDMAControllerP__Logger__log("AssignmentReceive", log_lvl_err);
+      if (len != sizeof(head_to_node_assignment_msg_t )) {
+        return msg;
+        }
+#line 709
+      TDMAControllerP__Logger__log("OK", log_lvl_err);
+      TDMAControllerP__head_to_node_assignment_msg = (head_to_node_assignment_msg_t *)payload;
+      TDMAControllerP__group_id = __nesc_ntoh_uint8(TDMAControllerP__head_to_node_assignment_msg->new_group_id.nxdata);
+      TDMAControllerP__off_time = __nesc_ntoh_int8(TDMAControllerP__head_to_node_assignment_msg->on_off.nxdata);
+      TDMAControllerP__rested = !TDMAControllerP__off_time;
+      if (TDMAControllerP__off_time) {
+        TDMAControllerP__Logger__log("No need", log_lvl_err);
+        }
+      else {
+#line 717
+        TDMAControllerP__Logger__log("Need off", log_lvl_err);
+        }
+#line 718
+      TDMAControllerP__is_new_head = __nesc_ntoh_int8(TDMAControllerP__head_to_node_assignment_msg->is_new_head.nxdata);
+    }
   return msg;
 }
 
@@ -21920,13 +22476,13 @@ static inline message_t *CC2420ActiveMessageP__Receive__default__receive(am_id_t
 }
 
 # 78 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Receive.nc"
-inline static message_t * CC2420ActiveMessageP__Receive__receive(am_id_t arg_0x416d49f0, message_t * msg, void * payload, uint8_t len){
+inline static message_t * CC2420ActiveMessageP__Receive__receive(am_id_t arg_0x418329f0, message_t * msg, void * payload, uint8_t len){
 #line 78
   nx_struct message_t *__nesc_result;
 #line 78
 
 #line 78
-  switch (arg_0x416d49f0) {
+  switch (arg_0x418329f0) {
 #line 78
     case 0x3D:
 #line 78
@@ -21952,9 +22508,15 @@ inline static message_t * CC2420ActiveMessageP__Receive__receive(am_id_t arg_0x4
 #line 78
       break;
 #line 78
+    case 204:
+#line 78
+      __nesc_result = TDMAControllerP__AssignmentReceive__receive(msg, payload, len);
+#line 78
+      break;
+#line 78
     default:
 #line 78
-      __nesc_result = CC2420ActiveMessageP__Receive__default__receive(arg_0x416d49f0, msg, payload, len);
+      __nesc_result = CC2420ActiveMessageP__Receive__default__receive(arg_0x418329f0, msg, payload, len);
 #line 78
       break;
 #line 78
@@ -22459,13 +23021,104 @@ static inline void CC2420ReceiveP__receiveDone_task__runTask(void )
   CC2420ReceiveP__waitForNextPacket();
 }
 
-# 10 "Logger.nc"
-inline static void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__Logger__logValue(unsigned char *msg, uint32_t value, bool to_hex, log_level_t lvl){
-#line 10
-  LoggerP__Logger__logValue(msg, value, to_hex, lvl);
-#line 10
+# 13 "TDMAController.nc"
+inline static void TDMAControllerP__TDMAController__stopDone(error_t err){
+#line 13
+  MainExecP__TDMAController__stopDone(err);
+#line 13
 }
-#line 10
+#line 13
+# 215 "SlotSchedulerP.nc"
+static inline bool /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__isRunning(void )
+#line 215
+{
+  return /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__is_running;
+}
+
+# 29 "SlotScheduler.nc"
+inline static bool TDMAControllerP__LocalScheduler__isRunning(void ){
+#line 29
+  unsigned char __nesc_result;
+#line 29
+
+#line 29
+  __nesc_result = /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__isRunning();
+#line 29
+
+#line 29
+  return __nesc_result;
+#line 29
+}
+#line 29
+# 478 "TDMAControllerP.nc"
+static inline void TDMAControllerP__SystemScheduler__stopDone(error_t err)
+#line 478
+{
+
+  if (!TDMAControllerP__LocalScheduler__isRunning() && (err == SUCCESS || err == EALREADY)) {
+      TDMAControllerP__TDMAController__stopDone(SUCCESS);
+    }
+}
+
+# 27 "SlotScheduler.nc"
+inline static void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__stopDone(error_t err){
+#line 27
+  TDMAControllerP__SystemScheduler__stopDone(err);
+#line 27
+}
+#line 27
+# 164 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/VirtualizeTimerC.nc"
+static inline void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__stop(uint8_t num)
+{
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__m_timers[num].isrunning = FALSE;
+}
+
+# 78 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Timer.nc"
+inline static void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotTimer__stop(void ){
+#line 78
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__stop(9U);
+#line 78
+}
+#line 78
+inline static void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SystemTimer__stop(void ){
+#line 78
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__stop(10U);
+#line 78
+}
+#line 78
+# 108 "SlotSchedulerP.nc"
+static inline error_t /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__stop(void )
+#line 108
+{
+  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__is_active = FALSE;
+  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__is_running = FALSE;
+  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__is_slot_start = FALSE;
+  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__system_time_ref = 0x0;
+  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__round_active_time = 0x0;
+  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__round_offline_time = 0x0;
+  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__slot_map = 0x0001;
+  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__last_slot = SLOT_INACTIVE;
+  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SystemTimer__stop();
+  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotTimer__stop();
+  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__stopDone(SUCCESS);
+  return SUCCESS;
+}
+
+# 24 "SlotScheduler.nc"
+inline static error_t TDMAControllerP__SystemScheduler__stop(void ){
+#line 24
+  unsigned char __nesc_result;
+#line 24
+
+#line 24
+  __nesc_result = /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__stop();
+#line 24
+
+#line 24
+  return __nesc_result;
+#line 24
+}
+#line 24
 # 67 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TaskBasic.nc"
 inline static error_t /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__updateFromTimer__postTask(void ){
 #line 67
@@ -22481,6 +23134,218 @@ inline static error_t /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__up
 #line 67
 }
 #line 67
+# 45 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/State.nc"
+inline static error_t CC2420CsmaP__SplitControlState__requestState(uint8_t reqState){
+#line 45
+  unsigned char __nesc_result;
+#line 45
+
+#line 45
+  __nesc_result = StateImplP__State__requestState(1U, reqState);
+#line 45
+
+#line 45
+  return __nesc_result;
+#line 45
+}
+#line 45
+# 66 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Alarm.nc"
+inline static void CC2420ControlP__StartupTimer__start(CC2420ControlP__StartupTimer__size_type dt){
+#line 66
+  /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform*/TransformAlarmC__2__Alarm__start(dt);
+#line 66
+}
+#line 66
+# 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/pins/HplMsp430GeneralIORenP.nc"
+static inline void /*HplMsp430GeneralIOC.P45*/HplMsp430GeneralIORenP__29__IO__set(void )
+#line 48
+{
+#line 48
+  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
+#line 48
+    * (volatile uint8_t * )29U |= 0x01 << 5;
+#line 48
+    __nesc_atomic_end(__nesc_atomic); }
+}
+
+# 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/pins/HplMsp430GeneralIO.nc"
+inline static void /*HplCC2420PinsC.VRENM*/Msp430GpioC__12__HplGeneralIO__set(void ){
+#line 48
+  /*HplMsp430GeneralIOC.P45*/HplMsp430GeneralIORenP__29__IO__set();
+#line 48
+}
+#line 48
+# 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/pins/Msp430GpioC.nc"
+static inline void /*HplCC2420PinsC.VRENM*/Msp430GpioC__12__GeneralIO__set(void )
+#line 48
+{
+#line 48
+  /*HplCC2420PinsC.VRENM*/Msp430GpioC__12__HplGeneralIO__set();
+}
+
+# 40 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/GeneralIO.nc"
+inline static void CC2420ControlP__VREN__set(void ){
+#line 40
+  /*HplCC2420PinsC.VRENM*/Msp430GpioC__12__GeneralIO__set();
+#line 40
+}
+#line 40
+# 204 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/control/CC2420ControlP.nc"
+static inline error_t CC2420ControlP__CC2420Power__startVReg(void )
+#line 204
+{
+  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
+#line 205
+    {
+      if (CC2420ControlP__m_state != CC2420ControlP__S_VREG_STOPPED) {
+          {
+            unsigned char __nesc_temp = 
+#line 207
+            FAIL;
+
+            {
+#line 207
+              __nesc_atomic_end(__nesc_atomic); 
+#line 207
+              return __nesc_temp;
+            }
+          }
+        }
+#line 209
+      CC2420ControlP__m_state = CC2420ControlP__S_VREG_STARTING;
+    }
+#line 210
+    __nesc_atomic_end(__nesc_atomic); }
+  CC2420ControlP__VREN__set();
+  CC2420ControlP__StartupTimer__start(CC2420_TIME_VREN);
+  return SUCCESS;
+}
+
+# 51 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/CC2420Power.nc"
+inline static error_t CC2420CsmaP__CC2420Power__startVReg(void ){
+#line 51
+  unsigned char __nesc_result;
+#line 51
+
+#line 51
+  __nesc_result = CC2420ControlP__CC2420Power__startVReg();
+#line 51
+
+#line 51
+  return __nesc_result;
+#line 51
+}
+#line 51
+# 125 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
+inline static void * CC2420ActiveMessageP__SubSend__getPayload(message_t * msg, uint8_t len){
+#line 125
+  void *__nesc_result;
+#line 125
+
+#line 125
+  __nesc_result = CC2420TinyosNetworkP__ActiveSend__getPayload(msg, len);
+#line 125
+
+#line 125
+  return __nesc_result;
+#line 125
+}
+#line 125
+# 206 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420ActiveMessageP.nc"
+static inline void *CC2420ActiveMessageP__Packet__getPayload(message_t *msg, uint8_t len)
+#line 206
+{
+  return CC2420ActiveMessageP__SubSend__getPayload(msg, len);
+}
+
+#line 130
+static inline void *CC2420ActiveMessageP__AMSend__getPayload(am_id_t id, message_t *m, uint8_t len)
+#line 130
+{
+  return CC2420ActiveMessageP__Packet__getPayload(m, len);
+}
+
+# 135 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
+inline static void * /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__AMSend__getPayload(am_id_t arg_0x411aa490, message_t * msg, uint8_t len){
+#line 135
+  void *__nesc_result;
+#line 135
+
+#line 135
+  __nesc_result = CC2420ActiveMessageP__AMSend__getPayload(arg_0x411aa490, msg, len);
+#line 135
+
+#line 135
+  return __nesc_result;
+#line 135
+}
+#line 135
+# 211 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/AMQueueImplP.nc"
+static inline void */*AMQueueP.AMQueueImplP*/AMQueueImplP__1__Send__getPayload(uint8_t id, message_t *m, uint8_t len)
+#line 211
+{
+  return /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__AMSend__getPayload(0, m, len);
+}
+
+# 125 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
+inline static void * /*TDMAControllerC.JoinReqSender.SenderC.AMQueueEntryP*/AMQueueEntryP__2__Send__getPayload(message_t * msg, uint8_t len){
+#line 125
+  void *__nesc_result;
+#line 125
+
+#line 125
+  __nesc_result = /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__Send__getPayload(1U, msg, len);
+#line 125
+
+#line 125
+  return __nesc_result;
+#line 125
+}
+#line 125
+# 73 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/AMQueueEntryP.nc"
+static inline void */*TDMAControllerC.JoinReqSender.SenderC.AMQueueEntryP*/AMQueueEntryP__2__AMSend__getPayload(message_t *m, uint8_t len)
+#line 73
+{
+  return /*TDMAControllerC.JoinReqSender.SenderC.AMQueueEntryP*/AMQueueEntryP__2__Send__getPayload(m, len);
+}
+
+# 135 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
+inline static void * TDMAControllerP__JoinReqSend__getPayload(message_t * msg, uint8_t len){
+#line 135
+  void *__nesc_result;
+#line 135
+
+#line 135
+  __nesc_result = /*TDMAControllerC.JoinReqSender.SenderC.AMQueueEntryP*/AMQueueEntryP__2__AMSend__getPayload(msg, len);
+#line 135
+
+#line 135
+  return __nesc_result;
+#line 135
+}
+#line 135
+# 73 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/AMQueueEntryP.nc"
+static inline void */*TDMAControllerC.DataPkgSender.SenderC.AMQueueEntryP*/AMQueueEntryP__4__AMSend__getPayload(message_t *m, uint8_t len)
+#line 73
+{
+  return /*TDMAControllerC.DataPkgSender.SenderC.AMQueueEntryP*/AMQueueEntryP__4__Send__getPayload(m, len);
+}
+
+# 135 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
+inline static void * TDMAControllerP__DataPkgSend__getPayload(message_t * msg, uint8_t len){
+#line 135
+  void *__nesc_result;
+#line 135
+
+#line 135
+  __nesc_result = /*TDMAControllerC.DataPkgSender.SenderC.AMQueueEntryP*/AMQueueEntryP__4__AMSend__getPayload(msg, len);
+#line 135
+
+#line 135
+  return __nesc_result;
+#line 135
+}
+#line 135
 # 14 "TDMAController.nc"
 inline static void TDMAControllerP__TDMAController__newRound(tdma_round_type_t type){
 #line 14
@@ -22488,9 +23353,9 @@ inline static void TDMAControllerP__TDMAController__newRound(tdma_round_type_t t
 #line 14
 }
 #line 14
-# 370 "TDMAControllerP.nc"
+# 465 "TDMAControllerP.nc"
 static inline bool TDMAControllerP__TDMAController__isSink(void )
-#line 370
+#line 465
 {
   return TDMAControllerP__is_sink;
 }
@@ -22540,13 +23405,13 @@ static inline error_t AdcP__ResourceRead__default__request(uint8_t client)
 }
 
 # 88 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
-inline static error_t AdcP__ResourceRead__request(uint8_t arg_0x40bdaa08){
+inline static error_t AdcP__ResourceRead__request(uint8_t arg_0x40cbba08){
 #line 88
   unsigned char __nesc_result;
 #line 88
 
 #line 88
-  switch (arg_0x40bdaa08) {
+  switch (arg_0x40cbba08) {
 #line 88
     case /*ReadDataC.SensorPhoto.AdcReadClientC*/AdcReadClientC__0__CLIENT:
 #line 88
@@ -22568,7 +23433,7 @@ inline static error_t AdcP__ResourceRead__request(uint8_t arg_0x40bdaa08){
 #line 88
     default:
 #line 88
-      __nesc_result = AdcP__ResourceRead__default__request(arg_0x40bdaa08);
+      __nesc_result = AdcP__ResourceRead__default__request(arg_0x40cbba08);
 #line 88
       break;
 #line 88
@@ -22608,9 +23473,9 @@ static inline void /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__ResourceRe
 }
 
 # 53 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceRequested.nc"
-inline static void /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__ResourceRequested__requested(uint8_t arg_0x40ccad38){
+inline static void /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__ResourceRequested__requested(uint8_t arg_0x40dacd38){
 #line 53
-    /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__ResourceRequested__default__requested(arg_0x40ccad38);
+    /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__ResourceRequested__default__requested(arg_0x40dacd38);
 #line 53
 }
 #line 53
@@ -22748,9 +23613,9 @@ static inline void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__ResourceRe
 }
 
 # 53 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceRequested.nc"
-inline static void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__ResourceRequested__requested(uint8_t arg_0x40b21be0){
+inline static void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__ResourceRequested__requested(uint8_t arg_0x40c29be0){
 #line 53
-    /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__ResourceRequested__default__requested(arg_0x40b21be0);
+    /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__ResourceRequested__default__requested(arg_0x40c29be0);
 #line 53
 }
 #line 53
@@ -22896,9 +23761,9 @@ inline static error_t ReadDataP__Humidity__read(void ){
 #line 55
 }
 #line 55
-# 374 "TDMAControllerP.nc"
+# 469 "TDMAControllerP.nc"
 static inline bool TDMAControllerP__TDMAController__isHead(void )
-#line 374
+#line 469
 {
   return TDMAControllerP__is_head;
 }
@@ -22919,18 +23784,200 @@ inline static bool MainExecP__TDMAController__isHead(void ){
 }
 #line 9
 # 10 "Logger.nc"
+inline static void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__Logger__logValue(unsigned char *msg, uint32_t value, bool to_hex, log_level_t lvl){
+#line 10
+  LoggerP__Logger__logValue(msg, value, to_hex, lvl);
+#line 10
+}
+#line 10
+# 508 "TDMAControllerP.nc"
+static inline void TDMAControllerP__SystemScheduler__startDone(uint8_t slot_no)
+#line 508
+{
+
+  TDMAControllerP__Logger__logValue("System scheduler started. Slot", slot_no, FALSE, log_lvl_dbg);
+}
+
+# 22 "SlotScheduler.nc"
+inline static void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__startDone(uint8_t slot_no){
+#line 22
+  TDMAControllerP__SystemScheduler__startDone(slot_no);
+#line 22
+}
+#line 22
+# 73 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/AMQueueEntryP.nc"
+static inline void */*CC2420TimeSyncMessageC.AMSenderC.SenderC.AMQueueEntryP*/AMQueueEntryP__1__AMSend__getPayload(message_t *m, uint8_t len)
+#line 73
+{
+  return /*CC2420TimeSyncMessageC.AMSenderC.SenderC.AMQueueEntryP*/AMQueueEntryP__1__Send__getPayload(m, len);
+}
+
+# 135 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
+inline static void * CC2420TimeSyncMessageP__SubSend__getPayload(message_t * msg, uint8_t len){
+#line 135
+  void *__nesc_result;
+#line 135
+
+#line 135
+  __nesc_result = /*CC2420TimeSyncMessageC.AMSenderC.SenderC.AMQueueEntryP*/AMQueueEntryP__1__AMSend__getPayload(msg, len);
+#line 135
+
+#line 135
+  return __nesc_result;
+#line 135
+}
+#line 135
+# 191 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420TimeSyncMessageP.nc"
+static inline void *CC2420TimeSyncMessageP__TimeSyncAMSend32khz__getPayload(am_id_t id, message_t *msg, uint8_t len)
+{
+  return CC2420TimeSyncMessageP__SubSend__getPayload(msg, len + sizeof(timesync_footer_t ));
+}
+
+#line 216
+static inline void *CC2420TimeSyncMessageP__TimeSyncAMSendMilli__getPayload(am_id_t id, message_t *msg, uint8_t len)
+{
+  return CC2420TimeSyncMessageP__TimeSyncAMSend32khz__getPayload(id, msg, len);
+}
+
+# 114 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TimeSyncAMSend.nc"
+inline static void *TDMAControllerP__TSSend__getPayload(message_t *msg, uint8_t len){
+#line 114
+  void *__nesc_result;
+#line 114
+
+#line 114
+  __nesc_result = CC2420TimeSyncMessageP__TimeSyncAMSendMilli__getPayload(RADIO_TIMESYNC_MSG, msg, len);
+#line 114
+
+#line 114
+  return __nesc_result;
+#line 114
+}
+#line 114
+# 215 "SlotSchedulerP.nc"
+static inline bool /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__isRunning(void )
+#line 215
+{
+  return /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__is_running;
+}
+
+# 29 "SlotScheduler.nc"
+inline static bool TDMAControllerP__SystemScheduler__isRunning(void ){
+#line 29
+  unsigned char __nesc_result;
+#line 29
+
+#line 29
+  __nesc_result = /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__isRunning();
+#line 29
+
+#line 29
+  return __nesc_result;
+#line 29
+}
+#line 29
+# 533 "TDMAControllerP.nc"
+static inline void TDMAControllerP__LocalScheduler__stopDone(error_t err)
+#line 533
+{
+
+  if (!TDMAControllerP__SystemScheduler__isRunning() && (err == SUCCESS || err == EALREADY)) {
+      TDMAControllerP__TDMAController__stopDone(SUCCESS);
+    }
+}
+
+# 27 "SlotScheduler.nc"
+inline static void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__stopDone(error_t err){
+#line 27
+  TDMAControllerP__LocalScheduler__stopDone(err);
+#line 27
+}
+#line 27
+# 78 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Timer.nc"
+inline static void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotTimer__stop(void ){
+#line 78
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__stop(7U);
+#line 78
+}
+#line 78
+inline static void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SystemTimer__stop(void ){
+#line 78
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__stop(8U);
+#line 78
+}
+#line 78
+# 108 "SlotSchedulerP.nc"
+static inline error_t /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__stop(void )
+#line 108
+{
+  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__is_active = FALSE;
+  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__is_running = FALSE;
+  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__is_slot_start = FALSE;
+  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__system_time_ref = 0x0;
+  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__round_active_time = 0x0;
+  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__round_offline_time = 0x0;
+  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__slot_map = 0x0001;
+  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__last_slot = SLOT_INACTIVE;
+  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SystemTimer__stop();
+  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotTimer__stop();
+  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__stopDone(SUCCESS);
+  return SUCCESS;
+}
+
+# 24 "SlotScheduler.nc"
+inline static error_t TDMAControllerP__LocalScheduler__stop(void ){
+#line 24
+  unsigned char __nesc_result;
+#line 24
+
+#line 24
+  __nesc_result = /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__stop();
+#line 24
+
+#line 24
+  return __nesc_result;
+#line 24
+}
+#line 24
+# 258 "TDMAControllerP.nc"
+static inline void TDMAControllerP__removeBlankSlotFromSlotMap(void )
+#line 258
+{
+  uint8_t slot_no;
+
+#line 260
+  if (TDMAControllerP__is_sink) {
+    TDMAControllerP__SystemScheduler__reset(0);
+    }
+#line 262
+  if (TDMAControllerP__is_head) {
+    TDMAControllerP__LocalScheduler__reset(0);
+    }
+#line 264
+  for (slot_no = 2; slot_no < *TDMAControllerP__Settings__slotPerRound(); slot_no++) {
+      if (TDMAControllerP__slot_map[slot_no] != 0x0000) {
+          if (TDMAControllerP__is_sink) {
+            TDMAControllerP__SystemScheduler__updateSlotMap(slot_no, ut_add);
+            }
+#line 268
+          if (TDMAControllerP__is_head) {
+            TDMAControllerP__LocalScheduler__updateSlotMap(slot_no, ut_add);
+            }
+        }
+    }
+}
+
+# 10 "Logger.nc"
 inline static void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__Logger__logValue(unsigned char *msg, uint32_t value, bool to_hex, log_level_t lvl){
 #line 10
   LoggerP__Logger__logValue(msg, value, to_hex, lvl);
 #line 10
 }
 #line 10
-# 429 "TDMAControllerP.nc"
+# 530 "TDMAControllerP.nc"
 static inline void TDMAControllerP__LocalScheduler__startDone(uint8_t slot_no)
-#line 429
+#line 530
 {
-
-  TDMAControllerP__Logger__log("Start done in TDMA", log_lvl_info);
 }
 
 # 22 "SlotScheduler.nc"
@@ -22940,85 +23987,6 @@ inline static void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedule
 #line 22
 }
 #line 22
-# 64 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Counter.nc"
-inline static /*HilTimerMilliC.AlarmMilli32C.Transform*/TransformAlarmC__0__Counter__size_type /*HilTimerMilliC.AlarmMilli32C.Transform*/TransformAlarmC__0__Counter__get(void ){
-#line 64
-  unsigned long __nesc_result;
-#line 64
-
-#line 64
-  __nesc_result = /*CounterMilli32C.Transform*/TransformCounterC__0__Counter__get();
-#line 64
-
-#line 64
-  return __nesc_result;
-#line 64
-}
-#line 64
-# 86 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/TransformAlarmC.nc"
-static inline /*HilTimerMilliC.AlarmMilli32C.Transform*/TransformAlarmC__0__to_size_type /*HilTimerMilliC.AlarmMilli32C.Transform*/TransformAlarmC__0__Alarm__getNow(void )
-{
-  return /*HilTimerMilliC.AlarmMilli32C.Transform*/TransformAlarmC__0__Counter__get();
-}
-
-# 109 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Alarm.nc"
-inline static /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC__0__Alarm__size_type /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC__0__Alarm__getNow(void ){
-#line 109
-  unsigned long __nesc_result;
-#line 109
-
-#line 109
-  __nesc_result = /*HilTimerMilliC.AlarmMilli32C.Transform*/TransformAlarmC__0__Alarm__getNow();
-#line 109
-
-#line 109
-  return __nesc_result;
-#line 109
-}
-#line 109
-# 96 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/AlarmToTimerC.nc"
-static inline uint32_t /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC__0__Timer__getNow(void )
-{
-#line 97
-  return /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC__0__Alarm__getNow();
-}
-
-# 136 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Timer.nc"
-inline static uint32_t /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__getNow(void ){
-#line 136
-  unsigned long __nesc_result;
-#line 136
-
-#line 136
-  __nesc_result = /*HilTimerMilliC.AlarmToTimerC*/AlarmToTimerC__0__Timer__getNow();
-#line 136
-
-#line 136
-  return __nesc_result;
-#line 136
-}
-#line 136
-# 189 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/VirtualizeTimerC.nc"
-static inline uint32_t /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__getNow(uint8_t num)
-{
-  return /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__getNow();
-}
-
-# 136 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Timer.nc"
-inline static uint32_t /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SystemTimer__getNow(void ){
-#line 136
-  unsigned long __nesc_result;
-#line 136
-
-#line 136
-  __nesc_result = /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__getNow(10U);
-#line 136
-
-#line 136
-  return __nesc_result;
-#line 136
-}
-#line 136
 # 198 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420ActiveMessageP.nc"
 static inline void CC2420ActiveMessageP__Packet__setPayloadLength(message_t *msg, uint8_t len)
 #line 198
@@ -23033,21 +24001,146 @@ inline static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__Packet__setPayloadL
 #line 94
 }
 #line 94
-# 410 "TDMAControllerP.nc"
-static inline void TDMAControllerP__SystemScheduler__startDone(uint8_t slot_no)
-#line 410
+# 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/pins/HplMsp430GeneralIORenP.nc"
+static inline void /*HplMsp430GeneralIOC.P41*/HplMsp430GeneralIORenP__25__IO__selectIOFunc(void )
+#line 59
 {
-
-  TDMAControllerP__Logger__logValue("System scheduler started. Slot", slot_no, FALSE, log_lvl_dbg);
+  /* atomic removed: atomic calls only */
+#line 59
+  * (volatile uint8_t * )31U &= ~(0x01 << 1);
 }
 
-# 22 "SlotScheduler.nc"
-inline static void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__startDone(uint8_t slot_no){
-#line 22
-  TDMAControllerP__SystemScheduler__startDone(slot_no);
-#line 22
+# 99 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/pins/HplMsp430GeneralIO.nc"
+inline static void /*HplCC2420InterruptsC.CaptureSFDC*/GpioCaptureC__0__GeneralIO__selectIOFunc(void ){
+#line 99
+  /*HplMsp430GeneralIOC.P41*/HplMsp430GeneralIORenP__25__IO__selectIOFunc();
+#line 99
 }
-#line 22
+#line 99
+# 135 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/timer/Msp430TimerCapComP.nc"
+static inline void /*Msp430TimerC.Msp430TimerB1*/Msp430TimerCapComP__4__Control__disableEvents(void )
+{
+  * (volatile uint16_t * )388U &= ~0x0010;
+}
+
+# 58 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/timer/Msp430TimerControl.nc"
+inline static void /*HplCC2420InterruptsC.CaptureSFDC*/GpioCaptureC__0__Msp430TimerControl__disableEvents(void ){
+#line 58
+  /*Msp430TimerC.Msp430TimerB1*/Msp430TimerCapComP__4__Control__disableEvents();
+#line 58
+}
+#line 58
+# 69 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/timer/GpioCaptureC.nc"
+static inline void /*HplCC2420InterruptsC.CaptureSFDC*/GpioCaptureC__0__Capture__disable(void )
+#line 69
+{
+  /* atomic removed: atomic calls only */
+#line 70
+  {
+    /*HplCC2420InterruptsC.CaptureSFDC*/GpioCaptureC__0__Msp430TimerControl__disableEvents();
+    /*HplCC2420InterruptsC.CaptureSFDC*/GpioCaptureC__0__GeneralIO__selectIOFunc();
+  }
+}
+
+# 66 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/GpioCapture.nc"
+inline static void CC2420TransmitP__CaptureSFD__disable(void ){
+#line 66
+  /*HplCC2420InterruptsC.CaptureSFDC*/GpioCaptureC__0__Capture__disable();
+#line 66
+}
+#line 66
+# 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/pins/HplMsp430InterruptP.nc"
+static inline void HplMsp430InterruptP__Port10__clear(void )
+#line 102
+{
+#line 102
+  P1IFG &= ~(1 << 0);
+}
+
+# 52 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/pins/HplMsp430Interrupt.nc"
+inline static void /*HplCC2420InterruptsC.InterruptFIFOPC*/Msp430InterruptC__2__HplInterrupt__clear(void ){
+#line 52
+  HplMsp430InterruptP__Port10__clear();
+#line 52
+}
+#line 52
+# 94 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/pins/HplMsp430InterruptP.nc"
+static inline void HplMsp430InterruptP__Port10__disable(void )
+#line 94
+{
+#line 94
+  P1IE &= ~(1 << 0);
+}
+
+# 47 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/pins/HplMsp430Interrupt.nc"
+inline static void /*HplCC2420InterruptsC.InterruptFIFOPC*/Msp430InterruptC__2__HplInterrupt__disable(void ){
+#line 47
+  HplMsp430InterruptP__Port10__disable();
+#line 47
+}
+#line 47
+# 69 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/pins/Msp430InterruptC.nc"
+static inline error_t /*HplCC2420InterruptsC.InterruptFIFOPC*/Msp430InterruptC__2__Interrupt__disable(void )
+#line 69
+{
+  /* atomic removed: atomic calls only */
+#line 70
+  {
+    /*HplCC2420InterruptsC.InterruptFIFOPC*/Msp430InterruptC__2__HplInterrupt__disable();
+    /*HplCC2420InterruptsC.InterruptFIFOPC*/Msp430InterruptC__2__HplInterrupt__clear();
+  }
+  return SUCCESS;
+}
+
+# 61 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/GpioInterrupt.nc"
+inline static error_t CC2420ReceiveP__InterruptFIFOP__disable(void ){
+#line 61
+  unsigned char __nesc_result;
+#line 61
+
+#line 61
+  __nesc_result = /*HplCC2420InterruptsC.InterruptFIFOPC*/Msp430InterruptC__2__Interrupt__disable();
+#line 61
+
+#line 61
+  return __nesc_result;
+#line 61
+}
+#line 61
+# 49 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/pins/HplMsp430GeneralIORenP.nc"
+static inline void /*HplMsp430GeneralIOC.P45*/HplMsp430GeneralIORenP__29__IO__clr(void )
+#line 49
+{
+#line 49
+  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
+#line 49
+    * (volatile uint8_t * )29U &= ~(0x01 << 5);
+#line 49
+    __nesc_atomic_end(__nesc_atomic); }
+}
+
+# 53 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/pins/HplMsp430GeneralIO.nc"
+inline static void /*HplCC2420PinsC.VRENM*/Msp430GpioC__12__HplGeneralIO__clr(void ){
+#line 53
+  /*HplMsp430GeneralIOC.P45*/HplMsp430GeneralIORenP__29__IO__clr();
+#line 53
+}
+#line 53
+# 49 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/pins/Msp430GpioC.nc"
+static inline void /*HplCC2420PinsC.VRENM*/Msp430GpioC__12__GeneralIO__clr(void )
+#line 49
+{
+#line 49
+  /*HplCC2420PinsC.VRENM*/Msp430GpioC__12__HplGeneralIO__clr();
+}
+
+# 41 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/GeneralIO.nc"
+inline static void CC2420ControlP__VREN__clr(void ){
+#line 41
+  /*HplCC2420PinsC.VRENM*/Msp430GpioC__12__GeneralIO__clr();
+#line 41
+}
+#line 41
 # 178 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/spi/CC2420SpiP.nc"
 static inline bool CC2420SpiP__Resource__isOwner(uint8_t id)
 #line 178
@@ -23138,9 +24231,9 @@ static inline void /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__Resource__defa
 }
 
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
-inline static void /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__Resource__granted(uint8_t arg_0x41387560){
+inline static void /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__Resource__granted(uint8_t arg_0x414cc560){
 #line 102
-  switch (arg_0x41387560) {
+  switch (arg_0x414cc560) {
 #line 102
     case /*CC2420SpiWireC.HplCC2420SpiC.SpiC*/Msp430SpiB0C__0__CLIENT_ID:
 #line 102
@@ -23150,7 +24243,7 @@ inline static void /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__Resource__gran
 #line 102
     default:
 #line 102
-      /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__Resource__default__granted(arg_0x41387560);
+      /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__Resource__default__granted(arg_0x414cc560);
 #line 102
       break;
 #line 102
@@ -23172,9 +24265,9 @@ static inline void /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__Resource_
 }
 
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
-inline static void /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__Resource__granted(uint8_t arg_0x40b211b8){
+inline static void /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__Resource__granted(uint8_t arg_0x40c291b8){
 #line 102
-  switch (arg_0x40b211b8) {
+  switch (arg_0x40c291b8) {
 #line 102
     case /*CC2420SpiWireC.HplCC2420SpiC.SpiC.UsciC*/Msp430UsciB0C__0__CLIENT_ID:
 #line 102
@@ -23184,7 +24277,7 @@ inline static void /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__Resource_
 #line 102
     default:
 #line 102
-      /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__Resource__default__granted(arg_0x40b211b8);
+      /*Msp430UsciShareB0P.ArbiterC.Arbiter*/ArbiterP__2__Resource__default__granted(arg_0x40c291b8);
 #line 102
       break;
 #line 102
@@ -23215,9 +24308,9 @@ static inline void /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__SpiPacket__def
 }
 
 # 82 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/SpiPacket.nc"
-inline static void /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__SpiPacket__sendDone(uint8_t arg_0x413cdae8, uint8_t * txBuf, uint8_t * rxBuf, uint16_t len, error_t error){
+inline static void /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__SpiPacket__sendDone(uint8_t arg_0x414cbae8, uint8_t * txBuf, uint8_t * rxBuf, uint16_t len, error_t error){
 #line 82
-  switch (arg_0x413cdae8) {
+  switch (arg_0x414cbae8) {
 #line 82
     case /*CC2420SpiWireC.HplCC2420SpiC.SpiC*/Msp430SpiB0C__0__CLIENT_ID:
 #line 82
@@ -23227,7 +24320,7 @@ inline static void /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__SpiPacket__sen
 #line 82
     default:
 #line 82
-      /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__SpiPacket__default__sendDone(arg_0x413cdae8, txBuf, rxBuf, len, error);
+      /*Msp430SpiNoDmaB0P.SpiP*/Msp430SpiNoDmaBP__0__SpiPacket__default__sendDone(arg_0x414cbae8, txBuf, rxBuf, len, error);
 #line 82
       break;
 #line 82
@@ -23761,9 +24854,9 @@ static inline void CC2420SpiP__Fifo__default__readDone(uint8_t addr, uint8_t *rx
 }
 
 # 71 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/CC2420Fifo.nc"
-inline static void CC2420SpiP__Fifo__readDone(uint8_t arg_0x4135eb38, uint8_t * data, uint8_t length, error_t error){
+inline static void CC2420SpiP__Fifo__readDone(uint8_t arg_0x4145ab38, uint8_t * data, uint8_t length, error_t error){
 #line 71
-  switch (arg_0x4135eb38) {
+  switch (arg_0x4145ab38) {
 #line 71
     case CC2420_TXFIFO:
 #line 71
@@ -23779,7 +24872,7 @@ inline static void CC2420SpiP__Fifo__readDone(uint8_t arg_0x4135eb38, uint8_t * 
 #line 71
     default:
 #line 71
-      CC2420SpiP__Fifo__default__readDone(arg_0x4135eb38, data, length, error);
+      CC2420SpiP__Fifo__default__readDone(arg_0x4145ab38, data, length, error);
 #line 71
       break;
 #line 71
@@ -23810,9 +24903,9 @@ message_t *msg)
 }
 
 # 81 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/RadioBackoff.nc"
-inline static void CC2420ActiveMessageP__RadioBackoff__requestInitialBackoff(am_id_t arg_0x416d1148, message_t * msg){
+inline static void CC2420ActiveMessageP__RadioBackoff__requestInitialBackoff(am_id_t arg_0x4182f148, message_t * msg){
 #line 81
-    CC2420ActiveMessageP__RadioBackoff__default__requestInitialBackoff(arg_0x416d1148, msg);
+    CC2420ActiveMessageP__RadioBackoff__default__requestInitialBackoff(arg_0x4182f148, msg);
 #line 81
 }
 #line 81
@@ -23951,9 +25044,9 @@ static inline void CC2420SpiP__Fifo__default__writeDone(uint8_t addr, uint8_t *t
 }
 
 # 91 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/CC2420Fifo.nc"
-inline static void CC2420SpiP__Fifo__writeDone(uint8_t arg_0x4135eb38, uint8_t * data, uint8_t length, error_t error){
+inline static void CC2420SpiP__Fifo__writeDone(uint8_t arg_0x4145ab38, uint8_t * data, uint8_t length, error_t error){
 #line 91
-  switch (arg_0x4135eb38) {
+  switch (arg_0x4145ab38) {
 #line 91
     case CC2420_TXFIFO:
 #line 91
@@ -23969,7 +25062,7 @@ inline static void CC2420SpiP__Fifo__writeDone(uint8_t arg_0x4135eb38, uint8_t *
 #line 91
     default:
 #line 91
-      CC2420SpiP__Fifo__default__writeDone(arg_0x4135eb38, data, length, error);
+      CC2420SpiP__Fifo__default__writeDone(arg_0x4145ab38, data, length, error);
 #line 91
       break;
 #line 91
@@ -24520,9 +25613,9 @@ static inline void CC2420SpiP__Resource__default__granted(uint8_t id)
 }
 
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
-inline static void CC2420SpiP__Resource__granted(uint8_t arg_0x4135e108){
+inline static void CC2420SpiP__Resource__granted(uint8_t arg_0x4145a108){
 #line 102
-  switch (arg_0x4135e108) {
+  switch (arg_0x4145a108) {
 #line 102
     case /*CC2420ControlC.Spi*/CC2420SpiC__0__CLIENT_ID:
 #line 102
@@ -24556,7 +25649,7 @@ inline static void CC2420SpiP__Resource__granted(uint8_t arg_0x4135e108){
 #line 102
     default:
 #line 102
-      CC2420SpiP__Resource__default__granted(arg_0x4135e108);
+      CC2420SpiP__Resource__default__granted(arg_0x4145a108);
 #line 102
       break;
 #line 102
@@ -24731,9 +25824,9 @@ inline static void CC2420TinyosNetworkP__BareSend__sendDone(message_t * msg, err
 }
 #line 100
 # 110 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
-inline static void CC2420ActiveMessageP__AMSend__sendDone(am_id_t arg_0x416d4030, message_t * msg, error_t error){
+inline static void CC2420ActiveMessageP__AMSend__sendDone(am_id_t arg_0x41832030, message_t * msg, error_t error){
 #line 110
-  /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__AMSend__sendDone(arg_0x416d4030, msg, error);
+  /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__AMSend__sendDone(arg_0x41832030, msg, error);
 #line 110
 }
 #line 110
@@ -24891,152 +25984,20 @@ static inline void CC2420CsmaP__sendDone_task__runTask(void )
   CC2420CsmaP__Send__sendDone(CC2420CsmaP__m_msg, packetErr);
 }
 
-# 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/pins/HplMsp430GeneralIORenP.nc"
-static inline void /*HplMsp430GeneralIOC.P41*/HplMsp430GeneralIORenP__25__IO__selectIOFunc(void )
-#line 59
-{
-  /* atomic removed: atomic calls only */
-#line 59
-  * (volatile uint8_t * )31U &= ~(0x01 << 1);
-}
-
-# 99 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/pins/HplMsp430GeneralIO.nc"
-inline static void /*HplCC2420InterruptsC.CaptureSFDC*/GpioCaptureC__0__GeneralIO__selectIOFunc(void ){
-#line 99
-  /*HplMsp430GeneralIOC.P41*/HplMsp430GeneralIORenP__25__IO__selectIOFunc();
-#line 99
-}
-#line 99
-# 135 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/timer/Msp430TimerCapComP.nc"
-static inline void /*Msp430TimerC.Msp430TimerB1*/Msp430TimerCapComP__4__Control__disableEvents(void )
-{
-  * (volatile uint16_t * )388U &= ~0x0010;
-}
-
-# 58 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/timer/Msp430TimerControl.nc"
-inline static void /*HplCC2420InterruptsC.CaptureSFDC*/GpioCaptureC__0__Msp430TimerControl__disableEvents(void ){
-#line 58
-  /*Msp430TimerC.Msp430TimerB1*/Msp430TimerCapComP__4__Control__disableEvents();
-#line 58
-}
-#line 58
-# 69 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/timer/GpioCaptureC.nc"
-static inline void /*HplCC2420InterruptsC.CaptureSFDC*/GpioCaptureC__0__Capture__disable(void )
-#line 69
-{
-  /* atomic removed: atomic calls only */
-#line 70
-  {
-    /*HplCC2420InterruptsC.CaptureSFDC*/GpioCaptureC__0__Msp430TimerControl__disableEvents();
-    /*HplCC2420InterruptsC.CaptureSFDC*/GpioCaptureC__0__GeneralIO__selectIOFunc();
-  }
-}
-
-# 66 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/GpioCapture.nc"
-inline static void CC2420TransmitP__CaptureSFD__disable(void ){
-#line 66
-  /*HplCC2420InterruptsC.CaptureSFDC*/GpioCaptureC__0__Capture__disable();
-#line 66
-}
-#line 66
-# 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/pins/HplMsp430InterruptP.nc"
-static inline void HplMsp430InterruptP__Port10__clear(void )
-#line 102
-{
-#line 102
-  P1IFG &= ~(1 << 0);
-}
-
-# 52 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/pins/HplMsp430Interrupt.nc"
-inline static void /*HplCC2420InterruptsC.InterruptFIFOPC*/Msp430InterruptC__2__HplInterrupt__clear(void ){
-#line 52
-  HplMsp430InterruptP__Port10__clear();
-#line 52
-}
-#line 52
-# 94 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/pins/HplMsp430InterruptP.nc"
-static inline void HplMsp430InterruptP__Port10__disable(void )
-#line 94
-{
-#line 94
-  P1IE &= ~(1 << 0);
-}
-
-# 47 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/pins/HplMsp430Interrupt.nc"
-inline static void /*HplCC2420InterruptsC.InterruptFIFOPC*/Msp430InterruptC__2__HplInterrupt__disable(void ){
-#line 47
-  HplMsp430InterruptP__Port10__disable();
-#line 47
-}
-#line 47
-# 69 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/pins/Msp430InterruptC.nc"
-static inline error_t /*HplCC2420InterruptsC.InterruptFIFOPC*/Msp430InterruptC__2__Interrupt__disable(void )
-#line 69
-{
-  /* atomic removed: atomic calls only */
-#line 70
-  {
-    /*HplCC2420InterruptsC.InterruptFIFOPC*/Msp430InterruptC__2__HplInterrupt__disable();
-    /*HplCC2420InterruptsC.InterruptFIFOPC*/Msp430InterruptC__2__HplInterrupt__clear();
-  }
-  return SUCCESS;
-}
-
-# 61 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/GpioInterrupt.nc"
-inline static error_t CC2420ReceiveP__InterruptFIFOP__disable(void ){
-#line 61
-  unsigned char __nesc_result;
-#line 61
-
-#line 61
-  __nesc_result = /*HplCC2420InterruptsC.InterruptFIFOPC*/Msp430InterruptC__2__Interrupt__disable();
-#line 61
-
-#line 61
-  return __nesc_result;
-#line 61
-}
-#line 61
-# 49 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/pins/HplMsp430GeneralIORenP.nc"
-static inline void /*HplMsp430GeneralIOC.P45*/HplMsp430GeneralIORenP__29__IO__clr(void )
-#line 49
-{
-#line 49
-  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-#line 49
-    * (volatile uint8_t * )29U &= ~(0x01 << 5);
-#line 49
-    __nesc_atomic_end(__nesc_atomic); }
-}
-
-# 53 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/pins/HplMsp430GeneralIO.nc"
-inline static void /*HplCC2420PinsC.VRENM*/Msp430GpioC__12__HplGeneralIO__clr(void ){
-#line 53
-  /*HplMsp430GeneralIOC.P45*/HplMsp430GeneralIORenP__29__IO__clr();
-#line 53
-}
-#line 53
-# 49 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/pins/Msp430GpioC.nc"
-static inline void /*HplCC2420PinsC.VRENM*/Msp430GpioC__12__GeneralIO__clr(void )
-#line 49
-{
-#line 49
-  /*HplCC2420PinsC.VRENM*/Msp430GpioC__12__HplGeneralIO__clr();
-}
-
-# 41 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/GeneralIO.nc"
-inline static void CC2420ControlP__VREN__clr(void ){
-#line 41
-  /*HplCC2420PinsC.VRENM*/Msp430GpioC__12__GeneralIO__clr();
-#line 41
-}
-#line 41
-# 270 "TDMAControllerP.nc"
+# 308 "TDMAControllerP.nc"
 static inline void TDMAControllerP__RadioControl__stopDone(error_t error)
-#line 270
+#line 308
 {
   if (error == SUCCESS || error == EALREADY) {
     TDMAControllerP__Logger__log("Radio Stopped!", log_lvl_info);
+    }
+#line 311
+  if (!TDMAControllerP__is_sink) {
+    if (TDMAControllerP__head_last_local_round_checked) {
+      if (TDMAControllerP__current_round_idx <= 0) {
+          TDMAControllerP__TDMAController__stop();
+        }
+      }
     }
 }
 
@@ -25055,42 +26016,6 @@ static inline void CC2420CsmaP__stopDone_task__runTask(void )
   CC2420CsmaP__SplitControl__stopDone(SUCCESS);
 }
 
-# 195 "SlotSchedulerP.nc"
-static inline uint8_t /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__currentSlot(void )
-#line 195
-{
-  return (/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SystemTimer__getNow() - /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__system_time_ref) / */*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__duration_local;
-}
-
-# 32 "SlotScheduler.nc"
-inline static uint8_t TDMAControllerP__LocalScheduler__currentSlot(void ){
-#line 32
-  unsigned char __nesc_result;
-#line 32
-
-#line 32
-  __nesc_result = /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__currentSlot();
-#line 32
-
-#line 32
-  return __nesc_result;
-#line 32
-}
-#line 32
-inline static uint8_t TDMAControllerP__SystemScheduler__currentSlot(void ){
-#line 32
-  unsigned char __nesc_result;
-#line 32
-
-#line 32
-  __nesc_result = /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__currentSlot();
-#line 32
-
-#line 32
-  return __nesc_result;
-#line 32
-}
-#line 32
 # 104 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/SplitControl.nc"
 inline static error_t TDMAControllerP__RadioControl__start(void ){
 #line 104
@@ -25106,9 +26031,9 @@ inline static error_t TDMAControllerP__RadioControl__start(void ){
 #line 104
 }
 #line 104
-# 254 "TDMAControllerP.nc"
+# 292 "TDMAControllerP.nc"
 static inline void TDMAControllerP__RadioControl__startDone(error_t error)
-#line 254
+#line 292
 {
   TDMAControllerP__Logger__log("Radio started!", log_lvl_info);
   if (error != SUCCESS && error != EALREADY) {
@@ -25116,7 +26041,7 @@ static inline void TDMAControllerP__RadioControl__startDone(error_t error)
       TDMAControllerP__RadioControl__start();
     }
   else 
-#line 259
+#line 297
     {
       if (TDMAControllerP__SystemScheduler__isSlotActive()) {
 
@@ -25380,108 +26305,6 @@ static inline void CC2420CsmaP__startDone_task__runTask(void )
   CC2420CsmaP__SplitControl__startDone(SUCCESS);
 }
 
-# 45 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/State.nc"
-inline static error_t CC2420CsmaP__SplitControlState__requestState(uint8_t reqState){
-#line 45
-  unsigned char __nesc_result;
-#line 45
-
-#line 45
-  __nesc_result = StateImplP__State__requestState(1U, reqState);
-#line 45
-
-#line 45
-  return __nesc_result;
-#line 45
-}
-#line 45
-# 66 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Alarm.nc"
-inline static void CC2420ControlP__StartupTimer__start(CC2420ControlP__StartupTimer__size_type dt){
-#line 66
-  /*AlarmMultiplexC.Alarm.Alarm32khz32C.Transform*/TransformAlarmC__2__Alarm__start(dt);
-#line 66
-}
-#line 66
-# 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/pins/HplMsp430GeneralIORenP.nc"
-static inline void /*HplMsp430GeneralIOC.P45*/HplMsp430GeneralIORenP__29__IO__set(void )
-#line 48
-{
-#line 48
-  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-#line 48
-    * (volatile uint8_t * )29U |= 0x01 << 5;
-#line 48
-    __nesc_atomic_end(__nesc_atomic); }
-}
-
-# 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/pins/HplMsp430GeneralIO.nc"
-inline static void /*HplCC2420PinsC.VRENM*/Msp430GpioC__12__HplGeneralIO__set(void ){
-#line 48
-  /*HplMsp430GeneralIOC.P45*/HplMsp430GeneralIORenP__29__IO__set();
-#line 48
-}
-#line 48
-# 48 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/pins/Msp430GpioC.nc"
-static inline void /*HplCC2420PinsC.VRENM*/Msp430GpioC__12__GeneralIO__set(void )
-#line 48
-{
-#line 48
-  /*HplCC2420PinsC.VRENM*/Msp430GpioC__12__HplGeneralIO__set();
-}
-
-# 40 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/GeneralIO.nc"
-inline static void CC2420ControlP__VREN__set(void ){
-#line 40
-  /*HplCC2420PinsC.VRENM*/Msp430GpioC__12__GeneralIO__set();
-#line 40
-}
-#line 40
-# 204 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/control/CC2420ControlP.nc"
-static inline error_t CC2420ControlP__CC2420Power__startVReg(void )
-#line 204
-{
-  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-#line 205
-    {
-      if (CC2420ControlP__m_state != CC2420ControlP__S_VREG_STOPPED) {
-          {
-            unsigned char __nesc_temp = 
-#line 207
-            FAIL;
-
-            {
-#line 207
-              __nesc_atomic_end(__nesc_atomic); 
-#line 207
-              return __nesc_temp;
-            }
-          }
-        }
-#line 209
-      CC2420ControlP__m_state = CC2420ControlP__S_VREG_STARTING;
-    }
-#line 210
-    __nesc_atomic_end(__nesc_atomic); }
-  CC2420ControlP__VREN__set();
-  CC2420ControlP__StartupTimer__start(CC2420_TIME_VREN);
-  return SUCCESS;
-}
-
-# 51 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/interfaces/CC2420Power.nc"
-inline static error_t CC2420CsmaP__CC2420Power__startVReg(void ){
-#line 51
-  unsigned char __nesc_result;
-#line 51
-
-#line 51
-  __nesc_result = CC2420ControlP__CC2420Power__startVReg();
-#line 51
-
-#line 51
-  return __nesc_result;
-#line 51
-}
-#line 51
 # 64 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TimeSyncAMSend.nc"
 inline static error_t TDMAControllerP__TSSend__send(am_addr_t addr, message_t *msg, uint8_t len, TDMAControllerP__TSSend__size_type event_time){
 #line 64
@@ -25631,14 +26454,14 @@ static inline error_t CC2420TimeSyncMessageP__TimeSyncAMSend32khz__send(am_id_t 
   return err;
 }
 
-# 199 "SlotSchedulerP.nc"
+# 209 "SlotSchedulerP.nc"
 static inline uint32_t */*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__getSystemTime(void )
-#line 199
+#line 209
 {
   if (/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__system_time_ref == 0) {
     /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__system_time_ref = /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SystemTimer__getNow();
     }
-#line 202
+#line 212
   return &/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__system_time_ref;
 }
 
@@ -25712,21 +26535,93 @@ inline static error_t TDMAControllerP__JoinReqSend__send(am_addr_t addr, message
 #line 80
 }
 #line 80
-# 189 "SlotSchedulerP.nc"
+# 73 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/AMQueueEntryP.nc"
+static inline void */*TDMAControllerC.AssignmentSender.SenderC.AMQueueEntryP*/AMQueueEntryP__5__AMSend__getPayload(message_t *m, uint8_t len)
+#line 73
+{
+  return /*TDMAControllerC.AssignmentSender.SenderC.AMQueueEntryP*/AMQueueEntryP__5__Send__getPayload(m, len);
+}
+
+# 135 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
+inline static void * TDMAControllerP__AssignmentSend__getPayload(message_t * msg, uint8_t len){
+#line 135
+  void *__nesc_result;
+#line 135
+
+#line 135
+  __nesc_result = /*TDMAControllerC.AssignmentSender.SenderC.AMQueueEntryP*/AMQueueEntryP__5__AMSend__getPayload(msg, len);
+#line 135
+
+#line 135
+  return __nesc_result;
+#line 135
+}
+#line 135
+#line 80
+inline static error_t TDMAControllerP__AssignmentSend__send(am_addr_t addr, message_t * msg, uint8_t len){
+#line 80
+  unsigned char __nesc_result;
+#line 80
+
+#line 80
+  __nesc_result = /*TDMAControllerC.AssignmentSender.SenderC.AMQueueEntryP*/AMQueueEntryP__5__AMSend__send(addr, msg, len);
+#line 80
+
+#line 80
+  return __nesc_result;
+#line 80
+}
+#line 80
+# 103 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMPacket.nc"
+inline static void /*TDMAControllerC.AssignmentSender.SenderC.AMQueueEntryP*/AMQueueEntryP__5__AMPacket__setDestination(message_t * amsg, am_addr_t addr){
+#line 103
+  CC2420ActiveMessageP__AMPacket__setDestination(amsg, addr);
+#line 103
+}
+#line 103
+#line 162
+inline static void /*TDMAControllerC.AssignmentSender.SenderC.AMQueueEntryP*/AMQueueEntryP__5__AMPacket__setType(message_t * amsg, am_id_t t){
+#line 162
+  CC2420ActiveMessageP__AMPacket__setType(amsg, t);
+#line 162
+}
+#line 162
+# 75 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
+inline static error_t /*TDMAControllerC.AssignmentSender.SenderC.AMQueueEntryP*/AMQueueEntryP__5__Send__send(message_t * msg, uint8_t len){
+#line 75
+  unsigned char __nesc_result;
+#line 75
+
+#line 75
+  __nesc_result = /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__Send__send(4U, msg, len);
+#line 75
+
+#line 75
+  return __nesc_result;
+#line 75
+}
+#line 75
+# 636 "TDMAControllerP.nc"
+static inline void TDMAControllerP__sendBigMsgProtocol(uint8_t sent_time)
+#line 636
+{
+}
+
+# 199 "SlotSchedulerP.nc"
 static inline scheduler_mode_t /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__mode(void )
-#line 189
+#line 199
 {
   if (/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__last_slot == SLOT_REPEAT) {
     return MODE_REPEAT;
     }
-#line 192
+#line 202
   return MODE_NORMAL;
 }
 
 # 35 "SlotScheduler.nc"
 inline static scheduler_mode_t TDMAControllerP__SystemScheduler__mode(void ){
 #line 35
-  enum __nesc_unnamed4301 __nesc_result;
+  enum __nesc_unnamed4304 __nesc_result;
 #line 35
 
 #line 35
@@ -25793,21 +26688,21 @@ inline static error_t TDMAControllerP__DataPkgSend__send(am_addr_t addr, message
 #line 80
 }
 #line 80
-# 189 "SlotSchedulerP.nc"
+# 199 "SlotSchedulerP.nc"
 static inline scheduler_mode_t /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__mode(void )
-#line 189
+#line 199
 {
   if (/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__last_slot == SLOT_REPEAT) {
     return MODE_REPEAT;
     }
-#line 192
+#line 202
   return MODE_NORMAL;
 }
 
 # 35 "SlotScheduler.nc"
 inline static scheduler_mode_t TDMAControllerP__LocalScheduler__mode(void ){
 #line 35
-  enum __nesc_unnamed4301 __nesc_result;
+  enum __nesc_unnamed4304 __nesc_result;
 #line 35
 
 #line 35
@@ -25879,9 +26774,9 @@ static inline void /*SerialAMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__default
 }
 
 # 100 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
-inline static void /*SerialAMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__sendDone(uint8_t arg_0x410c39d8, message_t * msg, error_t error){
+inline static void /*SerialAMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__sendDone(uint8_t arg_0x411ab9d8, message_t * msg, error_t error){
 #line 100
-  switch (arg_0x410c39d8) {
+  switch (arg_0x411ab9d8) {
 #line 100
     case 0U:
 #line 100
@@ -25891,7 +26786,7 @@ inline static void /*SerialAMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__sendDon
 #line 100
     default:
 #line 100
-      /*SerialAMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__default__sendDone(arg_0x410c39d8, msg, error);
+      /*SerialAMQueueP.AMQueueImplP*/AMQueueImplP__0__Send__default__sendDone(arg_0x411ab9d8, msg, error);
 #line 100
       break;
 #line 100
@@ -26033,9 +26928,9 @@ static inline void /*Msp430Uart1P.UartP*/Msp430UartP__0__Resource__default__gran
 }
 
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
-inline static void /*Msp430Uart1P.UartP*/Msp430UartP__0__Resource__granted(uint8_t arg_0x40fecc90){
+inline static void /*Msp430Uart1P.UartP*/Msp430UartP__0__Resource__granted(uint8_t arg_0x410d4c90){
 #line 102
-  switch (arg_0x40fecc90) {
+  switch (arg_0x410d4c90) {
 #line 102
     case /*PlatformSerialC.UartC*/Msp430Uart1C__0__CLIENT_ID:
 #line 102
@@ -26045,7 +26940,7 @@ inline static void /*Msp430Uart1P.UartP*/Msp430UartP__0__Resource__granted(uint8
 #line 102
     default:
 #line 102
-      /*Msp430Uart1P.UartP*/Msp430UartP__0__Resource__default__granted(arg_0x40fecc90);
+      /*Msp430Uart1P.UartP*/Msp430UartP__0__Resource__default__granted(arg_0x410d4c90);
 #line 102
       break;
 #line 102
@@ -26067,9 +26962,9 @@ static inline void /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__Resource_
 }
 
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
-inline static void /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__Resource__granted(uint8_t arg_0x40b211b8){
+inline static void /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__Resource__granted(uint8_t arg_0x40c291b8){
 #line 102
-  switch (arg_0x40b211b8) {
+  switch (arg_0x40c291b8) {
 #line 102
     case /*PlatformSerialC.UartC.UsciC*/Msp430UsciA1C__0__CLIENT_ID:
 #line 102
@@ -26079,7 +26974,7 @@ inline static void /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__Resource_
 #line 102
     default:
 #line 102
-      /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__Resource__default__granted(arg_0x40b211b8);
+      /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__Resource__default__granted(arg_0x40c291b8);
 #line 102
       break;
 #line 102
@@ -26094,9 +26989,9 @@ static inline void /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__ResourceC
 }
 
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceConfigure.nc"
-inline static void /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__ResourceConfigure__configure(uint8_t arg_0x40b43030){
+inline static void /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__ResourceConfigure__configure(uint8_t arg_0x40c27030){
 #line 59
-  switch (arg_0x40b43030) {
+  switch (arg_0x40c27030) {
 #line 59
     case /*PlatformSerialC.UartC.UsciC*/Msp430UsciA1C__0__CLIENT_ID:
 #line 59
@@ -26106,7 +27001,7 @@ inline static void /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__ResourceC
 #line 59
     default:
 #line 59
-      /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__ResourceConfigure__default__configure(arg_0x40b43030);
+      /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__ResourceConfigure__default__configure(arg_0x40c27030);
 #line 59
       break;
 #line 59
@@ -26145,13 +27040,13 @@ static inline msp430_uart_union_config_t */*Msp430Uart1P.UartP*/Msp430UartP__0__
 }
 
 # 44 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/Msp430UartConfigure.nc"
-inline static msp430_uart_union_config_t */*Msp430Uart1P.UartP*/Msp430UartP__0__Msp430UartConfigure__getConfig(uint8_t arg_0x40fe6d28){
+inline static msp430_uart_union_config_t */*Msp430Uart1P.UartP*/Msp430UartP__0__Msp430UartConfigure__getConfig(uint8_t arg_0x410cdd28){
 #line 44
-  union __nesc_unnamed4288 *__nesc_result;
+  union __nesc_unnamed4291 *__nesc_result;
 #line 44
 
 #line 44
-  switch (arg_0x40fe6d28) {
+  switch (arg_0x410cdd28) {
 #line 44
     case /*PlatformSerialC.UartC*/Msp430Uart1C__0__CLIENT_ID:
 #line 44
@@ -26161,7 +27056,7 @@ inline static msp430_uart_union_config_t */*Msp430Uart1P.UartP*/Msp430UartP__0__
 #line 44
     default:
 #line 44
-      __nesc_result = /*Msp430Uart1P.UartP*/Msp430UartP__0__Msp430UartConfigure__default__getConfig(arg_0x40fe6d28);
+      __nesc_result = /*Msp430Uart1P.UartP*/Msp430UartP__0__Msp430UartConfigure__default__getConfig(arg_0x410cdd28);
 #line 44
       break;
 #line 44
@@ -26347,9 +27242,9 @@ static inline void /*SerialAMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__sendD
 }
 
 # 110 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
-inline static void /*SerialActiveMessageC.AM*/SerialActiveMessageP__0__AMSend__sendDone(am_id_t arg_0x40e87760, message_t * msg, error_t error){
+inline static void /*SerialActiveMessageC.AM*/SerialActiveMessageP__0__AMSend__sendDone(am_id_t arg_0x40f6e760, message_t * msg, error_t error){
 #line 110
-  /*SerialAMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__sendDone(arg_0x40e87760, msg, error);
+  /*SerialAMQueueP.AMQueueImplP*/AMQueueImplP__0__AMSend__sendDone(arg_0x40f6e760, msg, error);
 #line 110
 }
 #line 110
@@ -26368,9 +27263,9 @@ static inline void /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__
 }
 
 # 100 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
-inline static void /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__Send__sendDone(uart_id_t arg_0x40f6bc70, message_t * msg, error_t error){
+inline static void /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__Send__sendDone(uart_id_t arg_0x41052c70, message_t * msg, error_t error){
 #line 100
-  switch (arg_0x40f6bc70) {
+  switch (arg_0x41052c70) {
 #line 100
     case TOS_SERIAL_ACTIVE_MESSAGE_ID:
 #line 100
@@ -26380,7 +27275,7 @@ inline static void /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__
 #line 100
     default:
 #line 100
-      /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__Send__default__sendDone(arg_0x40f6bc70, msg, error);
+      /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__Send__default__sendDone(arg_0x41052c70, msg, error);
 #line 100
       break;
 #line 100
@@ -26429,13 +27324,13 @@ static inline message_t */*SerialActiveMessageC.AM*/SerialActiveMessageP__0__Rec
 }
 
 # 78 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Receive.nc"
-inline static message_t * /*SerialActiveMessageC.AM*/SerialActiveMessageP__0__Receive__receive(am_id_t arg_0x40eb3148, message_t * msg, void * payload, uint8_t len){
+inline static message_t * /*SerialActiveMessageC.AM*/SerialActiveMessageP__0__Receive__receive(am_id_t arg_0x40f9a148, message_t * msg, void * payload, uint8_t len){
 #line 78
   nx_struct message_t *__nesc_result;
 #line 78
 
 #line 78
-    __nesc_result = /*SerialActiveMessageC.AM*/SerialActiveMessageP__0__Receive__default__receive(arg_0x40eb3148, msg, payload, len);
+    __nesc_result = /*SerialActiveMessageC.AM*/SerialActiveMessageP__0__Receive__default__receive(arg_0x40f9a148, msg, payload, len);
 #line 78
 
 #line 78
@@ -26460,13 +27355,13 @@ uint8_t len)
 }
 
 # 78 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Receive.nc"
-inline static message_t * /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__Receive__receive(uart_id_t arg_0x40f6b630, message_t * msg, void * payload, uint8_t len){
+inline static message_t * /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__Receive__receive(uart_id_t arg_0x41052630, message_t * msg, void * payload, uint8_t len){
 #line 78
   nx_struct message_t *__nesc_result;
 #line 78
 
 #line 78
-  switch (arg_0x40f6b630) {
+  switch (arg_0x41052630) {
 #line 78
     case TOS_SERIAL_ACTIVE_MESSAGE_ID:
 #line 78
@@ -26476,7 +27371,7 @@ inline static message_t * /*SerialDispatcherC.SerialDispatcherP*/SerialDispatche
 #line 78
     default:
 #line 78
-      __nesc_result = /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__Receive__default__receive(arg_0x40f6b630, msg, payload, len);
+      __nesc_result = /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__Receive__default__receive(arg_0x41052630, msg, payload, len);
 #line 78
       break;
 #line 78
@@ -26504,13 +27399,13 @@ uint8_t dataLinkLen)
 }
 
 # 31 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/serial/SerialPacketInfo.nc"
-inline static uint8_t /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__PacketInfo__upperLength(uart_id_t arg_0x40f68848, message_t *msg, uint8_t dataLinkLen){
+inline static uint8_t /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__PacketInfo__upperLength(uart_id_t arg_0x4104e848, message_t *msg, uint8_t dataLinkLen){
 #line 31
   unsigned char __nesc_result;
 #line 31
 
 #line 31
-  switch (arg_0x40f68848) {
+  switch (arg_0x4104e848) {
 #line 31
     case TOS_SERIAL_ACTIVE_MESSAGE_ID:
 #line 31
@@ -26520,7 +27415,7 @@ inline static uint8_t /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__
 #line 31
     default:
 #line 31
-      __nesc_result = /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__PacketInfo__default__upperLength(arg_0x40f68848, msg, dataLinkLen);
+      __nesc_result = /*SerialDispatcherC.SerialDispatcherP*/SerialDispatcherP__0__PacketInfo__default__upperLength(arg_0x4104e848, msg, dataLinkLen);
 #line 31
       break;
 #line 31
@@ -26673,9 +27568,9 @@ static inline void /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__ResourceC
 }
 
 # 65 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceConfigure.nc"
-inline static void /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__ResourceConfigure__unconfigure(uint8_t arg_0x40b43030){
+inline static void /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__ResourceConfigure__unconfigure(uint8_t arg_0x40c27030){
 #line 65
-  switch (arg_0x40b43030) {
+  switch (arg_0x40c27030) {
 #line 65
     case /*PlatformSerialC.UartC.UsciC*/Msp430UsciA1C__0__CLIENT_ID:
 #line 65
@@ -26685,7 +27580,7 @@ inline static void /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__ResourceC
 #line 65
     default:
 #line 65
-      /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__ResourceConfigure__default__unconfigure(arg_0x40b43030);
+      /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__ResourceConfigure__default__unconfigure(arg_0x40c27030);
 #line 65
       break;
 #line 65
@@ -26842,13 +27737,13 @@ static inline error_t /*Msp430Uart1P.UartP*/Msp430UartP__0__UsciResource__defaul
 }
 
 # 120 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
-inline static error_t /*Msp430Uart1P.UartP*/Msp430UartP__0__UsciResource__release(uint8_t arg_0x40fe62f0){
+inline static error_t /*Msp430Uart1P.UartP*/Msp430UartP__0__UsciResource__release(uint8_t arg_0x410cd2f0){
 #line 120
   unsigned char __nesc_result;
 #line 120
 
 #line 120
-  switch (arg_0x40fe62f0) {
+  switch (arg_0x410cd2f0) {
 #line 120
     case /*PlatformSerialC.UartC*/Msp430Uart1C__0__CLIENT_ID:
 #line 120
@@ -26858,7 +27753,7 @@ inline static error_t /*Msp430Uart1P.UartP*/Msp430UartP__0__UsciResource__releas
 #line 120
     default:
 #line 120
-      __nesc_result = /*Msp430Uart1P.UartP*/Msp430UartP__0__UsciResource__default__release(arg_0x40fe62f0);
+      __nesc_result = /*Msp430Uart1P.UartP*/Msp430UartP__0__UsciResource__default__release(arg_0x410cd2f0);
 #line 120
       break;
 #line 120
@@ -26879,13 +27774,13 @@ static inline error_t /*Msp430Uart1P.UartP*/Msp430UartP__0__UsciResource__defaul
 }
 
 # 128 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
-inline static bool /*Msp430Uart1P.UartP*/Msp430UartP__0__UsciResource__isOwner(uint8_t arg_0x40fe62f0){
+inline static bool /*Msp430Uart1P.UartP*/Msp430UartP__0__UsciResource__isOwner(uint8_t arg_0x410cd2f0){
 #line 128
   unsigned char __nesc_result;
 #line 128
 
 #line 128
-  switch (arg_0x40fe62f0) {
+  switch (arg_0x410cd2f0) {
 #line 128
     case /*PlatformSerialC.UartC*/Msp430Uart1C__0__CLIENT_ID:
 #line 128
@@ -26895,7 +27790,7 @@ inline static bool /*Msp430Uart1P.UartP*/Msp430UartP__0__UsciResource__isOwner(u
 #line 128
     default:
 #line 128
-      __nesc_result = /*Msp430Uart1P.UartP*/Msp430UartP__0__UsciResource__default__isOwner(arg_0x40fe62f0);
+      __nesc_result = /*Msp430Uart1P.UartP*/Msp430UartP__0__UsciResource__default__isOwner(arg_0x410cd2f0);
 #line 128
       break;
 #line 128
@@ -27094,9 +27989,9 @@ static inline void /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__ResourceR
 }
 
 # 61 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceRequested.nc"
-inline static void /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__ResourceRequested__immediateRequested(uint8_t arg_0x40b21be0){
+inline static void /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__ResourceRequested__immediateRequested(uint8_t arg_0x40c29be0){
 #line 61
-    /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__ResourceRequested__default__immediateRequested(arg_0x40b21be0);
+    /*Msp430UsciShareA1P.ArbiterC.Arbiter*/ArbiterP__1__ResourceRequested__default__immediateRequested(arg_0x40c29be0);
 #line 61
 }
 #line 61
@@ -27150,13 +28045,13 @@ static inline error_t /*Msp430Uart1P.UartP*/Msp430UartP__0__UsciResource__defaul
 }
 
 # 97 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
-inline static error_t /*Msp430Uart1P.UartP*/Msp430UartP__0__UsciResource__immediateRequest(uint8_t arg_0x40fe62f0){
+inline static error_t /*Msp430Uart1P.UartP*/Msp430UartP__0__UsciResource__immediateRequest(uint8_t arg_0x410cd2f0){
 #line 97
   unsigned char __nesc_result;
 #line 97
 
 #line 97
-  switch (arg_0x40fe62f0) {
+  switch (arg_0x410cd2f0) {
 #line 97
     case /*PlatformSerialC.UartC*/Msp430Uart1C__0__CLIENT_ID:
 #line 97
@@ -27166,7 +28061,7 @@ inline static error_t /*Msp430Uart1P.UartP*/Msp430UartP__0__UsciResource__immedi
 #line 97
     default:
 #line 97
-      __nesc_result = /*Msp430Uart1P.UartP*/Msp430UartP__0__UsciResource__default__immediateRequest(arg_0x40fe62f0);
+      __nesc_result = /*Msp430Uart1P.UartP*/Msp430UartP__0__UsciResource__default__immediateRequest(arg_0x410cd2f0);
 #line 97
       break;
 #line 97
@@ -27544,9 +28439,9 @@ static inline void /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__
 }
 
 # 89 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ReadStream.nc"
-inline static void /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__ReadStream__bufferDone(uint8_t arg_0x40dcabb0, error_t result, /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__ReadStream__val_t * buf, uint16_t count){
+inline static void /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__ReadStream__bufferDone(uint8_t arg_0x40eadbb0, error_t result, /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__ReadStream__val_t * buf, uint16_t count){
 #line 89
-    /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__ReadStream__default__bufferDone(arg_0x40dcabb0, result, buf, count);
+    /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__ReadStream__default__bufferDone(arg_0x40eadbb0, result, buf, count);
 #line 89
 }
 #line 89
@@ -27557,9 +28452,9 @@ static inline void /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__
 }
 
 # 89 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ReadStream.nc"
-inline static void AdcStreamP__ReadStream__bufferDone(uint8_t arg_0x40d81010, error_t result, AdcStreamP__ReadStream__val_t * buf, uint16_t count){
+inline static void AdcStreamP__ReadStream__bufferDone(uint8_t arg_0x40e65010, error_t result, AdcStreamP__ReadStream__val_t * buf, uint16_t count){
 #line 89
-  /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__Service__bufferDone(arg_0x40d81010, result, buf, count);
+  /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__Service__bufferDone(arg_0x40e65010, result, buf, count);
 #line 89
 }
 #line 89
@@ -27590,9 +28485,9 @@ static inline void /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__
 }
 
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ReadStream.nc"
-inline static void /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__ReadStream__readDone(uint8_t arg_0x40dcabb0, error_t result, uint32_t usActualPeriod){
+inline static void /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__ReadStream__readDone(uint8_t arg_0x40eadbb0, error_t result, uint32_t usActualPeriod){
 #line 102
-    /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__ReadStream__default__readDone(arg_0x40dcabb0, result, usActualPeriod);
+    /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__ReadStream__default__readDone(arg_0x40eadbb0, result, usActualPeriod);
 #line 102
 }
 #line 102
@@ -27605,13 +28500,13 @@ static inline error_t /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStream
 }
 
 # 120 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
-inline static error_t /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__Resource__release(uint8_t arg_0x40dc5030){
+inline static error_t /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__Resource__release(uint8_t arg_0x40ea8030){
 #line 120
   unsigned char __nesc_result;
 #line 120
 
 #line 120
-  switch (arg_0x40dc5030) {
+  switch (arg_0x40ea8030) {
 #line 120
     case /*ReadDataC.SensorPhoto.AdcReadStreamClientC*/AdcReadStreamClientC__0__RSCLIENT:
 #line 120
@@ -27633,7 +28528,7 @@ inline static error_t /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStream
 #line 120
     default:
 #line 120
-      __nesc_result = /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__Resource__default__release(arg_0x40dc5030);
+      __nesc_result = /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__Resource__default__release(arg_0x40ea8030);
 #line 120
       break;
 #line 120
@@ -27653,9 +28548,9 @@ static inline void /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__
 }
 
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ReadStream.nc"
-inline static void AdcStreamP__ReadStream__readDone(uint8_t arg_0x40d81010, error_t result, uint32_t usActualPeriod){
+inline static void AdcStreamP__ReadStream__readDone(uint8_t arg_0x40e65010, error_t result, uint32_t usActualPeriod){
 #line 102
-  /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__Service__readDone(arg_0x40d81010, result, usActualPeriod);
+  /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__Service__readDone(arg_0x40e65010, result, usActualPeriod);
 #line 102
 }
 #line 102
@@ -27808,9 +28703,9 @@ static inline void /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__ResourceCo
 }
 
 # 65 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceConfigure.nc"
-inline static void /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__ResourceConfigure__unconfigure(uint8_t arg_0x40cc99b8){
+inline static void /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__ResourceConfigure__unconfigure(uint8_t arg_0x40dab9b8){
 #line 65
-    /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__ResourceConfigure__default__unconfigure(arg_0x40cc99b8);
+    /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__ResourceConfigure__default__unconfigure(arg_0x40dab9b8);
 #line 65
 }
 #line 65
@@ -27948,7 +28843,7 @@ static inline  adc12ctl0_t HplAdc12P__int2adc12ctl0(uint16_t x)
 #line 57
 {
 #line 57
-  union __nesc_unnamed4453 {
+  union __nesc_unnamed4456 {
 #line 57
     uint16_t f;
 #line 57
@@ -27971,7 +28866,7 @@ static inline adc12ctl0_t HplAdc12P__HplAdc12__getCtl0(void )
 # 63 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/HplAdc12.nc"
 inline static adc12ctl0_t Msp430RefVoltGeneratorP__HplAdc12__getCtl0(void ){
 #line 63
-  struct __nesc_unnamed4272 __nesc_result;
+  struct __nesc_unnamed4275 __nesc_result;
 #line 63
 
 #line 63
@@ -27988,7 +28883,7 @@ static inline  uint16_t HplAdc12P__adc12ctl0cast2int(adc12ctl0_t x)
 #line 59
 {
 #line 59
-  union __nesc_unnamed4454 {
+  union __nesc_unnamed4457 {
 #line 59
     adc12ctl0_t f;
 #line 59
@@ -28016,12 +28911,6 @@ inline static void Msp430RefVoltGeneratorP__HplAdc12__setCtl0(adc12ctl0_t contro
 #line 51
 }
 #line 51
-# 164 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/VirtualizeTimerC.nc"
-static inline void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__stop(uint8_t num)
-{
-  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__m_timers[num].isrunning = FALSE;
-}
-
 # 78 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Timer.nc"
 inline static void Msp430RefVoltGeneratorP__SwitchOnTimer__stop(void ){
 #line 78
@@ -28036,9 +28925,9 @@ static inline void AdcP__ResourceReadNow__default__granted(uint8_t nowClient)
 }
 
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
-inline static void AdcP__ResourceReadNow__granted(uint8_t arg_0x40bdbed0){
+inline static void AdcP__ResourceReadNow__granted(uint8_t arg_0x40cbeed0){
 #line 102
-    AdcP__ResourceReadNow__default__granted(arg_0x40bdbed0);
+    AdcP__ResourceReadNow__default__granted(arg_0x40cbeed0);
 #line 102
 }
 #line 102
@@ -28084,13 +28973,13 @@ AdcP__Config__default__getConfiguration(uint8_t client)
 }
 
 # 58 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AdcConfigure.nc"
-inline static AdcP__Config__adc_config_t AdcP__Config__getConfiguration(uint8_t arg_0x40bd6228){
+inline static AdcP__Config__adc_config_t AdcP__Config__getConfiguration(uint8_t arg_0x40cb9228){
 #line 58
-  struct __nesc_unnamed4270 const *__nesc_result;
+  struct __nesc_unnamed4273 const *__nesc_result;
 #line 58
 
 #line 58
-  switch (arg_0x40bd6228) {
+  switch (arg_0x40cb9228) {
 #line 58
     case /*ReadDataC.SensorPhoto.AdcReadClientC*/AdcReadClientC__0__CLIENT:
 #line 58
@@ -28118,7 +29007,7 @@ inline static AdcP__Config__adc_config_t AdcP__Config__getConfiguration(uint8_t 
 #line 58
     default:
 #line 58
-      __nesc_result = AdcP__Config__default__getConfiguration(arg_0x40bd6228);
+      __nesc_result = AdcP__Config__default__getConfiguration(arg_0x40cb9228);
 #line 58
       break;
 #line 58
@@ -28140,13 +29029,13 @@ const msp430adc12_channel_config_t *config)
 }
 
 # 84 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
-inline static error_t AdcP__SingleChannel__configureSingle(uint8_t arg_0x40bf2e40, const msp430adc12_channel_config_t * config){
+inline static error_t AdcP__SingleChannel__configureSingle(uint8_t arg_0x40cd5e40, const msp430adc12_channel_config_t * config){
 #line 84
   unsigned char __nesc_result;
 #line 84
 
 #line 84
-  switch (arg_0x40bf2e40) {
+  switch (arg_0x40cd5e40) {
 #line 84
     case /*ReadDataC.SensorPhoto.AdcReadClientC*/AdcReadClientC__0__CLIENT:
 #line 84
@@ -28174,7 +29063,7 @@ inline static error_t AdcP__SingleChannel__configureSingle(uint8_t arg_0x40bf2e4
 #line 84
     default:
 #line 84
-      __nesc_result = AdcP__SingleChannel__default__configureSingle(arg_0x40bf2e40, config);
+      __nesc_result = AdcP__SingleChannel__default__configureSingle(arg_0x40cd5e40, config);
 #line 84
       break;
 #line 84
@@ -28191,7 +29080,7 @@ static inline  uint16_t HplAdc12P__adc12ctl1cast2int(adc12ctl1_t x)
 #line 60
 {
 #line 60
-  union __nesc_unnamed4455 {
+  union __nesc_unnamed4458 {
 #line 60
     adc12ctl1_t f;
 #line 60
@@ -28238,13 +29127,13 @@ inline static void Msp430Adc12ImplP__HplAdc12__setIEFlags(uint16_t mask){
 }
 #line 95
 # 78 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ReadStream.nc"
-inline static error_t /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__Service__read(uint8_t arg_0x40dc76c8, uint32_t usPeriod){
+inline static error_t /*WireAdcStreamP.ArbitrateReadStream*/ArbitratedReadStreamC__0__Service__read(uint8_t arg_0x40eab6c8, uint32_t usPeriod){
 #line 78
   unsigned char __nesc_result;
 #line 78
 
 #line 78
-  __nesc_result = AdcStreamP__ReadStream__read(arg_0x40dc76c8, usPeriod);
+  __nesc_result = AdcStreamP__ReadStream__read(arg_0x40eab6c8, usPeriod);
 #line 78
 
 #line 78
@@ -28305,13 +29194,13 @@ const msp430adc12_channel_config_t *config)
 }
 
 # 84 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
-inline static error_t AdcStreamP__SingleChannel__configureSingle(uint8_t arg_0x40d80ae0, const msp430adc12_channel_config_t * config){
+inline static error_t AdcStreamP__SingleChannel__configureSingle(uint8_t arg_0x40e63ae0, const msp430adc12_channel_config_t * config){
 #line 84
   unsigned char __nesc_result;
 #line 84
 
 #line 84
-  switch (arg_0x40d80ae0) {
+  switch (arg_0x40e63ae0) {
 #line 84
     case /*ReadDataC.SensorPhoto.AdcReadStreamClientC*/AdcReadStreamClientC__0__RSCLIENT:
 #line 84
@@ -28333,7 +29222,7 @@ inline static error_t AdcStreamP__SingleChannel__configureSingle(uint8_t arg_0x4
 #line 84
     default:
 #line 84
-      __nesc_result = AdcStreamP__SingleChannel__default__configureSingle(arg_0x40d80ae0, config);
+      __nesc_result = AdcStreamP__SingleChannel__default__configureSingle(arg_0x40e63ae0, config);
 #line 84
       break;
 #line 84
@@ -28352,13 +29241,13 @@ static inline const msp430adc12_channel_config_t *AdcStreamP__AdcConfigure__defa
 }
 
 # 58 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AdcConfigure.nc"
-inline static AdcStreamP__AdcConfigure__adc_config_t AdcStreamP__AdcConfigure__getConfiguration(uint8_t arg_0x40d7f958){
+inline static AdcStreamP__AdcConfigure__adc_config_t AdcStreamP__AdcConfigure__getConfiguration(uint8_t arg_0x40e62958){
 #line 58
-  struct __nesc_unnamed4270 const *__nesc_result;
+  struct __nesc_unnamed4273 const *__nesc_result;
 #line 58
 
 #line 58
-  switch (arg_0x40d7f958) {
+  switch (arg_0x40e62958) {
 #line 58
     case /*ReadDataC.SensorPhoto.AdcReadStreamClientC*/AdcReadStreamClientC__0__RSCLIENT:
 #line 58
@@ -28380,7 +29269,7 @@ inline static AdcStreamP__AdcConfigure__adc_config_t AdcStreamP__AdcConfigure__g
 #line 58
     default:
 #line 58
-      __nesc_result = AdcStreamP__AdcConfigure__default__getConfiguration(arg_0x40d7f958);
+      __nesc_result = AdcStreamP__AdcConfigure__default__getConfiguration(arg_0x40e62958);
 #line 58
       break;
 #line 58
@@ -28442,13 +29331,13 @@ uint16_t numSamples, uint16_t jiffies)
 }
 
 # 138 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
-inline static error_t AdcStreamP__SingleChannel__configureMultiple(uint8_t arg_0x40d80ae0, const msp430adc12_channel_config_t * config, uint16_t * buffer, uint16_t numSamples, uint16_t jiffies){
+inline static error_t AdcStreamP__SingleChannel__configureMultiple(uint8_t arg_0x40e63ae0, const msp430adc12_channel_config_t * config, uint16_t * buffer, uint16_t numSamples, uint16_t jiffies){
 #line 138
   unsigned char __nesc_result;
 #line 138
 
 #line 138
-  switch (arg_0x40d80ae0) {
+  switch (arg_0x40e63ae0) {
 #line 138
     case /*ReadDataC.SensorPhoto.AdcReadStreamClientC*/AdcReadStreamClientC__0__RSCLIENT:
 #line 138
@@ -28470,7 +29359,7 @@ inline static error_t AdcStreamP__SingleChannel__configureMultiple(uint8_t arg_0
 #line 138
     default:
 #line 138
-      __nesc_result = AdcStreamP__SingleChannel__default__configureMultiple(arg_0x40d80ae0, config, buffer, numSamples, jiffies);
+      __nesc_result = AdcStreamP__SingleChannel__default__configureMultiple(arg_0x40e63ae0, config, buffer, numSamples, jiffies);
 #line 138
       break;
 #line 138
@@ -28513,7 +29402,7 @@ static inline  uint16_t /*Msp430TimerC.Msp430TimerA0*/Msp430TimerCapComP__0__CC2
 #line 57
 {
 #line 57
-  union /*Msp430TimerC.Msp430TimerA0*/Msp430TimerCapComP__0____nesc_unnamed4456 {
+  union /*Msp430TimerC.Msp430TimerA0*/Msp430TimerCapComP__0____nesc_unnamed4459 {
 #line 57
     /*Msp430TimerC.Msp430TimerA0*/Msp430TimerCapComP__0__cc_t f;
 #line 57
@@ -28666,13 +29555,13 @@ static inline error_t AdcP__SingleChannel__default__getData(uint8_t client)
 }
 
 # 189 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
-inline static error_t AdcP__SingleChannel__getData(uint8_t arg_0x40bf2e40){
+inline static error_t AdcP__SingleChannel__getData(uint8_t arg_0x40cd5e40){
 #line 189
   unsigned char __nesc_result;
 #line 189
 
 #line 189
-  switch (arg_0x40bf2e40) {
+  switch (arg_0x40cd5e40) {
 #line 189
     case /*ReadDataC.SensorPhoto.AdcReadClientC*/AdcReadClientC__0__CLIENT:
 #line 189
@@ -28700,7 +29589,7 @@ inline static error_t AdcP__SingleChannel__getData(uint8_t arg_0x40bf2e40){
 #line 189
     default:
 #line 189
-      __nesc_result = AdcP__SingleChannel__default__getData(arg_0x40bf2e40);
+      __nesc_result = AdcP__SingleChannel__default__getData(arg_0x40cd5e40);
 #line 189
       break;
 #line 189
@@ -28733,17 +29622,17 @@ inline static void MainExecP__Logger__log(unsigned char *msg, log_level_t lvl){
 #line 9
 }
 #line 9
-# 26 "MainExecP.nc"
+# 27 "MainExecP.nc"
 static inline void MainExecP__DataReader__readDone(error_t error, data_pkg_msg_t *msg)
-#line 26
+#line 27
 {
   MainExecP__Logger__log("Read data done", log_lvl_info);
   MainExecP__TDMAController__setDataPkg(msg);
 }
 
-# 344 "TDMAControllerP.nc"
+# 414 "TDMAControllerP.nc"
 static inline void TDMAControllerP__ReadData__readDone(error_t error, data_pkg_msg_t *msg)
-#line 344
+#line 414
 {
 
   return;
@@ -28765,9 +29654,9 @@ static inline void /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__Resource__
 }
 
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
-inline static void /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__Resource__granted(uint8_t arg_0x40cca310){
+inline static void /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__Resource__granted(uint8_t arg_0x40dac310){
 #line 102
-  switch (arg_0x40cca310) {
+  switch (arg_0x40dac310) {
 #line 102
     case /*ReadDataC.SensorPhoto.AdcReadClientC.Msp430AdcClient*/Msp430Adc12ClientAutoRVGC__0__ID:
 #line 102
@@ -28813,7 +29702,7 @@ inline static void /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__Resource__
 #line 102
     default:
 #line 102
-      /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__Resource__default__granted(arg_0x40cca310);
+      /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__Resource__default__granted(arg_0x40dac310);
 #line 102
       break;
 #line 102
@@ -28828,9 +29717,9 @@ static inline void /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__ResourceCo
 }
 
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceConfigure.nc"
-inline static void /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__ResourceConfigure__configure(uint8_t arg_0x40cc99b8){
+inline static void /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__ResourceConfigure__configure(uint8_t arg_0x40dab9b8){
 #line 59
-    /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__ResourceConfigure__default__configure(arg_0x40cc99b8);
+    /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__ResourceConfigure__default__configure(arg_0x40dab9b8);
 #line 59
 }
 #line 59
@@ -28853,7 +29742,7 @@ static inline void /*Msp430Adc12P.Arbiter.Arbiter*/SimpleArbiterP__0__grantedTas
 # 58 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AdcConfigure.nc"
 inline static /*ReadDataC.SensorPhoto.AdcReadClientC.Msp430AdcClient.Msp430Adc12ConfAlertC*/Msp430Adc12ConfAlertC__0__ConfUp__adc_config_t /*ReadDataC.SensorPhoto.AdcReadClientC.Msp430AdcClient.Msp430Adc12ConfAlertC*/Msp430Adc12ConfAlertC__0__ConfUp__getConfiguration(void ){
 #line 58
-  struct __nesc_unnamed4270 const *__nesc_result;
+  struct __nesc_unnamed4273 const *__nesc_result;
 #line 58
 
 #line 58
@@ -28874,7 +29763,7 @@ static inline const msp430adc12_channel_config_t */*ReadDataC.SensorPhoto.AdcRea
 # 58 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AdcConfigure.nc"
 inline static /*ReadDataC.SensorPhoto.AdcReadStreamClientC.Msp430AdcClient.Msp430Adc12ConfAlertC*/Msp430Adc12ConfAlertC__1__ConfUp__adc_config_t /*ReadDataC.SensorPhoto.AdcReadStreamClientC.Msp430AdcClient.Msp430Adc12ConfAlertC*/Msp430Adc12ConfAlertC__1__ConfUp__getConfiguration(void ){
 #line 58
-  struct __nesc_unnamed4270 const *__nesc_result;
+  struct __nesc_unnamed4273 const *__nesc_result;
 #line 58
 
 #line 58
@@ -28895,7 +29784,7 @@ static inline const msp430adc12_channel_config_t */*ReadDataC.SensorPhoto.AdcRea
 # 58 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AdcConfigure.nc"
 inline static /*ReadDataC.SensorTotal.AdcReadClientC.Msp430AdcClient.Msp430Adc12ConfAlertC*/Msp430Adc12ConfAlertC__2__ConfUp__adc_config_t /*ReadDataC.SensorTotal.AdcReadClientC.Msp430AdcClient.Msp430Adc12ConfAlertC*/Msp430Adc12ConfAlertC__2__ConfUp__getConfiguration(void ){
 #line 58
-  struct __nesc_unnamed4270 const *__nesc_result;
+  struct __nesc_unnamed4273 const *__nesc_result;
 #line 58
 
 #line 58
@@ -28916,7 +29805,7 @@ static inline const msp430adc12_channel_config_t */*ReadDataC.SensorTotal.AdcRea
 # 58 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AdcConfigure.nc"
 inline static /*ReadDataC.SensorTotal.AdcReadStreamClientC.Msp430AdcClient.Msp430Adc12ConfAlertC*/Msp430Adc12ConfAlertC__3__ConfUp__adc_config_t /*ReadDataC.SensorTotal.AdcReadStreamClientC.Msp430AdcClient.Msp430Adc12ConfAlertC*/Msp430Adc12ConfAlertC__3__ConfUp__getConfiguration(void ){
 #line 58
-  struct __nesc_unnamed4270 const *__nesc_result;
+  struct __nesc_unnamed4273 const *__nesc_result;
 #line 58
 
 #line 58
@@ -28937,7 +29826,7 @@ static inline const msp430adc12_channel_config_t */*ReadDataC.SensorTotal.AdcRea
 # 58 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AdcConfigure.nc"
 inline static /*ReadDataC.Vref.AdcReadClientC.Msp430AdcClient.Msp430Adc12ConfAlertC*/Msp430Adc12ConfAlertC__4__ConfUp__adc_config_t /*ReadDataC.Vref.AdcReadClientC.Msp430AdcClient.Msp430Adc12ConfAlertC*/Msp430Adc12ConfAlertC__4__ConfUp__getConfiguration(void ){
 #line 58
-  struct __nesc_unnamed4270 const *__nesc_result;
+  struct __nesc_unnamed4273 const *__nesc_result;
 #line 58
 
 #line 58
@@ -28958,7 +29847,7 @@ static inline const msp430adc12_channel_config_t */*ReadDataC.Vref.AdcReadClient
 # 58 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AdcConfigure.nc"
 inline static /*ReadDataC.Vref.AdcReadStreamClientC.Msp430AdcClient.Msp430Adc12ConfAlertC*/Msp430Adc12ConfAlertC__5__ConfUp__adc_config_t /*ReadDataC.Vref.AdcReadStreamClientC.Msp430AdcClient.Msp430Adc12ConfAlertC*/Msp430Adc12ConfAlertC__5__ConfUp__getConfiguration(void ){
 #line 58
-  struct __nesc_unnamed4270 const *__nesc_result;
+  struct __nesc_unnamed4273 const *__nesc_result;
 #line 58
 
 #line 58
@@ -28979,7 +29868,7 @@ static inline const msp430adc12_channel_config_t */*ReadDataC.Vref.AdcReadStream
 # 58 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AdcConfigure.nc"
 inline static /*ReadDataC.Vref.AdcReadNowClientC.Msp430AdcClient.Msp430Adc12ConfAlertC*/Msp430Adc12ConfAlertC__6__ConfUp__adc_config_t /*ReadDataC.Vref.AdcReadNowClientC.Msp430AdcClient.Msp430Adc12ConfAlertC*/Msp430Adc12ConfAlertC__6__ConfUp__getConfiguration(void ){
 #line 58
-  struct __nesc_unnamed4270 const *__nesc_result;
+  struct __nesc_unnamed4273 const *__nesc_result;
 #line 58
 
 #line 58
@@ -29005,13 +29894,13 @@ Msp430RefVoltArbiterImplP__Config__default__getConfiguration(uint8_t client)
 }
 
 # 58 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AdcConfigure.nc"
-inline static Msp430RefVoltArbiterImplP__Config__adc_config_t Msp430RefVoltArbiterImplP__Config__getConfiguration(uint8_t arg_0x40d40ed0){
+inline static Msp430RefVoltArbiterImplP__Config__adc_config_t Msp430RefVoltArbiterImplP__Config__getConfiguration(uint8_t arg_0x40e23ed0){
 #line 58
-  struct __nesc_unnamed4270 const *__nesc_result;
+  struct __nesc_unnamed4273 const *__nesc_result;
 #line 58
 
 #line 58
-  switch (arg_0x40d40ed0) {
+  switch (arg_0x40e23ed0) {
 #line 58
     case /*ReadDataC.SensorPhoto.AdcReadClientC.Msp430AdcClient*/Msp430Adc12ClientAutoRVGC__0__ID:
 #line 58
@@ -29057,7 +29946,7 @@ inline static Msp430RefVoltArbiterImplP__Config__adc_config_t Msp430RefVoltArbit
 #line 58
     default:
 #line 58
-      __nesc_result = Msp430RefVoltArbiterImplP__Config__default__getConfiguration(arg_0x40d40ed0);
+      __nesc_result = Msp430RefVoltArbiterImplP__Config__default__getConfiguration(arg_0x40e23ed0);
 #line 58
       break;
 #line 58
@@ -29161,9 +30050,9 @@ static inline void AdcP__Read__default__readDone(uint8_t client, error_t result,
 }
 
 # 63 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Read.nc"
-inline static void AdcP__Read__readDone(uint8_t arg_0x40bde678, error_t result, AdcP__Read__val_t val){
+inline static void AdcP__Read__readDone(uint8_t arg_0x40cc0678, error_t result, AdcP__Read__val_t val){
 #line 63
-  switch (arg_0x40bde678) {
+  switch (arg_0x40cc0678) {
 #line 63
     case /*ReadDataC.SensorPhoto.AdcReadClientC*/AdcReadClientC__0__CLIENT:
 #line 63
@@ -29185,7 +30074,7 @@ inline static void AdcP__Read__readDone(uint8_t arg_0x40bde678, error_t result, 
 #line 63
     default:
 #line 63
-      AdcP__Read__default__readDone(arg_0x40bde678, result, val);
+      AdcP__Read__default__readDone(arg_0x40cc0678, result, val);
 #line 63
       break;
 #line 63
@@ -29202,13 +30091,13 @@ static inline error_t AdcP__ResourceRead__default__release(uint8_t client)
 }
 
 # 120 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
-inline static error_t AdcP__ResourceRead__release(uint8_t arg_0x40bdaa08){
+inline static error_t AdcP__ResourceRead__release(uint8_t arg_0x40cbba08){
 #line 120
   unsigned char __nesc_result;
 #line 120
 
 #line 120
-  switch (arg_0x40bdaa08) {
+  switch (arg_0x40cbba08) {
 #line 120
     case /*ReadDataC.SensorPhoto.AdcReadClientC*/AdcReadClientC__0__CLIENT:
 #line 120
@@ -29230,7 +30119,7 @@ inline static error_t AdcP__ResourceRead__release(uint8_t arg_0x40bdaa08){
 #line 120
     default:
 #line 120
-      __nesc_result = AdcP__ResourceRead__default__release(arg_0x40bdaa08);
+      __nesc_result = AdcP__ResourceRead__default__release(arg_0x40cbba08);
 #line 120
       break;
 #line 120
@@ -29747,9 +30636,9 @@ static inline void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__Resource__
 }
 
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
-inline static void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__Resource__granted(uint8_t arg_0x40b211b8){
+inline static void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__Resource__granted(uint8_t arg_0x40c291b8){
 #line 102
-  switch (arg_0x40b211b8) {
+  switch (arg_0x40c291b8) {
 #line 102
     case /*ReadDataC.SensorHT*/SensirionSht11C__0__TEMP_KEY:
 #line 102
@@ -29765,7 +30654,7 @@ inline static void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__Resource__
 #line 102
     default:
 #line 102
-      /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__Resource__default__granted(arg_0x40b211b8);
+      /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__Resource__default__granted(arg_0x40c291b8);
 #line 102
       break;
 #line 102
@@ -29780,9 +30669,9 @@ static inline void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__ResourceCo
 }
 
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceConfigure.nc"
-inline static void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__ResourceConfigure__configure(uint8_t arg_0x40b43030){
+inline static void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__ResourceConfigure__configure(uint8_t arg_0x40c27030){
 #line 59
-    /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__ResourceConfigure__default__configure(arg_0x40b43030);
+    /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__ResourceConfigure__default__configure(arg_0x40c27030);
 #line 59
 }
 #line 59
@@ -30264,9 +31153,9 @@ static inline void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__ResourceCo
 }
 
 # 65 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ResourceConfigure.nc"
-inline static void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__ResourceConfigure__unconfigure(uint8_t arg_0x40b43030){
+inline static void /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__ResourceConfigure__unconfigure(uint8_t arg_0x40c27030){
 #line 65
-    /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__ResourceConfigure__default__unconfigure(arg_0x40b43030);
+    /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__ResourceConfigure__default__unconfigure(arg_0x40c27030);
 #line 65
 }
 #line 65
@@ -30577,9 +31466,9 @@ static inline void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11Logi
 }
 
 # 84 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11.nc"
-inline static void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__measureHumidityDone(uint8_t arg_0x407dc970, error_t result, uint16_t val){
+inline static void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__measureHumidityDone(uint8_t arg_0x408c0ec0, error_t result, uint16_t val){
 #line 84
-  switch (arg_0x407dc970) {
+  switch (arg_0x408c0ec0) {
 #line 84
     case /*ReadDataC.SensorHT*/SensirionSht11C__0__TEMP_KEY:
 #line 84
@@ -30595,7 +31484,7 @@ inline static void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11Logi
 #line 84
     default:
 #line 84
-      /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__default__measureHumidityDone(arg_0x407dc970, result, val);
+      /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__default__measureHumidityDone(arg_0x408c0ec0, result, val);
 #line 84
       break;
 #line 84
@@ -30624,9 +31513,9 @@ static inline void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11Logi
 }
 
 # 69 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11.nc"
-inline static void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__measureTemperatureDone(uint8_t arg_0x407dc970, error_t result, uint16_t val){
+inline static void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__measureTemperatureDone(uint8_t arg_0x408c0ec0, error_t result, uint16_t val){
 #line 69
-  switch (arg_0x407dc970) {
+  switch (arg_0x408c0ec0) {
 #line 69
     case /*ReadDataC.SensorHT*/SensirionSht11C__0__TEMP_KEY:
 #line 69
@@ -30642,7 +31531,7 @@ inline static void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11Logi
 #line 69
     default:
 #line 69
-      /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__default__measureTemperatureDone(arg_0x407dc970, result, val);
+      /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__default__measureTemperatureDone(arg_0x408c0ec0, result, val);
 #line 69
       break;
 #line 69
@@ -30670,9 +31559,9 @@ static inline void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11Logi
 }
 
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11.nc"
-inline static void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__resetDone(uint8_t arg_0x407dc970, error_t result){
+inline static void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__resetDone(uint8_t arg_0x408c0ec0, error_t result){
 #line 54
-  switch (arg_0x407dc970) {
+  switch (arg_0x408c0ec0) {
 #line 54
     case /*ReadDataC.SensorHT*/SensirionSht11C__0__TEMP_KEY:
 #line 54
@@ -30688,7 +31577,7 @@ inline static void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11Logi
 #line 54
     default:
 #line 54
-      /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__default__resetDone(arg_0x407dc970, result);
+      /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__default__resetDone(arg_0x408c0ec0, result);
 #line 54
       break;
 #line 54
@@ -30857,162 +31746,6 @@ static inline void Msp430RefVoltGeneratorP__SwitchOffSettleTimer__fired(void )
 {
 }
 
-# 73 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/AMQueueEntryP.nc"
-static inline void */*CC2420TimeSyncMessageC.AMSenderC.SenderC.AMQueueEntryP*/AMQueueEntryP__1__AMSend__getPayload(message_t *m, uint8_t len)
-#line 73
-{
-  return /*CC2420TimeSyncMessageC.AMSenderC.SenderC.AMQueueEntryP*/AMQueueEntryP__1__Send__getPayload(m, len);
-}
-
-# 135 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
-inline static void * CC2420TimeSyncMessageP__SubSend__getPayload(message_t * msg, uint8_t len){
-#line 135
-  void *__nesc_result;
-#line 135
-
-#line 135
-  __nesc_result = /*CC2420TimeSyncMessageC.AMSenderC.SenderC.AMQueueEntryP*/AMQueueEntryP__1__AMSend__getPayload(msg, len);
-#line 135
-
-#line 135
-  return __nesc_result;
-#line 135
-}
-#line 135
-# 191 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420TimeSyncMessageP.nc"
-static inline void *CC2420TimeSyncMessageP__TimeSyncAMSend32khz__getPayload(am_id_t id, message_t *msg, uint8_t len)
-{
-  return CC2420TimeSyncMessageP__SubSend__getPayload(msg, len + sizeof(timesync_footer_t ));
-}
-
-#line 216
-static inline void *CC2420TimeSyncMessageP__TimeSyncAMSendMilli__getPayload(am_id_t id, message_t *msg, uint8_t len)
-{
-  return CC2420TimeSyncMessageP__TimeSyncAMSend32khz__getPayload(id, msg, len);
-}
-
-# 114 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TimeSyncAMSend.nc"
-inline static void *TDMAControllerP__TSSend__getPayload(message_t *msg, uint8_t len){
-#line 114
-  void *__nesc_result;
-#line 114
-
-#line 114
-  __nesc_result = CC2420TimeSyncMessageP__TimeSyncAMSendMilli__getPayload(RADIO_TIMESYNC_MSG, msg, len);
-#line 114
-
-#line 114
-  return __nesc_result;
-#line 114
-}
-#line 114
-# 73 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/AMQueueEntryP.nc"
-static inline void */*TDMAControllerC.DataPkgSender.SenderC.AMQueueEntryP*/AMQueueEntryP__4__AMSend__getPayload(message_t *m, uint8_t len)
-#line 73
-{
-  return /*TDMAControllerC.DataPkgSender.SenderC.AMQueueEntryP*/AMQueueEntryP__4__Send__getPayload(m, len);
-}
-
-# 135 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
-inline static void * TDMAControllerP__DataPkgSend__getPayload(message_t * msg, uint8_t len){
-#line 135
-  void *__nesc_result;
-#line 135
-
-#line 135
-  __nesc_result = /*TDMAControllerC.DataPkgSender.SenderC.AMQueueEntryP*/AMQueueEntryP__4__AMSend__getPayload(msg, len);
-#line 135
-
-#line 135
-  return __nesc_result;
-#line 135
-}
-#line 135
-# 73 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/AMQueueEntryP.nc"
-static inline void */*TDMAControllerC.JoinReqSender.SenderC.AMQueueEntryP*/AMQueueEntryP__2__AMSend__getPayload(message_t *m, uint8_t len)
-#line 73
-{
-  return /*TDMAControllerC.JoinReqSender.SenderC.AMQueueEntryP*/AMQueueEntryP__2__Send__getPayload(m, len);
-}
-
-# 135 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/AMSend.nc"
-inline static void * TDMAControllerP__JoinReqSend__getPayload(message_t * msg, uint8_t len){
-#line 135
-  void *__nesc_result;
-#line 135
-
-#line 135
-  __nesc_result = /*TDMAControllerC.JoinReqSender.SenderC.AMQueueEntryP*/AMQueueEntryP__2__AMSend__getPayload(msg, len);
-#line 135
-
-#line 135
-  return __nesc_result;
-#line 135
-}
-#line 135
-# 18 "SettingsP.nc"
-static inline uint8_t *SettingsP__Settings__sleepSlotPerRound(void )
-#line 18
-{
-  return &SettingsP__sleep_slot_per_round_ref;
-}
-
-# 18 "Settings.nc"
-inline static uint8_t *TDMAControllerP__Settings__sleepSlotPerRound(void ){
-#line 18
-  unsigned char *__nesc_result;
-#line 18
-
-#line 18
-  __nesc_result = SettingsP__Settings__sleepSlotPerRound();
-#line 18
-
-#line 18
-  return __nesc_result;
-#line 18
-}
-#line 18
-# 65 "TDMAControllerP.nc"
-static inline error_t TDMAControllerP__TDMAController__start(void )
-#line 65
-{
-
-  uint8_t *round_norm_slot;
-
-#line 68
-  round_norm_slot = TDMAControllerP__Settings__slotPerRound();
-  TDMAControllerP__system_sleep_slots = *round_norm_slot + *TDMAControllerP__Settings__sleepSlotPerRound() * 2;
-  TDMAControllerP__is_sink = TOS_NODE_ID == 0x0000;
-  TDMAControllerP__is_head = TOS_NODE_ID % 4 == 0;
-
-  if (!TDMAControllerP__is_sink) {
-      TDMAControllerP__RadioControl__start();
-
-      TDMAControllerP__join_req_msg = (join_req_msg_t *)TDMAControllerP__JoinReqSend__getPayload(&TDMAControllerP__join_req_packet, sizeof(join_req_msg_t ));
-      TDMAControllerP__data_pkg_msg = (data_pkg_msg_t *)TDMAControllerP__DataPkgSend__getPayload(&TDMAControllerP__data_pkg_packet, sizeof(data_pkg_msg_t ));
-      TDMAControllerP__Logger__log("Setting up for head and node", log_lvl_info);
-      TDMAControllerP__sync_mode = TRUE;
-    }
-  else 
-#line 80
-    {
-      TDMAControllerP__is_head = TRUE;
-      TDMAControllerP__Logger__log("Start system scheduler for sink", log_lvl_info);
-      TDMAControllerP__SystemScheduler__start(SLOT_REPEAT, *TDMAControllerP__SystemScheduler__getSystemTime(), 0, TDMAControllerP__system_sleep_slots, TDMAControllerP__Settings__slotDuration(), round_norm_slot);
-    }
-  if (TDMAControllerP__is_head) {
-
-      TDMAControllerP__slot_map = (am_addr_t *)malloc(sizeof(am_addr_t ) * *round_norm_slot);
-      TDMAControllerP__missed_pkg_count = (uint8_t *)malloc(sizeof(uint8_t ) * *round_norm_slot);
-      bzero(TDMAControllerP__slot_map, sizeof(am_addr_t ) * *round_norm_slot);
-      bzero(TDMAControllerP__slot_map, sizeof(am_addr_t ) * *round_norm_slot);
-      TDMAControllerP__timesync_msg = (timesync_msg_t *)TDMAControllerP__TSSend__getPayload(&TDMAControllerP__timesync_packet, sizeof(timesync_msg_t ));
-      TDMAControllerP__join_ans_msg = (join_ans_msg_t *)TDMAControllerP__JoinAnsSend__getPayload(&TDMAControllerP__join_ans_packet, sizeof(join_ans_msg_t ));
-      TDMAControllerP__Logger__log("Done setting up for head and sink", log_lvl_info);
-    }
-  return SUCCESS;
-}
-
 # 10 "TDMAController.nc"
 inline static error_t MainExecP__TDMAController__start(void ){
 #line 10
@@ -31028,9 +31761,9 @@ inline static error_t MainExecP__TDMAController__start(void ){
 #line 10
 }
 #line 10
-# 22 "MainExecP.nc"
+# 23 "MainExecP.nc"
 static inline void MainExecP__Timer__fired(void )
-#line 22
+#line 23
 {
   MainExecP__TDMAController__start();
 }
@@ -31062,11 +31795,21 @@ inline static void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedule
 #line 41
 }
 #line 41
-# 463 "TDMAControllerP.nc"
+# 569 "TDMAControllerP.nc"
 static inline void TDMAControllerP__LocalScheduler__slotStarted(uint8_t slot_no, uint8_t actual_slot)
-#line 463
+#line 569
 {
+  if (TDMAControllerP__off_time && actual_slot != ST_TIMESYNC) {
+      return;
+    }
+  if (!(TDMAControllerP__current_round_idx > 5 - 2) && TDMAControllerP__is_head) {
+      TDMAControllerP__checkMissingPkt(actual_slot);
+    }
   TDMAControllerP__Logger__logValue("Local slot started. Slot", actual_slot, FALSE, log_lvl_dbg);
+  if (actual_slot != ST_TIMESYNC && TDMAControllerP__off_time) {
+    return;
+    }
+#line 579
   if (TDMAControllerP__RadioControl__start() == EALREADY) {
     TDMAControllerP__startSlotTask(TDMA_ROUND_LOCAL, actual_slot);
     }
@@ -31079,14 +31822,26 @@ inline static void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedule
 #line 40
 }
 #line 40
-# 159 "SlotSchedulerP.nc"
+# 9 "Logger.nc"
+inline static void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__Logger__log(unsigned char *msg, log_level_t lvl){
+#line 9
+  LoggerP__Logger__log(msg, lvl);
+#line 9
+}
+#line 9
+# 164 "SlotSchedulerP.nc"
 static inline void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotTimer__fired(void )
-#line 159
+#line 164
 {
+  if (!/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__is_running) {
+      /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__Logger__log("Retry stopping SlotTimer", log_lvl_dbg);
+      /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotTimer__stop();
+      return;
+    }
   if (!/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__is_active) {
     return;
     }
-#line 162
+#line 172
   if (!/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__is_slot_start) {
 
       /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__is_slot_start = TRUE;
@@ -31103,7 +31858,7 @@ static inline void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedule
     /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotTimer__startOneShot(0);
     }
   else {
-#line 177
+#line 187
     /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotTimer__startOneShotAt(/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__system_time_ref, */*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__duration_local * /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__last_slot);
     }
 }
@@ -31122,26 +31877,11 @@ inline static void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedule
 #line 38
 }
 #line 38
-# 130 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/SplitControl.nc"
-inline static error_t TDMAControllerP__RadioControl__stop(void ){
-#line 130
-  unsigned char __nesc_result;
-#line 130
-
-#line 130
-  __nesc_result = CC2420CsmaP__SplitControl__stop();
-#line 130
-
-#line 130
-  return __nesc_result;
-#line 130
-}
-#line 130
-# 448 "TDMAControllerP.nc"
+# 555 "TDMAControllerP.nc"
 static inline void TDMAControllerP__LocalScheduler__endRound(void )
-#line 448
+#line 555
 {
-  if (TDMAControllerP__missed_sync_count >= 4) {
+  if (TDMAControllerP__missed_sync_count >= 3) {
       TDMAControllerP__sync_mode = TRUE;
       TDMAControllerP__joined = FALSE;
     }
@@ -31155,31 +31895,22 @@ inline static void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedule
 #line 39
 }
 #line 39
-# 78 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Timer.nc"
-inline static void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotTimer__stop(void ){
-#line 78
-  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__stop(7U);
-#line 78
-}
-#line 78
-# 9 "Logger.nc"
-inline static void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__Logger__log(unsigned char *msg, log_level_t lvl){
-#line 9
-  LoggerP__Logger__log(msg, lvl);
-#line 9
-}
-#line 9
 # 125 "SlotSchedulerP.nc"
 static inline void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SystemTimer__fired(void )
 #line 125
 {
+  if (!/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__is_running) {
+      /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__Logger__log("Retry stopping SystemTimer", log_lvl_dbg);
+      /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SystemTimer__stop();
+      return;
+    }
   if (/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__is_active) {
 
       /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__is_active = FALSE;
       if (/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__last_slot != SLOT_REPEAT) {
         /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__last_slot = SLOT_INACTIVE;
         }
-#line 131
+#line 136
       if (/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__is_slot_start) {
           /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__Logger__log("Force end last slot", log_lvl_info);
           /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__is_slot_start = FALSE;
@@ -31192,7 +31923,7 @@ static inline void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedule
       /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SystemTimer__startOneShotAt(/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__system_time_ref, /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__round_offline_time);
     }
   else 
-#line 141
+#line 146
     {
 
       /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__is_active = TRUE;
@@ -31206,7 +31937,7 @@ static inline void /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedule
           /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__last_slot = /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__getNextSlot(/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__last_slot);
         }
       else {
-#line 153
+#line 158
         /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotTimer__startOneShotAt(/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__system_time_ref, 0);
         }
     }
@@ -31233,11 +31964,14 @@ inline static void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedul
 #line 41
 }
 #line 41
-# 415 "TDMAControllerP.nc"
+# 513 "TDMAControllerP.nc"
 static inline void TDMAControllerP__SystemScheduler__slotStarted(uint8_t slot_no, uint8_t actual_slot)
-#line 415
+#line 513
 {
 
+  if (!(TDMAControllerP__current_round_idx > 5 - 2) && TDMAControllerP__is_sink) {
+      TDMAControllerP__checkMissingPkt(actual_slot);
+    }
   TDMAControllerP__Logger__logValue("System slot started. Slot", actual_slot, FALSE, log_lvl_dbg);
   if (TDMAControllerP__RadioControl__start() == EALREADY) {
     TDMAControllerP__startSlotTask(TDMA_ROUND_SYSTEM, actual_slot);
@@ -31251,14 +31985,26 @@ inline static void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedul
 #line 40
 }
 #line 40
-# 159 "SlotSchedulerP.nc"
+# 9 "Logger.nc"
+inline static void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__Logger__log(unsigned char *msg, log_level_t lvl){
+#line 9
+  LoggerP__Logger__log(msg, lvl);
+#line 9
+}
+#line 9
+# 164 "SlotSchedulerP.nc"
 static inline void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotTimer__fired(void )
-#line 159
+#line 164
 {
+  if (!/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__is_running) {
+      /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__Logger__log("Retry stopping SlotTimer", log_lvl_dbg);
+      /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotTimer__stop();
+      return;
+    }
   if (!/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__is_active) {
     return;
     }
-#line 162
+#line 172
   if (!/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__is_slot_start) {
 
       /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__is_slot_start = TRUE;
@@ -31275,7 +32021,7 @@ static inline void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedul
     /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotTimer__startOneShot(0);
     }
   else {
-#line 177
+#line 187
     /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotTimer__startOneShotAt(/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__system_time_ref, */*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__duration_local * /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__last_slot);
     }
 }
@@ -31294,19 +32040,18 @@ inline static void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedul
 #line 38
 }
 #line 38
-# 397 "TDMAControllerP.nc"
+# 493 "TDMAControllerP.nc"
 static inline void TDMAControllerP__SystemScheduler__endRound(void )
-#line 397
+#line 493
 {
-  if (TDMAControllerP__current_round_idx > 0) {
-      TDMAControllerP__current_round_idx--;
+  if (TDMAControllerP__is_sink) {
+      if (TDMAControllerP__current_round_idx <= 0) {
+          TDMAControllerP__current_round_idx = 5;
+          bzero(TDMAControllerP__slot_map, sizeof(am_addr_t ) * *TDMAControllerP__Settings__slotPerRound());
+          bzero(TDMAControllerP__missed_pkg_count, sizeof(uint8_t ) * *TDMAControllerP__Settings__slotPerRound());
+        }
     }
-  else 
-#line 400
-    {
-      TDMAControllerP__current_round_idx = 10;
-    }
-  if (TDMAControllerP__missed_sync_count >= 4) {
+  if (TDMAControllerP__missed_sync_count >= 3) {
       TDMAControllerP__sync_mode = TRUE;
       TDMAControllerP__joined = FALSE;
     }
@@ -31320,31 +32065,22 @@ inline static void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedul
 #line 39
 }
 #line 39
-# 78 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Timer.nc"
-inline static void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotTimer__stop(void ){
-#line 78
-  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__stop(9U);
-#line 78
-}
-#line 78
-# 9 "Logger.nc"
-inline static void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__Logger__log(unsigned char *msg, log_level_t lvl){
-#line 9
-  LoggerP__Logger__log(msg, lvl);
-#line 9
-}
-#line 9
 # 125 "SlotSchedulerP.nc"
 static inline void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SystemTimer__fired(void )
 #line 125
 {
+  if (!/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__is_running) {
+      /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__Logger__log("Retry stopping SystemTimer", log_lvl_dbg);
+      /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SystemTimer__stop();
+      return;
+    }
   if (/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__is_active) {
 
       /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__is_active = FALSE;
       if (/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__last_slot != SLOT_REPEAT) {
         /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__last_slot = SLOT_INACTIVE;
         }
-#line 131
+#line 136
       if (/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__is_slot_start) {
           /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__Logger__log("Force end last slot", log_lvl_info);
           /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__is_slot_start = FALSE;
@@ -31357,7 +32093,7 @@ static inline void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedul
       /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SystemTimer__startOneShotAt(/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__system_time_ref, /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__round_offline_time);
     }
   else 
-#line 141
+#line 146
     {
 
       /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__is_active = TRUE;
@@ -31371,7 +32107,7 @@ static inline void /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedul
           /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__last_slot = /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__getNextSlot(/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__last_slot);
         }
       else {
-#line 153
+#line 158
         /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotTimer__startOneShotAt(/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__system_time_ref, 0);
         }
     }
@@ -31383,9 +32119,9 @@ static inline void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer
 }
 
 # 83 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Timer.nc"
-inline static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x40a419f0){
+inline static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__fired(uint8_t arg_0x40b259f0){
 #line 83
-  switch (arg_0x40a419f0) {
+  switch (arg_0x40b259f0) {
 #line 83
     case 0U:
 #line 83
@@ -31449,7 +32185,7 @@ inline static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer
 #line 83
     default:
 #line 83
-      /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x40a419f0);
+      /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__default__fired(arg_0x40b259f0);
 #line 83
       break;
 #line 83
@@ -31457,9 +32193,9 @@ inline static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer
 #line 83
 }
 #line 83
-# 180 "SlotSchedulerP.nc"
+# 190 "SlotSchedulerP.nc"
 static inline uint8_t /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__nextSlot(void )
-#line 180
+#line 190
 {
   return /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__getNextSlot(/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__actual_slot);
 }
@@ -31479,9 +32215,9 @@ inline static uint8_t TDMAControllerP__SystemScheduler__nextSlot(void ){
 #line 33
 }
 #line 33
-# 180 "SlotSchedulerP.nc"
+# 190 "SlotSchedulerP.nc"
 static inline uint8_t /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__nextSlot(void )
-#line 180
+#line 190
 {
   return /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__getNextSlot(/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__actual_slot);
 }
@@ -31657,9 +32393,9 @@ static inline void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11Logi
 }
 
 # 116 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11.nc"
-inline static void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__writeStatusRegDone(uint8_t arg_0x407dc970, error_t result){
+inline static void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__writeStatusRegDone(uint8_t arg_0x408c0ec0, error_t result){
 #line 116
-  switch (arg_0x407dc970) {
+  switch (arg_0x408c0ec0) {
 #line 116
     case /*ReadDataC.SensorHT*/SensirionSht11C__0__TEMP_KEY:
 #line 116
@@ -31675,7 +32411,7 @@ inline static void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11Logi
 #line 116
     default:
 #line 116
-      /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__default__writeStatusRegDone(arg_0x407dc970, result);
+      /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__default__writeStatusRegDone(arg_0x408c0ec0, result);
 #line 116
       break;
 #line 116
@@ -31703,9 +32439,9 @@ static inline void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11Logi
 }
 
 # 100 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/sht11/SensirionSht11.nc"
-inline static void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__readStatusRegDone(uint8_t arg_0x407dc970, error_t result, uint8_t val){
+inline static void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__readStatusRegDone(uint8_t arg_0x408c0ec0, error_t result, uint8_t val){
 #line 100
-  switch (arg_0x407dc970) {
+  switch (arg_0x408c0ec0) {
 #line 100
     case /*ReadDataC.SensorHT*/SensirionSht11C__0__TEMP_KEY:
 #line 100
@@ -31721,7 +32457,7 @@ inline static void /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11Logi
 #line 100
     default:
 #line 100
-      /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__default__readStatusRegDone(arg_0x407dc970, result, val);
+      /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__SensirionSht11__default__readStatusRegDone(arg_0x408c0ec0, result, val);
 #line 100
       break;
 #line 100
@@ -31757,7 +32493,7 @@ static inline  uint16_t /*Msp430TimerC.Msp430TimerB0*/Msp430TimerCapComP__3__CC2
 #line 57
 {
 #line 57
-  union /*Msp430TimerC.Msp430TimerB0*/Msp430TimerCapComP__3____nesc_unnamed4457 {
+  union /*Msp430TimerC.Msp430TimerB0*/Msp430TimerCapComP__3____nesc_unnamed4460 {
 #line 57
     /*Msp430TimerC.Msp430TimerB0*/Msp430TimerCapComP__3__cc_t f;
 #line 57
@@ -31821,7 +32557,7 @@ inline static void Msp430Adc12ImplP__HplAdc12__setCtl0(adc12ctl0_t control0){
 #line 63
 inline static adc12ctl0_t Msp430Adc12ImplP__HplAdc12__getCtl0(void ){
 #line 63
-  struct __nesc_unnamed4272 __nesc_result;
+  struct __nesc_unnamed4275 __nesc_result;
 #line 63
 
 #line 63
@@ -32206,7 +32942,7 @@ static inline  uint16_t /*Msp430TimerC.Msp430TimerB3*/Msp430TimerCapComP__6__CC2
 #line 57
 {
 #line 57
-  union /*Msp430TimerC.Msp430TimerB3*/Msp430TimerCapComP__6____nesc_unnamed4458 {
+  union /*Msp430TimerC.Msp430TimerB3*/Msp430TimerCapComP__6____nesc_unnamed4461 {
 #line 57
     /*Msp430TimerC.Msp430TimerB3*/Msp430TimerCapComP__6__cc_t f;
 #line 57
@@ -32899,11 +33635,11 @@ inline static void MainExecP__Timer__startOneShot(uint32_t dt){
 #line 73
 }
 #line 73
-# 18 "MainExecP.nc"
+# 19 "MainExecP.nc"
 static inline void MainExecP__Boot__booted(void )
-#line 18
+#line 19
 {
-  MainExecP__Timer__startOneShot(5120);
+  MainExecP__Timer__startOneShot(5 * 1000);
 }
 
 # 67 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TaskBasic.nc"
@@ -33650,7 +34386,7 @@ static inline  uint8_t HplAdc12P__adc12memctl2int(adc12memctl_t x)
 #line 61
 {
 #line 61
-  union __nesc_unnamed4459 {
+  union __nesc_unnamed4462 {
 #line 61
     adc12memctl_t f;
 #line 61
@@ -33682,7 +34418,7 @@ static inline  adc12memctl_t HplAdc12P__int2adc12memctl(uint8_t x)
 #line 62
 {
 #line 62
-  union __nesc_unnamed4460 {
+  union __nesc_unnamed4463 {
 #line 62
     uint8_t f;
 #line 62
@@ -33705,7 +34441,7 @@ static inline adc12memctl_t HplAdc12P__HplAdc12__getMCtl(uint8_t i)
 # 82 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/HplAdc12.nc"
 inline static adc12memctl_t Msp430Adc12ImplP__HplAdc12__getMCtl(uint8_t idx){
 #line 82
-  struct __nesc_unnamed4271 __nesc_result;
+  struct __nesc_unnamed4274 __nesc_result;
 #line 82
 
 #line 82
@@ -33724,9 +34460,9 @@ static inline void Msp430Adc12ImplP__MultiChannel__default__dataReady(uint8_t id
 }
 
 # 107 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12MultiChannel.nc"
-inline static void Msp430Adc12ImplP__MultiChannel__dataReady(uint8_t arg_0x40c07108, uint16_t *buffer, uint16_t numSamples){
+inline static void Msp430Adc12ImplP__MultiChannel__dataReady(uint8_t arg_0x40d12108, uint16_t *buffer, uint16_t numSamples){
 #line 107
-    Msp430Adc12ImplP__MultiChannel__default__dataReady(arg_0x40c07108, buffer, numSamples);
+    Msp430Adc12ImplP__MultiChannel__default__dataReady(arg_0x40d12108, buffer, numSamples);
 #line 107
 }
 #line 107
@@ -33760,9 +34496,9 @@ static inline void Msp430Adc12ImplP__Overflow__default__conversionTimeOverflow(u
 }
 
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12Overflow.nc"
-inline static void Msp430Adc12ImplP__Overflow__conversionTimeOverflow(uint8_t arg_0x40c079f8){
+inline static void Msp430Adc12ImplP__Overflow__conversionTimeOverflow(uint8_t arg_0x40d129f8){
 #line 54
-    Msp430Adc12ImplP__Overflow__default__conversionTimeOverflow(arg_0x40c079f8);
+    Msp430Adc12ImplP__Overflow__default__conversionTimeOverflow(arg_0x40d129f8);
 #line 54
 }
 #line 54
@@ -33773,9 +34509,9 @@ static inline void Msp430Adc12ImplP__Overflow__default__memOverflow(uint8_t id)
 }
 
 # 49 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12Overflow.nc"
-inline static void Msp430Adc12ImplP__Overflow__memOverflow(uint8_t arg_0x40c079f8){
+inline static void Msp430Adc12ImplP__Overflow__memOverflow(uint8_t arg_0x40d129f8){
 #line 49
-    Msp430Adc12ImplP__Overflow__default__memOverflow(arg_0x40c079f8);
+    Msp430Adc12ImplP__Overflow__default__memOverflow(arg_0x40d129f8);
 #line 49
 }
 #line 49
@@ -34093,9 +34829,9 @@ static inline void AdcP__ReadNow__default__readDone(uint8_t client, error_t resu
 }
 
 # 66 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/ReadNow.nc"
-inline static void AdcP__ReadNow__readDone(uint8_t arg_0x40bd9f08, error_t result, AdcP__ReadNow__val_t val){
+inline static void AdcP__ReadNow__readDone(uint8_t arg_0x40cbcf08, error_t result, AdcP__ReadNow__val_t val){
 #line 66
-    AdcP__ReadNow__default__readDone(arg_0x40bd9f08, result, val);
+    AdcP__ReadNow__default__readDone(arg_0x40cbcf08, result, val);
 #line 66
 }
 #line 66
@@ -34207,9 +34943,9 @@ static inline void /*Msp430Uart1P.UartP*/Msp430UartP__0__UartStream__default__re
 }
 
 # 79 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/UartStream.nc"
-inline static void /*Msp430Uart1P.UartP*/Msp430UartP__0__UartStream__receivedByte(uint8_t arg_0x40fe9eb0, uint8_t byte){
+inline static void /*Msp430Uart1P.UartP*/Msp430UartP__0__UartStream__receivedByte(uint8_t arg_0x410cfeb0, uint8_t byte){
 #line 79
-  switch (arg_0x40fe9eb0) {
+  switch (arg_0x410cfeb0) {
 #line 79
     case /*PlatformSerialC.UartC*/Msp430Uart1C__0__CLIENT_ID:
 #line 79
@@ -34219,7 +34955,7 @@ inline static void /*Msp430Uart1P.UartP*/Msp430UartP__0__UartStream__receivedByt
 #line 79
     default:
 #line 79
-      /*Msp430Uart1P.UartP*/Msp430UartP__0__UartStream__default__receivedByte(arg_0x40fe9eb0, byte);
+      /*Msp430Uart1P.UartP*/Msp430UartP__0__UartStream__default__receivedByte(arg_0x410cfeb0, byte);
 #line 79
       break;
 #line 79
@@ -34240,9 +34976,9 @@ static inline void /*Msp430Uart1P.UartP*/Msp430UartP__0__UartStream__default__re
 }
 
 # 99 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/UartStream.nc"
-inline static void /*Msp430Uart1P.UartP*/Msp430UartP__0__UartStream__receiveDone(uint8_t arg_0x40fe9eb0, uint8_t * buf, uint16_t len, error_t error){
+inline static void /*Msp430Uart1P.UartP*/Msp430UartP__0__UartStream__receiveDone(uint8_t arg_0x410cfeb0, uint8_t * buf, uint16_t len, error_t error){
 #line 99
-  switch (arg_0x40fe9eb0) {
+  switch (arg_0x410cfeb0) {
 #line 99
     case /*PlatformSerialC.UartC*/Msp430Uart1C__0__CLIENT_ID:
 #line 99
@@ -34252,7 +34988,7 @@ inline static void /*Msp430Uart1P.UartP*/Msp430UartP__0__UartStream__receiveDone
 #line 99
     default:
 #line 99
-      /*Msp430Uart1P.UartP*/Msp430UartP__0__UartStream__default__receiveDone(arg_0x40fe9eb0, buf, len, error);
+      /*Msp430Uart1P.UartP*/Msp430UartP__0__UartStream__default__receiveDone(arg_0x410cfeb0, buf, len, error);
 #line 99
       break;
 #line 99
@@ -34289,9 +35025,9 @@ static inline void /*Msp430UsciShareA1P.UsciShareP*/Msp430UsciShareP__0__Interru
 }
 
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/HplMsp430UsciInterrupts.nc"
-inline static void /*Msp430UsciShareA1P.UsciShareP*/Msp430UsciShareP__0__Interrupts__rxDone(uint8_t arg_0x4108d778, uint8_t data){
+inline static void /*Msp430UsciShareA1P.UsciShareP*/Msp430UsciShareP__0__Interrupts__rxDone(uint8_t arg_0x41175778, uint8_t data){
 #line 59
-  switch (arg_0x4108d778) {
+  switch (arg_0x41175778) {
 #line 59
     case /*PlatformSerialC.UartC.UsciC*/Msp430UsciA1C__0__CLIENT_ID:
 #line 59
@@ -34301,7 +35037,7 @@ inline static void /*Msp430UsciShareA1P.UsciShareP*/Msp430UsciShareP__0__Interru
 #line 59
     default:
 #line 59
-      /*Msp430UsciShareA1P.UsciShareP*/Msp430UsciShareP__0__Interrupts__default__rxDone(arg_0x4108d778, data);
+      /*Msp430UsciShareA1P.UsciShareP*/Msp430UsciShareP__0__Interrupts__default__rxDone(arg_0x41175778, data);
 #line 59
       break;
 #line 59
@@ -34631,9 +35367,9 @@ static inline void /*Msp430Uart1P.UartP*/Msp430UartP__0__UartStream__default__se
 }
 
 # 57 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/UartStream.nc"
-inline static void /*Msp430Uart1P.UartP*/Msp430UartP__0__UartStream__sendDone(uint8_t arg_0x40fe9eb0, uint8_t * buf, uint16_t len, error_t error){
+inline static void /*Msp430Uart1P.UartP*/Msp430UartP__0__UartStream__sendDone(uint8_t arg_0x410cfeb0, uint8_t * buf, uint16_t len, error_t error){
 #line 57
-  switch (arg_0x40fe9eb0) {
+  switch (arg_0x410cfeb0) {
 #line 57
     case /*PlatformSerialC.UartC*/Msp430Uart1C__0__CLIENT_ID:
 #line 57
@@ -34643,7 +35379,7 @@ inline static void /*Msp430Uart1P.UartP*/Msp430UartP__0__UartStream__sendDone(ui
 #line 57
     default:
 #line 57
-      /*Msp430Uart1P.UartP*/Msp430UartP__0__UartStream__default__sendDone(arg_0x40fe9eb0, buf, len, error);
+      /*Msp430Uart1P.UartP*/Msp430UartP__0__UartStream__default__sendDone(arg_0x410cfeb0, buf, len, error);
 #line 57
       break;
 #line 57
@@ -34713,9 +35449,9 @@ static inline void /*Msp430UsciShareA1P.UsciShareP*/Msp430UsciShareP__0__Interru
 }
 
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/HplMsp430UsciInterrupts.nc"
-inline static void /*Msp430UsciShareA1P.UsciShareP*/Msp430UsciShareP__0__Interrupts__txDone(uint8_t arg_0x4108d778){
+inline static void /*Msp430UsciShareA1P.UsciShareP*/Msp430UsciShareP__0__Interrupts__txDone(uint8_t arg_0x41175778){
 #line 54
-  switch (arg_0x4108d778) {
+  switch (arg_0x41175778) {
 #line 54
     case /*PlatformSerialC.UartC.UsciC*/Msp430UsciA1C__0__CLIENT_ID:
 #line 54
@@ -34725,7 +35461,7 @@ inline static void /*Msp430UsciShareA1P.UsciShareP*/Msp430UsciShareP__0__Interru
 #line 54
     default:
 #line 54
-      /*Msp430UsciShareA1P.UsciShareP*/Msp430UsciShareP__0__Interrupts__default__txDone(arg_0x4108d778);
+      /*Msp430UsciShareA1P.UsciShareP*/Msp430UsciShareP__0__Interrupts__default__txDone(arg_0x41175778);
 #line 54
       break;
 #line 54
@@ -35146,9 +35882,9 @@ static inline void /*Msp430UsciShareB0P.UsciShareP*/Msp430UsciShareP__1__Interru
 }
 
 # 59 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/HplMsp430UsciInterrupts.nc"
-inline static void /*Msp430UsciShareB0P.UsciShareP*/Msp430UsciShareP__1__Interrupts__rxDone(uint8_t arg_0x4108d778, uint8_t data){
+inline static void /*Msp430UsciShareB0P.UsciShareP*/Msp430UsciShareP__1__Interrupts__rxDone(uint8_t arg_0x41175778, uint8_t data){
 #line 59
-  switch (arg_0x4108d778) {
+  switch (arg_0x41175778) {
 #line 59
     case /*CC2420SpiWireC.HplCC2420SpiC.SpiC.UsciC*/Msp430UsciB0C__0__CLIENT_ID:
 #line 59
@@ -35158,7 +35894,7 @@ inline static void /*Msp430UsciShareB0P.UsciShareP*/Msp430UsciShareP__1__Interru
 #line 59
     default:
 #line 59
-      /*Msp430UsciShareB0P.UsciShareP*/Msp430UsciShareP__1__Interrupts__default__rxDone(arg_0x4108d778, data);
+      /*Msp430UsciShareB0P.UsciShareP*/Msp430UsciShareP__1__Interrupts__default__rxDone(arg_0x41175778, data);
 #line 59
       break;
 #line 59
@@ -35238,9 +35974,9 @@ static inline void /*Msp430UsciShareB0P.UsciShareP*/Msp430UsciShareP__1__Interru
 }
 
 # 54 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/x2xxx/usci/HplMsp430UsciInterrupts.nc"
-inline static void /*Msp430UsciShareB0P.UsciShareP*/Msp430UsciShareP__1__Interrupts__txDone(uint8_t arg_0x4108d778){
+inline static void /*Msp430UsciShareB0P.UsciShareP*/Msp430UsciShareP__1__Interrupts__txDone(uint8_t arg_0x41175778){
 #line 54
-  switch (arg_0x4108d778) {
+  switch (arg_0x41175778) {
 #line 54
     case /*CC2420SpiWireC.HplCC2420SpiC.SpiC.UsciC*/Msp430UsciB0C__0__CLIENT_ID:
 #line 54
@@ -35250,7 +35986,7 @@ inline static void /*Msp430UsciShareB0P.UsciShareP*/Msp430UsciShareP__1__Interru
 #line 54
     default:
 #line 54
-      /*Msp430UsciShareB0P.UsciShareP*/Msp430UsciShareP__1__Interrupts__default__txDone(arg_0x4108d778);
+      /*Msp430UsciShareB0P.UsciShareP*/Msp430UsciShareP__1__Interrupts__default__txDone(arg_0x41175778);
 #line 54
       break;
 #line 54
@@ -35373,9 +36109,9 @@ static void /*Msp430TimerC.Msp430TimerB*/Msp430TimerP__1__Event__default__fired(
 }
 
 # 39 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/timer/Msp430TimerEvent.nc"
-static void /*Msp430TimerC.Msp430TimerB*/Msp430TimerP__1__Event__fired(uint8_t arg_0x406db788){
+static void /*Msp430TimerC.Msp430TimerB*/Msp430TimerP__1__Event__fired(uint8_t arg_0x407c2788){
 #line 39
-  switch (arg_0x406db788) {
+  switch (arg_0x407c2788) {
 #line 39
     case 0:
 #line 39
@@ -35427,7 +36163,7 @@ static void /*Msp430TimerC.Msp430TimerB*/Msp430TimerP__1__Event__fired(uint8_t a
 #line 39
     default:
 #line 39
-      /*Msp430TimerC.Msp430TimerB*/Msp430TimerP__1__Event__default__fired(arg_0x406db788);
+      /*Msp430TimerC.Msp430TimerB*/Msp430TimerP__1__Event__default__fired(arg_0x407c2788);
 #line 39
       break;
 #line 39
@@ -36499,9 +37235,9 @@ static void SchedulerBasicP__TaskBasic__default__runTask(uint8_t id)
 }
 
 # 75 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/TaskBasic.nc"
-static void SchedulerBasicP__TaskBasic__runTask(uint8_t arg_0x4064b4a0){
+static void SchedulerBasicP__TaskBasic__runTask(uint8_t arg_0x407324a0){
 #line 75
-  switch (arg_0x4064b4a0) {
+  switch (arg_0x407324a0) {
 #line 75
     case /*HalSensirionSht11C.SensirionSht11LogicP*/SensirionSht11LogicP__0__readSensor:
 #line 75
@@ -36721,7 +37457,7 @@ static void SchedulerBasicP__TaskBasic__runTask(uint8_t arg_0x4064b4a0){
 #line 75
     default:
 #line 75
-      SchedulerBasicP__TaskBasic__default__runTask(arg_0x4064b4a0);
+      SchedulerBasicP__TaskBasic__default__runTask(arg_0x407324a0);
 #line 75
       break;
 #line 75
@@ -36736,9 +37472,9 @@ static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__Send__default__sendDone(ui
 }
 
 # 100 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
-static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__Send__sendDone(uint8_t arg_0x410c39d8, message_t * msg, error_t error){
+static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__Send__sendDone(uint8_t arg_0x411ab9d8, message_t * msg, error_t error){
 #line 100
-  switch (arg_0x410c39d8) {
+  switch (arg_0x411ab9d8) {
 #line 100
     case 0U:
 #line 100
@@ -36764,9 +37500,15 @@ static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__Send__sendDone(uint8_t arg
 #line 100
       break;
 #line 100
+    case 4U:
+#line 100
+      /*TDMAControllerC.AssignmentSender.SenderC.AMQueueEntryP*/AMQueueEntryP__5__Send__sendDone(msg, error);
+#line 100
+      break;
+#line 100
     default:
 #line 100
-      /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__Send__default__sendDone(arg_0x410c39d8, msg, error);
+      /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__Send__default__sendDone(arg_0x411ab9d8, msg, error);
 #line 100
       break;
 #line 100
@@ -36787,10 +37529,10 @@ static void LoggerP__Logger__log(unsigned char *msg, log_level_t lvl)
       break;
       case log_lvl_dbg: 
 
-        printf("[DBG] %s\n", msg);
-      printfflush();
 
-      break;
+
+
+        break;
       case log_lvl_err: 
 
         printf("[ERR] %s\n", msg);
@@ -36799,15 +37541,15 @@ static void LoggerP__Logger__log(unsigned char *msg, log_level_t lvl)
       break;
       case log_lvl_dat: 
 
-        printf("[DAT] %s\n", msg);
-      printfflush();
-
-      default: 
 
 
 
+        default: 
 
-        break;
+
+
+
+          break;
     }
 }
 
@@ -36976,18 +37718,15 @@ static void LoggerP__Logger__logValue(unsigned char *msg, uint32_t value, bool t
       break;
       case log_lvl_dbg: 
 
-        if (to_hex) {
-            printf("[DBG] %s: 0x%08x\n", msg, value);
-            printfflush();
-          }
-        else 
-#line 58
-          {
-            printf("[DBG] %s: %d\n", msg, value);
-            printfflush();
-          }
 
-      break;
+
+
+
+
+
+
+
+        break;
       case log_lvl_err: 
 
         if (to_hex) {
@@ -37004,18 +37743,15 @@ static void LoggerP__Logger__logValue(unsigned char *msg, uint32_t value, bool t
       break;
       case log_lvl_dat: 
 
-        if (to_hex) {
-            printf("[DAT] %s: 0x%08x\n", msg, value);
-            printfflush();
-          }
-        else 
-#line 80
-          {
-            printf("[DAT] %s: %d\n", msg, value);
-            printfflush();
-          }
 
-      default: 
+
+
+
+
+
+
+
+        default: 
 
 
 
@@ -37025,7 +37761,7 @@ static void LoggerP__Logger__logValue(unsigned char *msg, uint32_t value, bool t
 
 
 
-        break;
+          break;
     }
 }
 
@@ -37034,7 +37770,7 @@ static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__tryToSend(void )
 #line 174
 {
   /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__nextPacket();
-  if (/*AMQueueP.AMQueueImplP*/AMQueueImplP__1__current < 4) {
+  if (/*AMQueueP.AMQueueImplP*/AMQueueImplP__1__current < 5) {
       error_t nextErr;
       message_t *nextMsg = /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__queue[/*AMQueueP.AMQueueImplP*/AMQueueImplP__1__current].msg;
       am_id_t nextId = /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__AMPacket__type(nextMsg);
@@ -37320,7 +38056,7 @@ static void /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__AMSend__sendDone(am_id_t i
 
 
 
-  if (/*AMQueueP.AMQueueImplP*/AMQueueImplP__1__current >= 4) {
+  if (/*AMQueueP.AMQueueImplP*/AMQueueImplP__1__current >= 5) {
       return;
     }
   if (/*AMQueueP.AMQueueImplP*/AMQueueImplP__1__queue[/*AMQueueP.AMQueueImplP*/AMQueueImplP__1__current].msg == msg) {
@@ -37353,78 +38089,60 @@ static uint16_t CC2420ControlP__CC2420Config__getShortAddr(void )
     __nesc_atomic_end(__nesc_atomic); }
 }
 
-# 83 "SlotSchedulerP.nc"
-static error_t /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__updateSlotMap(uint8_t new_slot_pos, update_type_t type)
-#line 83
-{
-  uint8_t new_slot = 1;
+# 136 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Timer.nc"
+static uint32_t /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SystemTimer__getNow(void ){
+#line 136
+  unsigned long __nesc_result;
+#line 136
 
-#line 85
-  if (new_slot_pos >= 32) {
-      /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__Logger__logValue("New slot position can't bigger than 31. Slot position", new_slot_pos, FALSE, log_lvl_err);
-      return FAIL;
-    }
-  new_slot <<= new_slot_pos;
-  switch (type) {
-      case ut_add: 
-        /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__Logger__logValue("Adding new slot to slot map. Slot position", new_slot_pos, FALSE, log_lvl_info);
-      /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__slot_map |= new_slot;
-      break;
-      case ut_delete: 
-        /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__Logger__logValue("Removing slot from slot map. Slot position", new_slot_pos, FALSE, log_lvl_info);
-      if (/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__slot_map && new_slot == 0) {
-        return EALREADY;
-        }
-#line 99
-      /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__slot_map -= new_slot;
-      break;
-      default: 
-        /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__Logger__log("Expect value ut_add or ut_delete", log_lvl_err);
-      return FAIL;
-    }
+#line 136
+  __nesc_result = /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__getNow(8U);
+#line 136
+
+#line 136
+  return __nesc_result;
+#line 136
+}
+#line 136
+# 318 "TDMAControllerP.nc"
+static error_t TDMAControllerP__TDMAController__stop(void )
+#line 318
+{
+
+  TDMAControllerP__head_last_local_round_checked = FALSE;
+  TDMAControllerP__is_sink = FALSE;
+  TDMAControllerP__is_head = FALSE;
+  TDMAControllerP__sync_mode = FALSE;
+  TDMAControllerP__joined = FALSE;
+  TDMAControllerP__sync_received = FALSE;
+  TDMAControllerP__missed_sync_count = 0;
+  TDMAControllerP__head_addr = 0x0000;
+  TDMAControllerP__system_sleep_slots = 0;
+  free(TDMAControllerP__missed_pkg_count);
+  TDMAControllerP__current_round_idx = 5;
+  free(TDMAControllerP__slot_map);
+  TDMAControllerP__SystemScheduler__stop();
+  TDMAControllerP__LocalScheduler__stop();
   return SUCCESS;
 }
 
-#line 26
-static error_t /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__start(uint8_t initial_slot, uint32_t start_time, uint32_t delay, uint8_t sleep_slots_per_round, uint16_t *duration, uint8_t *active_slot_per_round)
-#line 26
+# 48 "MainExecP.nc"
+static void MainExecP__TDMAController__stopDone(error_t err)
+#line 48
 {
-  if (/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__is_running) {
-      return EALREADY;
-    }
-  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__active_slot_per_round_ref = active_slot_per_round;
-  if (initial_slot > */*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__active_slot_per_round_ref && initial_slot != SLOT_REPEAT) {
-    return FAIL;
-    }
-#line 33
-  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__duration_local = duration;
-  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__is_running = TRUE;
-  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__system_time_ref = start_time;
-  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__round_active_time = */*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__duration_local * */*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__active_slot_per_round_ref;
-  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__round_offline_time = */*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__duration_local * sleep_slots_per_round;
-  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__is_active = TRUE;
-  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SystemTimer__startOneShotAt(/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__system_time_ref, /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__round_active_time + delay);
-  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__newRound();
-  if (initial_slot == SLOT_REPEAT) {
-      /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__slot_map = 0xFFFF;
-      /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__last_slot = SLOT_REPEAT;
-      /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__actual_slot = /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__getNextSlot(/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__actual_slot);
-      /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotTimer__startOneShotAt(/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__system_time_ref, 0 + delay);
-    }
-  else 
-#line 46
-    {
-      /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__updateSlotMap(initial_slot, ut_add);
-      /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotTimer__startOneShotAt(/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__system_time_ref, */*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__duration_local * /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__getNextSlot(/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__last_slot) + delay);
-      /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__last_slot = /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__getNextSlot(/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__last_slot);
-      /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__actual_slot = /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__getNextSlot(/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__actual_slot);
-    }
-  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__system_time_ref += delay;
-  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__startDone(initial_slot);
-  return SUCCESS;
+
+  MainExecP__Logger__log("TDMA Controller stopped!", log_lvl_info);
+  MainExecP__Timer__startOneShot(0 * 1000);
+  MainExecP__TDMAController__start();
 }
 
-# 144 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/VirtualizeTimerC.nc"
+# 159 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/VirtualizeTimerC.nc"
+static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startOneShot(uint8_t num, uint32_t dt)
+{
+  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__startTimer(num, /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__getNow(), dt, TRUE);
+}
+
+#line 144
 static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__startTimer(uint8_t num, uint32_t t0, uint32_t dt, bool isoneshot)
 {
   /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer_t *timer = &/*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__m_timers[num];
@@ -37437,19 +38155,178 @@ static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__startTimer(u
   /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__updateFromTimer__postTask();
 }
 
-# 441 "TDMAControllerP.nc"
-static void TDMAControllerP__LocalScheduler__newRound(void )
-#line 441
+# 72 "TDMAControllerP.nc"
+static error_t TDMAControllerP__TDMAController__start(void )
+#line 72
 {
+  uint8_t *round_norm_slot;
 
-  TDMAControllerP__missed_sync_count++;
-  TDMAControllerP__Logger__log("New round local", log_lvl_info);
-  TDMAControllerP__TDMAController__newRound(TDMA_ROUND_LOCAL);
+#line 74
+  round_norm_slot = TDMAControllerP__Settings__slotPerRound();
+  TDMAControllerP__system_sleep_slots = *round_norm_slot + *TDMAControllerP__Settings__sleepSlotPerRound() * 2;
+  TDMAControllerP__is_sink = TOS_NODE_ID == 0x0000;
+  if (TDMAControllerP__first_time) {
+      TDMAControllerP__is_head = TOS_NODE_ID % 4 == 0;
+      TDMAControllerP__first_time = FALSE;
+    }
+  else 
+#line 80
+    {
+      if (TDMAControllerP__is_new_head) {
+          TDMAControllerP__is_head = TRUE;
+          TDMAControllerP__Logger__log("Reverse error", log_lvl_err);
+          TDMAControllerP__off_time = FALSE;
+        }
+      TDMAControllerP__is_new_head = FALSE;
+    }
+
+  if (TDMAControllerP__is_sink) {
+      bzero(TDMAControllerP__structured_sink_to_head_assignment_msg_sink, sizeof(structured_sink_to_head_assignment_msg_t ) * 32);
+      TDMAControllerP__structured_sink_to_head_assignment_msg_sink[02].slot_no_of_new_head = 0x02;
+      TDMAControllerP__structured_sink_to_head_assignment_msg_sink[02].slot_map_new_group_id[00] = 0x01;
+      TDMAControllerP__structured_sink_to_head_assignment_msg_sink[02].slot_map_new_group_id[01] = 0x01;
+      TDMAControllerP__structured_sink_to_head_assignment_msg_sink[02].head_new_group_id = 0x01;
+      TDMAControllerP__structured_sink_to_head_assignment_msg_sink[02].slot_map_on_off = 0x0004;
+    }
+
+  if (!TDMAControllerP__is_sink) {
+      TDMAControllerP__RadioControl__start();
+
+      TDMAControllerP__join_req_msg = (join_req_msg_t *)TDMAControllerP__JoinReqSend__getPayload(&TDMAControllerP__join_req_packet, sizeof(join_req_msg_t ));
+      TDMAControllerP__data_pkg_msg = (data_pkg_msg_t *)TDMAControllerP__DataPkgSend__getPayload(&TDMAControllerP__data_pkg_packet, sizeof(data_pkg_msg_t ));
+      TDMAControllerP__Logger__log("Setting up for head and node", log_lvl_info);
+      TDMAControllerP__sync_mode = TRUE;
+    }
+  else 
+#line 105
+    {
+      TDMAControllerP__is_head = TRUE;
+      TDMAControllerP__Logger__log("Start system scheduler for sink", log_lvl_info);
+      TDMAControllerP__SystemScheduler__start(SLOT_REPEAT, *TDMAControllerP__SystemScheduler__getSystemTime(), 0, TDMAControllerP__system_sleep_slots, TDMAControllerP__Settings__slotDuration(), round_norm_slot);
+    }
+  if (TDMAControllerP__is_head) {
+      if (TDMAControllerP__group_id == 0x00 && !TDMAControllerP__is_sink) {
+        TDMAControllerP__group_id = 0x01;
+        }
+      TDMAControllerP__slot_map = (am_addr_t *)malloc(sizeof(am_addr_t ) * *round_norm_slot);
+      TDMAControllerP__missed_pkg_count = (uint8_t *)malloc(sizeof(uint8_t ) * *round_norm_slot);
+      bzero(TDMAControllerP__slot_map, sizeof(am_addr_t ) * *round_norm_slot);
+      bzero(TDMAControllerP__missed_pkg_count, sizeof(uint8_t ) * *round_norm_slot);
+      TDMAControllerP__timesync_msg = (timesync_msg_t *)TDMAControllerP__TSSend__getPayload(&TDMAControllerP__timesync_packet, sizeof(timesync_msg_t ));
+      TDMAControllerP__join_ans_msg = (join_ans_msg_t *)TDMAControllerP__JoinAnsSend__getPayload(&TDMAControllerP__join_ans_packet, sizeof(join_ans_msg_t ));
+      TDMAControllerP__Logger__log("Done setting up for head and sink", log_lvl_info);
+    }
+  return SUCCESS;
 }
 
-# 36 "MainExecP.nc"
+# 81 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/csma/CC2420CsmaP.nc"
+static error_t CC2420CsmaP__SplitControl__start(void )
+#line 81
+{
+  if (CC2420CsmaP__SplitControlState__requestState(CC2420CsmaP__S_STARTING) == SUCCESS) {
+      CC2420CsmaP__CC2420Power__startVReg();
+      return SUCCESS;
+    }
+  else {
+#line 86
+    if (CC2420CsmaP__SplitControlState__isState(CC2420CsmaP__S_STARTED)) {
+        return EALREADY;
+      }
+    else {
+#line 89
+      if (CC2420CsmaP__SplitControlState__isState(CC2420CsmaP__S_STARTING)) {
+          return SUCCESS;
+        }
+      }
+    }
+#line 93
+  return EBUSY;
+}
+
+# 94 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/lowpan/CC2420TinyosNetworkP.nc"
+static void *CC2420TinyosNetworkP__ActiveSend__getPayload(message_t *msg, uint8_t len)
+#line 94
+{
+  if (len <= CC2420TinyosNetworkP__ActiveSend__maxPayloadLength()) {
+      return msg->data;
+    }
+  else 
+#line 97
+    {
+      return (void *)0;
+    }
+}
+
+# 125 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
+static void * /*TDMAControllerC.DataPkgSender.SenderC.AMQueueEntryP*/AMQueueEntryP__4__Send__getPayload(message_t * msg, uint8_t len){
+#line 125
+  void *__nesc_result;
+#line 125
+
+#line 125
+  __nesc_result = /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__Send__getPayload(3U, msg, len);
+#line 125
+
+#line 125
+  return __nesc_result;
+#line 125
+}
+#line 125
+# 26 "SlotSchedulerP.nc"
+static error_t /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__start(uint8_t initial_slot, uint32_t start_time, uint32_t delay, uint8_t sleep_slots_per_round, uint16_t *duration, uint8_t *active_slot_per_round)
+#line 26
+{
+  if (/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__is_running) {
+      return EALREADY;
+    }
+  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__active_slot_per_round_ref = active_slot_per_round;
+  if (initial_slot > */*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__active_slot_per_round_ref && initial_slot != SLOT_REPEAT) {
+    return FAIL;
+    }
+#line 33
+  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__duration_local = duration;
+  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__is_running = TRUE;
+  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__system_time_ref = start_time;
+  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__round_active_time = */*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__duration_local * */*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__active_slot_per_round_ref;
+  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__round_offline_time = */*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__duration_local * sleep_slots_per_round;
+  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__is_active = TRUE;
+  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SystemTimer__startOneShotAt(/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__system_time_ref, /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__round_active_time + delay);
+  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__newRound();
+  if (initial_slot == SLOT_REPEAT) {
+      /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__slot_map = 0xFFFF;
+      /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__last_slot = SLOT_REPEAT;
+      /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__actual_slot = /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__getNextSlot(/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__actual_slot);
+      /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotTimer__startOneShotAt(/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__system_time_ref, 0 + delay);
+    }
+  else 
+#line 46
+    {
+      /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__updateSlotMap(initial_slot, ut_add);
+      /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotTimer__startOneShotAt(/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__system_time_ref, */*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__duration_local * /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__getNextSlot(/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__last_slot) + delay);
+      /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__last_slot = /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__getNextSlot(/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__last_slot);
+      /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__actual_slot = /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__getNextSlot(/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__actual_slot);
+    }
+  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__system_time_ref += delay;
+  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__startDone(initial_slot);
+  return SUCCESS;
+}
+
+# 485 "TDMAControllerP.nc"
+static void TDMAControllerP__SystemScheduler__newRound(void )
+#line 485
+{
+
+  TDMAControllerP__Logger__log("New round system", log_lvl_info);
+  if (!TDMAControllerP__is_sink) {
+    TDMAControllerP__missed_sync_count++;
+    }
+#line 490
+  TDMAControllerP__TDMAController__newRound(TDMA_ROUND_SYSTEM);
+}
+
+# 37 "MainExecP.nc"
 static void MainExecP__TDMAController__newRound(tdma_round_type_t type)
-#line 36
+#line 37
 {
 
   if (type == TDMA_ROUND_SYSTEM && !MainExecP__TDMAController__isSink()) {
@@ -37457,7 +38334,7 @@ static void MainExecP__TDMAController__newRound(tdma_round_type_t type)
       MainExecP__DataReader__read();
     }
   else {
-#line 41
+#line 42
     if (type == TDMA_ROUND_LOCAL && !MainExecP__TDMAController__isHead()) {
         MainExecP__Logger__log("Local new round", log_lvl_info);
         MainExecP__DataReader__read();
@@ -37484,13 +38361,13 @@ static error_t Msp430RefVoltArbiterImplP__AdcResource__default__request(uint8_t 
 }
 
 # 88 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
-static error_t Msp430RefVoltArbiterImplP__AdcResource__request(uint8_t arg_0x40d41480){
+static error_t Msp430RefVoltArbiterImplP__AdcResource__request(uint8_t arg_0x40e24480){
 #line 88
   unsigned char __nesc_result;
 #line 88
 
 #line 88
-  switch (arg_0x40d41480) {
+  switch (arg_0x40e24480) {
 #line 88
     case /*ReadDataC.SensorPhoto.AdcReadClientC.Msp430AdcClient*/Msp430Adc12ClientAutoRVGC__0__ID:
 #line 88
@@ -37536,7 +38413,7 @@ static error_t Msp430RefVoltArbiterImplP__AdcResource__request(uint8_t arg_0x40d
 #line 88
     default:
 #line 88
-      __nesc_result = Msp430RefVoltArbiterImplP__AdcResource__default__request(arg_0x40d41480);
+      __nesc_result = Msp430RefVoltArbiterImplP__AdcResource__default__request(arg_0x40e24480);
 #line 88
       break;
 #line 88
@@ -37650,7 +38527,7 @@ static error_t /*HplSensirionSht11C.Arbiter.Arbiter*/ArbiterP__0__Resource__requ
 }
 
 # 63 "SlotSchedulerP.nc"
-static uint8_t /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__getNextSlot(uint8_t last_slot_local)
+static uint8_t /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__getNextSlot(uint8_t last_slot_local)
 #line 63
 {
   uint8_t next_slot = last_slot_local;
@@ -37664,16 +38541,149 @@ static uint8_t /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__
   if (last_slot_local == SLOT_INACTIVE) {
       return 0;
     }
-  while (next_slot < */*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__active_slot_per_round_ref) {
+  while (next_slot < */*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__active_slot_per_round_ref) {
       ptr <<= 1;
       next_slot += 1;
-      if (ptr & /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__slot_map) {
+      if (ptr & /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__slot_map) {
           return next_slot;
         }
     }
   return SLOT_INACTIVE;
 }
 
+static error_t /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__updateSlotMap(uint8_t new_slot_pos, update_type_t type)
+#line 83
+{
+  uint8_t new_slot = 1;
+
+#line 85
+  if (new_slot_pos >= 32) {
+      /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__Logger__logValue("New slot position can't bigger than 31. Slot position", new_slot_pos, FALSE, log_lvl_err);
+      return FAIL;
+    }
+  new_slot <<= new_slot_pos;
+  switch (type) {
+      case ut_add: 
+        /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__Logger__logValue("Adding new slot to slot map. Slot position", new_slot_pos, FALSE, log_lvl_info);
+      /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__slot_map |= new_slot;
+      break;
+      case ut_delete: 
+        /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__Logger__logValue("Removing slot from slot map. Slot position", new_slot_pos, FALSE, log_lvl_info);
+      if (/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__slot_map && new_slot == 0) {
+        return EALREADY;
+        }
+#line 99
+      /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__slot_map -= new_slot;
+      break;
+      default: 
+        /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__Logger__log("Expect value ut_add or ut_delete", log_lvl_err);
+      return FAIL;
+    }
+  return SUCCESS;
+}
+
+#line 209
+static uint32_t */*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__getSystemTime(void )
+#line 209
+{
+  if (/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__system_time_ref == 0) {
+    /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__system_time_ref = /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SystemTimer__getNow();
+    }
+#line 212
+  return &/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__system_time_ref;
+}
+
+# 125 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
+static void * /*CC2420TimeSyncMessageC.AMSenderC.SenderC.AMQueueEntryP*/AMQueueEntryP__1__Send__getPayload(message_t * msg, uint8_t len){
+#line 125
+  void *__nesc_result;
+#line 125
+
+#line 125
+  __nesc_result = /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__Send__getPayload(0U, msg, len);
+#line 125
+
+#line 125
+  return __nesc_result;
+#line 125
+}
+#line 125
+static void * /*TDMAControllerC.JoinAnsSender.SenderC.AMQueueEntryP*/AMQueueEntryP__3__Send__getPayload(message_t * msg, uint8_t len){
+#line 125
+  void *__nesc_result;
+#line 125
+
+#line 125
+  __nesc_result = /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__Send__getPayload(2U, msg, len);
+#line 125
+
+#line 125
+  return __nesc_result;
+#line 125
+}
+#line 125
+# 26 "SlotSchedulerP.nc"
+static error_t /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__start(uint8_t initial_slot, uint32_t start_time, uint32_t delay, uint8_t sleep_slots_per_round, uint16_t *duration, uint8_t *active_slot_per_round)
+#line 26
+{
+  if (/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__is_running) {
+      return EALREADY;
+    }
+  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__active_slot_per_round_ref = active_slot_per_round;
+  if (initial_slot > */*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__active_slot_per_round_ref && initial_slot != SLOT_REPEAT) {
+    return FAIL;
+    }
+#line 33
+  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__duration_local = duration;
+  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__is_running = TRUE;
+  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__system_time_ref = start_time;
+  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__round_active_time = */*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__duration_local * */*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__active_slot_per_round_ref;
+  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__round_offline_time = */*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__duration_local * sleep_slots_per_round;
+  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__is_active = TRUE;
+  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SystemTimer__startOneShotAt(/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__system_time_ref, /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__round_active_time + delay);
+  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__newRound();
+  if (initial_slot == SLOT_REPEAT) {
+      /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__slot_map = 0xFFFF;
+      /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__last_slot = SLOT_REPEAT;
+      /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__actual_slot = /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__getNextSlot(/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__actual_slot);
+      /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotTimer__startOneShotAt(/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__system_time_ref, 0 + delay);
+    }
+  else 
+#line 46
+    {
+      /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__updateSlotMap(initial_slot, ut_add);
+      /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotTimer__startOneShotAt(/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__system_time_ref, */*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__duration_local * /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__getNextSlot(/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__last_slot) + delay);
+      /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__last_slot = /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__getNextSlot(/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__last_slot);
+      /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__actual_slot = /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__getNextSlot(/*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__actual_slot);
+    }
+  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__system_time_ref += delay;
+  /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__startDone(initial_slot);
+  return SUCCESS;
+}
+
+# 540 "TDMAControllerP.nc"
+static void TDMAControllerP__LocalScheduler__newRound(void )
+#line 540
+{
+  if (TDMAControllerP__current_round_idx <= 0) {
+      TDMAControllerP__head_last_local_round_checked = TRUE;
+    }
+  if (TDMAControllerP__current_round_idx <= 1 && !TDMAControllerP__is_head) {
+      TDMAControllerP__head_last_local_round_checked = TRUE;
+    }
+  if (TDMAControllerP__current_round_idx == 5 - 2 && TDMAControllerP__is_head) {
+    TDMAControllerP__removeBlankSlotFromSlotMap();
+    }
+#line 549
+  if (!TDMAControllerP__is_head) {
+    TDMAControllerP__missed_sync_count++;
+    }
+#line 551
+  TDMAControllerP__Logger__log("New round local", log_lvl_info);
+  TDMAControllerP__TDMAController__newRound(TDMA_ROUND_LOCAL);
+}
+
+# 83 "SlotSchedulerP.nc"
 static error_t /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SlotScheduler__updateSlotMap(uint8_t new_slot_pos, update_type_t type)
 #line 83
 {
@@ -37705,15 +38715,29 @@ static error_t /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__
   return SUCCESS;
 }
 
-#line 199
-static uint32_t */*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__getSystemTime(void )
-#line 199
+#line 63
+static uint8_t /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__getNextSlot(uint8_t last_slot_local)
+#line 63
 {
-  if (/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__system_time_ref == 0) {
-    /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__system_time_ref = /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SystemTimer__getNow();
+  uint8_t next_slot = last_slot_local;
+  uint32_t ptr = 1 << last_slot_local;
+
+#line 66
+  if (last_slot_local == SLOT_REPEAT) {
+
+      return SLOT_REPEAT;
     }
-#line 202
-  return &/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__system_time_ref;
+  if (last_slot_local == SLOT_INACTIVE) {
+      return 0;
+    }
+  while (next_slot < */*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__active_slot_per_round_ref) {
+      ptr <<= 1;
+      next_slot += 1;
+      if (ptr & /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__slot_map) {
+          return next_slot;
+        }
+    }
+  return SLOT_INACTIVE;
 }
 
 # 144 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420ActiveMessageP.nc"
@@ -37726,21 +38750,6 @@ static am_addr_t CC2420ActiveMessageP__AMPacket__source(message_t *amsg)
   return __nesc_ntoh_leuint16(header->src.nxdata);
 }
 
-# 94 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/lowpan/CC2420TinyosNetworkP.nc"
-static void *CC2420TinyosNetworkP__ActiveSend__getPayload(message_t *msg, uint8_t len)
-#line 94
-{
-  if (len <= CC2420TinyosNetworkP__ActiveSend__maxPayloadLength()) {
-      return msg->data;
-    }
-  else 
-#line 97
-    {
-      return (void *)0;
-    }
-}
-
-# 149 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420ActiveMessageP.nc"
 static void CC2420ActiveMessageP__AMPacket__setDestination(message_t *amsg, am_addr_t addr)
 #line 149
 {
@@ -37765,7 +38774,7 @@ static error_t /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__Send__send(uint8_t clie
 uint8_t len)
 #line 91
 {
-  if (clientId >= 4) {
+  if (clientId >= 5) {
       return FAIL;
     }
   if (/*AMQueueP.AMQueueImplP*/AMQueueImplP__1__queue[clientId].msg != (void *)0) {
@@ -37776,7 +38785,7 @@ uint8_t len)
   /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__queue[clientId].msg = msg;
   /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__Packet__setPayloadLength(msg, len);
 
-  if (/*AMQueueP.AMQueueImplP*/AMQueueImplP__1__current >= 4) {
+  if (/*AMQueueP.AMQueueImplP*/AMQueueImplP__1__current >= 5) {
       error_t err;
       am_id_t amId = /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__AMPacket__type(msg);
       am_addr_t dest = /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__AMPacket__destination(msg);
@@ -37787,7 +38796,7 @@ uint8_t len)
       err = /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__AMSend__send(amId, dest, msg, len);
       if (err != SUCCESS) {
           ;
-          /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__current = 4;
+          /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__current = 5;
           /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__queue[clientId].msg = (void *)0;
         }
 
@@ -37799,78 +38808,96 @@ uint8_t len)
   return SUCCESS;
 }
 
-# 26 "SlotSchedulerP.nc"
-static error_t /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__start(uint8_t initial_slot, uint32_t start_time, uint32_t delay, uint8_t sleep_slots_per_round, uint16_t *duration, uint8_t *active_slot_per_round)
-#line 26
+# 96 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/csma/CC2420CsmaP.nc"
+static error_t CC2420CsmaP__SplitControl__stop(void )
+#line 96
 {
-  if (/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__is_running) {
-      return EALREADY;
+  if (CC2420CsmaP__SplitControlState__isState(CC2420CsmaP__S_STARTED)) {
+      CC2420CsmaP__SplitControlState__forceState(CC2420CsmaP__S_STOPPING);
+      CC2420CsmaP__shutdown();
+      return SUCCESS;
     }
-  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__active_slot_per_round_ref = active_slot_per_round;
-  if (initial_slot > */*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__active_slot_per_round_ref && initial_slot != SLOT_REPEAT) {
-    return FAIL;
+  else {
+#line 102
+    if (CC2420CsmaP__SplitControlState__isState(CC2420CsmaP__S_STOPPED)) {
+        return EALREADY;
+      }
+    else {
+#line 105
+      if (CC2420CsmaP__SplitControlState__isState(CC2420CsmaP__S_TRANSMITTING)) {
+          CC2420CsmaP__SplitControlState__forceState(CC2420CsmaP__S_STOPPING);
+
+          return SUCCESS;
+        }
+      else {
+#line 110
+        if (CC2420CsmaP__SplitControlState__isState(CC2420CsmaP__S_STOPPING)) {
+            return SUCCESS;
+          }
+        }
+      }
     }
-#line 33
-  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__duration_local = duration;
-  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__is_running = TRUE;
-  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__system_time_ref = start_time;
-  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__round_active_time = */*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__duration_local * */*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__active_slot_per_round_ref;
-  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__round_offline_time = */*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__duration_local * sleep_slots_per_round;
-  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__is_active = TRUE;
-  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SystemTimer__startOneShotAt(/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__system_time_ref, /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__round_active_time + delay);
-  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__newRound();
-  if (initial_slot == SLOT_REPEAT) {
-      /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__slot_map = 0xFFFF;
-      /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__last_slot = SLOT_REPEAT;
-      /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__actual_slot = /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__getNextSlot(/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__actual_slot);
-      /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotTimer__startOneShotAt(/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__system_time_ref, 0 + delay);
-    }
-  else 
-#line 46
+#line 114
+  return EBUSY;
+}
+
+# 179 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/transmit/CC2420TransmitP.nc"
+static error_t CC2420TransmitP__StdControl__stop(void )
+#line 179
+{
+  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
+#line 180
     {
-      /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__updateSlotMap(initial_slot, ut_add);
-      /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotTimer__startOneShotAt(/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__system_time_ref, */*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__duration_local * /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__getNextSlot(/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__last_slot) + delay);
-      /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__last_slot = /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__getNextSlot(/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__last_slot);
-      /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__actual_slot = /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__getNextSlot(/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__actual_slot);
+      CC2420TransmitP__m_state = CC2420TransmitP__S_STOPPED;
+      CC2420TransmitP__BackoffTimer__stop();
+      CC2420TransmitP__CaptureSFD__disable();
+      CC2420TransmitP__SpiResource__release();
+      CC2420TransmitP__CSN__set();
     }
-  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__system_time_ref += delay;
-  /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__startDone(initial_slot);
+#line 186
+    __nesc_atomic_end(__nesc_atomic); }
   return SUCCESS;
 }
 
-# 390 "TDMAControllerP.nc"
-static void TDMAControllerP__SystemScheduler__newRound(void )
-#line 390
+# 171 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/receive/CC2420ReceiveP.nc"
+static error_t CC2420ReceiveP__StdControl__stop(void )
+#line 171
 {
-
-  TDMAControllerP__Logger__log("New round system", log_lvl_info);
-  TDMAControllerP__missed_sync_count++;
-  TDMAControllerP__TDMAController__newRound(TDMA_ROUND_SYSTEM);
+  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
+#line 172
+    {
+      CC2420ReceiveP__m_state = CC2420ReceiveP__S_STOPPED;
+      CC2420ReceiveP__reset_state();
+      CC2420ReceiveP__CSN__set();
+      CC2420ReceiveP__InterruptFIFOP__disable();
+    }
+#line 177
+    __nesc_atomic_end(__nesc_atomic); }
+  return SUCCESS;
 }
 
-# 63 "SlotSchedulerP.nc"
-static uint8_t /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__getNextSlot(uint8_t last_slot_local)
-#line 63
+#line 813
+static void CC2420ReceiveP__reset_state(void )
+#line 813
 {
-  uint8_t next_slot = last_slot_local;
-  uint32_t ptr = 1 << last_slot_local;
+  CC2420ReceiveP__m_bytes_left = CC2420ReceiveP__RXFIFO_SIZE;
+  /* atomic removed: atomic calls only */
+#line 815
+  CC2420ReceiveP__receivingPacket = FALSE;
+  CC2420ReceiveP__m_timestamp_head = 0;
+  CC2420ReceiveP__m_timestamp_size = 0;
+  CC2420ReceiveP__m_missed_packets = 0;
+}
 
-#line 66
-  if (last_slot_local == SLOT_REPEAT) {
-
-      return SLOT_REPEAT;
-    }
-  if (last_slot_local == SLOT_INACTIVE) {
-      return 0;
-    }
-  while (next_slot < */*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__active_slot_per_round_ref) {
-      ptr <<= 1;
-      next_slot += 1;
-      if (ptr & /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__slot_map) {
-          return next_slot;
-        }
-    }
-  return SLOT_INACTIVE;
+# 216 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/control/CC2420ControlP.nc"
+static error_t CC2420ControlP__CC2420Power__stopVReg(void )
+#line 216
+{
+  CC2420ControlP__m_state = CC2420ControlP__S_VREG_STOPPED;
+  CC2420ControlP__RSTN__clr();
+  CC2420ControlP__VREN__clr();
+  CC2420ControlP__RSTN__set();
+  return SUCCESS;
 }
 
 # 769 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/receive/CC2420ReceiveP.nc"
@@ -38020,19 +39047,6 @@ static void CC2420ReceiveP__flush(void )
   CC2420ReceiveP__waitForNextPacket();
 }
 
-#line 813
-static void CC2420ReceiveP__reset_state(void )
-#line 813
-{
-  CC2420ReceiveP__m_bytes_left = CC2420ReceiveP__RXFIFO_SIZE;
-  /* atomic removed: atomic calls only */
-#line 815
-  CC2420ReceiveP__receivingPacket = FALSE;
-  CC2420ReceiveP__m_timestamp_head = 0;
-  CC2420ReceiveP__m_timestamp_size = 0;
-  CC2420ReceiveP__m_missed_packets = 0;
-}
-
 # 479 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/control/CC2420ControlP.nc"
 static void CC2420ControlP__writeFsctrl(void )
 #line 479
@@ -38101,83 +39115,13 @@ static void CC2420ControlP__writeId(void )
   CC2420ControlP__IEEEADR__write(0, (uint8_t *)&id, 12);
 }
 
-# 179 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/transmit/CC2420TransmitP.nc"
-static error_t CC2420TransmitP__StdControl__stop(void )
-#line 179
-{
-  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-#line 180
-    {
-      CC2420TransmitP__m_state = CC2420TransmitP__S_STOPPED;
-      CC2420TransmitP__BackoffTimer__stop();
-      CC2420TransmitP__CaptureSFD__disable();
-      CC2420TransmitP__SpiResource__release();
-      CC2420TransmitP__CSN__set();
-    }
-#line 186
-    __nesc_atomic_end(__nesc_atomic); }
-  return SUCCESS;
-}
-
-# 171 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/receive/CC2420ReceiveP.nc"
-static error_t CC2420ReceiveP__StdControl__stop(void )
-#line 171
-{
-  { __nesc_atomic_t __nesc_atomic = __nesc_atomic_start();
-#line 172
-    {
-      CC2420ReceiveP__m_state = CC2420ReceiveP__S_STOPPED;
-      CC2420ReceiveP__reset_state();
-      CC2420ReceiveP__CSN__set();
-      CC2420ReceiveP__InterruptFIFOP__disable();
-    }
+# 177 "TDMAControllerP.nc"
+static void TDMAControllerP__startSlotTask(tdma_round_type_t round_type, uint8_t slot_no)
 #line 177
-    __nesc_atomic_end(__nesc_atomic); }
-  return SUCCESS;
-}
-
-# 216 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/control/CC2420ControlP.nc"
-static error_t CC2420ControlP__CC2420Power__stopVReg(void )
-#line 216
-{
-  CC2420ControlP__m_state = CC2420ControlP__S_VREG_STOPPED;
-  CC2420ControlP__RSTN__clr();
-  CC2420ControlP__VREN__clr();
-  CC2420ControlP__RSTN__set();
-  return SUCCESS;
-}
-
-# 81 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/csma/CC2420CsmaP.nc"
-static error_t CC2420CsmaP__SplitControl__start(void )
-#line 81
-{
-  if (CC2420CsmaP__SplitControlState__requestState(CC2420CsmaP__S_STARTING) == SUCCESS) {
-      CC2420CsmaP__CC2420Power__startVReg();
-      return SUCCESS;
-    }
-  else {
-#line 86
-    if (CC2420CsmaP__SplitControlState__isState(CC2420CsmaP__S_STARTED)) {
-        return EALREADY;
-      }
-    else {
-#line 89
-      if (CC2420CsmaP__SplitControlState__isState(CC2420CsmaP__S_STARTING)) {
-          return SUCCESS;
-        }
-      }
-    }
-#line 93
-  return EBUSY;
-}
-
-# 141 "TDMAControllerP.nc"
-static void TDMAControllerP__startSlotTask(tdma_round_type_t round_type, slot_type_t slot_type)
-#line 141
 {
 
   if (round_type == TDMA_ROUND_SYSTEM) {
-      switch (slot_type) {
+      switch (slot_no) {
           case ST_TIMESYNC: 
             if (TDMAControllerP__is_sink) {
                 TDMAControllerP__sendSyncBeacon(round_type);
@@ -38188,38 +39132,41 @@ static void TDMAControllerP__startSlotTask(tdma_round_type_t round_type, slot_ty
             if (TDMAControllerP__joined || TDMAControllerP__is_sink) {
               break;
               }
-#line 154
+#line 190
           TDMAControllerP__Logger__log("Sending Join Req", log_lvl_info);
           TDMAControllerP__sendJoinReq(round_type);
           break;
           default: 
             if (TDMAControllerP__is_sink) {
-              break;
+                if (TDMAControllerP__current_round_idx <= 0) {
+                  TDMAControllerP__sendAssignment(slot_no);
+                  }
+#line 197
+                break;
               }
-#line 160
           if (TDMAControllerP__SystemScheduler__mode() == MODE_REPEAT && !TDMAControllerP__joined) {
               TDMAControllerP__sendJoinReq(round_type);
               TDMAControllerP__Logger__log("Sending Join Req", log_lvl_info);
               break;
             }
-          if (TDMAControllerP__setup_countdown > 0) {
+          if (TDMAControllerP__current_round_idx > 5 - 2) {
               TDMAControllerP__Logger__log("In set up phase", log_lvl_dbg);
               break;
             }
+
           if (!TDMAControllerP__joined) {
               TDMAControllerP__sendJoinReq(round_type);
               break;
             }
           TDMAControllerP__sendData();
           TDMAControllerP__Logger__log("Sending Data Pkg", log_lvl_info);
-
           break;
         }
     }
   else 
-#line 178
+#line 217
     {
-      switch (slot_type) {
+      switch (slot_no) {
           case ST_TIMESYNC: 
             if (TDMAControllerP__is_head) {
                 TDMAControllerP__sendSyncBeacon(round_type);
@@ -38230,22 +39177,25 @@ static void TDMAControllerP__startSlotTask(tdma_round_type_t round_type, slot_ty
             if (TDMAControllerP__joined || TDMAControllerP__is_head) {
               break;
               }
-#line 189
+#line 228
           TDMAControllerP__Logger__log("Sending Join Req", log_lvl_info);
           TDMAControllerP__sendJoinReq(round_type);
           break;
           break;
           default: 
             if (TDMAControllerP__is_head) {
-              break;
+                if (TDMAControllerP__current_round_idx <= 0) {
+                  TDMAControllerP__sendAssignment(slot_no);
+                  }
+#line 236
+                break;
               }
-#line 196
           if (TDMAControllerP__LocalScheduler__mode() == MODE_REPEAT && !TDMAControllerP__joined) {
               TDMAControllerP__sendJoinReq(round_type);
               TDMAControllerP__Logger__log("Sending Join Req", log_lvl_info);
               break;
             }
-          if (TDMAControllerP__setup_countdown > 0) {
+          if (TDMAControllerP__current_round_idx > 5 - 2) {
               TDMAControllerP__Logger__log("In set up phase", log_lvl_dbg);
               break;
             }
@@ -38260,56 +39210,45 @@ static void TDMAControllerP__startSlotTask(tdma_round_type_t round_type, slot_ty
     }
 }
 
-#line 98
+#line 125
 static void TDMAControllerP__sendSyncBeacon(tdma_round_type_t type)
-#line 98
+#line 125
 {
   unsigned char *__nesc_temp42;
-#line 99
+#line 126
   uint8_t status;
 
-#line 100
+#line 127
   TDMAControllerP__timesync_msg = (timesync_msg_t *)TDMAControllerP__TSSend__getPayload(&TDMAControllerP__timesync_packet, sizeof(timesync_msg_t ));
-  __nesc_hton_uint8(TDMAControllerP__timesync_msg->remain_round.nxdata, TDMAControllerP__setup_countdown);
+  if (TDMAControllerP__is_sink) {
+    TDMAControllerP__current_round_idx = TDMAControllerP__current_round_idx == 0 ? 0 : TDMAControllerP__current_round_idx - 1;
+    }
+#line 130
+  __nesc_hton_uint8(TDMAControllerP__timesync_msg->remain_round.nxdata, TDMAControllerP__current_round_idx);
 
-  __nesc_hton_uint16(TDMAControllerP__timesync_msg->on_off_switch.nxdata, 0x01);
+  __nesc_hton_uint8(TDMAControllerP__timesync_msg->group_id.nxdata, TDMAControllerP__group_id);
 
   if (type == TDMA_ROUND_SYSTEM) {
       __nesc_hton_uint8(TDMAControllerP__timesync_msg->other_flag.nxdata, 1 << 3);
     }
   else 
-#line 107
+#line 136
     {
       (__nesc_temp42 = TDMAControllerP__timesync_msg->other_flag.nxdata, __nesc_hton_uint8(__nesc_temp42, __nesc_ntoh_uint8(__nesc_temp42) & 0xF7));
     }
   if (type == TDMA_ROUND_SYSTEM) {
-      TDMAControllerP__setup_countdown = TDMAControllerP__setup_countdown == 0 ? 0 : TDMAControllerP__setup_countdown - 1;
       status = TDMAControllerP__TSSend__send(AM_BROADCAST_ADDR, &TDMAControllerP__timesync_packet, sizeof(timesync_msg_t ), *TDMAControllerP__SystemScheduler__getSystemTime());
     }
   else {
-#line 114
+#line 142
     status = TDMAControllerP__TSSend__send(AM_BROADCAST_ADDR, &TDMAControllerP__timesync_packet, sizeof(timesync_msg_t ), *TDMAControllerP__LocalScheduler__getSystemTime());
     }
-#line 115
-  TDMAControllerP__Logger__logValue("Set up phase end in", TDMAControllerP__setup_countdown, FALSE, log_lvl_info);
+#line 143
+  TDMAControllerP__Logger__logValue("My Group id", TDMAControllerP__group_id, FALSE, log_lvl_dbg);
+  TDMAControllerP__Logger__logValue("Current round index", TDMAControllerP__current_round_idx, FALSE, log_lvl_info);
   TDMAControllerP__Logger__logValue("Send timesync msg status", status, FALSE, log_lvl_dbg);
 }
 
-# 125 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
-static void * /*CC2420TimeSyncMessageC.AMSenderC.SenderC.AMQueueEntryP*/AMQueueEntryP__1__Send__getPayload(message_t * msg, uint8_t len){
-#line 125
-  void *__nesc_result;
-#line 125
-
-#line 125
-  __nesc_result = /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__Send__getPayload(0U, msg, len);
-#line 125
-
-#line 125
-  return __nesc_result;
-#line 125
-}
-#line 125
 # 197 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/CC2420TimeSyncMessageP.nc"
 static error_t CC2420TimeSyncMessageP__TimeSyncAMSendMilli__send(am_id_t id, am_addr_t addr, message_t *msg, uint8_t len, uint32_t event_time)
 {
@@ -38318,40 +39257,80 @@ static error_t CC2420TimeSyncMessageP__TimeSyncAMSendMilli__send(am_id_t id, am_
   return CC2420TimeSyncMessageP__TimeSyncAMSend32khz__send(id, addr, msg, len, event_time);
 }
 
-# 136 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/Timer.nc"
-static uint32_t /*TDMAControllerC.LocalScheduler.SlotSchedulerP*/SlotSchedulerP__0__SystemTimer__getNow(void ){
-#line 136
-  unsigned long __nesc_result;
-#line 136
-
-#line 136
-  __nesc_result = /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__getNow(8U);
-#line 136
-
-#line 136
-  return __nesc_result;
-#line 136
-}
-#line 136
-# 119 "TDMAControllerP.nc"
+# 148 "TDMAControllerP.nc"
 static void TDMAControllerP__sendJoinReq(tdma_round_type_t type)
-#line 119
+#line 148
 {
   uint8_t status;
+
+#line 150
+  if (TDMAControllerP__assigned_slot == 3) {
+    TDMAControllerP__Logger__logValue("Testing", TDMAControllerP__count_off_time, FALSE, log_lvl_err);
+    }
+#line 152
+  if (TDMAControllerP__off_time) {
+      return;
+    }
 
   TDMAControllerP__join_req_msg = (join_req_msg_t *)TDMAControllerP__JoinReqSend__getPayload(&TDMAControllerP__join_req_packet, sizeof TDMAControllerP__join_req_msg);
   status = TDMAControllerP__JoinReqSend__send(TDMAControllerP__head_addr, &TDMAControllerP__join_req_packet, sizeof(join_req_msg_t ));
   TDMAControllerP__Logger__logValue("Sending Join req... Status", status, FALSE, log_lvl_dbg);
 }
 
+#line 640
+static void TDMAControllerP__sendAssignment(uint8_t slot_no)
+#line 640
+{
+  uint8_t *tmp_ptr;
+  uint8_t tmp_idx;
+  uint32_t check_on_off = 1 << slot_no;
+
+#line 644
+  TDMAControllerP__Logger__logValue("Group id", TDMAControllerP__group_id, FALSE, log_lvl_err);
+  if (TDMAControllerP__group_id != 0x00) {
+      TDMAControllerP__head_to_node_assignment_msg = (head_to_node_assignment_msg_t *)TDMAControllerP__AssignmentSend__getPayload(&TDMAControllerP__assignment_pkt, sizeof(head_to_node_assignment_msg_t ));
+      TDMAControllerP__Logger__logValue("Slot no", slot_no, FALSE, log_lvl_err);
+      TDMAControllerP__Logger__logValue("Head slot no", TDMAControllerP__structured_sink_to_head_assignment_msg.slot_no_of_new_head, FALSE, log_lvl_err);
+      if ((check_on_off & TDMAControllerP__structured_sink_to_head_assignment_msg.slot_map_on_off) != 0) {
+        TDMAControllerP__Logger__log("No need", log_lvl_err);
+        }
+      else {
+#line 652
+        TDMAControllerP__Logger__log("Need off", log_lvl_err);
+        }
+#line 653
+      __nesc_hton_int8(TDMAControllerP__head_to_node_assignment_msg->is_new_head.nxdata, slot_no == TDMAControllerP__structured_sink_to_head_assignment_msg.slot_no_of_new_head ? TRUE : FALSE);
+      __nesc_hton_uint8(TDMAControllerP__head_to_node_assignment_msg->new_group_id.nxdata, TDMAControllerP__structured_sink_to_head_assignment_msg.slot_map_new_group_id[slot_no - 2]);
+      __nesc_hton_int8(TDMAControllerP__head_to_node_assignment_msg->on_off.nxdata, (check_on_off & TDMAControllerP__structured_sink_to_head_assignment_msg.slot_map_on_off) != 0 ? FALSE : TRUE);
+      TDMAControllerP__AssignmentSend__send(TDMAControllerP__slot_map[slot_no], &TDMAControllerP__assignment_pkt, sizeof(head_to_node_assignment_msg_t ));
+    }
+  else 
+#line 657
+    {
+      if (5 > 22) {
+          TDMAControllerP__sendBigMsgProtocol(0);
+        }
+      else 
+#line 660
+        {
+          TDMAControllerP__sink_to_head_assignment_msg = (sink_to_head_assignment_msg_t *)TDMAControllerP__AssignmentSend__getPayload(&TDMAControllerP__assignment_pkt, sizeof(sink_to_head_assignment_msg_t ));
+          tmp_ptr = (uint8_t *)&TDMAControllerP__structured_sink_to_head_assignment_msg_sink[slot_no];
+          for (tmp_idx = 0; tmp_idx < sizeof(sink_to_head_assignment_msg_t ); tmp_idx++) {
+              __nesc_hton_uint8(TDMAControllerP__sink_to_head_assignment_msg->data[tmp_idx].nxdata, tmp_ptr[tmp_idx]);
+            }
+          TDMAControllerP__AssignmentSend__send(TDMAControllerP__slot_map[slot_no], &TDMAControllerP__assignment_pkt, sizeof(structured_sink_to_head_assignment_msg_t ));
+        }
+    }
+}
+
 # 125 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
-static void * /*TDMAControllerC.JoinReqSender.SenderC.AMQueueEntryP*/AMQueueEntryP__2__Send__getPayload(message_t * msg, uint8_t len){
+static void * /*TDMAControllerC.AssignmentSender.SenderC.AMQueueEntryP*/AMQueueEntryP__5__Send__getPayload(message_t * msg, uint8_t len){
 #line 125
   void *__nesc_result;
 #line 125
 
 #line 125
-  __nesc_result = /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__Send__getPayload(1U, msg, len);
+  __nesc_result = /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__Send__getPayload(4U, msg, len);
 #line 125
 
 #line 125
@@ -38359,22 +39338,26 @@ static void * /*TDMAControllerC.JoinReqSender.SenderC.AMQueueEntryP*/AMQueueEntr
 #line 125
 }
 #line 125
-# 135 "TDMAControllerP.nc"
+# 53 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/system/AMQueueEntryP.nc"
+static error_t /*TDMAControllerC.AssignmentSender.SenderC.AMQueueEntryP*/AMQueueEntryP__5__AMSend__send(am_addr_t dest, 
+message_t *msg, 
+uint8_t len)
+#line 55
+{
+  /*TDMAControllerC.AssignmentSender.SenderC.AMQueueEntryP*/AMQueueEntryP__5__AMPacket__setDestination(msg, dest);
+  /*TDMAControllerC.AssignmentSender.SenderC.AMQueueEntryP*/AMQueueEntryP__5__AMPacket__setType(msg, 204);
+  return /*TDMAControllerC.AssignmentSender.SenderC.AMQueueEntryP*/AMQueueEntryP__5__Send__send(msg, len);
+}
+
+# 169 "TDMAControllerP.nc"
 static void TDMAControllerP__sendData(void )
-#line 135
+#line 169
 {
   uint8_t status;
 
-#line 137
+#line 171
   status = TDMAControllerP__DataPkgSend__send(TDMAControllerP__head_addr, &TDMAControllerP__data_pkg_packet, sizeof(data_pkg_msg_t ));
   TDMAControllerP__Logger__logValue("Sending data... Status", status, FALSE, log_lvl_dbg);
-}
-
-# 195 "SlotSchedulerP.nc"
-static uint8_t /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SlotScheduler__currentSlot(void )
-#line 195
-{
-  return (/*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__SystemTimer__getNow() - /*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__system_time_ref) / */*TDMAControllerC.SystemScheduler.SlotSchedulerP*/SlotSchedulerP__1__duration_local;
 }
 
 # 142 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/printf/PrintfP.nc"
@@ -38547,13 +39530,13 @@ static error_t Msp430RefVoltArbiterImplP__AdcResource__default__release(uint8_t 
 }
 
 # 120 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
-static error_t Msp430RefVoltArbiterImplP__AdcResource__release(uint8_t arg_0x40d41480){
+static error_t Msp430RefVoltArbiterImplP__AdcResource__release(uint8_t arg_0x40e24480){
 #line 120
   unsigned char __nesc_result;
 #line 120
 
 #line 120
-  switch (arg_0x40d41480) {
+  switch (arg_0x40e24480) {
 #line 120
     case /*ReadDataC.SensorPhoto.AdcReadClientC.Msp430AdcClient*/Msp430Adc12ClientAutoRVGC__0__ID:
 #line 120
@@ -38599,7 +39582,7 @@ static error_t Msp430RefVoltArbiterImplP__AdcResource__release(uint8_t arg_0x40d
 #line 120
     default:
 #line 120
-      __nesc_result = Msp430RefVoltArbiterImplP__AdcResource__default__release(arg_0x40d41480);
+      __nesc_result = Msp430RefVoltArbiterImplP__AdcResource__default__release(arg_0x40e24480);
 #line 120
       break;
 #line 120
@@ -38690,13 +39673,7 @@ static error_t Msp430RefVoltGeneratorP__stop(Msp430RefVoltGeneratorP__state_t ne
   return result;
 }
 
-# 159 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/VirtualizeTimerC.nc"
-static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__Timer__startOneShot(uint8_t num, uint32_t dt)
-{
-  /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__startTimer(num, /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__TimerFrom__getNow(), dt, TRUE);
-}
-
-# 259 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430RefVoltGeneratorP.nc"
+#line 259
 static error_t Msp430RefVoltGeneratorP__switchOff(void )
 #line 259
 {
@@ -38765,9 +39742,9 @@ static void Msp430RefVoltArbiterImplP__ClientResource__default__granted(uint8_t 
 }
 
 # 102 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Resource.nc"
-static void Msp430RefVoltArbiterImplP__ClientResource__granted(uint8_t arg_0x40cf1980){
+static void Msp430RefVoltArbiterImplP__ClientResource__granted(uint8_t arg_0x40e02980){
 #line 102
-  switch (arg_0x40cf1980) {
+  switch (arg_0x40e02980) {
 #line 102
     case /*ReadDataC.SensorPhoto.AdcReadClientC.Msp430AdcClient*/Msp430Adc12ClientAutoRVGC__0__ID:
 #line 102
@@ -38813,7 +39790,7 @@ static void Msp430RefVoltArbiterImplP__ClientResource__granted(uint8_t arg_0x40c
 #line 102
     default:
 #line 102
-      Msp430RefVoltArbiterImplP__ClientResource__default__granted(arg_0x40cf1980);
+      Msp430RefVoltArbiterImplP__ClientResource__default__granted(arg_0x40e02980);
 #line 102
       break;
 #line 102
@@ -39120,9 +40097,9 @@ static void ReadDataP__Vref__readDone(error_t result, uint16_t val)
     }
 }
 
-# 127 "TDMAControllerP.nc"
+# 161 "TDMAControllerP.nc"
 static void TDMAControllerP__TDMAController__setDataPkg(data_pkg_msg_t *data_pkg)
-#line 127
+#line 161
 {
   __nesc_hton_uint16(TDMAControllerP__data_pkg_msg->vref.nxdata, __nesc_ntoh_uint16(data_pkg->vref.nxdata));
   __nesc_hton_uint16(TDMAControllerP__data_pkg_msg->temperature.nxdata, __nesc_ntoh_uint16(data_pkg->temperature.nxdata));
@@ -39705,9 +40682,9 @@ static void /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__fireTimers(u
   /*HilTimerMilliC.VirtualizeTimerC*/VirtualizeTimerC__0__updateFromTimer__postTask();
 }
 
-# 422 "TDMAControllerP.nc"
+# 523 "TDMAControllerP.nc"
 static void TDMAControllerP__SystemScheduler__slotEnded(uint8_t slot_no, uint8_t actual_slot)
-#line 422
+#line 523
 {
 
   TDMAControllerP__join_lock = FALSE;
@@ -39715,9 +40692,9 @@ static void TDMAControllerP__SystemScheduler__slotEnded(uint8_t slot_no, uint8_t
   TDMAControllerP__putRadioToSleep(TDMA_ROUND_SYSTEM, 3);
 }
 
-#line 216
+#line 274
 static error_t TDMAControllerP__putRadioToSleep(tdma_round_type_t round_type, uint8_t sleep_threshold)
-#line 216
+#line 274
 {
 
 
@@ -39728,7 +40705,7 @@ static error_t TDMAControllerP__putRadioToSleep(tdma_round_type_t round_type, ui
         }
     }
   else 
-#line 224
+#line 282
     {
       if (TDMAControllerP__LocalScheduler__nextSlot() - TDMAControllerP__LocalScheduler__currentSlot() > sleep_threshold) {
           TDMAControllerP__Logger__log("Shutting radio down", log_lvl_info);
@@ -39738,64 +40715,44 @@ static error_t TDMAControllerP__putRadioToSleep(tdma_round_type_t round_type, ui
   return SUCCESS;
 }
 
-# 96 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/cc2420/csma/CC2420CsmaP.nc"
-static error_t CC2420CsmaP__SplitControl__stop(void )
-#line 96
+#line 444
+static bool TDMAControllerP__checkMissingPkt(uint8_t slot_no)
+#line 444
 {
-  if (CC2420CsmaP__SplitControlState__isState(CC2420CsmaP__S_STARTED)) {
-      CC2420CsmaP__SplitControlState__forceState(CC2420CsmaP__S_STOPPING);
-      CC2420CsmaP__shutdown();
-      return SUCCESS;
-    }
-  else {
-#line 102
-    if (CC2420CsmaP__SplitControlState__isState(CC2420CsmaP__S_STOPPED)) {
-        return EALREADY;
-      }
-    else {
-#line 105
-      if (CC2420CsmaP__SplitControlState__isState(CC2420CsmaP__S_TRANSMITTING)) {
-          CC2420CsmaP__SplitControlState__forceState(CC2420CsmaP__S_STOPPING);
-
-          return SUCCESS;
-        }
-      else {
-#line 110
-        if (CC2420CsmaP__SplitControlState__isState(CC2420CsmaP__S_STOPPING)) {
-            return SUCCESS;
+  if (slot_no != ST_JOIN && slot_no != ST_TIMESYNC) {
+    if (TDMAControllerP__is_head) {
+        if (TDMAControllerP__missed_pkg_count[slot_no] >= 2) {
+            TDMAControllerP__slot_map[slot_no] = 0x0000;
+            TDMAControllerP__LocalScheduler__updateSlotMap(slot_no, ut_delete);
+            TDMAControllerP__Logger__logValue("Kicking node at slot", slot_no, FALSE, log_lvl_info);
+            return TRUE;
           }
-        }
+        else {
+#line 453
+          TDMAControllerP__missed_pkg_count[slot_no] += 1;
+          }
       }
     }
-#line 114
-  return EBUSY;
+#line 455
+  if (!TDMAControllerP__is_sink) {
+      if (TDMAControllerP__missed_sync_count >= 2) {
+          TDMAControllerP__Logger__logValue("Missed sync count", TDMAControllerP__missed_sync_count, FALSE, log_lvl_dbg);
+          TDMAControllerP__TDMAController__stop();
+          return TRUE;
+        }
+    }
+  return FALSE;
 }
 
-# 456 "TDMAControllerP.nc"
+#line 563
 static void TDMAControllerP__LocalScheduler__slotEnded(uint8_t slot_no, uint8_t actual_slot)
-#line 456
+#line 563
 {
-
   TDMAControllerP__join_lock = FALSE;
   TDMAControllerP__Logger__logValue("Local slot ended. Slot", actual_slot, FALSE, log_lvl_dbg);
   TDMAControllerP__putRadioToSleep(TDMA_ROUND_LOCAL, 3);
 }
 
-# 125 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/interfaces/Send.nc"
-static void * /*TDMAControllerC.DataPkgSender.SenderC.AMQueueEntryP*/AMQueueEntryP__4__Send__getPayload(message_t * msg, uint8_t len){
-#line 125
-  void *__nesc_result;
-#line 125
-
-#line 125
-  __nesc_result = /*AMQueueP.AMQueueImplP*/AMQueueImplP__1__Send__getPayload(3U, msg, len);
-#line 125
-
-#line 125
-  return __nesc_result;
-#line 125
-}
-#line 125
 # 147 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/lib/timer/TransformAlarmC.nc"
 static void /*HilTimerMilliC.AlarmMilli32C.Transform*/TransformAlarmC__0__Alarm__startAt(/*HilTimerMilliC.AlarmMilli32C.Transform*/TransformAlarmC__0__to_size_type t0, /*HilTimerMilliC.AlarmMilli32C.Transform*/TransformAlarmC__0__to_size_type dt)
 {
@@ -40068,13 +41025,13 @@ static error_t Msp430Adc12ImplP__SingleChannel__default__singleDataReady(uint8_t
 }
 
 # 206 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
-static error_t Msp430Adc12ImplP__SingleChannel__singleDataReady(uint8_t arg_0x40c083f0, uint16_t data){
+static error_t Msp430Adc12ImplP__SingleChannel__singleDataReady(uint8_t arg_0x40d133f0, uint16_t data){
 #line 206
   unsigned char __nesc_result;
 #line 206
 
 #line 206
-  switch (arg_0x40c083f0) {
+  switch (arg_0x40d133f0) {
 #line 206
     case /*ReadDataC.SensorPhoto.AdcReadClientC.Msp430AdcClient*/Msp430Adc12ClientAutoRVGC__0__ID:
 #line 206
@@ -40120,7 +41077,7 @@ static error_t Msp430Adc12ImplP__SingleChannel__singleDataReady(uint8_t arg_0x40
 #line 206
     default:
 #line 206
-      __nesc_result = Msp430Adc12ImplP__SingleChannel__default__singleDataReady(arg_0x40c083f0, data);
+      __nesc_result = Msp430Adc12ImplP__SingleChannel__default__singleDataReady(arg_0x40d133f0, data);
 #line 206
       break;
 #line 206
@@ -40208,13 +41165,13 @@ uint16_t *buf, uint16_t numSamples)
 }
 
 # 227 "/home/advanticsys/TinyOS/tinyos-2.1.2/tos/chips/msp430/adc12/Msp430Adc12SingleChannel.nc"
-static uint16_t * Msp430Adc12ImplP__SingleChannel__multipleDataReady(uint8_t arg_0x40c083f0, uint16_t * buffer, uint16_t numSamples){
+static uint16_t * Msp430Adc12ImplP__SingleChannel__multipleDataReady(uint8_t arg_0x40d133f0, uint16_t * buffer, uint16_t numSamples){
 #line 227
   unsigned int *__nesc_result;
 #line 227
 
 #line 227
-  switch (arg_0x40c083f0) {
+  switch (arg_0x40d133f0) {
 #line 227
     case /*ReadDataC.SensorPhoto.AdcReadClientC.Msp430AdcClient*/Msp430Adc12ClientAutoRVGC__0__ID:
 #line 227
@@ -40260,7 +41217,7 @@ static uint16_t * Msp430Adc12ImplP__SingleChannel__multipleDataReady(uint8_t arg
 #line 227
     default:
 #line 227
-      __nesc_result = Msp430Adc12ImplP__SingleChannel__default__multipleDataReady(arg_0x40c083f0, buffer, numSamples);
+      __nesc_result = Msp430Adc12ImplP__SingleChannel__default__multipleDataReady(arg_0x40d133f0, buffer, numSamples);
 #line 227
       break;
 #line 227

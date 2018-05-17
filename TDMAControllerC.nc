@@ -33,6 +33,11 @@ implementation{
 	components new AMReceiverC(RADIO_DATA_PKG_MSG) as DataPkgReceiver;
 	TDMA.DataPkgReceive	->	DataPkgReceiver.Receive;
 	
+	components new AMSenderC(RADIO_ASSIGNMENT_MSG) as AssignmentSender;
+	TDMA.AssignmentSend	->	AssignmentSender.AMSend;
+	components new AMReceiverC(RADIO_ASSIGNMENT_MSG) as AssignmentReceiver;
+	TDMA.AssignmentReceive	->	AssignmentReceiver.Receive;
+	
 	components new SlotSchedulerC() as LocalScheduler;
 	TDMA.LocalScheduler	->	LocalScheduler.SlotScheduler;
 	components new SlotSchedulerC() as SystemScheduler;
@@ -40,7 +45,7 @@ implementation{
 	
 	components SettingsC;
 	TDMA.Settings		->	SettingsC.Settings;
-
+	
 	components ReadDataC;
 	TDMA.ReadData 		->	ReadDataC.ReadData;
 }

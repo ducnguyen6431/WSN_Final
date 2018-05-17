@@ -1,4 +1,4 @@
-#include "message.h"
+#include "wsn_message.h"
 
 #define MAX_SENSORS 5
 

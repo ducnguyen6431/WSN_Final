@@ -1,13 +1,4 @@
-#ifndef SLEEP_SLOT_DEFAULT
-#define SLEEP_SLOT_DEFAULT	5
-#endif
-#ifndef SLOT_DURATION_DEFAULT
-#define SLOT_DURATION_DEFAULT 1024
-#endif
-#ifndef SLOT_PER_ROUND_DEFAULT
-#define SLOT_PER_ROUND_DEFAULT 7
-#endif
-
+#include "settings.h"
 module SettingsP {
 	provides interface Settings;
 }

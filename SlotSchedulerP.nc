@@ -123,6 +123,11 @@ implementation {
 	// If out of active time then everything will go to sleep
 	// TODO make active time last longer than just active time (Setting up phase)
 	event void SystemTimer.fired(){
+		if (!is_running) {
+			call Logger.log("Retry stopping SystemTimer", log_lvl_dbg);
+			call SystemTimer.stop();
+			return;
+		}
 		if(is_active) {
 			// Start hibernation process, put the whole thing to sleep
 			is_active = FALSE;
@@ -157,6 +162,11 @@ implementation {
 
 	// TODO make active time last longer than just active time (Setting up phase)
 	event void SlotTimer.fired(){
+		if (!is_running) {
+			call Logger.log("Retry stopping SlotTimer", log_lvl_dbg);
+			call SlotTimer.stop();
+			return;
+		}
 		if(!is_active)
 			return;
 		if(!is_slot_start) {

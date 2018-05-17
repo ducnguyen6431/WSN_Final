@@ -1,4 +1,5 @@
-#include "message.h"
+#include "settings.h"
+#include "wsn_message.h"
 #ifndef LIGHT_ON
 #define LIGHT_ON
 #endif
@@ -16,7 +17,7 @@ module MainExecP {
 }
 implementation {
 	event void Boot.booted() {
-		call Timer.startOneShot(5120);
+		call Timer.startOneShot(5 * ONE_SECOND);
 	}
 	
 	event void Timer.fired() {
@@ -47,5 +48,7 @@ implementation {
 	event void TDMAController.stopDone(error_t err){
 		// TODO Auto-generated method stub
 		call Logger.log("TDMA Controller stopped!", log_lvl_info);
+		call Timer.startOneShot(DELAY_BETWEEN_BIG_ROUND);
+		call TDMAController.start();
 	}
 }
