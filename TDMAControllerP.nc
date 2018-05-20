@@ -131,7 +131,6 @@ implementation{
 		if(is_sink)
 			current_round_idx = current_round_idx==0?0:current_round_idx-1;
 		timesync_msg->remain_round = current_round_idx;
-		// TODO Need set on-off protocol
 		timesync_msg->group_id = group_id;
 		// TODO If other flags are needed in the future
 		if(type == TDMA_ROUND_SYSTEM) {
@@ -178,7 +177,6 @@ implementation{
 	void sendAssignment(uint8_t slot_no);
 
 	void startSlotTask(tdma_round_type_t round_type, uint8_t slot_no) {
-		// TODO improve
 		if (round_type == TDMA_ROUND_SYSTEM) {
 			switch (slot_no) {
 				case ST_TIMESYNC:
@@ -321,7 +319,7 @@ implementation{
 	}
 
 	command error_t TDMAController.stop(){
-		// TODO Stop everything, reset variables
+		// TODO Stop everything, reset most variables
 		head_last_local_round_checked = FALSE;
 		is_sink = FALSE;
 		is_head = FALSE;
@@ -409,12 +407,10 @@ implementation{
 	}
 
 	event void TSSend.sendDone(message_t *msg, error_t error){
-		// TODO Auto-generated method stub
 		call Logger.log("Time Sync Sent!", log_lvl_info);
 	}
 
 	event message_t * DataPkgReceive.receive(message_t *msg, void *payload, uint8_t len){
-		// TODO Auto-generated method stub
 		if(call SystemScheduler.isSlotActive()) {
 			missed_pkg_count[call SystemScheduler.currentSlot()] = 0;
 		} else 
@@ -439,7 +435,6 @@ implementation{
 		call Logger.logValue("Slot assigned", join_ans_msg->slot, FALSE, log_lvl_info);
 		assigned_slot = join_ans_msg->slot;
 		if(join_ans_msg->slot == SLOT_UNAVAILABLE) {
-			// TODO Do something here
 			call TDMAController.stop();
 			return msg;
 		}
@@ -487,19 +482,16 @@ implementation{
 	}
 
 	event void JoinReqSend.sendDone(message_t *msg, error_t error){
-		// TODO Auto-generated method stub
 		call Logger.logValue("Join Req Send status", error, FALSE, log_lvl_dbg);
 	}
 
 	event void SystemScheduler.stopDone(error_t err) {
-		// TODO Auto-generated method stub
 		if(!call LocalScheduler.isRunning() && (err == SUCCESS || err == EALREADY)) {
 			signal TDMAController.stopDone(SUCCESS);
 		}
 	}
 
 	event void SystemScheduler.newRound(){
-		// TODO Auto-generated method stub
 		call Logger.log("New round system", log_lvl_dbg);
 		if(!is_sink)
 			missed_sync_count++;
@@ -508,6 +500,9 @@ implementation{
 
 	event void SystemScheduler.endRound() {
 		if(is_sink) {
+			if(current_round_idx == 1) {
+				signal TDMAController.needAssignments();
+			}
 			if(current_round_idx <= 0) {
 				current_round_idx = TOTAL_ROUND_PER_RESET;
 				bzero(slot_map, sizeof(am_addr_t) * *call Settings.slotPerRound());
@@ -522,12 +517,10 @@ implementation{
 	}
 
 	event void SystemScheduler.startDone(uint8_t slot_no){
-		// TODO Auto-generated method stub
 		call Logger.logValue("System scheduler started. Slot", slot_no, FALSE, log_lvl_dbg);
 	}
 
 	event void SystemScheduler.slotStarted(uint8_t slot_no, uint8_t actual_slot){
-		// TODO Auto-generated method stub
 		if(!(current_round_idx > SETUP_COUNTDOWN) && is_sink) {
 			checkMissingPkt(actual_slot);
 		}
@@ -537,7 +530,6 @@ implementation{
 	}
 
 	event void SystemScheduler.slotEnded(uint8_t slot_no, uint8_t actual_slot){
-		// TODO Auto-generated method stub
 		join_lock = FALSE;
 		call Logger.logValue("System end slot", actual_slot, FALSE, log_lvl_dbg);
 		putRadioToSleep(TDMA_ROUND_SYSTEM, SLEEP_THRESHOLD_DEFAULT);
@@ -547,7 +539,6 @@ implementation{
 	}
 
 	event void LocalScheduler.stopDone(error_t err){
-		// TODO Auto-generated method stub
 		if(!call SystemScheduler.isRunning() && (err == SUCCESS || err == EALREADY)) {
 			signal TDMAController.stopDone(SUCCESS);
 		}
@@ -600,7 +591,6 @@ implementation{
 
 	event void JoinAnsSend.sendDone(message_t *msg, error_t error){
 		call Logger.logValue("Join Ans Send status", error, FALSE, log_lvl_dbg);
-		// call Logger.logValue("Client joined at slot", ((join_ans_msg_t *)call JoinAnsSend.getPayload(msg, sizeof(join_ans_msg_t)))->slot, FALSE, log_lvl_dbg);
 	}
 
 	void sendJoinAns(am_addr_t client_addr, uint8_t slot) {
@@ -652,7 +642,6 @@ implementation{
 	}
 
 	event void DataPkgSend.sendDone(message_t *msg, error_t error){
-		// TODO Auto-generated method stub
 		call Logger.log("Data pkg sent", log_lvl_info);
 	}
 

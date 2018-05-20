@@ -51,4 +51,8 @@ implementation {
 		call Timer.startOneShot(DELAY_BETWEEN_BIG_ROUND);
 		call TDMAController.start();
 	}
+
+	event void TDMAController.needAssignments() {
+		call Logger.log("Need Assignment!", log_lvl_info);
+	}
 }
