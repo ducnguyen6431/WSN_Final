@@ -29,6 +29,7 @@ module TDMAControllerP {
 		interface SlotScheduler as LocalScheduler;
 		interface Settings;
 		interface ReadData;
+		interface Leds;
 	}
 }
 
@@ -66,6 +67,8 @@ implementation{
 	structured_sink_to_head_assignment_msg_t structured_sink_to_head_assignment_msg_sink[32];
 	structured_sink_to_head_assignment_msg_t structured_sink_to_head_assignment_msg;
 	uint8_t count_off_time = 0;
+	uint8_t self_count_emergency = NO_HEAD_TIMEOUT;	// If this count reach 0 => Initialize every from the start!
+
 
 	void startSlotTask(tdma_round_type_t round_type, uint8_t slot_no);
 
@@ -126,7 +129,7 @@ implementation{
 		uint8_t status;
 		timesync_msg = (timesync_msg_t*)call TSSend.getPayload(&timesync_packet, sizeof(timesync_msg_t));
 		if(is_sink)
-				current_round_idx = current_round_idx==0?0:current_round_idx-1;
+			current_round_idx = current_round_idx==0?0:current_round_idx-1;
 		timesync_msg->remain_round = current_round_idx;
 		// TODO Need set on-off protocol
 		timesync_msg->group_id = group_id;
@@ -141,7 +144,7 @@ implementation{
 		} else
 			status = call TSSend.send(AM_BROADCAST_ADDR, &timesync_packet, sizeof(timesync_msg_t), *call LocalScheduler.getSystemTime());
 		call Logger.logValue("My Group id", group_id, FALSE, log_lvl_dbg);
-		call Logger.logValue("Current round index", current_round_idx, FALSE, log_lvl_info);
+		call Logger.logValue("Current round", current_round_idx, FALSE, log_lvl_info);
 		call Logger.logValue("Send timesync msg status", status, FALSE, log_lvl_dbg);
 	}
 
@@ -150,6 +153,7 @@ implementation{
 		if(off_time) {
 			return;
 		}
+		call Logger.log("Sending Join Req", log_lvl_info);
 		// join_req_msg->other_flag = type - 1;
 		join_req_msg = (join_req_msg_t*)call JoinReqSend.getPayload(&join_req_packet, sizeof(join_req_msg));
 		status = call JoinReqSend.send(head_addr, &join_req_packet, sizeof(join_req_msg_t));
@@ -166,6 +170,7 @@ implementation{
 
 	void sendData() {
 		uint8_t status;
+		call Logger.log("Sending Data Pkg", log_lvl_info);
 		status = call DataPkgSend.send(head_addr, &data_pkg_packet, sizeof(data_pkg_msg_t));
 		call Logger.logValue("Sending data... Status", status, FALSE, log_lvl_dbg);
 	}
@@ -185,7 +190,6 @@ implementation{
 				case ST_JOIN:
 					if(joined || is_sink)
 						break;
-					call Logger.log("Sending Join Req", log_lvl_info);
 					sendJoinReq(round_type);
 					break;
 				default:
@@ -196,7 +200,6 @@ implementation{
 					}
 					if((call SystemScheduler.mode() == MODE_REPEAT) && !joined){
 						sendJoinReq(round_type);
-						call Logger.log("Sending Join Req", log_lvl_info);
 						break;
 					}
 					if(current_round_idx > SETUP_COUNTDOWN) {
@@ -208,8 +211,9 @@ implementation{
 						sendJoinReq(round_type);
 						break;
 					}
-					sendData();
-					call Logger.log("Sending Data Pkg", log_lvl_info);
+					if(current_round_idx > 0) {
+						sendData();
+					}
 					break;
 			}
 		} else {
@@ -223,7 +227,6 @@ implementation{
 				case ST_JOIN:
 					if(joined || is_head)
 						break;
-					call Logger.log("Sending Join Req", log_lvl_info);
 					sendJoinReq(round_type);
 						break;
 					break;
@@ -235,7 +238,6 @@ implementation{
 					}
 					if((call LocalScheduler.mode() == MODE_REPEAT) && !joined){
 						sendJoinReq(round_type);
-						call Logger.log("Sending Join Req", log_lvl_info);
 						break;
 					}
 					if(current_round_idx > SETUP_COUNTDOWN) {
@@ -246,8 +248,9 @@ implementation{
 						sendJoinReq(round_type);
 						break;
 					}
-					sendData();
-					call Logger.log("Sending Data Pkg", log_lvl_info);
+					if(current_round_idx > 0) {
+						sendData();
+					}
 					break;
 			}
 		}
@@ -288,11 +291,12 @@ implementation{
 
 	// RadioControl Interface
 	event void RadioControl.startDone(error_t error){
-		call Logger.log("Radio started!", log_lvl_info);
 		if (error != SUCCESS && error != EALREADY) {
 			call Logger.logValue("Radio failed to start. Code", error, TRUE, log_lvl_err);
 			call RadioControl.start();
 		} else {
+			call Leds.led0On();
+			call Logger.log("Radio started!", log_lvl_info);
 			if(call SystemScheduler.isSlotActive()) {
 				// call Logger.log("System scheduler start slot task", log_lvl_dbg);
 				startSlotTask(TDMA_ROUND_SYSTEM, call SystemScheduler.currentSlot());
@@ -304,13 +308,16 @@ implementation{
 
 	bool head_last_local_round_checked = FALSE;
 	event void RadioControl.stopDone(error_t error){
-		if (error == SUCCESS || error == EALREADY)
+		if (error == SUCCESS || error == EALREADY) {
+			call Leds.led0Off();
 			call Logger.log("Radio Stopped!", log_lvl_info);
-		if(!is_sink)
-			if(head_last_local_round_checked)
-				if (current_round_idx <= 0) {
-					call TDMAController.stop();
-				}
+		} else {
+			call Logger.logValue("Radio can't stop. Status", error, FALSE, log_lvl_err);
+		}
+		if(head_last_local_round_checked)
+			if (current_round_idx <= 0) {
+				call TDMAController.stop();
+			}
 	}
 
 	command error_t TDMAController.stop(){
@@ -326,6 +333,7 @@ implementation{
 		system_sleep_slots = 0;
 		free(missed_pkg_count);
 		current_round_idx = TOTAL_ROUND_PER_RESET;
+		self_count_emergency = NO_HEAD_TIMEOUT;
 		free(slot_map);
 		call SystemScheduler.stop();
 		call LocalScheduler.stop();
@@ -338,7 +346,17 @@ implementation{
 		uint32_t ref_time;
 		if(is_sink)
 			return msg;
+		call Leds.led1On();
 		call Logger.log("TS received", log_lvl_info);
+		call Leds.led1Off();
+		if(!is_sink && sync_mode) {
+			self_count_emergency--;
+			if(self_count_emergency == 0) {
+				first_time = TRUE;
+				call TDMAController.stop();
+				return msg;
+			}
+		}
 		if(len != sizeof(timesync_msg_t))
 			return msg;
 		if(!call TSPacket.isValid(msg))
@@ -370,7 +388,7 @@ implementation{
 			// This will setup head's System scheduler only
 			if(timesync_msg->group_id == SYSTEM_GROUP_ID) {
 				head_addr = call AMPacket.source(msg);
-				call Logger.log("System scheduler start for head", log_lvl_info);
+				call Logger.log("System scheduler start for head", log_lvl_dbg);
 				call SystemScheduler.start(SLOT_REPEAT, ref_time, 0, system_sleep_slots, call Settings.slotDuration(), call Settings.slotPerRound());
 				sync_mode = FALSE;
 			} else {
@@ -380,7 +398,7 @@ implementation{
 			// This will setup node's Local scheduler only
 			if(timesync_msg->group_id != SYSTEM_GROUP_ID) {
 				head_addr = call AMPacket.source(msg);
-				call Logger.log("Local scheduler start for node", log_lvl_info);
+				call Logger.log("Local scheduler start for node", log_lvl_dbg);
 				call LocalScheduler.start(SLOT_REPEAT, ref_time, 0, system_sleep_slots, call Settings.slotDuration(), call Settings.slotPerRound());
 				sync_mode = FALSE;
 			} else {
@@ -445,7 +463,7 @@ implementation{
 				if(missed_pkg_count[slot_no] >= MISSED_PKG_THRESHOLD) {
 					slot_map[slot_no] = 0x0000;
 					call LocalScheduler.updateSlotMap(slot_no, ut_delete);
-					call Logger.logValue("Kicking node at slot", slot_no, FALSE, log_lvl_info);
+					call Logger.logValue("Kicking node at slot", slot_no, FALSE, log_lvl_dbg);
 					return TRUE;
 				} else 
 					missed_pkg_count[slot_no] += 1;
@@ -482,7 +500,7 @@ implementation{
 
 	event void SystemScheduler.newRound(){
 		// TODO Auto-generated method stub
-		call Logger.log("New round system", log_lvl_info);
+		call Logger.log("New round system", log_lvl_dbg);
 		if(!is_sink)
 			missed_sync_count++;
 		signal TDMAController.newRound(TDMA_ROUND_SYSTEM);
@@ -513,7 +531,7 @@ implementation{
 		if(!(current_round_idx > SETUP_COUNTDOWN) && is_sink) {
 			checkMissingPkt(actual_slot);
 		}
-		call Logger.logValue("System slot started. Slot", actual_slot, FALSE, log_lvl_dbg);
+		call Logger.logValue("System start slot", actual_slot, FALSE, log_lvl_dbg);
 		if(call RadioControl.start() == EALREADY)
 			startSlotTask(TDMA_ROUND_SYSTEM, actual_slot);
 	}
@@ -521,7 +539,7 @@ implementation{
 	event void SystemScheduler.slotEnded(uint8_t slot_no, uint8_t actual_slot){
 		// TODO Auto-generated method stub
 		join_lock = FALSE;
-		call Logger.logValue("System slot ended. Slot", actual_slot, FALSE, log_lvl_dbg);
+		call Logger.logValue("System end slot", actual_slot, FALSE, log_lvl_dbg);
 		putRadioToSleep(TDMA_ROUND_SYSTEM, SLEEP_THRESHOLD_DEFAULT);
 	}
 	
@@ -544,9 +562,11 @@ implementation{
 		}
 		if(current_round_idx == SETUP_COUNTDOWN && is_head)
 			removeBlankSlotFromSlotMap();
-		if(!is_head)
+		if(!is_head) {
+			checkMissingPkt(0);
 			missed_sync_count++;
-		call Logger.log("New round local", log_lvl_info);
+		}
+		call Logger.log("New round local", log_lvl_dbg);
 		signal TDMAController.newRound(TDMA_ROUND_LOCAL);
 	}
 
@@ -560,7 +580,7 @@ implementation{
 	
 	event void LocalScheduler.slotEnded(uint8_t slot_no, uint8_t actual_slot){
 		join_lock = FALSE;
-		call Logger.logValue("Local slot ended. Slot", actual_slot, FALSE, log_lvl_dbg);
+		call Logger.logValue("Local end slot", actual_slot, FALSE, log_lvl_dbg);
 		putRadioToSleep(TDMA_ROUND_LOCAL, SLEEP_THRESHOLD_DEFAULT);
 	}
 
@@ -571,7 +591,7 @@ implementation{
 		if(!(current_round_idx > SETUP_COUNTDOWN) && is_head) {
 			checkMissingPkt(actual_slot);
 		}
-		call Logger.logValue("Local slot started. Slot", actual_slot, FALSE, log_lvl_dbg);
+		call Logger.logValue("Local start slot", actual_slot, FALSE, log_lvl_dbg);
 		if(actual_slot != ST_TIMESYNC && off_time)
 			return;
 		if(call RadioControl.start() == EALREADY)
@@ -620,6 +640,11 @@ implementation{
 			return msg;
 		client_addr = call AMPacket.source(msg);
 		client_future_slot = allocateNewSlot(client_addr);
+		if(is_sink) {
+			call SystemScheduler.updateSlotMap(client_future_slot, ut_add);
+		} else {
+			call LocalScheduler.updateSlotMap(client_future_slot, ut_add);
+		}
 		call Logger.logValue("Client", client_addr, TRUE, log_lvl_info);
 		call Logger.logValue("Slot", client_future_slot, FALSE, log_lvl_info);
 		sendJoinAns(client_addr, client_future_slot);

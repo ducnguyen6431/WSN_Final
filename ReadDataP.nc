@@ -18,7 +18,7 @@ implementation{
 	uint8_t numsensors = 0;
 
 	event void Humidity.readDone(error_t result, uint16_t val){
-		call Logger.log("Reading Humidity!", log_lvl_dat);
+		call Logger.log("Reading Humidity!", log_lvl_dbg);
 		data.humidity = val;
 		if (++numsensors == MAX_SENSORS) {
 			signal ReadData.readDone(SUCCESS, &data);
@@ -27,7 +27,7 @@ implementation{
 	}
 
 	event void Temperature.readDone(error_t result, uint16_t val){
-		call Logger.log("Reading Temperature!", log_lvl_dat);
+		call Logger.log("Reading Temperature!", log_lvl_dbg);
 		data.temperature = val;
 		if(++numsensors == MAX_SENSORS) {
 			signal ReadData.readDone(SUCCESS, &data);
@@ -36,7 +36,7 @@ implementation{
 	}
 
 	event void Vref.readDone(error_t result, uint16_t val){
-		call Logger.log("Reading Vref!", log_lvl_dat);
+		call Logger.log("Reading Vref!", log_lvl_dbg);
 		data.vref = val;
 		if(++numsensors ==  MAX_SENSORS) {
 			signal ReadData.readDone(SUCCESS, &data);
@@ -45,7 +45,7 @@ implementation{
 	}
 
 	event void Photo.readDone(error_t result, uint16_t val){
-		call Logger.log("Reading Photo!", log_lvl_dat);
+		call Logger.log("Reading Photo!", log_lvl_dbg);
 		data.photo = val;
 		if(++numsensors == MAX_SENSORS) {
 			signal ReadData.readDone(SUCCESS, &data);
@@ -54,7 +54,7 @@ implementation{
 	}
 
 	event void Radiation.readDone(error_t result, uint16_t val){
-		call Logger.log("Reading Radiation!", log_lvl_dat);
+		call Logger.log("Reading Radiation!", log_lvl_dbg);
 		data.radiation = val;
 		if(++numsensors == MAX_SENSORS){
 			signal ReadData.readDone(SUCCESS, &data);

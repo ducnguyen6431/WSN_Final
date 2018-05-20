@@ -25,7 +25,7 @@ implementation{
 				break;
 			case log_lvl_dat:
 				#ifdef DBG_DATA
-				printf("[DAT] %s\n", msg);
+				printf("[DATA] %s\n", msg);
 				printfflush();
 				#endif
 			default:
@@ -75,10 +75,10 @@ implementation{
 			case log_lvl_dat:
 				#ifdef DBG_DATA
 				if(to_hex) {
-					printf("[DAT] %s: 0x%08x\n", msg, value);
+					printf("[DATA] %s: 0x%04x\n", msg, value);
 					printfflush();
 				} else {
-					printf("[DAT] %s: %d\n", msg, value);
+					printf("[DATA] %s: %d\n", msg, value);
 					printfflush();
 				}
 				#endif

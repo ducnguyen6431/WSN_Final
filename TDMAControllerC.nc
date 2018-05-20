@@ -48,4 +48,7 @@ implementation{
 	
 	components ReadDataC;
 	TDMA.ReadData 		->	ReadDataC.ReadData;
+
+	components LedsC;
+	TDMA.Leds 			->	LedsC.Leds;
 }
