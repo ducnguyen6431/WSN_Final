@@ -51,4 +51,7 @@ implementation{
 
 	components LedsC;
 	TDMA.Leds 			->	LedsC.Leds;
+
+	components PCConnectC;
+	TDMA.PCConnect		->	PCConnectC.PCConnect;
 }

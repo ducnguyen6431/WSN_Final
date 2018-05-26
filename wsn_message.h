@@ -57,4 +57,10 @@ typedef nx_struct {
 	nx_uint8_t slot;
 } join_ans_msg_t;
 
+typedef nx_struct {
+} assignment_start_signal;
+
+typedef nx_struct {
+} assignment_ack_signal;
+
 #endif

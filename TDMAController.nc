@@ -13,5 +13,4 @@ interface TDMAController{
 	event void stopDone(error_t err);
 	event void newRound(tdma_round_type_t type);
 	command void setDataPkg(data_pkg_msg_t* data_pkg);
-	event void needAssignments();
 }

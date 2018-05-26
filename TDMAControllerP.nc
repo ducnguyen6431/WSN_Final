@@ -30,6 +30,7 @@ module TDMAControllerP {
 		interface Settings;
 		interface ReadData;
 		interface Leds;
+		interface PCConnect;
 	}
 }
 
@@ -78,7 +79,12 @@ implementation{
 		system_sleep_slots = *round_norm_slot + *call Settings.sleepSlotPerRound() * 2;
 		is_sink = (TOS_NODE_ID == 0x0000);
 		if(first_time) {
+//			if(is_sink) {
+//				call PCConnect.start();
+//				call PCConnect.getAllAssignmentsPtr();
+//			}
 			is_head = (TOS_NODE_ID % INITIAL_HEAD_DIVIDE_NO == 0);
+			group_id = (TOS_NODE_ID / INITIAL_HEAD_DIVIDE_NO);
 			first_time = FALSE;
 		} else {
 			if(is_new_head) {
@@ -94,8 +100,33 @@ implementation{
 			structured_sink_to_head_assignment_msg_sink[02].slot_no_of_new_head = 0x02;
 			structured_sink_to_head_assignment_msg_sink[02].slot_map_new_group_id[00] = 0x01;
 			structured_sink_to_head_assignment_msg_sink[02].slot_map_new_group_id[01] = 0x01;
+			structured_sink_to_head_assignment_msg_sink[02].slot_map_new_group_id[02] = 0x01;
 			structured_sink_to_head_assignment_msg_sink[02].head_new_group_id = 0x01;
 			structured_sink_to_head_assignment_msg_sink[02].slot_map_on_off = 0x0004;
+			structured_sink_to_head_assignment_msg_sink[03].slot_no_of_new_head = 0x02;
+			structured_sink_to_head_assignment_msg_sink[03].slot_map_new_group_id[00] = 0x02;
+			structured_sink_to_head_assignment_msg_sink[03].slot_map_new_group_id[01] = 0x02;
+			structured_sink_to_head_assignment_msg_sink[03].slot_map_new_group_id[02] = 0x02;
+			structured_sink_to_head_assignment_msg_sink[03].head_new_group_id = 0x02;
+			structured_sink_to_head_assignment_msg_sink[03].slot_map_on_off = 0x0004;
+			structured_sink_to_head_assignment_msg_sink[04].slot_no_of_new_head = 0x02;
+			structured_sink_to_head_assignment_msg_sink[04].slot_map_new_group_id[00] = 0x03;
+			structured_sink_to_head_assignment_msg_sink[04].slot_map_new_group_id[01] = 0x03;
+			structured_sink_to_head_assignment_msg_sink[04].slot_map_new_group_id[02] = 0x03;
+			structured_sink_to_head_assignment_msg_sink[04].head_new_group_id = 0x03;
+			structured_sink_to_head_assignment_msg_sink[04].slot_map_on_off = 0x0004;
+			structured_sink_to_head_assignment_msg_sink[05].slot_no_of_new_head = 0x02;
+			structured_sink_to_head_assignment_msg_sink[05].slot_map_new_group_id[00] = 0x04;
+			structured_sink_to_head_assignment_msg_sink[05].slot_map_new_group_id[01] = 0x04;
+			structured_sink_to_head_assignment_msg_sink[05].slot_map_new_group_id[02] = 0x04;
+			structured_sink_to_head_assignment_msg_sink[05].head_new_group_id = 0x04;
+			structured_sink_to_head_assignment_msg_sink[05].slot_map_on_off = 0x0004;
+			structured_sink_to_head_assignment_msg_sink[06].slot_no_of_new_head = 0x02;
+			structured_sink_to_head_assignment_msg_sink[06].slot_map_new_group_id[00] = 0x05;
+			structured_sink_to_head_assignment_msg_sink[06].slot_map_new_group_id[01] = 0x05;
+			structured_sink_to_head_assignment_msg_sink[06].slot_map_new_group_id[02] = 0x05;
+			structured_sink_to_head_assignment_msg_sink[06].head_new_group_id = 0x05;
+			structured_sink_to_head_assignment_msg_sink[06].slot_map_on_off = 0x0004;
 		}
 		// test end
 		if (!is_sink) {
@@ -111,8 +142,6 @@ implementation{
 			call SystemScheduler.start(SLOT_REPEAT, *call SystemScheduler.getSystemTime(), 0, system_sleep_slots, call Settings.slotDuration(), round_norm_slot);
 		}
 		if (is_head) {
-			if(group_id == 0x00 && !is_sink)
-				group_id = 0x01;
 			// Head and sink will have TimeSync send and Join Answer
 			slot_map = (am_addr_t*)malloc(sizeof(am_addr_t) * * round_norm_slot);
 			missed_pkg_count = (uint8_t*)malloc(sizeof(uint8_t) * *round_norm_slot);
@@ -131,6 +160,7 @@ implementation{
 		if(is_sink)
 			current_round_idx = current_round_idx==0?0:current_round_idx-1;
 		timesync_msg->remain_round = current_round_idx;
+		// TODO Need set on-off protocol
 		timesync_msg->group_id = group_id;
 		// TODO If other flags are needed in the future
 		if(type == TDMA_ROUND_SYSTEM) {
@@ -177,6 +207,7 @@ implementation{
 	void sendAssignment(uint8_t slot_no);
 
 	void startSlotTask(tdma_round_type_t round_type, uint8_t slot_no) {
+		// TODO improve
 		if (round_type == TDMA_ROUND_SYSTEM) {
 			switch (slot_no) {
 				case ST_TIMESYNC:
@@ -319,7 +350,7 @@ implementation{
 	}
 
 	command error_t TDMAController.stop(){
-		// TODO Stop everything, reset most variables
+		// TODO Stop everything, reset variables
 		head_last_local_round_checked = FALSE;
 		is_sink = FALSE;
 		is_head = FALSE;
@@ -394,7 +425,7 @@ implementation{
 			}
 		} else {
 			// This will setup node's Local scheduler only
-			if(timesync_msg->group_id != SYSTEM_GROUP_ID) {
+			if(timesync_msg->group_id != SYSTEM_GROUP_ID && timesync_msg->group_id == group_id) {
 				head_addr = call AMPacket.source(msg);
 				call Logger.log("Local scheduler start for node", log_lvl_dbg);
 				call LocalScheduler.start(SLOT_REPEAT, ref_time, 0, system_sleep_slots, call Settings.slotDuration(), call Settings.slotPerRound());
@@ -407,19 +438,21 @@ implementation{
 	}
 
 	event void TSSend.sendDone(message_t *msg, error_t error){
+		// TODO Auto-generated method stub
 		call Logger.log("Time Sync Sent!", log_lvl_info);
 	}
 
 	event message_t * DataPkgReceive.receive(message_t *msg, void *payload, uint8_t len){
+		// TODO Auto-generated method stub
+		if (len != sizeof(data_pkg_msg_t))
+			return msg;
 		if(call SystemScheduler.isSlotActive()) {
 			missed_pkg_count[call SystemScheduler.currentSlot()] = 0;
 		} else 
 			if(call LocalScheduler.isSlotActive()) {
 				missed_pkg_count[call LocalScheduler.currentSlot()] = 0;
 			}
-		if (len != sizeof(data_pkg_msg_t))
-			return msg;
-		call ReadData.readMsg((data_pkg_msg_t*) payload);
+//		call PCConnect.gatherDataToPC(call AMPacket.source(msg), (data_pkg_msg_t*) payload);
 		return msg;
 	}
 
@@ -435,6 +468,7 @@ implementation{
 		call Logger.logValue("Slot assigned", join_ans_msg->slot, FALSE, log_lvl_info);
 		assigned_slot = join_ans_msg->slot;
 		if(join_ans_msg->slot == SLOT_UNAVAILABLE) {
+			// TODO Do something here
 			call TDMAController.stop();
 			return msg;
 		}
@@ -482,16 +516,19 @@ implementation{
 	}
 
 	event void JoinReqSend.sendDone(message_t *msg, error_t error){
+		// TODO Auto-generated method stub
 		call Logger.logValue("Join Req Send status", error, FALSE, log_lvl_dbg);
 	}
 
 	event void SystemScheduler.stopDone(error_t err) {
+		// TODO Auto-generated method stub
 		if(!call LocalScheduler.isRunning() && (err == SUCCESS || err == EALREADY)) {
 			signal TDMAController.stopDone(SUCCESS);
 		}
 	}
 
 	event void SystemScheduler.newRound(){
+		// TODO Auto-generated method stub
 		call Logger.log("New round system", log_lvl_dbg);
 		if(!is_sink)
 			missed_sync_count++;
@@ -501,7 +538,7 @@ implementation{
 	event void SystemScheduler.endRound() {
 		if(is_sink) {
 			if(current_round_idx == 1) {
-				signal TDMAController.needAssignments();
+//				call PCConnect.getAssignmentPackages();
 			}
 			if(current_round_idx <= 0) {
 				current_round_idx = TOTAL_ROUND_PER_RESET;
@@ -517,10 +554,12 @@ implementation{
 	}
 
 	event void SystemScheduler.startDone(uint8_t slot_no){
+		// TODO Auto-generated method stub
 		call Logger.logValue("System scheduler started. Slot", slot_no, FALSE, log_lvl_dbg);
 	}
 
 	event void SystemScheduler.slotStarted(uint8_t slot_no, uint8_t actual_slot){
+		// TODO Auto-generated method stub
 		if(!(current_round_idx > SETUP_COUNTDOWN) && is_sink) {
 			checkMissingPkt(actual_slot);
 		}
@@ -530,6 +569,7 @@ implementation{
 	}
 
 	event void SystemScheduler.slotEnded(uint8_t slot_no, uint8_t actual_slot){
+		// TODO Auto-generated method stub
 		join_lock = FALSE;
 		call Logger.logValue("System end slot", actual_slot, FALSE, log_lvl_dbg);
 		putRadioToSleep(TDMA_ROUND_SYSTEM, SLEEP_THRESHOLD_DEFAULT);
@@ -539,6 +579,7 @@ implementation{
 	}
 
 	event void LocalScheduler.stopDone(error_t err){
+		// TODO Auto-generated method stub
 		if(!call SystemScheduler.isRunning() && (err == SUCCESS || err == EALREADY)) {
 			signal TDMAController.stopDone(SUCCESS);
 		}
@@ -591,6 +632,7 @@ implementation{
 
 	event void JoinAnsSend.sendDone(message_t *msg, error_t error){
 		call Logger.logValue("Join Ans Send status", error, FALSE, log_lvl_dbg);
+		// call Logger.logValue("Client joined at slot", ((join_ans_msg_t *)call JoinAnsSend.getPayload(msg, sizeof(join_ans_msg_t)))->slot, FALSE, log_lvl_dbg);
 	}
 
 	void sendJoinAns(am_addr_t client_addr, uint8_t slot) {
@@ -642,6 +684,7 @@ implementation{
 	}
 
 	event void DataPkgSend.sendDone(message_t *msg, error_t error){
+		// TODO Auto-generated method stub
 		call Logger.log("Data pkg sent", log_lvl_info);
 	}
 
@@ -656,9 +699,9 @@ implementation{
 		if(group_id != SYSTEM_GROUP_ID) {
 			head_to_node_assignment_msg = (head_to_node_assignment_msg_t*)call AssignmentSend.getPayload(&assignment_pkt, sizeof(head_to_node_assignment_msg_t));
 			if((check_on_off & structured_sink_to_head_assignment_msg.slot_map_on_off) != 0)
-				call Logger.log("No need", log_lvl_dbg);
+				call Logger.log("No need", log_lvl_info);
 			else
-				call Logger.log("Need off", log_lvl_dbg);
+				call Logger.log("Need off", log_lvl_info);
 			head_to_node_assignment_msg->is_new_head = (slot_no == structured_sink_to_head_assignment_msg.slot_no_of_new_head?TRUE:FALSE);
 			head_to_node_assignment_msg->new_group_id = structured_sink_to_head_assignment_msg.slot_map_new_group_id[slot_no - 2];
 			head_to_node_assignment_msg->on_off = ((check_on_off & structured_sink_to_head_assignment_msg.slot_map_on_off) != 0?FALSE:TRUE);
