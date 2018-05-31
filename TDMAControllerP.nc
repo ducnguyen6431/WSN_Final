@@ -69,7 +69,8 @@ implementation{
 	structured_sink_to_head_assignment_msg_t structured_sink_to_head_assignment_msg;
 	uint8_t count_off_time = 0;
 	uint8_t self_count_emergency = NO_HEAD_TIMEOUT;	// If this count reach 0 => Initialize every from the start!
-
+	uint8_t receive_time = 0;
+	
 
 	void startSlotTask(tdma_round_type_t round_type, uint8_t slot_no);
 
@@ -79,10 +80,10 @@ implementation{
 		system_sleep_slots = *round_norm_slot + *call Settings.sleepSlotPerRound() * 2;
 		is_sink = (TOS_NODE_ID == 0x0000);
 		if(first_time) {
-//			if(is_sink) {
-//				call PCConnect.start();
-//				call PCConnect.getAllAssignmentsPtr();
-//			}
+		//	if(is_sink) {
+		//		call PCConnect.start();
+		//		structured_sink_to_head_assignment_msg_sink = call PCConnect.getAllAssignmentsPtr();
+		//	}
 			is_head = (TOS_NODE_ID % INITIAL_HEAD_DIVIDE_NO == 0);
 			group_id = (TOS_NODE_ID / INITIAL_HEAD_DIVIDE_NO);
 			first_time = FALSE;
@@ -351,6 +352,7 @@ implementation{
 
 	command error_t TDMAController.stop(){
 		// TODO Stop everything, reset variables
+		receive_time = 0;
 		head_last_local_round_checked = FALSE;
 		is_sink = FALSE;
 		is_head = FALSE;
@@ -452,7 +454,7 @@ implementation{
 			if(call LocalScheduler.isSlotActive()) {
 				missed_pkg_count[call LocalScheduler.currentSlot()] = 0;
 			}
-//		call PCConnect.gatherDataToPC(call AMPacket.source(msg), (data_pkg_msg_t*) payload);
+		//call PCConnect.gatherDataToPC(call AMPacket.source(msg), (data_pkg_msg_t*) payload);
 		return msg;
 	}
 
@@ -538,7 +540,7 @@ implementation{
 	event void SystemScheduler.endRound() {
 		if(is_sink) {
 			if(current_round_idx == 1) {
-//				call PCConnect.getAssignmentPackages();
+		//		call PCConnect.getAssignmentPackages();
 			}
 			if(current_round_idx <= 0) {
 				current_round_idx = TOTAL_ROUND_PER_RESET;
@@ -725,7 +727,6 @@ implementation{
 		call Logger.log("Assignment sent!", log_lvl_info);
 	}
 
-	uint8_t receive_time = 0;
 	event message_t * AssignmentReceive.receive(message_t *msg, void *payload, uint8_t len) {
 		uint8_t tmp_idx;
 		uint8_t* tmp_ptr;
